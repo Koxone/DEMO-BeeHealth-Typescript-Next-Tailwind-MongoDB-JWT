@@ -11,7 +11,7 @@
 
 **A modern medical platform designed for doctors, employees, and patients with real-time scheduling, consult management, inventory tracking, and Google Calendar integration.**
 
-🔗 **Live Demo:** [https://www.efsett.org/](https://www.efsett.org/)
+🔗 **Live Demo:** [https://demo-beehealth.vercel.app/](https://demo-beehealth.vercel.app/)
 
 ---
 

@@ -1,0 +1,1018 @@
+{
+  "weight": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 9, "key": "heightCm", "label": "Altura (cm)", "type": "number" },
+    { "id": 10, "key": "weightKg", "label": "Peso actual (kg)", "type": "number" },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+
+    {
+      "id": 16,
+      "key": "goodHealth",
+      "label": "¿Se encuentra en buen estado de salud?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 17,
+      "key": "underTreatment",
+      "label": "¿Se encuentra bajo tratamiento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 18,
+      "key": "currentlyTakesMeds",
+      "label": "¿Actualmente toma algún medicamento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    { "id": 30, "key": "targetWeightKg", "label": "Peso objetivo (kg)", "type": "number" },
+    {
+      "id": 31,
+      "key": "physicalActivity",
+      "label": "Actividad física (tipo y frecuencia)",
+      "type": "text"
+    },
+    { "id": 32, "key": "sleepHours", "label": "Horas de sueño (por día)", "type": "number" },
+    {
+      "id": 33,
+      "key": "waterIntakeLiters",
+      "label": "Consumo de agua (litros por día)",
+      "type": "number"
+    },
+    { "id": 34, "key": "foodAllergies", "label": "Alergias alimentarias", "type": "textarea" },
+    { "id": 35, "key": "dietType", "label": "Tipo de alimentación", "type": "text" },
+
+    {
+      "id": 24,
+      "key": "alcoholUse",
+      "label": "¿Consume alcohol?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 25,
+      "key": "tobaccoUse",
+      "label": "¿Consume tabaco?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 26,
+      "key": "drugUse",
+      "label": "¿Consume drogas?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 27,
+      "key": "alcoholDetails",
+      "label": "Alcohol (frecuencia o cantidad)",
+      "type": "text"
+    },
+    {
+      "id": 28,
+      "key": "tobaccoDetails",
+      "label": "Tabaco (frecuencia o cantidad)",
+      "type": "text"
+    },
+    { "id": 29, "key": "drugDetails", "label": "Drogas (tipo o frecuencia)", "type": "text" }
+  ],
+
+  "weightFullHistory": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 7, "key": "occupation", "label": "Ocupación", "type": "text" },
+    {
+      "id": 8,
+      "key": "maritalStatus",
+      "label": "Estado civil",
+      "type": "select",
+      "options": ["Soltero", "Casado", "Unión libre", "Divorciado", "Viudo"]
+    },
+    { "id": 11, "key": "emergencyContact", "label": "Contacto de emergencia", "type": "text" },
+    { "id": 12, "key": "emergencyPhone", "label": "Telefono de emergencia", "type": "text" },
+
+    { "id": 9, "key": "heightCm", "label": "Altura (cm)", "type": "number" },
+    { "id": 10, "key": "weightKg", "label": "Peso actual (kg)", "type": "number" },
+    {
+      "id": 49,
+      "key": "measuredHeightCm",
+      "label": "Talla medida en consulta (cm)",
+      "type": "number"
+    },
+    {
+      "id": 48,
+      "key": "measuredWeightKg",
+      "label": "Peso medido en consulta (kg)",
+      "type": "number"
+    },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+    {
+      "id": 16,
+      "key": "goodHealth",
+      "label": "¿Se encuentra en buen estado de salud?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 17,
+      "key": "underTreatment",
+      "label": "¿Se encuentra bajo tratamiento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 18,
+      "key": "currentlyTakesMeds",
+      "label": "¿Actualmente toma algún medicamento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    { "id": 30, "key": "targetWeightKg", "label": "Peso objetivo (kg)", "type": "number" },
+    {
+      "id": 31,
+      "key": "physicalActivity",
+      "label": "Actividad física (tipo y frecuencia)",
+      "type": "text"
+    },
+    { "id": 32, "key": "sleepHours", "label": "Horas de sueño (por día)", "type": "number" },
+    {
+      "id": 33,
+      "key": "waterIntakeLiters",
+      "label": "Consumo de agua (litros por día)",
+      "type": "number"
+    },
+    { "id": 37, "key": "chronicDiseases", "label": "Enfermedades crónicas", "type": "textarea" },
+    {
+      "id": 53,
+      "key": "additionalMedications",
+      "label": "Medicamentos actuales adicionales",
+      "type": "textarea"
+    },
+    { "id": 34, "key": "foodAllergies", "label": "Alergias alimentarias", "type": "textarea" },
+    { "id": 35, "key": "dietType", "label": "Tipo de alimentación", "type": "text" },
+    { "id": 56, "key": "priorSurgeries", "label": "Cirugías previas", "type": "textarea" },
+    {
+      "id": 57,
+      "key": "weightConsultReason",
+      "label": "Motivo de consulta por peso",
+      "type": "textarea"
+    },
+
+    {
+      "id": 38,
+      "key": "fhDiabetes",
+      "label": "Antecedente familiar: Diabetes",
+      "type": "checkbox"
+    },
+    {
+      "id": 39,
+      "key": "fhHypertension",
+      "label": "Antecedente familiar: Hipertensión",
+      "type": "checkbox"
+    },
+    {
+      "id": 40,
+      "key": "fhHepatitis",
+      "label": "Antecedente familiar: Hepatitis",
+      "type": "checkbox"
+    },
+    {
+      "id": 41,
+      "key": "fhArthritis",
+      "label": "Antecedente familiar: Artritis",
+      "type": "checkbox"
+    },
+
+    {
+      "id": 24,
+      "key": "alcoholUse",
+      "label": "¿Consume alcohol?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 25,
+      "key": "tobaccoUse",
+      "label": "¿Consume tabaco?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 26,
+      "key": "drugUse",
+      "label": "¿Consume drogas?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 27,
+      "key": "alcoholDetails",
+      "label": "Alcohol (frecuencia o cantidad)",
+      "type": "text"
+    },
+    {
+      "id": 28,
+      "key": "tobaccoDetails",
+      "label": "Tabaco (frecuencia o cantidad)",
+      "type": "text"
+    },
+    { "id": 29, "key": "drugDetails", "label": "Drogas (tipo o frecuencia)", "type": "text" },
+
+    { "id": 42, "key": "bloodPressure", "label": "Tensión arterial", "type": "text" },
+    { "id": 43, "key": "heartRate", "label": "Frecuencia cardiaca", "type": "number" },
+    { "id": 44, "key": "respiratoryRate", "label": "Frecuencia respiratoria", "type": "number" },
+    { "id": 45, "key": "temperature", "label": "Temperatura", "type": "text" },
+    { "id": 46, "key": "oxygenSaturation", "label": "Saturación de oxígeno", "type": "text" },
+    { "id": 47, "key": "bmi", "label": "IMC", "type": "text" },
+
+    { "id": 72, "key": "registrationDate", "label": "Fecha de registro", "type": "date" },
+    { "id": 73, "key": "responsiblePhysician", "label": "Médico responsable", "type": "text" },
+    {
+      "id": 74,
+      "key": "preliminaryDiagnosis",
+      "label": "Diagnóstico preliminar",
+      "type": "textarea"
+    },
+    { "id": 75, "key": "suggestedTreatment", "label": "Tratamiento sugerido", "type": "textarea" },
+    { "id": 76, "key": "professionalNotes", "label": "Notas del profesional", "type": "textarea" },
+    { "id": 77, "key": "definitiveDiagnosis", "label": "Diagnóstico definitivo", "type": "text" },
+    { "id": 78, "key": "prescribedTreatment", "label": "Tratamiento prescrito", "type": "text" },
+    { "id": 79, "key": "indicatedMedications", "label": "Medicamentos indicados", "type": "text" },
+    {
+      "id": 80,
+      "key": "evolutionNotes",
+      "label": "Observaciones de evolución",
+      "type": "textarea"
+    },
+    {
+      "id": 81,
+      "key": "finalRecommendations",
+      "label": "Recomendaciones finales",
+      "type": "textarea"
+    },
+    { "id": 82, "key": "nextReviewDate", "label": "Fecha de próxima revisión", "type": "date" },
+    { "id": 83, "key": "physicianSignature", "label": "Firma del médico", "type": "text" }
+  ],
+
+  "dental": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+
+    {
+      "id": 16,
+      "key": "goodHealth",
+      "label": "¿Se encuentra en buen estado de salud?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 17,
+      "key": "underTreatment",
+      "label": "¿Se encuentra bajo tratamiento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 18,
+      "key": "currentlyTakesMeds",
+      "label": "¿Actualmente toma algún medicamento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    {
+      "id": 50,
+      "key": "firstDentalVisit",
+      "label": "¿Es su primera visita?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 51,
+      "key": "fluorideApplications",
+      "label": "¿Ha recibido aplicaciones de flúor?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 52,
+      "key": "extractions",
+      "label": "¿Le han realizado extracciones dentales?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 53,
+      "key": "postExtractionBleeding",
+      "label": "¿Presentó sangrado post extracción?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 54,
+      "key": "priorDentalTreatments",
+      "label": "Tratamientos odontológicos previos",
+      "type": "textarea"
+    },
+    {
+      "id": 55,
+      "key": "toothLoss",
+      "label": "Pérdida de dientes",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 56,
+      "key": "gumBleeding",
+      "label": "Sangrado de encías",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 57,
+      "key": "dailyBrushing",
+      "label": "Cepillado diario",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 58,
+      "key": "mouthwashUse",
+      "label": "Uso de enjuague bucal",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 59,
+      "key": "flossUse",
+      "label": "Uso de hilo dental",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 60,
+      "key": "properToothbrushUse",
+      "label": "Uso de cepillo dental adecuado",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 61,
+      "key": "dentalPain",
+      "label": "Dolor dental",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    { "id": 62, "key": "painDescription", "label": "Descripción del dolor", "type": "text" }
+  ],
+
+  "dentalFullHistory": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 7, "key": "occupation", "label": "Ocupación", "type": "text" },
+    {
+      "id": 8,
+      "key": "maritalStatus",
+      "label": "Estado civil",
+      "type": "select",
+      "options": ["Soltero", "Casado", "Unión libre", "Divorciado", "Viudo"]
+    },
+    { "id": 11, "key": "emergencyContact", "label": "Contacto de emergencia", "type": "text" },
+    { "id": 12, "key": "emergencyPhone", "label": "Telefono de emergencia", "type": "text" },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    {
+      "id": 24,
+      "key": "alcoholUse",
+      "label": "¿Consume alcohol?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 25,
+      "key": "tobaccoUse",
+      "label": "¿Consume tabaco?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 26,
+      "key": "drugUse",
+      "label": "¿Consume drogas?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 50,
+      "key": "firstDentalVisit",
+      "label": "¿Es su primera visita?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 51,
+      "key": "fluorideApplications",
+      "label": "¿Ha recibido aplicaciones de flúor?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 52,
+      "key": "extractions",
+      "label": "¿Le han realizado extracciones dentales?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 53,
+      "key": "postExtractionBleeding",
+      "label": "¿Presentó sangrado post extracción?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 54,
+      "key": "priorDentalTreatments",
+      "label": "Tratamientos odontológicos previos",
+      "type": "textarea"
+    },
+    {
+      "id": 55,
+      "key": "toothLoss",
+      "label": "Pérdida de dientes",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 56,
+      "key": "gumBleeding",
+      "label": "Sangrado de encías",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 57,
+      "key": "dailyBrushing",
+      "label": "Cepillado diario",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 58,
+      "key": "mouthwashUse",
+      "label": "Uso de enjuague bucal",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 59,
+      "key": "flossUse",
+      "label": "Uso de hilo dental",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 60,
+      "key": "properToothbrushUse",
+      "label": "Uso de cepillo dental adecuado",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 61,
+      "key": "dentalPain",
+      "label": "Dolor dental",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    { "id": 62, "key": "painDescription", "label": "Descripción del dolor", "type": "text" },
+
+    {
+      "id": 38,
+      "key": "fhDiabetes",
+      "label": "Antecedente familiar: Diabetes",
+      "type": "checkbox"
+    },
+    {
+      "id": 39,
+      "key": "fhHypertension",
+      "label": "Antecedente familiar: Hipertensión",
+      "type": "checkbox"
+    },
+    {
+      "id": 40,
+      "key": "fhHepatitis",
+      "label": "Antecedente familiar: Hepatitis",
+      "type": "checkbox"
+    },
+    {
+      "id": 41,
+      "key": "fhArthritis",
+      "label": "Antecedente familiar: Artritis",
+      "type": "checkbox"
+    },
+
+    { "id": 42, "key": "bloodPressure", "label": "Tensión arterial", "type": "text" },
+    { "id": 43, "key": "heartRate", "label": "Frecuencia cardiaca", "type": "number" },
+    { "id": 44, "key": "respiratoryRate", "label": "Frecuencia respiratoria", "type": "number" },
+    { "id": 45, "key": "temperature", "label": "Temperatura", "type": "text" },
+    { "id": 46, "key": "oxygenSaturation", "label": "Saturación de oxígeno", "type": "text" },
+    { "id": 47, "key": "bmi", "label": "IMC", "type": "text" },
+
+    {
+      "id": 84,
+      "key": "oralCavityEvaluation",
+      "label": "Evaluación de cavidad bucal",
+      "type": "text"
+    },
+    {
+      "id": 85,
+      "key": "neckAdjacentStructures",
+      "label": "Cuello y estructuras adyacentes",
+      "type": "text"
+    },
+    { "id": 86, "key": "dentalDiagnosis", "label": "Diagnóstico dental", "type": "text" },
+    {
+      "id": 87,
+      "key": "dentalTreatmentPlan",
+      "label": "Plan de tratamiento dental",
+      "type": "textarea"
+    },
+    { "id": 88, "key": "materialsUsed", "label": "Materiales utilizados", "type": "text" },
+    {
+      "id": 89,
+      "key": "patientRecommendations",
+      "label": "Recomendaciones al paciente",
+      "type": "textarea"
+    },
+
+    { "id": 72, "key": "registrationDate", "label": "Fecha de registro", "type": "date" },
+    { "id": 73, "key": "responsiblePhysician", "label": "Médico responsable", "type": "text" },
+    {
+      "id": 74,
+      "key": "preliminaryDiagnosis",
+      "label": "Diagnóstico preliminar",
+      "type": "textarea"
+    },
+    { "id": 75, "key": "suggestedTreatment", "label": "Tratamiento sugerido", "type": "textarea" },
+    { "id": 76, "key": "professionalNotes", "label": "Notas del profesional", "type": "textarea" },
+    { "id": 77, "key": "definitiveDiagnosis", "label": "Diagnóstico definitivo", "type": "text" },
+    { "id": 78, "key": "prescribedTreatment", "label": "Tratamiento prescrito", "type": "text" },
+    { "id": 79, "key": "indicatedMedications", "label": "Medicamentos indicados", "type": "text" },
+    {
+      "id": 80,
+      "key": "evolutionNotes",
+      "label": "Observaciones de evolución",
+      "type": "textarea"
+    },
+    {
+      "id": 81,
+      "key": "finalRecommendations",
+      "label": "Recomendaciones finales",
+      "type": "textarea"
+    },
+    { "id": 82, "key": "nextReviewDate", "label": "Fecha de próxima revisión", "type": "date" },
+    { "id": 83, "key": "physicianSignature", "label": "Firma del médico", "type": "text" }
+  ],
+
+  "stetic": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+
+    {
+      "id": 16,
+      "key": "goodHealth",
+      "label": "¿Se encuentra en buen estado de salud?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 17,
+      "key": "underTreatment",
+      "label": "¿Se encuentra bajo tratamiento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 18,
+      "key": "currentlyTakesMeds",
+      "label": "¿Actualmente toma algún medicamento?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    {
+      "id": 73,
+      "key": "aestheticTreatmentReason",
+      "label": "Motivo de tratamiento estético",
+      "type": "textarea"
+    },
+    { "id": 56, "key": "priorSurgeries", "label": "Cirugías previas", "type": "textarea" },
+    { "id": 65, "key": "anesthesiaReactions", "label": "Reacciones a anestesia", "type": "text" },
+    {
+      "id": 66,
+      "key": "interferingDiseases",
+      "label": "Enfermedades que interfieren con el tratamiento",
+      "type": "textarea"
+    },
+    {
+      "id": 67,
+      "key": "skinCondition",
+      "label": "Condición de la piel (autoevaluación)",
+      "type": "select",
+      "options": ["Grasa", "Seca", "Mixta", "Normal"]
+    },
+    { "id": 68, "key": "areaOfInterest", "label": "Zona de interés", "type": "text" },
+    {
+      "id": 69,
+      "key": "priorAestheticTreatments",
+      "label": "Tratamientos estéticos previos",
+      "type": "textarea"
+    },
+    {
+      "id": 70,
+      "key": "treatmentExpectations",
+      "label": "Expectativas del tratamiento",
+      "type": "textarea"
+    },
+    {
+      "id": 71,
+      "key": "chemicalAllergies",
+      "label": "Alergias a químicos o cosméticos",
+      "type": "text"
+    }
+  ],
+
+  "steticFullHistory": [
+    { "id": 1, "key": "fullName", "label": "Nombre completo", "type": "text" },
+    { "id": 2, "key": "birthDate", "label": "Fecha de nacimiento", "type": "date" },
+    { "id": 3, "key": "age", "label": "Edad", "type": "number" },
+    {
+      "id": 4,
+      "key": "gender",
+      "label": "Genero",
+      "type": "select",
+      "options": ["Masculino", "Femenino"]
+    },
+
+    { "id": 7, "key": "occupation", "label": "Ocupación", "type": "text" },
+    {
+      "id": 8,
+      "key": "maritalStatus",
+      "label": "Estado civil",
+      "type": "select",
+      "options": ["Soltero", "Casado", "Unión libre", "Divorciado", "Viudo"]
+    },
+    { "id": 11, "key": "emergencyContact", "label": "Contacto de emergencia", "type": "text" },
+    { "id": 12, "key": "emergencyPhone", "label": "Telefono de emergencia", "type": "text" },
+
+    { "id": 9, "key": "heightCm", "label": "Altura (cm)", "type": "number" },
+    { "id": 10, "key": "weightKg", "label": "Peso actual (kg)", "type": "number" },
+
+    { "id": 13, "key": "reasonForVisit", "label": "Motivo de consulta", "type": "textarea" },
+    { "id": 14, "key": "knownAllergies", "label": "Alergias conocidas", "type": "textarea" },
+    { "id": 15, "key": "currentMedications", "label": "Medicamentos actuales", "type": "textarea" },
+    {
+      "id": 19,
+      "key": "drugAllergy",
+      "label": "¿Es alérgico a algún medicamento? ¿Cuáles?",
+      "type": "text"
+    },
+    {
+      "id": 20,
+      "key": "surgeriesOrHospitalizations",
+      "label": "¿Ha sido operado u hospitalizado?",
+      "type": "text"
+    },
+    {
+      "id": 21,
+      "key": "bleedingHistory",
+      "label": "¿Ha presentado alguna hemorragia?",
+      "type": "text"
+    },
+    {
+      "id": 22,
+      "key": "healingProblems",
+      "label": "¿Ha tenido problemas de cicatrización?",
+      "type": "text"
+    },
+    { "id": 23, "key": "otherDiseases", "label": "Otras enfermedades", "type": "textarea" },
+
+    {
+      "id": 24,
+      "key": "alcoholUse",
+      "label": "¿Consume alcohol?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 25,
+      "key": "tobaccoUse",
+      "label": "¿Consume tabaco?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+    {
+      "id": 26,
+      "key": "drugUse",
+      "label": "¿Consume drogas?",
+      "type": "radio",
+      "options": ["Sí", "No"]
+    },
+
+    {
+      "id": 73,
+      "key": "aestheticTreatmentReason",
+      "label": "Motivo de tratamiento estético",
+      "type": "textarea"
+    },
+    { "id": 56, "key": "priorSurgeries", "label": "Cirugías previas", "type": "textarea" },
+    { "id": 65, "key": "anesthesiaReactions", "label": "Reacciones a anestesia", "type": "text" },
+    {
+      "id": 66,
+      "key": "interferingDiseases",
+      "label": "Enfermedades que interfieren con el tratamiento",
+      "type": "textarea"
+    },
+    {
+      "id": 67,
+      "key": "skinCondition",
+      "label": "Condición de la piel (autoevaluación)",
+      "type": "select",
+      "options": ["Grasa", "Seca", "Mixta", "Normal"]
+    },
+    { "id": 68, "key": "areaOfInterest", "label": "Zona de interés", "type": "text" },
+    {
+      "id": 69,
+      "key": "priorAestheticTreatments",
+      "label": "Tratamientos estéticos previos",
+      "type": "textarea"
+    },
+    {
+      "id": 70,
+      "key": "treatmentExpectations",
+      "label": "Expectativas del tratamiento",
+      "type": "textarea"
+    },
+    {
+      "id": 71,
+      "key": "chemicalAllergies",
+      "label": "Alergias a químicos o cosméticos",
+      "type": "text"
+    },
+
+    { "id": 42, "key": "bloodPressure", "label": "Tensión arterial", "type": "text" },
+    { "id": 43, "key": "heartRate", "label": "Frecuencia cardiaca", "type": "number" },
+    { "id": 44, "key": "respiratoryRate", "label": "Frecuencia respiratoria", "type": "number" },
+    { "id": 45, "key": "temperature", "label": "Temperatura", "type": "text" },
+    { "id": 46, "key": "oxygenSaturation", "label": "Saturación de oxígeno", "type": "text" },
+    { "id": 47, "key": "bmi", "label": "IMC", "type": "text" },
+
+    { "id": 90, "key": "facialDiagnosis", "label": "Diagnóstico facial", "type": "text" },
+    {
+      "id": 91,
+      "key": "observedSkinCondition",
+      "label": "Condición de la piel observada",
+      "type": "text"
+    },
+    { "id": 92, "key": "treatedAreas", "label": "Zonas tratadas", "type": "text" },
+    {
+      "id": 93,
+      "key": "productOrTechnique",
+      "label": "Producto o técnica aplicada",
+      "type": "text"
+    },
+    { "id": 94, "key": "treatmentDate", "label": "Fecha de tratamiento", "type": "date" },
+    { "id": 95, "key": "treatmentEvolution", "label": "Evolución del tratamiento", "type": "text" },
+    { "id": 96, "key": "complications", "label": "Complicaciones observadas", "type": "text" },
+    {
+      "id": 97,
+      "key": "postRecommendations",
+      "label": "Recomendaciones posteriores",
+      "type": "textarea"
+    },
+
+    { "id": 72, "key": "registrationDate", "label": "Fecha de registro", "type": "date" },
+    { "id": 73, "key": "responsiblePhysician", "label": "Médico responsable", "type": "text" },
+    {
+      "id": 74,
+      "key": "preliminaryDiagnosis",
+      "label": "Diagnóstico preliminar",
+      "type": "textarea"
+    },
+    { "id": 75, "key": "suggestedTreatment", "label": "Tratamiento sugerido", "type": "textarea" },
+    { "id": 76, "key": "professionalNotes", "label": "Notas del profesional", "type": "textarea" },
+    { "id": 77, "key": "definitiveDiagnosis", "label": "Diagnóstico definitivo", "type": "text" },
+    { "id": 78, "key": "prescribedTreatment", "label": "Tratamiento prescrito", "type": "text" },
+    { "id": 79, "key": "indicatedMedications", "label": "Medicamentos indicados", "type": "text" },
+    {
+      "id": 80,
+      "key": "evolutionNotes",
+      "label": "Observaciones de evolución",
+      "type": "textarea"
+    },
+    {
+      "id": 81,
+      "key": "finalRecommendations",
+      "label": "Recomendaciones finales",
+      "type": "textarea"
+    },
+    { "id": 82, "key": "nextReviewDate", "label": "Fecha de próxima revisión", "type": "date" },
+    { "id": 83, "key": "physicianSignature", "label": "Firma del médico", "type": "text" }
+  ]
+}

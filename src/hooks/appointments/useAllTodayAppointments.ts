@@ -135,5 +135,5 @@ export function useAllTodayAppointments(): {
   return { appointments, loading, error, refetch: fetchTodayAppointments };
 }
 
-// // Google Calendar Custom Hooks
-// const { appointments, loading, error } = useTodayAppointmentsBySpecialty();
+// Usage example:
+// const { appointments, loading, error, refetch } = useAllTodayAppointments();

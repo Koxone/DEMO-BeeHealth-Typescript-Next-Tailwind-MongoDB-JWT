@@ -8,7 +8,7 @@ export default async function DoctorDashboardPage() {
   const currentUser = await getCurrentUser();
 
   return (
-    <div className="">
+    <div>
       <DoctorDashboard currentUser={currentUser} />
     </div>
   );

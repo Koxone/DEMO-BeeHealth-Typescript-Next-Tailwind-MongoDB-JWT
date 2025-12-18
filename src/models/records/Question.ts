@@ -15,6 +15,7 @@ export interface IQuestion extends Document {
   options?: IOption[];
   placeholder?: string;
   required?: boolean;
+  category?: string;
 }
 
 const OptionSchema: Schema<IOption> = new Schema({
@@ -32,6 +33,7 @@ const QuestionSchema: Schema<IQuestion> = new Schema({
   options: { type: [OptionSchema], required: false },
   placeholder: { type: String, required: false },
   required: { type: Boolean, default: false },
+  category: { type: String, required: false },
 });
 
 export const Question =

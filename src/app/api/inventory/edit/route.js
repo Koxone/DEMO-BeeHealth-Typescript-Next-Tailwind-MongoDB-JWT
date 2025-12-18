@@ -4,7 +4,7 @@ import Inventory from '@/models/Inventory';
 import Product from '@/models/Product';
 import Transaction from '@/models/Transaction';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
+import { getAuthUser } from '@/lib/auth/getAuthUser';
 
 // @route    PATCH /api/inventory/edit
 // @desc     Edit product name, category, quantity, stock and prices - Single transaction
@@ -28,31 +28,13 @@ export async function PATCH(req) {
       maxStock,
     } = body;
 
-    // Extract token
-    const cookieHeader = req.headers.get('cookie') || '';
-    const refreshToken =
-      cookieHeader
-        .split('; ')
-        .find((c) => c.startsWith('refreshToken='))
-        ?.split('=')[1] || null;
-
-    const authHeader = req.headers.get('authorization');
-    const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
-
-    const token = bearerToken || refreshToken;
-    if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Auth
+    const auth = await getAuthUser(req);
+    if (!auth.ok) {
+      return NextResponse.json({ ok: false, error: auth.error }, { status: auth.status });
     }
 
-    // Verify JWT token
-    let decoded;
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch {
-      return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
-    }
-
-    const userId = decoded.id;
+    const { userId } = auth;
 
     // Validate inventory ID
     if (!inventoryId) {

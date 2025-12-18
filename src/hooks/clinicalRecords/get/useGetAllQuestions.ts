@@ -1,6 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
 /* Types */
+export interface QuestionOption {
+  value: string;
+  label: string;
+}
+
 export interface Question {
   _id: string;
   questionId: number;
@@ -9,8 +14,10 @@ export interface Question {
   version: 'short' | 'full' | 'quick';
   isMetric: boolean;
   type: string;
+  options?: QuestionOption[];
   createdAt: string;
   updatedAt: string;
+  category: string;
 }
 
 export function useGetAllQuestions() {

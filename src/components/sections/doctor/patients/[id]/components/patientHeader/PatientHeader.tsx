@@ -6,15 +6,11 @@ import AssignedDiets from '@/components/sections/doctor/patients/[id]/components
 import AssignedWorkouts from '@/components/sections/doctor/patients/[id]/components/patientHeader/components/AssignedWorkouts';
 import FullHistoryButton from './components/FullHistoryButton';
 
-// Custom Hooks
-import { useGetAllWorkouts } from '@/hooks/workouts/get/useGetAllWorkouts';
-
 export default function PatientHeader({
   onClickNew,
   patientRecord,
   onClickFullHistory,
   onCreateNew,
-  id,
   dietsData,
   workoutsData,
 }) {
@@ -52,12 +48,6 @@ export default function PatientHeader({
     if (answerObj.value === 'false') return 'No';
     return answerObj.value;
   }
-
-  const { workoutData } = useGetAllWorkouts();
-
-  const assignedWorkoutsData = workoutData?.filter((workout) =>
-    workout.patients?.some((p) => p.patient?._id === id)
-  );
 
   return (
     <div className="bg-beehealth-green-primary-dark relative overflow-hidden rounded-2xl p-8 shadow-xl">

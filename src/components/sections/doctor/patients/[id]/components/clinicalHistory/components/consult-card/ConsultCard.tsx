@@ -1,6 +1,28 @@
+'use client';
+
+import { useMemo } from 'react';
 import { Apple, Dumbbell, Edit2, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable';
 import EditRecordDateButton from './components/EditRecordDateButton';
+import SortableAnswerCard from './components/SortableAnswerCard';
+
+// Types
+import { ConsultCardProps, Answer } from '@/types/consults/consults.types';
 
 // Local Helpers
 import { getActionBadge } from './services/helpers';
@@ -8,50 +30,22 @@ import { getActionBadge } from './services/helpers';
 // Custom Hooks
 import { useEditClinicalRecord } from '@/hooks/clinicalRecords/edit/useEditClinicalRecord';
 
-function ConsultCard({
+export default function ConsultCard({
   r,
   onEdit,
-  questions,
-  specialty,
-  fetchRecord,
+  onOpen,
   onDelete,
+  fetchRecord,
   patientRecord,
   patientId,
   events,
-}) {
-  function getValueByQuestionId(questionId) {
-    if (!r?.answers) return null;
-    let answersArray = [];
-    if (Array.isArray(r.answers)) {
-      answersArray = r.answers;
-    } else if (typeof r.answers === 'object') {
-      answersArray = Object.values(r.answers);
-    }
-    const ans = answersArray.find((a) => a?.question?.questionId === questionId);
-    return ans ? ans.value : null;
-  }
-  // Fetch all questions from the custom hook
-  const filtered = questions?.filter((q) => q?.version === 'quick' && q?.specialty === specialty);
-
-  const DISEASE_QUESTION_IDS = [
-    27, 28, 29, 30, 31, 32, 39, 40, 41, 79, 81, 82, 87, 88, 89, 92, 93, 94, 95, 96,
-  ];
-
-  // 38 quick, 49 quick, 89 short y quick, 91 short y quick, 94 short, 95 short, 115 quick, 122 123 124 126 short
-
+  selectedQuestions,
+  questionsOrder,
+  onOrderChange,
+}: ConsultCardProps) {
   const { editClinicalRecord } = useEditClinicalRecord();
 
   const firstRecord = patientRecord?.find((record) => record.version === 'full');
-  const diseasesFromFirstRecord = firstRecord
-    ? firstRecord.answers
-        ?.filter(
-          (answer) =>
-            answer.question?.type === 'radio' &&
-            answer.value === 'true' &&
-            DISEASE_QUESTION_IDS.includes(answer.question.questionId)
-        )
-        .map((answer) => answer.question.text)
-    : [];
 
   const recordId = r._id;
 
@@ -63,11 +57,121 @@ function ConsultCard({
     (event) => event.clinicalRecord === recordId && event.eventType.includes('workout')
   );
 
+  // Answers
+  const mergedAnswers = useMemo(() => {
+    const baseAnswers = firstRecord?.answers || [];
+    const consultAnswers = r?.answers || [];
+
+    const map = new Map<number, Answer>();
+
+    // Base
+    baseAnswers.forEach((answer) => {
+      const id = answer?.questionId || answer?.question?.questionId;
+      if (!id) return;
+      map.set(id, answer);
+    });
+
+    // Consult override
+    consultAnswers.forEach((answer) => {
+      const id = answer?.questionId || answer?.question?.questionId;
+      if (!id) return;
+      map.set(id, answer);
+    });
+
+    return Array.from(map.values());
+  }, [firstRecord, r]);
+
+  // Filter
+  const filteredAnswers = useMemo(() => {
+    return mergedAnswers.filter((answer) => {
+      if (!answer) return false;
+      if (!answer.question) return false;
+      if (!answer.question.text) return false;
+
+      const questionId = answer.questionId || answer.question.questionId;
+      if (!questionId) return false;
+
+      if (!selectedQuestions.includes(questionId)) return false;
+
+      if (!answer.value || answer.value.trim() === '') return false;
+
+      if (answer.question.type === 'radio') {
+        return answer.value === 'true';
+      }
+
+      if (answer.question.type === 'text' || answer.question.type === 'textarea') {
+        const lowerValue = answer.value.toLowerCase();
+        return lowerValue !== 'ninguna' && lowerValue !== 'ninguno';
+      }
+
+      return true;
+    });
+  }, [mergedAnswers, selectedQuestions]);
+
+  // Order Answers
+  const orderedAnswers = useMemo(() => {
+    return [...filteredAnswers].sort((a, b) => {
+      // IMPORTANT: Handle both cases where questionId might be directly on answer or inside answer.question
+      const questionIdA = a.questionId || a.question.questionId;
+      const questionIdB = b.questionId || b.question.questionId;
+
+      const indexA = questionsOrder.indexOf(questionIdA);
+      const indexB = questionsOrder.indexOf(questionIdB);
+
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+
+      return indexA - indexB;
+    });
+  }, [filteredAnswers, questionsOrder]);
+
+  // Drag and Drop Sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  // Handle Drag and Drop End
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const currentQuestionIds = orderedAnswers.map(
+        (answer) => answer.questionId || answer.question.questionId
+      );
+
+      const oldIndex = currentQuestionIds.indexOf(active.id as number);
+      const newIndex = currentQuestionIds.indexOf(over.id as number);
+
+      if (oldIndex === -1 || newIndex === -1) {
+        console.warn('Drag indices not found', { active: active.id, over: over.id });
+        return;
+      }
+
+      const reorderedVisible = arrayMove(currentQuestionIds, oldIndex, newIndex);
+      const questionsNotVisible = questionsOrder.filter((id) => !currentQuestionIds.includes(id));
+      const newGlobalOrder = [...reorderedVisible, ...questionsNotVisible];
+
+      onOrderChange(newGlobalOrder);
+    }
+  };
+
+  // Get question IDs in order
+  const questionIds = orderedAnswers.map(
+    (answer) => answer.questionId || answer.question.questionId
+  );
+
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:gap-4">
       {/* Date block */}
       <div className="flex flex-col items-center justify-center text-center">
-        <div className="bg-beehealth-blue-primary-light text-beehealth-blue-primary-dark border-beehealth-blue-primary-solid flex h-12 w-12 flex-col items-center justify-center rounded-lg border sm:h-14 sm:w-14">
+        <div className="border-beehealth-blue-primary-solid bg-beehealth-blue-primary-light text-beehealth-blue-primary-dark flex h-12 w-12 flex-col items-center justify-center rounded-lg border sm:h-14 sm:w-14">
           <span className="text-xs font-medium uppercase">
             {new Date(`${r.recordDate.substring(0, 7)}-15T12:00:00Z`).toLocaleDateString('es-MX', {
               month: 'short',
@@ -92,103 +196,88 @@ function ConsultCard({
         />
       </div>
 
-      {/* Info cards */}
-      <div className="grid w-full grid-cols-4 grid-rows-2 items-center justify-center gap-2">
-        {filtered?.map((element) => {
-          const value = getValueByQuestionId(element.questionId);
+      {/* Info cards con Drag & Drop */}
+      <div className="w-full">
+        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <SortableContext items={questionIds} strategy={rectSortingStrategy}>
+            <div className="grid grid-cols-4 grid-rows-2 items-center justify-center gap-2">
+              {/* Respuestas ordenables */}
+              {orderedAnswers.map((answer) => (
+                <SortableAnswerCard
+                  key={answer._id}
+                  answer={answer}
+                  category={answer.question.category}
+                />
+              ))}
 
-          const bgClass =
-            element.questionId === 818 || element.questionId === 826
-              ? 'bg-beehealth-red-primary-light'
-              : 'bg-beehealth-green-secondary-light';
+              {/* Diets on this consult */}
+              {filteredDietsEvents?.map((event, index) => {
+                const badge = getActionBadge(event?.eventType);
+                const BadgeIcon = badge.icon;
 
-          return (
-            <div key={element._id} className={`${bgClass} h-full rounded-lg p-2`}>
-              <div className="text-beehealth-green-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
-                <span className="truncate">{element.text}</span>
-              </div>
-              <p className="line-clamp-2 text-sm font-medium text-gray-900">{value}</p>
+                return (
+                  <Link
+                    key={`diet-${index}`}
+                    href={`/doctor/diets/${event?.diet?._id}` || '#'}
+                    className={`${badge.className} h-full cursor-pointer rounded-lg border p-2 transition-all hover:scale-105`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="text-beehealth-green-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
+                        <span className="truncate text-white underline">{badge?.label}</span>
+                      </div>
+                      <BadgeIcon className="h-5 w-5 text-white" />
+                    </div>
+                    <p className="text-sm font-medium text-gray-900">
+                      {event?.diet?.name || 'Ninguna'}
+                    </p>
+                  </Link>
+                );
+              })}
+
+              {/* Workouts on this consult */}
+              {filteredWorkoutsEvents?.map((event, index) => {
+                const badge = getActionBadge(event?.eventType);
+                const BadgeIcon = badge.icon;
+
+                return (
+                  <Link
+                    key={`workout-${index}`}
+                    href="/doctor/workouts/"
+                    className={`${badge.className} h-full cursor-pointer rounded-lg border p-2 transition-all hover:scale-105`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="text-beehealth-green-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
+                        <span className="truncate text-white underline">{badge?.label}</span>
+                      </div>
+                      <BadgeIcon className="h-5 w-5 text-white" />
+                    </div>
+                    <p className="text-sm font-medium text-gray-900">
+                      {event?.snapshot?.workoutName || 'Ninguna'}
+                    </p>
+                  </Link>
+                );
+              })}
             </div>
-          );
-        })}
-
-        {/* Diseases in this consult */}
-        {diseasesFromFirstRecord.map((disease, index) => (
-          <div key={index} className="bg-beehealth-red-primary-light h-full rounded-lg p-2">
-            <div className="text-beehealth-red-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
-              <span className="truncate">Diagnóstico Positivo</span>
-            </div>
-            <p className="text-sm font-medium text-gray-900">{disease}</p>
-          </div>
-        ))}
-
-        {/* Diets on this consult */}
-        {filteredDietsEvents?.map((event, index) => {
-          const badge = getActionBadge(event?.eventType);
-          const BadgeIcon = badge.icon;
-
-          return (
-            <Link
-              key={index}
-              href={`/doctor/diets/${event?.diet?._id}` || '#'}
-              className={`${badge.className} h-full cursor-pointer rounded-lg border p-2 transition-all hover:scale-105`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="text-beehealth-green-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
-                  <span className="truncate text-white underline">{badge?.label}</span>
-                </div>
-
-                <BadgeIcon className="h-5 w-5 text-white" />
-              </div>
-
-              <p className="text-sm font-medium text-gray-900">{event?.diet?.name || 'Ninguna'}</p>
-            </Link>
-          );
-        })}
-
-        {/* Workouts on this consult */}
-        {filteredWorkoutsEvents?.map((event, index) => {
-          const badge = getActionBadge(event?.eventType);
-          const BadgeIcon = badge.icon;
-
-          return (
-            <Link
-              key={index}
-              href="/doctor/workouts/"
-              className={`${badge.className} h-full cursor-pointer rounded-lg border p-2 transition-all hover:scale-105`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="text-beehealth-green-primary-solid flex items-center gap-1.5 text-xs font-medium sm:gap-2">
-                  <span className="truncate text-white underline">{badge?.label}</span>
-                </div>
-
-                <BadgeIcon className="h-5 w-5 text-white" />
-              </div>
-
-              <p className="text-sm font-medium text-gray-900">
-                {event?.snapshot?.workoutName || 'Ninguna'}
-              </p>
-            </Link>
-          );
-        })}
+          </SortableContext>
+        </DndContext>
       </div>
 
       {/* Actions */}
       <div className="flex gap-2">
         <button
-          onClick={() => onEdit(r, true)}
-          className="hover:bg-beehealth-green-secondary-dark-hover bg-beehealth-green-secondary-dark self-start rounded-lg p-2 text-white hover:text-white active:scale-95 sm:self-auto sm:p-2.5"
+          onClick={() => onOpen(r, true)}
+          className="bg-beehealth-green-secondary-dark hover:bg-beehealth-green-secondary-dark-hover self-start rounded-lg p-2 text-white hover:text-white active:scale-95 sm:self-auto sm:p-2.5"
         >
           <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
 
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between gap-2">
           {/* Add Diets Button */}
           {r?.version === 'short' && (
             <Link
               href={`/doctor/patients/${patientId}?tab=Dietas&recordId=${recordId}`}
               title="Agregar Dieta a esta consulta"
-              className="hover:bg-beehealth-blue-primary-dark-hover bg-beehealth-blue-primary-dark flex items-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
+              className="bg-beehealth-blue-primary-dark hover:bg-beehealth-blue-primary-dark-hover flex items-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
             >
               <Plus className="h-4 w-4" />
               <Apple className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -200,7 +289,7 @@ function ConsultCard({
             <Link
               href={`/doctor/patients/${patientId}?tab=Ejercicios&recordId=${recordId}`}
               title="Agregar Ejercicio a esta consulta"
-              className="hover:bg-beehealth-blue-primary-dark-hover bg-beehealth-blue-primary-dark flex items-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
+              className="bg-beehealth-blue-primary-dark hover:bg-beehealth-blue-primary-dark-hover flex items-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
             >
               <Plus className="h-4 w-4" />
               <Dumbbell className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -211,7 +300,7 @@ function ConsultCard({
           {r?.version === 'short' && (
             <button
               onClick={() => onEdit(r, false)}
-              className="hover:bg-beehealth-yellow-secondary-solid-hover bg-beehealth-yellow-secondary-solid flex items-center justify-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
+              className="bg-beehealth-yellow-secondary-solid hover:bg-beehealth-yellow-secondary-solid-hover flex items-center justify-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
             >
               <Edit2 className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
@@ -221,7 +310,7 @@ function ConsultCard({
           {r?.version === 'short' && (
             <button
               onClick={() => onDelete(r)}
-              className="hover:bg-beehealth-red-primary-solid-hover bg-beehealth-red-primary-solid flex justify-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
+              className="bg-beehealth-red-primary-solid hover:bg-beehealth-red-primary-solid-hover flex justify-center self-start rounded-lg p-2 text-white active:scale-95 sm:self-auto sm:p-2.5"
             >
               <Trash2 className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
@@ -231,5 +320,3 @@ function ConsultCard({
     </div>
   );
 }
-
-export default ConsultCard;

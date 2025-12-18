@@ -26,10 +26,8 @@ export const metadata = {
     'BeeHealth',
   ],
 
-  /* Domain */
   metadataBase: new URL('https://beehealth.app'),
 
-  /* Open Graph */
   openGraph: {
     title: 'BeeHealth',
     description: 'Gestión avanzada de salud y nutrición en una sola plataforma.',
@@ -47,7 +45,6 @@ export const metadata = {
     ],
   },
 
-  /* Twitter */
   twitter: {
     card: 'summary',
     title: 'BeeHealth',
@@ -56,7 +53,6 @@ export const metadata = {
     images: ['/favicon-96x96.png'],
   },
 
-  /* Icons */
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -66,12 +62,16 @@ export const metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
 
-  /* Manifest */
   manifest: '/site.webmanifest',
 };
 
 export const viewport = {
-  themeColor: '#0e1113',
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f8f3ed' },
+    { media: '(prefers-color-scheme: dark)', color: '#f8f3ed' },
+  ],
 };
 
 export default function PublicLayout({ children }) {

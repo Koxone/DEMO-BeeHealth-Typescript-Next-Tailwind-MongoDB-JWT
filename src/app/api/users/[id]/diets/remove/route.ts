@@ -30,7 +30,7 @@ export async function PATCH(req, { params }) {
     }
 
     // Get dietId from request body
-    const { dietId, clinicalRecord } = await req.json();
+    const { dietId, clinicalRecord, doctorNotes } = await req.json();
 
     if (!mongoose.Types.ObjectId.isValid(dietId)) {
       return NextResponse.json({ error: 'Invalid Diet ID format' }, { status: 400 });
@@ -76,8 +76,8 @@ export async function PATCH(req, { params }) {
         category: diet.category,
       },
       compliance: {
-        status: 'completed',
-        doctorNotes: 'Dieta removida manualmente por el doctor',
+        status: 'not_completed',
+        doctorNotes: doctorNotes || 'Dieta removida manualmente por el doctor',
         reviewedAt: new Date(),
         reviewedBy: doctor._id,
       },

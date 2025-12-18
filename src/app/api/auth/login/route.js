@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 import User from '@/models/User';
+import mongoose from 'mongoose';
 
 // @route    POST api/auth/login
 // @desc     Authenticate user
@@ -24,6 +25,26 @@ export async function POST(req) {
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ error: 'Invalid Credentials' }, { status: 400 });
+    }
+
+    // Ensure default diets
+    const defaultDietIds = ['692f2fbb531330ad96542748', '692f3c3fb4fdb415c3bbdecf'];
+
+    const existingDietIds = (user.diets || []).map((d) => d.diet.toString());
+
+    const dietsToAdd = defaultDietIds
+      .filter((id) => !existingDietIds.includes(id))
+      .map((id) => ({
+        diet: new mongoose.Types.ObjectId(id),
+        isActive: true,
+        assignedAt: new Date(),
+      }));
+
+    if (dietsToAdd.length > 0) {
+      await User.updateOne({ _id: user._id }, { $push: { diets: { $each: dietsToAdd } } });
+
+      // Sync local document
+      user.diets = [...(user.diets || []), ...dietsToAdd];
     }
 
     // If user doesnt have hasRecord field, set it to false
@@ -78,8 +99,8 @@ export async function POST(req) {
     //  Set Refresh Token Cookie
     res.cookies.set('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
     });

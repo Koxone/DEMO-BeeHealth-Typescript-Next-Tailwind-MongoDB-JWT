@@ -42,8 +42,8 @@ export async function POST(req) {
 
     res.cookies.set('refreshToken', newRefresh, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/',
       maxAge: 60 * 60 * 24 * 7,
     });

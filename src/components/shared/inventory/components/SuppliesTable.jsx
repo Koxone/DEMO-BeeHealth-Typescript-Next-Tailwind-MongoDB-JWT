@@ -22,7 +22,7 @@ export default function SuppliesTable({ rows, getStockStatus, onEdit, onDelete, 
     <div className="p-4 md:p-6">
       <div className="bg-beehealth-body-main max-h-[500px] overflow-auto rounded-xl border border-gray-200 shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full table-fixed">
             <thead>
               <tr className="bg-beehealth-body-main/50 border-b border-gray-200">
                 <th className="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-600 uppercase">

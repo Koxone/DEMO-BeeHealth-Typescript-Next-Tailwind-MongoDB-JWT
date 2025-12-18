@@ -18,10 +18,9 @@ export async function GET(req, { params }) {
 
     const { id } = await params;
 
-    const appointments = await Appointment.find({ patient: id }).populate(
-      'patient',
-      'firstName lastName email'
-    );
+    const appointments = await Appointment.find({ patient: id })
+      .populate('patient', 'firstName lastName email')
+      .sort({ createdAt: -1 });
 
     return NextResponse.json({ appointments }, { status: 200 });
   } catch (error) {

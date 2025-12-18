@@ -2,6 +2,7 @@
   "1": {
     "text": "Nombre completo",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -13,6 +14,7 @@
   "2": {
     "text": "Fecha de nacimiento",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -23,6 +25,7 @@
   "3": {
     "text": "Lugar de nacimiento",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -43,6 +46,7 @@
   "5": {
     "text": "Genero",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -57,6 +61,7 @@
   "6": {
     "text": "Altura (cm)",
     "isMetric": true,
+    "category": "Antropometria",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -68,6 +73,7 @@
   "7": {
     "text": "Peso actual (kg)",
     "isMetric": true,
+    "category": "Antropometria",
     "specialties": {
       "weight": ["short", "full", "quick"]
     },
@@ -77,26 +83,29 @@
   "8": {
     "text": "Talla (cm)",
     "isMetric": true,
+    "category": "Antropometria",
     "specialties": {
-      "weight": ["short", "full", "quick"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "text",
     "placeholder": "ej. 30, 32, 34, etc.",
     "required": true
   },
   "9": {
-    "text": "Ocupación",
+    "text": "Ocupacion",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
-      "stetic": ["short", "full"],
-      "dental": ["short", "full"],
-      "weight": []
+      "stetic": [],
+      "dental": [],
+      "weight": ["full"]
     },
     "type": "text"
   },
   "10": {
     "text": "Estado civil",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -111,6 +120,7 @@
   "11": {
     "text": "RFC",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "dental": ["full"]
     },
@@ -119,6 +129,7 @@
   "12": {
     "text": "Email",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": [],
       "dental": [],
@@ -129,6 +140,7 @@
   "13": {
     "text": "Domicilio",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -149,6 +161,7 @@
   "15": {
     "text": "Contacto de emergencia",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -164,11 +177,12 @@
       "dental": ["short", "full"],
       "weight": ["full"]
     },
-    "type": "tel"
+    "type": "number"
   },
   "17": {
     "text": "Motivo de consulta",
     "isMetric": false,
+    "category": "Datos Generales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -179,6 +193,7 @@
   "18": {
     "text": "Alergias conocidas",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
       "stetic": ["short", "full", "quick"],
       "dental": ["short", "full", "quick"],
@@ -189,16 +204,17 @@
   "19": {
     "text": "Medicamentos base",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
       "stetic": ["short", "full", "quick"],
-      "dental": ["short", "full", "quick"],
-      "weight": ["short", "full", "quick"]
+      "dental": ["short", "full", "quick"]
     },
     "type": "text"
   },
   "20": {
     "text": "¿Se encuentra en buen estado de salud?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -211,6 +227,7 @@
   "21": {
     "text": "¿Se encuentra bajo tratamiento?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -223,8 +240,10 @@
   "22": {
     "text": "¿Actualmente toma algún medicamento?",
     "isMetric": false,
+    "category": "Medicamentos",
     "specialties": {
-      "dental": ["full"]
+      "dental": ["full"],
+      "weight": ["short", "full", "quick"]
     },
     "type": "radio",
     "options": [
@@ -235,6 +254,7 @@
   "23": {
     "text": "¿Ha sido operado u hospitalizado?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -247,6 +267,7 @@
   "24": {
     "text": "¿Ha presentado alguna hemorragia?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -259,6 +280,7 @@
   "25": {
     "text": "¿Ha tenido problemas de cicatrización?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -271,18 +293,20 @@
   "26": {
     "text": "Otras enfermedades",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full", "quick"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "text"
   },
   "27": {
     "text": "Diabetes",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -293,9 +317,10 @@
   "28": {
     "text": "Hipertensión",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -306,9 +331,10 @@
   "29": {
     "text": "Hepatitis",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -319,9 +345,10 @@
   "30": {
     "text": "VIH",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -332,9 +359,10 @@
   "31": {
     "text": "Cáncer",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -345,9 +373,10 @@
   "32": {
     "text": "Asma",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -358,8 +387,10 @@
   "33": {
     "text": "Epilepsia",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
-      "dental": ["full"]
+      "dental": ["quick", "full"],
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -370,8 +401,10 @@
   "34": {
     "text": "Gastritis",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
-      "dental": ["full"]
+      "dental": ["full"],
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -382,9 +415,10 @@
   "35": {
     "text": "Ansiedad o depresión",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "dental": ["full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -395,6 +429,7 @@
   "36": {
     "text": "¿Consume alcohol?",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -409,6 +444,7 @@
   "37": {
     "text": "¿Consume tabaco?",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -423,10 +459,11 @@
   "38": {
     "text": "¿Consume drogas?",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "full"]
     },
     "type": "radio",
     "options": [
@@ -437,6 +474,7 @@
   "39": {
     "text": "Embarazo",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "dental": ["full"],
       "weight": ["full"]
@@ -450,6 +488,7 @@
   "40": {
     "text": "Lactancia",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "dental": ["full"],
       "weight": ["full"]
@@ -463,6 +502,7 @@
   "41": {
     "text": "Anticonceptivos",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "dental": ["full"],
       "weight": ["full"]
@@ -476,6 +516,7 @@
   "42": {
     "text": "¿Tiene hijos?",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "dental": ["full"]
     },
@@ -488,6 +529,7 @@
   "43": {
     "text": "Peso objetivo (kg)",
     "isMetric": true,
+    "category": "Antropometria",
     "specialties": {
       "stetic": [],
       "dental": [],
@@ -498,6 +540,7 @@
   "44": {
     "text": "Actividad física",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -526,6 +569,7 @@
   "47": {
     "text": "Enfermedades crónicas",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -534,14 +578,17 @@
   "48": {
     "text": "Medicamentos actuales adicionales",
     "isMetric": false,
+    "category": "Medicamentos",
     "specialties": {
-      "dental": ["full"]
+      "dental": ["full"],
+      "weight": ["quick", "short", "full"]
     },
     "type": "text"
   },
   "49": {
     "text": "Tipo de alimentación",
     "isMetric": false,
+    "category": "Informacion",
     "specialties": {
       "dental": ["full"]
     },
@@ -555,14 +602,17 @@
   "50": {
     "text": "Cirugías previas",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
-      "dental": ["full"]
+      "dental": ["full"],
+      "weight": ["short", "full"]
     },
     "type": "text"
   },
   "51": {
     "text": "Motivo de consulta por peso",
     "isMetric": false,
+    "category": "Informacion",
     "specialties": {
       "weight": []
     },
@@ -571,6 +621,7 @@
   "52": {
     "text": "¿Es su primera visita dental?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -583,6 +634,7 @@
   "53": {
     "text": "¿Ha recibido aplicaciones de flúor?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -595,6 +647,7 @@
   "54": {
     "text": "¿Le han realizado extracciones dentales?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -607,6 +660,7 @@
   "55": {
     "text": "¿Presentó sangrado post extracción?",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -619,6 +673,7 @@
   "56": {
     "text": "Tratamientos odontológicos previos",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -627,6 +682,7 @@
   "57": {
     "text": "Pérdida de dientes",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -635,6 +691,7 @@
   "58": {
     "text": "Sangrado de encías",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -643,6 +700,7 @@
   "59": {
     "text": "Cepillado diario",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -651,6 +709,7 @@
   "60": {
     "text": "Uso de enjuague bucal",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -659,6 +718,7 @@
   "61": {
     "text": "Uso de hilo dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -667,6 +727,7 @@
   "62": {
     "text": "Uso de cepillo dental adecuado",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -675,6 +736,7 @@
   "63": {
     "text": "Dolor dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -683,6 +745,7 @@
   "64": {
     "text": "Descripción del dolor dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -691,6 +754,7 @@
   "65": {
     "text": "Motivo de tratamiento estético",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -699,6 +763,7 @@
   "66": {
     "text": "Cirugías previas (estética)",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -707,6 +772,7 @@
   "67": {
     "text": "Reacciones a anestesia",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -715,6 +781,7 @@
   "68": {
     "text": "Enfermedades que interfieren con el tratamiento",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -723,6 +790,7 @@
   "69": {
     "text": "Condición de la piel (autoevaluación)",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -731,6 +799,7 @@
   "70": {
     "text": "Zona de interés",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -739,6 +808,7 @@
   "71": {
     "text": "Tratamientos estéticos previos",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -747,6 +817,7 @@
   "72": {
     "text": "Expectativas del tratamiento",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -755,6 +826,7 @@
   "73": {
     "text": "Antecedente familiar de diabetes",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -769,6 +841,7 @@
   "74": {
     "text": "Antecedente familiar de epilepsia",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -783,6 +856,7 @@
   "75": {
     "text": "Antecedente familiar de hepatitis",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -797,6 +871,7 @@
   "76": {
     "text": "Antecedente familiar de hipertensión",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -811,6 +886,7 @@
   "77": {
     "text": "Antecedente familiar de malformaciones",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -825,6 +901,7 @@
   "78": {
     "text": "Antecedente familiar de artritis",
     "isMetric": false,
+    "category": "Antecedentes Heredofamiliares",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -839,10 +916,11 @@
   "79": {
     "text": "Cardiopatías",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -853,6 +931,7 @@
   "80": {
     "text": "Enfermedades mentales",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -867,10 +946,11 @@
   "81": {
     "text": "Neoplasias",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -881,10 +961,11 @@
   "82": {
     "text": "Enfermedades renales",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -895,6 +976,7 @@
   "83": {
     "text": "Varicela",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"]
@@ -908,6 +990,7 @@
   "84": {
     "text": "Sarampión",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"]
@@ -921,6 +1004,7 @@
   "85": {
     "text": "Neuralgia",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"]
@@ -934,9 +1018,11 @@
   "86": {
     "text": "Vías biliares",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
-      "dental": ["short", "full"]
+      "dental": ["short", "full"],
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -947,6 +1033,7 @@
   "87": {
     "text": "Enfermedades respiratorias",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -961,10 +1048,11 @@
   "88": {
     "text": "Trastornos digestivos",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -975,10 +1063,11 @@
   "89": {
     "text": "Hipotiroidismo",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -989,9 +1078,11 @@
   "90": {
     "text": "Migraña",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
-      "dental": ["short", "full"]
+      "dental": ["short", "full"],
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1002,10 +1093,11 @@
   "91": {
     "text": "Enfermedades de transmisión sexual (ETS)",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1016,10 +1108,11 @@
   "92": {
     "text": "Padecimientos de piel",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1030,6 +1123,7 @@
   "93": {
     "text": "Fracturas",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1044,10 +1138,11 @@
   "94": {
     "text": "Hospitalizaciones",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1058,10 +1153,11 @@
   "95": {
     "text": "Cirugías",
     "isMetric": false,
+    "category": "Antecedentes Personales",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1072,10 +1168,11 @@
   "96": {
     "text": "Alteraciones hormonales",
     "isMetric": false,
+    "category": "Patologias",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
-      "weight": ["full"]
+      "weight": ["quick", "short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1086,16 +1183,17 @@
   "97": {
     "text": "Número de hijos",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
       "stetic": ["short", "full"],
-      "dental": ["short", "full"],
-      "weight": ["full"]
+      "dental": ["short", "full"]
     },
     "type": "text"
   },
   "98": {
     "text": "Tipo de alimentación (hábito)",
     "isMetric": false,
+    "category": "Alimentacion",
     "specialties": {
       "stetic": [],
       "dental": [],
@@ -1106,6 +1204,7 @@
   "99": {
     "text": "Comidas por día",
     "isMetric": false,
+    "category": "Alimentacion",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1116,6 +1215,7 @@
   "100": {
     "text": "Intolerancias alimentarias",
     "isMetric": false,
+    "category": "Alimentacion",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1130,6 +1230,7 @@
   "101": {
     "text": "Alimentos que no consume",
     "isMetric": false,
+    "category": "Alimentacion",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1140,10 +1241,10 @@
   "102": {
     "text": "Lavado de manos",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": ["short", "full"],
-      "dental": ["short", "full"],
-      "weight": ["full"]
+      "dental": ["short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1154,10 +1255,10 @@
   "103": {
     "text": "Uso de cepillo dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": [],
-      "dental": ["short", "full"],
-      "weight": []
+      "dental": ["short", "full"]
     },
     "type": "radio",
     "options": [
@@ -1168,6 +1269,7 @@
   "104": {
     "text": "Uso de enjuague bucal",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": [],
       "dental": ["short", "full"],
@@ -1182,6 +1284,7 @@
   "105": {
     "text": "Uso de hilo dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "stetic": [],
       "dental": ["short", "full"],
@@ -1196,6 +1299,7 @@
   "106": {
     "text": "Vacuna: Poliomielitis",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1210,6 +1314,7 @@
   "107": {
     "text": "Vacuna: Tuberculosis",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1224,6 +1329,7 @@
   "108": {
     "text": "Vacuna: DTP",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1238,6 +1344,7 @@
   "109": {
     "text": "Vacuna: Triple viral",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1252,6 +1359,7 @@
   "110": {
     "text": "Vacuna: Sarampión",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1266,6 +1374,7 @@
   "111": {
     "text": "Vacuna: Hepatitis B",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1280,6 +1389,7 @@
   "112": {
     "text": "Otras vacunas",
     "isMetric": false,
+    "category": "Inmunizaciones",
     "specialties": {
       "stetic": ["short", "full"],
       "dental": ["short", "full"],
@@ -1294,6 +1404,7 @@
   "113": {
     "text": "Alcohol (detalle de consumo)",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short", "full"]
     },
@@ -1302,6 +1413,7 @@
   "114": {
     "text": "Tabaco (detalle de consumo)",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short", "full"]
     },
@@ -1310,14 +1422,16 @@
   "115": {
     "text": "Drogas (tipo o frecuencia)",
     "isMetric": false,
+    "category": "Antecedentes Personales No Patologicos",
     "specialties": {
-      "dental": ["short", "full"]
+      "weight": ["full", "short"]
     },
     "type": "text"
   },
   "116": {
     "text": "Deportes",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short", "full"]
     },
@@ -1326,6 +1440,7 @@
   "117": {
     "text": "Cabeza",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": []
     },
@@ -1334,6 +1449,7 @@
   "118": {
     "text": "Cuello",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1342,6 +1458,7 @@
   "119": {
     "text": "Tórax",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1350,6 +1467,7 @@
   "120": {
     "text": "Abdomen",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1358,6 +1476,7 @@
   "121": {
     "text": "Extremidades",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1366,9 +1485,10 @@
   "122": {
     "text": "Presion arterial",
     "isMetric": false,
+    "category": "Signos Vitales",
     "specialties": {
       "dental": ["short"],
-      "weight": ["short"]
+      "weight": ["short", "full"]
     },
     "type": "text"
   },
@@ -1377,7 +1497,7 @@
     "isMetric": true,
     "specialties": {
       "dental": ["short"],
-      "weight": []
+      "weight": ["short", "full"]
     },
     "type": "text"
   },
@@ -1385,31 +1505,35 @@
     "text": "Frecuencia respiratoria",
     "isMetric": true,
     "specialties": {
-      "dental": ["short"]
+      "dental": ["short"],
+      "weight": ["full"]
     },
     "type": "text"
   },
   "125": {
     "text": "Temperatura",
     "isMetric": false,
+    "category": "Signos Vitales",
     "specialties": {
       "dental": ["short"],
-      "weight": []
+      "weight": ["full"]
     },
     "type": "number"
   },
   "126": {
     "text": "Saturación de oxígeno",
     "isMetric": false,
+    "category": "Signos Vitales",
     "specialties": {
       "dental": ["short"],
-      "weight": []
+      "weight": ["full"]
     },
     "type": "text"
   },
   "127": {
     "text": "IMC",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": []
     },
@@ -1427,13 +1551,14 @@
     "text": "Talla",
     "isMetric": true,
     "specialties": {
-      "dental": []
+      "weight": []
     },
     "type": "text"
   },
   "130": {
     "text": "Médico responsable",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1442,6 +1567,7 @@
   "131": {
     "text": "Diagnóstico preliminar",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1450,6 +1576,7 @@
   "132": {
     "text": "Tratamiento sugerido",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1458,9 +1585,10 @@
   "133": {
     "text": "Notas del Medico",
     "isMetric": false,
+    "category": "En esta consulta",
     "specialties": {
       "dental": ["short", "quick"],
-      "weight": ["short", "quick"],
+      "weight": ["short", "quick", "full"],
       "stetic": ["short", "quick"]
     },
     "type": "textarea"
@@ -1468,6 +1596,7 @@
   "134": {
     "text": "Evaluación de cavidad bucal",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1476,6 +1605,7 @@
   "135": {
     "text": "Cuello y estructuras adyacentes",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1484,6 +1614,7 @@
   "136": {
     "text": "Diagnóstico dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1492,6 +1623,7 @@
   "137": {
     "text": "Plan de tratamiento dental",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1500,6 +1632,7 @@
   "138": {
     "text": "Materiales utilizados",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1508,6 +1641,7 @@
   "139": {
     "text": "Recomendaciones al paciente",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1516,6 +1650,7 @@
   "140": {
     "text": "Diagnóstico facial",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1524,6 +1659,7 @@
   "141": {
     "text": "Condición de la piel observada",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1532,6 +1668,7 @@
   "142": {
     "text": "Zonas tratadas",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1540,6 +1677,7 @@
   "143": {
     "text": "Producto o técnica aplicada",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1548,6 +1686,7 @@
   "144": {
     "text": "Fecha de tratamiento",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": []
     },
@@ -1556,6 +1695,7 @@
   "145": {
     "text": "Evolución del tratamiento",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1564,6 +1704,7 @@
   "146": {
     "text": "Complicaciones observadas",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1572,6 +1713,7 @@
   "147": {
     "text": "Recomendaciones posteriores",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1580,36 +1722,39 @@
   "148": {
     "text": "Diagnóstico en esta consulta",
     "isMetric": false,
+    "category": "En esta consulta",
     "specialties": {
       "dental": ["short", "quick"],
       "stetic": ["short", "quick"],
-      "weight": ["short"]
+      "weight": ["short", "full"]
     },
     "type": "textarea"
   },
   "149": {
     "text": "Tratamiento actual",
     "isMetric": false,
+    "category": "En esta consulta",
     "specialties": {
       "dental": ["short", "quick"],
       "stetic": ["short", "quick"],
-      "weight": ["short", "quick"]
+      "weight": ["short", "quick", "full"]
     },
     "type": "textarea"
   },
   "150": {
     "text": "Medicamentos indicados",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"],
-      "stetic": [],
-      "weight": []
+      "stetic": []
     },
     "type": "text"
   },
   "151": {
     "text": "Observaciones de evolución",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1618,6 +1763,7 @@
   "152": {
     "text": "Recomendaciones finales",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["short"]
     },
@@ -1626,6 +1772,7 @@
   "153": {
     "text": "Fecha de próxima revisión",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": []
     },
@@ -1634,6 +1781,7 @@
   "154": {
     "text": "Firma del médico",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": []
     },
@@ -1642,6 +1790,7 @@
   "155": {
     "text": "Pasatiempos",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1650,6 +1799,7 @@
   "156": {
     "text": "Cómo se enteró",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1658,6 +1808,7 @@
   "157": {
     "text": "Adulto responsable (en caso el paciente sea menor de edad)",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1666,6 +1817,7 @@
   "158": {
     "text": "Recomendado por",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1674,6 +1826,7 @@
   "159": {
     "text": "Observaciones personales",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1682,6 +1835,7 @@
   "160": {
     "text": "Comentario libre",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
       "dental": ["full"]
     },
@@ -1696,18 +1850,20 @@
     "type": "text"
   },
   "162": {
-    "text": "Dietas asignadas en esta consulta",
+    "text": "Talla Secundaria (cm)",
     "isMetric": false,
+    "category": "Antropometria",
     "specialties": {
-      "weight": ["short", "quick"]
+      "weight": ["short", "full", "quick"]
     },
-    "type": "textarea"
+    "type": "text"
   },
   "163": {
     "text": "Ejercicios asignados en esta consulta",
     "isMetric": false,
+    "category": "arturo",
     "specialties": {
-      "weight": ["short", "quick"]
+      "weight": []
     },
     "type": "textarea"
   }

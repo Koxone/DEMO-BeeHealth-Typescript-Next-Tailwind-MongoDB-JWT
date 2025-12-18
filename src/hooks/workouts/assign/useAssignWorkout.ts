@@ -28,10 +28,12 @@ export function useAssignWorkout() {
       patientId,
       workoutId,
       assignedAt,
+      clinicalRecord,
     }: {
       patientId: string;
       workoutId: string;
       assignedAt?: string;
+      clinicalRecord?: string | null;
     }) => {
       const res = await fetch(`/api/users/${patientId}/workouts/assign`, {
         method: 'PATCH',
@@ -42,6 +44,7 @@ export function useAssignWorkout() {
         body: JSON.stringify({
           workoutId,
           assignedAt,
+          clinicalRecord,
         }),
       });
 

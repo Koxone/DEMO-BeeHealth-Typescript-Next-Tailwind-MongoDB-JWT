@@ -78,7 +78,7 @@ export default function DoctorProducts() {
 
       {/* Table */}
       <div className="bg-beehealth-body-main overflow-x-auto rounded-xl border border-(--med-gray-border) shadow-sm">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full table-fixed border-collapse text-sm">
           <thead>
             <tr className="bg-(--med-blue-light)/30 text-left text-(--med-text-muted)">
               <th className="p-3 font-medium whitespace-nowrap">Fecha</th>
@@ -116,9 +116,7 @@ export default function DoctorProducts() {
 
                 {/* Actions */}
                 <td className="flex items-center justify-center gap-2 p-3">
-                  <button
-                    className="rounded-lg bg-yellow-100 p-2 transition hover:bg-yellow-200 active:scale-95"
-                  >
+                  <button className="rounded-lg bg-yellow-100 p-2 transition hover:bg-yellow-200 active:scale-95">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-4 w-4 text-yellow-700"
@@ -134,9 +132,7 @@ export default function DoctorProducts() {
                       />
                     </svg>
                   </button>
-                  <button
-                    className="rounded-lg bg-red-100 p-2 transition hover:bg-red-200 active:scale-95"
-                  >
+                  <button className="rounded-lg bg-red-100 p-2 transition hover:bg-red-200 active:scale-95">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-4 w-4 text-red-700"

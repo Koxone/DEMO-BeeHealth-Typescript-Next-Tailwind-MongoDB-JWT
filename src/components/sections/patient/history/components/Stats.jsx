@@ -2,7 +2,7 @@
 import { Activity, Weight, TrendingDown, TrendingUp, Award, Ruler } from 'lucide-react';
 import StatCard from '../../dashboard/components/stats-grid/components/StatCard';
 
-// Custom Hooks
+// Local Helpers
 import { calculateStats } from './utils';
 
 export default function Stats({ historyData = [], type = 'weight', patientWeightLogs = [] }) {

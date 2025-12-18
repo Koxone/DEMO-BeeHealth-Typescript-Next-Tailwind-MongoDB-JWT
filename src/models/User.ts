@@ -25,6 +25,11 @@ interface IUser extends Document {
     finishedAt?: Date;
   }[];
 
+  consultViewConfig?: {
+    selectedQuestions: number[];
+    questionsOrder: number[];
+  };
+
   resetToken?: string | null;
   lastVisit?: Date | null;
   createdAt?: Date;
@@ -62,6 +67,18 @@ const UserSchema = new Schema<IUser>(
 
     role: { type: String, enum: ['patient', 'doctor', 'admin', 'employee'], default: 'patient' },
     specialty: { type: String, enum: ['weight', 'dental', 'stetic', 'none'], default: 'none' },
+
+    consultViewConfig: {
+      type: {
+        selectedQuestions: { type: [Number], default: [] },
+        questionsOrder: { type: [Number], default: [] },
+      },
+      default: {
+        selectedQuestions: [],
+        questionsOrder: [],
+      },
+    },
+
     lastVisit: { type: Date, default: null },
   },
   { timestamps: true }

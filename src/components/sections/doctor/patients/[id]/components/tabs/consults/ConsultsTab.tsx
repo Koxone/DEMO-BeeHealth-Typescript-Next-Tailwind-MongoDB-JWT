@@ -32,6 +32,13 @@ export default function ConsultsTab({
         patientRecord={patientRecord}
         events={events}
         onCreateNew={() => setShowCreateFirstRecordModal(true)}
+        // Edit Section
+        onOpen={(record, readOnly) => {
+          setSelectedRecord(record);
+          setIsReadOnly(readOnly);
+          setHistoryMode(readOnly ? 'view' : 'edit');
+          setShowHistoryModal(true);
+        }}
         // Add Section
         onAdd={() => {
           const lastRecord = patientRecord?.[0] || null;
@@ -52,6 +59,7 @@ export default function ConsultsTab({
           setSelectedRecord(record);
           setShowDeleteModal(true);
         }}
+        setShowHistoryModal={setShowHistoryModal}
         setShowCreateGoalModal={setShowCreateGoalModal}
       />
 

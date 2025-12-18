@@ -39,9 +39,6 @@ export default function DietCompletedModal({
   const [hoveredRating, setHoveredRating] = useState<number>(0);
   const [doctorNotes, setDoctorNotes] = useState<string>('');
 
-  // Create Timeline Event Custom Hook
-  const { createTimelineEvent, isLoading, error } = useCreateTimelineEvent();
-
   // Toggle Diet Custom Hook
   const { toggleDiet, isLoading: toggleLoading, error: toggleError } = useToggleDiet();
 
@@ -60,6 +57,8 @@ export default function DietCompletedModal({
           dietId: selectedDiet.diet._id,
           clinicalRecord: recordId,
           isActive: false,
+          rating: rating,
+          doctorNotes: doctorNotes,
         });
         setShowToggleModal(false);
 
@@ -110,12 +109,12 @@ export default function DietCompletedModal({
   };
 
   // Loading State
-  if (isProcessing || isLoading || toggleLoading) {
+  if (isProcessing || toggleLoading) {
     return <LoadingState />;
   }
 
   // Error State
-  if (error || toggleError) {
+  if (toggleError) {
     return <ErrorState />;
   }
 

@@ -70,6 +70,7 @@ export default function WorkoutsTab({
       {recordId && (
         <AssignWorkoutToPatient
           patientId={patientId}
+          recordId={recordId}
           setShowSuccessModal={setShowSuccessModal}
           refetchTimeline={refetchTimeline}
         />

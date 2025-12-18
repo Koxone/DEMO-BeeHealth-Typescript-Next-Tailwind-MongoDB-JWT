@@ -36,7 +36,7 @@ export async function GET(req, { params }) {
     const timelineEvents = await PatientTimeline.find({ patient: id })
       .populate('doctor', 'fullName email role specialty')
       .populate('patient', 'fullName email')
-      .populate('diet', 'name category description')
+      .populate('diet', 'name category description images')
       .sort({ createdAt: -1 });
 
     return NextResponse.json({ events: timelineEvents }, { status: 200 });

@@ -84,7 +84,7 @@ export default function DoctorBudgets() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full table-fixed border-collapse text-sm">
           <thead>
             <tr className="bg-(--med-blue-light)/20 text-left text-(--med-text-muted)">
               <th className="p-3 font-medium whitespace-nowrap"></th>
@@ -109,9 +109,7 @@ export default function DoctorBudgets() {
               >
                 {/* PDF Icon */}
                 <td className="p-3 text-center">
-                  <button
-                    className="rounded-lg bg-blue-100 p-2 transition hover:bg-blue-200 active:scale-95"
-                  >
+                  <button className="rounded-lg bg-blue-100 p-2 transition hover:bg-blue-200 active:scale-95">
                     <FileText className="h-5 w-5 text-blue-600" />
                   </button>
                 </td>

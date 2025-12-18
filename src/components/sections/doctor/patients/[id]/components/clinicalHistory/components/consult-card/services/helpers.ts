@@ -71,3 +71,31 @@ const getActionBadge = (action: TimelineEventType) => {
 };
 
 export { getActionBadge };
+
+export const CATEGORIES = [
+  'Datos Generales',
+  'Antropometria',
+  'Antecedentes Personales',
+  'Patologias',
+  'Antecedentes Personales No Patologicos',
+  'Medicamentos',
+  'Antecedentes Heredofamiliares',
+  'Alimentacion',
+  'Inmunizaciones',
+  'Signos Vitales',
+  'En esta consulta',
+];
+
+export const CATEGORY_BG_MAP: Record<string, string> = {
+  'Datos Generales': 'bg-blue-100',
+  Antropometria: 'bg-beehealth-blue-primary-solid',
+  'Antecedentes Personales': 'bg-beehealth-yellow-primary-dark',
+  Patologias: 'bg-beehealth-red-primary-solid',
+  'Antecedentes Personales No Patologicos': 'bg-beehealth-orange-primary-solid',
+  Medicamentos: 'bg-beehealth-purple-primary-solid',
+  'Antecedentes Heredofamiliares': 'bg-beehealth-orange-primary-dark',
+  Alimentacion: 'bg-lime-100',
+  Inmunizaciones: 'bg-teal-100',
+  'Signos Vitales': 'bg-emerald-100',
+  'En esta consulta': 'bg-beehealth-green-primary-solid',
+};

@@ -23,7 +23,7 @@ export default function MedsTable({ rows, getStockStatus, onEdit, onDelete, onHi
   return (
     <div className="bg-beehealth-body-main max-h-[500px] overflow-auto rounded-xl border border-gray-200 shadow-sm">
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full table-fixed">
           <thead>
             <tr className="bg-beehealth-green-primary-light border-b border-gray-200">
               <th className="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-600 uppercase">

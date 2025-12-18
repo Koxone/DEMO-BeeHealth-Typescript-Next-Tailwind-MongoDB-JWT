@@ -21,4 +21,15 @@ export function useModalClose(onClose?: () => void) {
 }
 
 // How to use?:
-// const { handleOverlayClick } = useModalClose(() => setShowDeleteModal(false));
+// const { handleOverlayClick } = useModalClose(onClose);
+
+// <div
+//   id="overlay"
+//   onClick={handleOverlayClick}
+//   className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
+// >
+//   {/* Modal container */}
+//   <div
+//     className="bg-beehealth-body-main relative w-full max-w-lg overflow-hidden rounded-3xl shadow-2xl"
+//     onClick={(e) => e.stopPropagation()}
+//   >

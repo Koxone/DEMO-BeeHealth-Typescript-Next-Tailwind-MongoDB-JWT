@@ -16,9 +16,11 @@ export default function AssignWorkoutToPatient({
   onSuccess,
   patientId,
   setShowSuccessModal,
+  recordId,
   refetchTimeline,
 }: {
   onSuccess?: () => void;
+  recordId?: string | null;
   patientId: string;
   setShowSuccessModal?: (show: boolean) => void;
   refetchTimeline?: () => void;
@@ -59,7 +61,9 @@ export default function AssignWorkoutToPatient({
       );
       if (newWorkoutsToAssign.length === 0) return;
       await Promise.all(
-        newWorkoutsToAssign.map((workoutId) => assignWorkout({ patientId, workoutId }))
+        newWorkoutsToAssign.map((workoutId) =>
+          assignWorkout({ patientId, workoutId, clinicalRecord: recordId })
+        )
       );
 
       onSuccess?.();

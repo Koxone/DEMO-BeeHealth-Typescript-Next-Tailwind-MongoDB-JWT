@@ -94,7 +94,7 @@ function TransactionBlock({ transaction }) {
       {/* Table of changes */}
       {!isSimpleMovement && (
         <div className="mt-2 overflow-hidden rounded-lg border border-gray-200">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-fixed">
             <thead className="bg-gray-100 text-gray-700">
               <tr>
                 <th className="px-3 py-2 text-left">Tipo</th>

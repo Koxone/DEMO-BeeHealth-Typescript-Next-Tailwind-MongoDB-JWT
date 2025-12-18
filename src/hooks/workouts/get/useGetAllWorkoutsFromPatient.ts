@@ -65,3 +65,6 @@ export function useGetAllWorkoutsFromPatient(patientId: string) {
     refetch: query.refetch,
   };
 }
+
+// Usage Example:
+// const { workoutsData, isLoading, error, refetch } = useGetAllWorkoutsFromPatient('patientId123');

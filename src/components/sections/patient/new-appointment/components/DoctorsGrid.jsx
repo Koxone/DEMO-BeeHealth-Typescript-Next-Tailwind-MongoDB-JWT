@@ -1,8 +1,8 @@
 'use client';
 
 /* icons */
-import { FaTooth, FaSyringe } from 'react-icons/fa'; // dental y estética
-import { GiWeightScale } from 'react-icons/gi'; // control de peso
+import { FaTooth, FaSyringe } from 'react-icons/fa';
+import { GiWeightScale } from 'react-icons/gi';
 import { Check, Stethoscope } from 'lucide-react';
 
 export default function DoctorsGrid({ selectedDoctor, onSelect }) {

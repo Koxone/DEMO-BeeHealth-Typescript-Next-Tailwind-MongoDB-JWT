@@ -10,12 +10,16 @@ export function useToggleDiet() {
       clinicalRecord,
       isActive,
       action,
+      rating,
+      doctorNotes,
     }: {
       patientId: string;
       dietId: string;
       clinicalRecord: string;
       isActive: boolean;
       action?: string;
+      rating?: number;
+      doctorNotes?: string;
     }) => {
       const res = await fetch(`/api/users/${patientId}/diets/toggle`, {
         method: 'PATCH',
@@ -27,6 +31,8 @@ export function useToggleDiet() {
           dietId,
           isActive,
           clinicalRecord,
+          rating,
+          doctorNotes,
           action,
         }),
       });

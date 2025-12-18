@@ -61,8 +61,8 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
   ];
 
   return (
-    <div className="hidden overflow-x-auto md:block">
-      <table className="w-full">
+    <div className="hidden md:block">
+      <table className="w-full table-fixed">
         <thead className="bg-beehealth-green-primary-light border-b-2 border-gray-200">
           <tr>
             {columns.map((col) => (
@@ -108,13 +108,13 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
               <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
                   {/* Avatar or Initials */}
-                  <div className="bg-beehealth-blue-primary-solid flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl text-sm font-bold text-white shadow-md">
+                  <div className="bg-beehealth-blue-primary-solid flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md">
                     {c?.patient?.avatar ? (
                       /* Image */
                       <img
                         src={c.patient.avatar}
                         alt={c.patient.fullName || 'Avatar'}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-xl"
                       />
                     ) : (
                       /* Initials */

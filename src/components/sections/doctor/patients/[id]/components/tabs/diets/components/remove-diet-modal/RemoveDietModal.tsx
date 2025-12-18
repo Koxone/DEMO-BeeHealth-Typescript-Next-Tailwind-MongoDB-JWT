@@ -16,8 +16,9 @@ export default function RemoveDietModal({
   setSuccessMessage,
   clinicalRecordId,
 }) {
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
+  const [doctorNotes, setDoctorNotes] = useState<string>('');
 
   const dietId = dietToRemove?.diet?._id;
 
@@ -38,6 +39,7 @@ export default function RemoveDietModal({
         userId: patientId,
         dietId,
         clinicalRecord: clinicalRecordId,
+        doctorNotes,
       });
       setSuccessMessage('La dieta ha sido removida exitosamente del paciente.');
       setSuccessTitle('Dieta removida correctamente');
@@ -78,7 +80,17 @@ export default function RemoveDietModal({
           <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-40 rounded-full bg-linear-to-tr from-rose-400/20 to-red-400/20 blur-3xl" />
 
           {/* Header */}
-          <div className="bg-beehealth-body-main/80 relative border-b border-red-100 backdrop-blur-xl">
+          <div
+            style={{
+              backgroundImage: `url(${dietToRemove?.diet?.images?.[0]})`,
+              backgroundColor: 'rgba(0,0,0,0.70)',
+              backgroundBlendMode: 'darken',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+            className="bg-beehealth-body-main/80 relative border-b border-red-100 backdrop-blur-xl"
+          >
             <div className="absolute inset-0 bg-linear-to-r from-red-500 to-orange-500 opacity-5" />
             <div className="relative px-6 py-6">
               <div className="flex items-start justify-between">
@@ -99,8 +111,8 @@ export default function RemoveDietModal({
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Remover Dieta</h2>
-                    <p className="mt-1 text-sm text-gray-600">Esta acción no se puede deshacer</p>
+                    <h2 className="text-2xl font-bold text-white">Remover Dieta</h2>
+                    <p className="mt-1 text-sm text-white">Esta acción no se puede deshacer</p>
                   </div>
                 </div>
                 {!isDeleting && (
@@ -119,7 +131,7 @@ export default function RemoveDietModal({
           <div className="relative p-6">
             {!isDeleted && (
               <>
-                {/* Mensaje de advertencia */}
+                {/* Warning Message */}
                 <div className="mb-6 rounded-xl border-2 border-red-200 bg-red-50/80 p-4 backdrop-blur-sm">
                   <div className="flex items-start gap-3">
                     <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
@@ -135,7 +147,7 @@ export default function RemoveDietModal({
                   </div>
                 </div>
 
-                {/* Información de la dieta a remover */}
+                {/* Information of the diet to remove */}
                 <div className="bg-beehealth-body-main mb-6 overflow-hidden rounded-2xl border-2 border-gray-200 shadow-sm">
                   <div className="bg-linear-to-r from-gray-50 to-gray-100 px-4 py-2">
                     <p className="text-xs font-semibold tracking-wide text-gray-600 uppercase">
@@ -154,6 +166,20 @@ export default function RemoveDietModal({
                       </div>
                     </div>
                   </div>
+                </div>
+
+                {/* Doctor Notes Section */}
+                <div className="mb-4">
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    Notas del Doctor (opcional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    className="block w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 placeholder-gray-400 shadow-sm transition-all duration-300 outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Agrega alguna nota relevante sobre la remoción de esta dieta..."
+                    value={doctorNotes}
+                    onChange={(e) => setDoctorNotes(e.target.value)}
+                  />
                 </div>
 
                 {/* Botones de acción */}

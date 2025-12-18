@@ -1,6 +1,8 @@
 'use client';
 
 import { Calendar, Weight, Activity, FileText, BarChart3, Ruler } from 'lucide-react';
+
+// Local Helpers
 import { getIMCCategory } from './utils';
 
 export default function RecordsTable({ historyData = [], patientWeightLogs }) {

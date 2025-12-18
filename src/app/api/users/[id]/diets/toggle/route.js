@@ -25,7 +25,7 @@ export async function PATCH(req, { params }) {
     }
 
     // Get dietId and isActive from request body
-    const { dietId, isActive, clinicalRecord, action } = await req.json();
+    const { dietId, isActive, clinicalRecord, action, rating, doctorNotes } = await req.json();
 
     if (!dietId) {
       return NextResponse.json({ error: 'Diet ID is required' }, { status: 400 });
@@ -85,6 +85,8 @@ export async function PATCH(req, { params }) {
           doctorNotes: 'Dieta marcada como completada por el médico.',
           reviewedAt: new Date(),
           reviewedBy: doctor._id,
+          rating: rating,
+          doctorNotes: doctorNotes,
         },
         startDate: new Date(),
         completedDate: new Date(),

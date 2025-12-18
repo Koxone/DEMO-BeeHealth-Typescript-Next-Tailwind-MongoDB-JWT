@@ -71,8 +71,8 @@ export default function MedsSoldTable({ consultsData }) {
   };
 
   return (
-    <div className="bg-beehealth-body-main hidden overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:block">
-      <table className="w-full">
+    <div className="bg-beehealth-body-main hidden rounded-2xl border border-gray-200 shadow-sm md:block">
+      <table className="w-full table-fixed">
         {/* Header */}
         <thead className="bg-beehealth-green-primary-light border-b-2 border-gray-200">
           <tr>

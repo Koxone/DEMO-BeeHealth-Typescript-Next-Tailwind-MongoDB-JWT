@@ -1,7 +1,7 @@
 const complianceMap = {
-  completed: 'Completado',
-  partial: 'Parcial',
-  not_completed: 'No completado',
+  completed: 'Dieta completada',
+  partial: 'Dieta parcialmente completada',
+  not_completed: 'Dieta removida',
   pending: 'Pendiente',
 };
 

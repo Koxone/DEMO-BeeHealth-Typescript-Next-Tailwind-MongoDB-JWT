@@ -73,3 +73,6 @@ const useAuthStore = create<AuthState>()(
 );
 
 export default useAuthStore;
+
+// How to use:
+// const { user, token, isAuthenticated, setUser, setToken, clearAuth, loadUser } = useAuthStore();

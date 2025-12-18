@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Calendar, Check, Pencil, X } from 'lucide-react';
+import { Check, Pencil, X } from 'lucide-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import ReactDatePicker from 'react-datepicker';
@@ -19,31 +19,27 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
   const [open, setOpen] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState('');
-  const [pickerDate, setPickerDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
-  // Today in MX timezone
-  const today = new Date().toLocaleDateString('en-CA', {
-    timeZone: 'America/Mexico_City',
-  });
-
-  useEffect(() => {
-    if (selectedDate) {
-      setPickerDate(new Date(selectedDate));
-    } else {
-      setPickerDate(null);
-    }
-  }, [selectedDate]);
+  // Today's date at midnight in local timezone
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const handleConfirm = async () => {
     if (!selectedDate) return;
 
     setIsLoading(true);
 
+    // Format date to YYYY-MM-DD in local timezone
+    const year = selectedDate.getFullYear();
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    const day = String(selectedDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
     // Simulate async operation
     await new Promise((resolve) => setTimeout(resolve, 300));
 
-    onSelect(selectedDate);
+    onSelect(formattedDate);
 
     // Invalidate queries to refetch data
     queryClient.invalidateQueries(['patientClinicalRecords', id]);
@@ -51,7 +47,7 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
     fetchRecord();
     setIsLoading(false);
     setOpen(false);
-    setSelectedDate('');
+    setSelectedDate(null);
 
     // Show success feedback
     setUpdated(true);
@@ -60,7 +56,7 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
 
   const handleCancel = () => {
     setOpen(false);
-    setSelectedDate('');
+    setSelectedDate(null);
   };
 
   return (
@@ -105,24 +101,19 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
               {/* Date Input */}
               <div className="mb-4">
                 <ReactDatePicker
-                  selected={pickerDate}
+                  selected={selectedDate}
                   onChange={(date) => {
-                    if (!date) return;
-
-                    const formatted = date.toISOString().split('T')[0];
-
-                    if (formatted <= today) {
-                      setPickerDate(date);
-                      setSelectedDate(formatted);
+                    if (date) {
+                      setSelectedDate(date);
                     }
                   }}
                   locale={es}
-                  dateFormat="dd-MM-yyyy"
-                  maxDate={new Date(today)}
+                  dateFormat="dd/MM/yyyy"
+                  maxDate={today}
                   disabled={isLoading}
+                  placeholderText="Selecciona una fecha"
                   popperPlacement="bottom-start"
                   showPopperArrow={false}
-                  popperClassName="scale-120"
                   className="w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
 

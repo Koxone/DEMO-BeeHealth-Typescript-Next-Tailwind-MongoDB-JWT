@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 import User from '@/models/User';
+import mongoose from 'mongoose';
 
 // @route    POST api/auth/signup
 // @desc     Create New User
@@ -37,6 +38,18 @@ export async function POST(req) {
       hasRecord: false,
       role: role || 'patient',
       specialty: specialty || 'none',
+      diets: [
+        {
+          diet: new mongoose.Types.ObjectId('692f2fbb531330ad96542748'),
+          isActive: true,
+          assignedAt: new Date(),
+        },
+        {
+          diet: new mongoose.Types.ObjectId('692f3c3fb4fdb415c3bbdecf'),
+          isActive: true,
+          assignedAt: new Date(),
+        },
+      ],
     });
 
     // Build JWT payload
@@ -75,8 +88,8 @@ export async function POST(req) {
     // Set Refresh token Cookie
     res.cookies.set('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/api/auth/refresh',
       maxAge: 60 * 60 * 24 * 7,
     });

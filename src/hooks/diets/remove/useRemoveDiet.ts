@@ -6,6 +6,7 @@ interface RemoveDietParams {
   userId: string;
   dietId: string;
   clinicalRecord: string;
+  doctorNotes?: string;
 }
 
 interface RemoveDietResponse {
@@ -26,14 +27,14 @@ interface RemoveDietResponse {
 export function useRemoveDiet() {
   // Mutation
   const mutation = useMutation({
-    mutationFn: async ({ userId, dietId, clinicalRecord }: RemoveDietParams) => {
+    mutationFn: async ({ userId, dietId, clinicalRecord, doctorNotes }: RemoveDietParams) => {
       const res = await fetch(`/api/users/${userId}/diets/remove`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         credentials: 'include',
-        body: JSON.stringify({ dietId, clinicalRecord }),
+        body: JSON.stringify({ dietId, clinicalRecord, doctorNotes }),
       });
 
       if (!res.ok) {

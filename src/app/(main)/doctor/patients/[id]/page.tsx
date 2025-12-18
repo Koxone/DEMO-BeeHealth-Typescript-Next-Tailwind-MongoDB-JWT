@@ -1,50 +1,37 @@
+'use client';
+
 import DoctorPatientDetail from '@/components/sections/doctor/patients/[id]/DoctorPatientDetail';
-import { getCurrentUser } from '@/lib/auth/getCurrentUser';
-import { connectDB } from '@/lib/mongodb';
-import User, { IUser } from '@/models/User';
 
-export const runtime = 'nodejs';
+// Feedback Components
+import ErrorState from '@/components/shared/feedback/ErrorState';
+import LoadingState from '@/components/shared/feedback/LoadingState';
 
-interface DoctorPatientDetailPageProps {
-  params: {
-    id: string;
-  };
-}
+// Library Hooks
+import { useParams } from 'next/navigation';
 
-export default async function DoctorPatientDetailPage(props: DoctorPatientDetailPageProps) {
-  const params = await props.params;
-  const { id } = params;
+// Custom Hooks
+import { useGetUserById } from '@/hooks/users/useGetUserById';
 
-  await connectDB();
+export default function DoctorPatientDetailPage() {
+  const params = useParams();
+  const id = params.id as string;
 
-  const patient = await User.findById(id, '-password -resetToken').lean<IUser>();
+  const { userData, isLoading, error, refetch } = useGetUserById(id);
+  const specialty = userData?.specialty || '';
 
-  if (!patient) {
-    return <p className="p-8 text-center text-gray-600">Paciente no encontrado</p>;
+  // Loadin State
+  if (isLoading) {
+    return <LoadingState />;
   }
 
-  // Convertir ObjectIds a strings
-  const serializedPatient = {
-    ...patient,
-    _id: (patient._id as any).toString(),
-    diets: ((patient.diets as any) || []).map((diet: any) => ({
-      ...diet,
-      _id: (diet._id as any).toString(),
-      diet: (diet.diet as any).toString(),
-    })),
-    workouts: ((patient.workouts as any) || []).map((workout: any) => ({
-      ...workout,
-      _id: (workout._id as any).toString(),
-      workout: (workout.workout as any).toString(),
-    })),
-  };
-
-  const currentUser = await getCurrentUser();
-  const specialty = currentUser?.specialty;
+  // Error State
+  if (error || !userData) {
+    return <ErrorState />;
+  }
 
   return (
     <div>
-      <DoctorPatientDetail patient={serializedPatient} specialty={specialty} />
+      <DoctorPatientDetail patient={userData} specialty={specialty} />
     </div>
   );
 }

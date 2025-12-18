@@ -1,10 +1,12 @@
 'use client';
 
-import { useGetMyAppointments } from '@/hooks/appointments/useGetMyAppointments';
 import useAuthStore from '@/zustand/useAuthStore';
 import { Calendar, Clock, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo } from 'react';
+
+// Custom Hooks
+import { useGetMyAppointments } from '@/hooks/appointments/useGetMyAppointments';
 
 export default function NextAppointmentCard() {
   const { user } = useAuthStore();

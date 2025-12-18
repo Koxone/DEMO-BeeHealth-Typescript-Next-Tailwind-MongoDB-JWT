@@ -185,7 +185,6 @@ export default function DoctorPatientDetail({ patient, specialty }) {
           onClickNew={() => setShowCreateAppointmentModal(true)}
           onClickFullHistory={() => setShowFullHistoryModal(true)}
           onCreateNew={() => setShowCreateFirstRecordModal(true)}
-          id={id}
           dietsData={dietsData}
           workoutsData={workoutsData}
         />
@@ -273,7 +272,6 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {showHistoryModal && (
         <ClinicalRecordModal
           fetchRecord={fetchRecord}
-          refetchTimeline={refetchTimeline}
           onClose={() => setShowHistoryModal(false)}
           record={selectedRecord}
           readOnly={isReadOnly}

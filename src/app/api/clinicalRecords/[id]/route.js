@@ -34,7 +34,7 @@ export async function GET(req, { params }) {
       .populate({
         path: 'answers.question',
         model: 'Question',
-        select: 'questionId text specialty version type options isMetric',
+        select: 'questionId text specialty version type options isMetric category placeholder required',
       })
       .lean();
 

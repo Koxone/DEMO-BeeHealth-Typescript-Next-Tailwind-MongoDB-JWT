@@ -72,3 +72,6 @@ export function useGetFullInventory() {
     refetch: fetchInventory,
   };
 }
+
+// Usage example:
+// const { inventory, isLoading, error, criticalItems, lowItems, totalAlerts, refetch } = useGetFullInventory();

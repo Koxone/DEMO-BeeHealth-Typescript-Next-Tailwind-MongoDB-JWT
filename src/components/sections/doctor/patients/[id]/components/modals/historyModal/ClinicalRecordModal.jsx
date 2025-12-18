@@ -22,7 +22,6 @@ export default function ClinicalRecordModal({
   mode = 'view',
   fetchRecord,
   setShowSuccessModal,
-  refetchTimeline,
 }) {
   // Readonly state
   const [isReadOnly, setIsReadOnly] = useState(!!readOnly);
@@ -157,7 +156,6 @@ export default function ClinicalRecordModal({
         >
           {activeTab === 'basico' && (
             <ShortVersion
-              patientId={patientId}
               specialty={specialty}
               isReadOnly={isReadOnly}
               formData={formData}
@@ -166,12 +164,6 @@ export default function ClinicalRecordModal({
               isCreate={isCreate}
               isSubmitting={isSubmitting}
               onClose={onClose}
-              dietSelected={dietSelected}
-              setDietSelected={setDietSelected}
-              workoutSelected={workoutSelected}
-              setWorkoutSelected={setWorkoutSelected}
-              refetchTimeline={refetchTimeline}
-              setShowSuccessModal={setShowSuccessModal}
             />
           )}
         </form>

@@ -78,9 +78,11 @@ export default function QuickToggleWorkouts({
           </div>
           <div>
             <h3 className="text-lg font-bold text-gray-700">Gestion de Entrenamientos</h3>
+
             <p className="text-sm text-gray-500">
-              Click en un entrenamiento para activar o desactivar del plan de entrenamiento de este
-              paciente.
+              {recordId
+                ? 'Click en un entrenamiento para activar o desactivar del plan de entrenamiento de este paciente.'
+                : 'Es necesario seleccionar un registro clínico para poder asignar o remover un entrenamiento del plan de un paciente'}
             </p>
           </div>
         </div>

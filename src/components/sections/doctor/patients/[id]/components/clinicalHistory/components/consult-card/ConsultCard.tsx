@@ -3,6 +3,10 @@
 import { useMemo } from 'react';
 import { Apple, Dumbbell, Edit2, Eye, Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import EditRecordDateButton from './components/EditRecordDateButton';
+import SortableAnswerCard from './components/SortableAnswerCard';
+
+// Drag and Drop Imports
 import {
   DndContext,
   closestCenter,
@@ -18,8 +22,6 @@ import {
   sortableKeyboardCoordinates,
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import EditRecordDateButton from './components/EditRecordDateButton';
-import SortableAnswerCard from './components/SortableAnswerCard';
 
 // Types
 import { ConsultCardProps, Answer } from '@/types/consults/consults.types';

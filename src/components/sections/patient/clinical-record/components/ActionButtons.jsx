@@ -1,6 +1,6 @@
 import { ArrowLeft, Check } from 'lucide-react';
 
-export default function ActionButtons({ activeTab }) {
+export default function ActionButtons({ activeTab, loadingCreate }) {
   return (
     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
       <button
@@ -12,6 +12,7 @@ export default function ActionButtons({ activeTab }) {
       </button>
       <button
         type="submit"
+        disabled={loadingCreate}
         className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white shadow-md transition active:scale-95 ${
           activeTab === 'peso'
             ? 'bg-blue-500 hover:bg-blue-600'

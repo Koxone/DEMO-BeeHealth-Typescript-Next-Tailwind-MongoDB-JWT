@@ -1,11 +1,15 @@
 'use client';
 
 import { User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 function ProfileButton({ currentUser }) {
+  const router = useRouter();
+  const role = currentUser?.role || 'guest';
+
   return (
     <button
-      // onClick={() => router.push(`/${role}/profile`)}
+      onClick={() => router.push(`/${role}/profile`)}
       className="group relative flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-indigo-600 shadow-lg transition-all duration-200 hover:scale-110 hover:shadow-xl active:scale-95"
     >
       {currentUser?.avatar ? (

@@ -4,7 +4,7 @@ import { ClipboardPlus, Sparkles, SparklesIcon } from 'lucide-react';
 /* Helpers */
 function activeBg(id) {
   // Return fixed Tailwind class to avoid dynamic strings
-  if (id === 'weight') return 'bg-blue-500 text-white';
+  if (id === 'weight') return 'bg-beehealth-blue-primary-solid text-white';
   if (id === 'dental') return 'bg-emerald-500 text-white';
   return 'bg-purple-500 text-white';
 }

@@ -44,7 +44,7 @@ export default function Contact() {
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-700">Mensaje</label>
                 <textarea
-                  rows="4"
+                  rows={4}
                   className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500"
                 ></textarea>
               </div>
@@ -62,21 +62,24 @@ export default function Contact() {
               <Mail className="mt-1 h-6 w-6 text-blue-500" />
               <div>
                 <h3 className="mb-1 font-semibold text-gray-900">Email</h3>
-                <p className="text-gray-600">contacto@medtrack.com</p>
+                <p className="text-gray-600">beehealth@littlebear.vip</p>
               </div>
             </div>
             <div className="bg-beehealth-body-main flex items-start gap-4 rounded-xl p-6 shadow-md">
               <Phone className="mt-1 h-6 w-6 text-green-500" />
               <div>
                 <h3 className="mb-1 font-semibold text-gray-900">Telefono</h3>
-                <p className="text-gray-600">+52 55 1234 5678</p>
+                <p className="text-gray-600">+52 55 2036 4971</p>
               </div>
             </div>
             <div className="bg-beehealth-body-main flex items-start gap-4 rounded-xl p-6 shadow-md">
               <MapPin className="mt-1 h-6 w-6 text-red-500" />
               <div>
                 <h3 className="mb-1 font-semibold text-gray-900">Dirección</h3>
-                <p className="text-gray-600">Av. Reforma 123, CDMX, México</p>
+                <p className="text-gray-600">
+                  Av. Pdte. Plutarco Elías Calles 712-local 101, Nueva Sta Anita, Iztacalco, 08210
+                  Ciudad de México, CDMX
+                </p>
               </div>
             </div>
           </div>

@@ -44,7 +44,7 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
   return (
     <div className="h-full space-y-4 overflow-y-auto md:space-y-6">
       {/* Header */}
-      <HeaderWelcome fullName={currentUser?.fullName} role={role} />
+      <HeaderWelcome fullName={currentUser?.fullName} role={role} specialty={specialty} />
 
       {/* Stats */}
       <DoctorStatsGrid role={role} specialty={specialty} />

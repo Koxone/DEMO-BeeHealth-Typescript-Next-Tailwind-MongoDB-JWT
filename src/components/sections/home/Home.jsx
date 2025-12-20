@@ -72,16 +72,16 @@ export default function Home() {
         <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <div>
             <h1 className="mb-4 text-3xl leading-tight font-bold text-gray-900 md:mb-6 md:text-5xl">
-              Control médico inteligente para tu salud
+              Salud inteligente, diseñada para ti
             </h1>
             <p className="mb-6 text-lg text-gray-600 md:mb-8 md:text-xl">
-              Gestiona tu peso, historial clínico, citas médicas y dietas personalizadas en un solo
+              Visualiza tu progreso con acceso a dietas, ejercicios y recetas, todo en un solo
               lugar.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row md:gap-4">
               <button
                 onClick={() => router.push('/auth/signup')}
-                className="w-full rounded-lg bg-blue-500 px-6 py-3 font-medium text-white shadow-md transition hover:bg-blue-600 active:scale-95 sm:w-auto"
+                className="bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-dark w-full rounded-lg px-6 py-3 font-medium text-white shadow-md transition active:scale-95 sm:w-auto"
               >
                 Comenzar ahora
               </button>

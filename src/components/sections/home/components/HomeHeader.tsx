@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 function HomeHeader({ setShowMenu, showMenu }) {
   const router = useRouter();
   return (
-    <header className="bg-beehealth-body-main/80 sticky top-0 z-50 border-b backdrop-blur-sm">
+    <header className="bg-beehealth-body-main/80 sticky top-0 z-50 border-b border-gray-300 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <button onClick={() => router.push('/')} className="flex items-center gap-2">
           <img src="/fish.png" alt="" className="max-w-10" />

@@ -1,15 +1,21 @@
 'use client';
 
-import { Bell, User, LogOut, Menu } from 'lucide-react';
+import { User } from 'lucide-react';
 import LogoutButton from './components/LogoutButton';
+import { useEffect, useState } from 'react';
 import ProfileButton from './components/ProfileButton';
 import MobileMenu from './components/MobileMenu';
+
+// Zustand
 import useAuthStore from '@/zustand/useAuthStore';
-import { useState } from 'react';
 
 export default function Header() {
-  const { user } = useAuthStore();
+  const { user, loadUser } = useAuthStore();
   const currentUser = user;
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   const [isOpen, setIsOpen] = useState(false);
 

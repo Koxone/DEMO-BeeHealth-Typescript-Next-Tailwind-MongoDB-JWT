@@ -62,12 +62,12 @@ export default function FullHistoryModal({
 
     try {
       // Prepare answers array
-     const answers = Object.entries(formData).map(([questionId, value]) => {
-  return {
-    questionId: parseInt(questionId, 10),  // ← Envía el questionId numérico
-    value,
-  };
-});
+      const answers = Object.entries(formData).map(([questionId, value]) => {
+        return {
+          questionId: parseInt(questionId, 10), // ← Envía el questionId numérico
+          value,
+        };
+      });
 
       // Call edit endpoint
       await editClinicalRecord(fullRecord._id, { answers });
@@ -127,7 +127,7 @@ export default function FullHistoryModal({
               </button>
               <button
                 type="submit"
-                className="rounded-xl bg-blue-600 px-6 py-2 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+                className="bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-dark rounded-xl px-6 py-2 font-semibold text-white transition disabled:opacity-50"
                 disabled={isUpdating}
               >
                 {isUpdating ? 'Guardando...' : 'Guardar Cambios'}

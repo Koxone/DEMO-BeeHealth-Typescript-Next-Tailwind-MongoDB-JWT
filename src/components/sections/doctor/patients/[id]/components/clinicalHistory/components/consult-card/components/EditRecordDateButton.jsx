@@ -1,12 +1,24 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Check, Pencil, X } from 'lucide-react';
+import { Check, ChevronDown, Pencil, X } from 'lucide-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import ReactDatePicker from 'react-datepicker';
-import { es } from 'date-fns/locale';
-import 'react-datepicker/dist/react-datepicker.css';
+
+const MONTHS = [
+  { value: 1, label: 'Enero' },
+  { value: 2, label: 'Febrero' },
+  { value: 3, label: 'Marzo' },
+  { value: 4, label: 'Abril' },
+  { value: 5, label: 'Mayo' },
+  { value: 6, label: 'Junio' },
+  { value: 7, label: 'Julio' },
+  { value: 8, label: 'Agosto' },
+  { value: 9, label: 'Septiembre' },
+  { value: 10, label: 'Octubre' },
+  { value: 11, label: 'Noviembre' },
+  { value: 12, label: 'Diciembre' },
+];
 
 export default function EditRecordDateButton({ onSelect, fetchRecord }) {
   // React Query Client
@@ -19,22 +31,47 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
   const [open, setOpen] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
 
-  // Today's date at midnight in local timezone
+  // Date fields
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
+  const [monthDropdownOpen, setMonthDropdownOpen] = useState(false);
+
+  // Today's date
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1;
+  const currentDay = today.getDate();
+
+  // Check if selected date is valid and not in the future
+  const isValidDate = () => {
+    const d = parseInt(day);
+    const m = parseInt(month);
+    const y = parseInt(year);
+
+    if (!d || !m || !y) return false;
+    if (d < 1 || d > 31) return false;
+    if (y < 1900 || y > currentYear) return false;
+
+    // Check if date is in the future
+    if (y > currentYear) return false;
+    if (y === currentYear && m > currentMonth) return false;
+    if (y === currentYear && m === currentMonth && d > currentDay) return false;
+
+    // Check valid days for month
+    const daysInMonth = new Date(y, m, 0).getDate();
+    if (d > daysInMonth) return false;
+
+    return true;
+  };
 
   const handleConfirm = async () => {
-    if (!selectedDate) return;
+    if (!isValidDate()) return;
 
     setIsLoading(true);
 
-    // Format date to YYYY-MM-DD in local timezone
-    const year = selectedDate.getFullYear();
-    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    const day = String(selectedDate.getDate()).padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
+    const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
     // Simulate async operation
     await new Promise((resolve) => setTimeout(resolve, 300));
@@ -47,7 +84,9 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
     fetchRecord();
     setIsLoading(false);
     setOpen(false);
-    setSelectedDate(null);
+    setDay('');
+    setMonth('');
+    setYear('');
 
     // Show success feedback
     setUpdated(true);
@@ -56,8 +95,13 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
 
   const handleCancel = () => {
     setOpen(false);
-    setSelectedDate(null);
+    setDay('');
+    setMonth('');
+    setYear('');
+    setMonthDropdownOpen(false);
   };
+
+  const selectedMonthLabel = MONTHS.find((m) => m.value === parseInt(month))?.label || '';
 
   return (
     <div className="relative">
@@ -84,7 +128,7 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
           <div className="fixed inset-0 z-40" onClick={handleCancel} />
 
           {/* Date Picker Panel */}
-          <div className="animate-in fade-in slide-in-from-bottom-2 absolute bottom-10 left-17 z-50 mb-3 -translate-x-1/2 duration-200">
+          <div className="animate-in fade-in slide-in-from-bottom-2 absolute bottom-10 left-30 z-50 mb-3 -translate-x-1/2 duration-200">
             <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-xl">
               {/* Header */}
               <div className="mb-3 flex items-center justify-between">
@@ -98,28 +142,78 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
                 </button>
               </div>
 
-              {/* Date Input */}
-              <div className="mb-4">
-                <ReactDatePicker
-                  selected={selectedDate}
-                  onChange={(date) => {
-                    if (date) {
-                      setSelectedDate(date);
-                    }
-                  }}
-                  locale={es}
-                  dateFormat="dd/MM/yyyy"
-                  maxDate={today}
-                  disabled={isLoading}
-                  placeholderText="Selecciona una fecha"
-                  popperPlacement="bottom-start"
-                  showPopperArrow={false}
-                  className="w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                />
+              {/* Google-style Date Inputs */}
+              <div className="mb-4 flex gap-2">
+                {/* Day Input */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={2}
+                    value={day}
+                    onChange={(e) => setDay(e.target.value.replace(/\D/g, ''))}
+                    disabled={isLoading}
+                    placeholder="Día"
+                    className="w-16 rounded-md border border-gray-700 bg-transparent px-3 py-2.5 text-sm text-gray-700 placeholder-gray-500 transition-colors focus:border-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
 
-                {/* Helper text */}
-                <p className="mt-2 text-xs text-gray-500">Fecha máxima: hoy</p>
+                {/* Month Dropdown */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
+                    disabled={isLoading}
+                    className="flex w-32 items-center justify-between rounded-md border border-gray-700 bg-transparent px-3 py-2.5 text-sm text-gray-700 transition-colors focus:border-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <span className={selectedMonthLabel ? 'text-gray-700' : 'text-gray-500'}>
+                      {selectedMonthLabel || 'Mes'}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-gray-500" />
+                  </button>
+
+                  {monthDropdownOpen && (
+                    <>
+                      <div
+                        className="fixed inset-0 z-50"
+                        onClick={() => setMonthDropdownOpen(false)}
+                      />
+                      <div className="absolute top-full left-0 z-50 mt-1 max-h-48 w-full overflow-y-auto rounded-md border border-gray-200 bg-white shadow-lg">
+                        {MONTHS.map((m) => (
+                          <button
+                            key={m.value}
+                            type="button"
+                            onClick={() => {
+                              setMonth(String(m.value));
+                              setMonthDropdownOpen(false);
+                            }}
+                            className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            {m.label}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Year Input */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={4}
+                    value={year}
+                    onChange={(e) => setYear(e.target.value.replace(/\D/g, ''))}
+                    disabled={isLoading}
+                    placeholder="Año"
+                    className="w-20 rounded-md border border-gray-700 bg-transparent px-3 py-2.5 text-sm text-gray-700 placeholder-gray-500 transition-colors focus:border-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
               </div>
+
+              {/* Helper text */}
+              <p className="mb-4 text-xs text-gray-500">Fecha máxima: hoy</p>
 
               {/* Action Buttons */}
               <div className="flex gap-2">
@@ -134,7 +228,7 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
                 <button
                   type="button"
                   onClick={handleConfirm}
-                  disabled={isLoading || !selectedDate}
+                  disabled={isLoading || !isValidDate()}
                   className="flex-1 rounded-lg bg-linear-to-br from-blue-500 to-blue-600 px-3 py-2 text-sm font-medium text-white shadow-sm transition-all hover:from-blue-600 hover:to-blue-700 hover:shadow-md active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {isLoading ? (

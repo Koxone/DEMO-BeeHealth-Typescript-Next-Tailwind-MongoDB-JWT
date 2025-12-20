@@ -87,15 +87,15 @@ export const CATEGORIES = [
 ];
 
 export const CATEGORY_BG_MAP: Record<string, string> = {
-  'Datos Generales': 'bg-blue-100',
+  'Datos Generales': 'bg-beehealth-blue-primary-dark',
   Antropometria: 'bg-beehealth-blue-primary-solid',
   'Antecedentes Personales': 'bg-beehealth-yellow-primary-dark',
   Patologias: 'bg-beehealth-red-primary-solid',
   'Antecedentes Personales No Patologicos': 'bg-beehealth-orange-primary-solid',
   Medicamentos: 'bg-beehealth-purple-primary-solid',
   'Antecedentes Heredofamiliares': 'bg-beehealth-orange-primary-dark',
-  Alimentacion: 'bg-lime-100',
-  Inmunizaciones: 'bg-teal-100',
-  'Signos Vitales': 'bg-emerald-100',
+  Alimentacion: 'bg-beehealth-green-primary-dark',
+  Inmunizaciones: 'bg-beehealth-purple-primary-dark',
+  'Signos Vitales': 'bg-beehealth-orange-tertiary-dark',
   'En esta consulta': 'bg-beehealth-green-primary-solid',
 };

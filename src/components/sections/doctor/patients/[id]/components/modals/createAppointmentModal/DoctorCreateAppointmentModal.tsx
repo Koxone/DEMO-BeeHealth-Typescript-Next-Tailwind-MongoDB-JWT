@@ -20,7 +20,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
     hora: '',
     pacienteId: currentPatientInfo?.patient?._id || '',
     paciente: currentPatientInfo?.patient?.fullName || '',
-    telefono: currentPatientInfo?.answers?.['14'] || '',
+    telefono: currentPatientInfo?.patient?.phone || '',
     email: currentPatientInfo?.patient?.email || '',
     motivo: '',
   });
@@ -55,7 +55,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
   return (
     <div
       id="overlay"
-      onClick={handleOverlayClick}
+      onClick={onClose}
       className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
     >
       {/* Modal */}
@@ -65,23 +65,22 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="bg-beehealth-body-main/80 relative overflow-hidden border-b border-white/50 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-500 opacity-10" />
+          <div className="relative overflow-hidden backdrop-blur-xl">
+            <div className="bg-beehealth-blue-primary-solid absolute inset-0" />
             <div className="relative px-6 py-6 sm:px-8">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4">
                   <div className="relative">
-                    <div className="absolute inset-0 animate-ping rounded-2xl bg-emerald-500 opacity-20" />
-                    <div className="relative rounded-2xl bg-linear-to-br from-emerald-500 to-teal-500 p-3 shadow-lg">
+                    <div className="bg-beehealth-blue-primary-light absolute inset-0 animate-ping rounded-2xl opacity-20" />
+                    <div className="bg-beehealth-blue-primary-dark relative rounded-2xl p-3 shadow-lg">
                       <Plus className="h-7 w-7 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                    <h2 className="text-2xl font-bold text-white sm:text-3xl">
                       Agendar Nueva Cita
                     </h2>
-                    <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">
-                      <Sparkles className="h-4 w-4 text-emerald-500" />
+                    <p className="mt-1 flex items-center gap-2 text-sm text-white">
                       Completa los campos para registrar una cita
                     </p>
                   </div>
@@ -102,17 +101,17 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
               {/* Información básica */}
               <div className="bg-beehealth-body-main/80 rounded-2xl border border-gray-100 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
                 <div className="mb-6 flex items-center gap-3">
-                  <div className="rounded-xl bg-linear-to-br from-emerald-500 to-teal-500 p-2.5">
+                  <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
                     <Info className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Información Básica</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Información Básica</h3>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {/* Fecha */}
                   <div className="space-y-2">
                     <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <Calendar className="h-4 w-4 text-emerald-500" />
+                      <Calendar className="text-beehealth-blue-primary-dark h-4 w-4" />
                       Fecha
                     </label>
                     <input
@@ -127,7 +126,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                   {/* Hora */}
                   <div className="space-y-2">
                     <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                      <Clock className="h-4 w-4 text-teal-500" />
+                      <Clock className="text-beehealth-blue-primary-dark h-4 w-4" />
                       Hora
                     </label>
                     <input
@@ -144,23 +143,23 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
               {/* Datos del paciente */}
               <div className="bg-beehealth-body-main/80 rounded-2xl border border-gray-100 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
                 <div className="mb-6 flex items-center gap-3">
-                  <div className="rounded-xl bg-linear-to-br from-green-500 to-emerald-500 p-2.5">
+                  <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
                     <User className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Paciente actual</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Paciente actual</h3>
                 </div>
 
                 <div className="space-y-3 text-gray-700">
                   <p className="flex items-center gap-2 text-sm">
-                    <User className="h-4 w-4 text-emerald-600" />
+                    <User className="text-beehealth-blue-primary-dark h-4 w-4" />
                     {citaForm.paciente || 'Sin nombre registrado'}
                   </p>
                   <p className="flex items-center gap-2 text-sm">
-                    <Mail className="h-4 w-4 text-blue-600" />
+                    <Mail className="text-beehealth-blue-primary-dark h-4 w-4" />
                     {citaForm.email || 'Sin correo registrado'}
                   </p>
                   <p className="flex items-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 text-teal-600" />
+                    <Phone className="text-beehealth-blue-primary-dark h-4 w-4" />
                     {citaForm.telefono || 'Sin teléfono registrado'}
                   </p>
                 </div>
@@ -169,10 +168,10 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
               {/* Motivo */}
               <div className="bg-beehealth-body-main/80 rounded-2xl border border-gray-100 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
                 <div className="mb-6 flex items-center gap-3">
-                  <div className="rounded-xl bg-linear-to-br from-yellow-500 to-orange-500 p-2.5">
+                  <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
                     <Sparkles className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Motivo de la Consulta</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Motivo de la Consulta</h3>
                 </div>
 
                 <textarea
@@ -181,7 +180,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                   onChange={(e) => handleChange('motivo', e.target.value)}
                   placeholder="Describe el motivo de la cita..."
                   className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 focus:border-orange-500 focus:shadow-md focus:shadow-orange-500/20 focus:outline-none"
-                  rows="4"
+                  rows={4}
                 />
               </div>
 
@@ -196,7 +195,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                 </button>
                 <button
                   type="submit"
-                  className="group flex-1 rounded-xl bg-linear-to-r from-emerald-600 to-teal-600 px-6 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/50 active:scale-95"
+                  className="group bg-beehealth-blue-primary-solid flex-1 rounded-xl px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   <span className="flex items-center justify-center gap-2">
                     <Calendar className="h-5 w-5 transition-transform group-hover:rotate-12" />

@@ -1,9 +1,7 @@
 'use client';
 
-/* State */
 import { useState } from 'react';
 
-/* Icons */
 import {
   User,
   Mail,
@@ -19,54 +17,38 @@ import {
   Shield,
   CheckCircle2,
 } from 'lucide-react';
+import Header from './components/Header';
 
-export default function SharedUserProfile({ role, currentUser }) {
-  /* Local editing state */
+// Custom Hooks
+import { useChangeAvatar } from '@/hooks/users/useChangeAvatar';
+
+// Feedback Components
+import SuccessModal from '../feedback/SuccessModal';
+import useAuthStore from '@/zustand/useAuthStore';
+
+export default function SharedUserProfile({ role }) {
+  // Zustand Auth Store
+  const { user } = useAuthStore();
+
+  // Local Editing States
   const [isEditing, setIsEditing] = useState(false);
+
+  // Edit Avatar Custom Hook
+  const { mutate: updateAvatar } = useChangeAvatar();
+
+  // Success Modal State
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   if (role === 'doctor')
     return (
       <div className="h-full space-y-6 overflow-y-auto">
-        {/* Header gradient */}
-        <div className="bg-beehealth-blue-primary-solid relative overflow-hidden rounded-2xl p-8 shadow-xl">
-          <div className="bg-beehealth-body-main/10 absolute -top-10 -right-10 h-40 w-40 rounded-full blur-3xl"></div>
-          <div className="bg-beehealth-body-main/10 absolute -bottom-10 -left-10 h-40 w-40 rounded-full blur-3xl"></div>
-
-          <div className="relative flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-            <div className="flex items-center gap-4">
-              <div className="bg-beehealth-body-main/20 flex h-20 w-20 items-center justify-center rounded-2xl shadow-lg ring-4 ring-white/30 backdrop-blur-sm">
-                <img
-                  src={currentUser?.avatar}
-                  alt="Profile"
-                  className="h-full w-full rounded-2xl object-cover"
-                />
-              </div>
-              <div>
-                <h1 className="mb-1 text-3xl font-bold text-white md:text-4xl">
-                  Mi Perfil Profesional
-                </h1>
-                <p className="text-green-50">Información profesional y de contacto</p>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setIsEditing(!isEditing)}
-              className="group bg-beehealth-green-secondary-solid hover:bg-beehealth-green-secondary-solid-hover flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl active:scale-95"
-            >
-              {isEditing ? (
-                <>
-                  <Save className="h-5 w-5 transition-transform group-hover:scale-110" />
-                  Guardar Cambios
-                </>
-              ) : (
-                <>
-                  <Edit2 className="h-5 w-5 transition-transform group-hover:scale-110" />
-                  Editar Perfil
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+        {/* Header and Edit Profile Button */}
+        <Header
+          currentUser={user}
+          isEditing={isEditing}
+          setShowSuccessModal={setShowSuccessModal}
+          setIsEditing={setIsEditing}
+        />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Profile card */}
@@ -76,7 +58,7 @@ export default function SharedUserProfile({ role, currentUser }) {
             <div className="relative flex flex-col items-center">
               <div className="mb-6 flex h-32 w-32 items-center justify-center rounded-full bg-linear-to-br from-green-500 to-emerald-600 shadow-lg ring-4 ring-green-100 transition-transform duration-300 group-hover:scale-105">
                 <img
-                  src={currentUser?.avatar}
+                  src={user?.avatar}
                   alt="Profile"
                   className="h-full w-full rounded-full object-cover"
                 />
@@ -84,16 +66,14 @@ export default function SharedUserProfile({ role, currentUser }) {
 
               <div className="mb-2 flex items-center gap-2">
                 <h2 className="text-center text-xl font-bold text-gray-900">
-                  Dr(a). {currentUser.fullName}
+                  Dr(a). {user?.fullName}
                 </h2>
                 <CheckCircle2 className="h-5 w-5 text-green-500" />
               </div>
 
               <div className="mb-4 flex items-center gap-2 rounded-full bg-green-50 px-4 py-1.5">
                 <p className="text-sm font-medium text-green-700">
-                  {currentUser?.role === 'doctor' &&
-                    currentUser?.specialty === 'weight' &&
-                    'Control de Peso'}
+                  {user?.role === 'doctor' && user?.specialty === 'weight' && 'Control de Peso'}
                 </p>
               </div>
 
@@ -122,16 +102,11 @@ export default function SharedUserProfile({ role, currentUser }) {
             <div className="grid gap-4 md:grid-cols-2">
               <Field
                 label="Correo Electrónico"
-                value={currentUser.email}
+                value={user?.email}
                 isEditing={isEditing}
                 icon={Mail}
               />
-              <Field
-                label="Telefono"
-                value={currentUser.phone}
-                isEditing={isEditing}
-                icon={Phone}
-              />
+              <Field label="Telefono" value={user?.phone} isEditing={isEditing} icon={Phone} />
               <Field
                 label="Cédula Profesional"
                 value="1234567"
@@ -195,14 +170,24 @@ export default function SharedUserProfile({ role, currentUser }) {
         </div>
 
         <SecuritySection />
+
+        {/* Success Modal */}
+        {showSuccessModal && (
+          <SuccessModal
+            setShowSuccessModal={setShowSuccessModal}
+            showSuccessModal={showSuccessModal}
+            message="Perfil actualizado con éxito!"
+            title="¡Éxito!"
+          />
+        )}
       </div>
     );
 
   if (role === 'employee') {
     const empleado = {
-      nombre: currentUser.fullName,
-      email: currentUser.email,
-      telefono: currentUser.phone,
+      nombre: user?.fullName,
+      email: user?.email,
+      telefono: user?.phone,
       puesto: 'Recepcionista',
       fechaIngreso: '2023-01-15',
       horario: 'Lunes a Viernes, 8:00 AM - 5:00 PM',
@@ -307,9 +292,7 @@ export default function SharedUserProfile({ role, currentUser }) {
                 <User className="h-16 w-16 text-white" />
               </div>
 
-              <h2 className="mb-2 text-center text-xl font-bold text-gray-900">
-                {currentUser.fullName}
-              </h2>
+              <h2 className="mb-2 text-center text-xl font-bold text-gray-900">{user?.fullName}</h2>
 
               <div className="mb-4 flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5">
                 <User className="h-4 w-4 text-blue-600" />
@@ -341,16 +324,11 @@ export default function SharedUserProfile({ role, currentUser }) {
             <div className="grid gap-4 md:grid-cols-2">
               <Field
                 label="Correo Electrónico"
-                value={currentUser.email}
+                value={user?.email}
                 isEditing={isEditing}
                 icon={Mail}
               />
-              <Field
-                label="Telefono"
-                value={currentUser.phone}
-                isEditing={isEditing}
-                icon={Phone}
-              />
+              <Field label="Telefono" value={user?.phone} isEditing={isEditing} icon={Phone} />
               <Field label="Altura (cm)" value="175" isEditing={isEditing} icon={User} />
               <Field label="Peso Actual (kg)" value="75" isEditing={isEditing} icon={User} />
             </div>

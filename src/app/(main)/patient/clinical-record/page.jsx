@@ -11,7 +11,7 @@ export default async function PatientNewClinicalRecord() {
   const specialty = currentUser?.specialty;
 
   return (
-    <div className="h-screen overflow-hidden pb-40">
+    <div>
       <CreateClinicalRecord currentUser={currentUser} />
     </div>
   );

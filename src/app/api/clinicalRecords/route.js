@@ -191,10 +191,10 @@ export async function POST(req) {
     const logs = await WeightLog.find({ patient: finalPatientId }).sort({ createdAt: 1 });
 
     // Find weight (questionId 7)
-    const weightAnswer = answers.find((a) => a.questionId === 7);
+    const weightAnswer = answerDocs.find((a) => a.questionId === 7);
 
     // Find size (questionId 8)
-    const sizeAnswer = answers.find((a) => a.questionId === 8);
+    const sizeAnswer = answerDocs.find((a) => a.questionId === 8);
 
     // Extract values
     const currentWeight = weightAnswer?.value || null;

@@ -35,7 +35,7 @@ export const connectDB = async (): Promise<typeof mongoose> => {
 
     cached.promise = mongoose
       .connect(uri, {
-        dbName: 'MedTrack_DB',
+        dbName: 'MedTrack_DB_DEMO',
         bufferCommands: false,
         maxPoolSize: 5,
         minPoolSize: 1,

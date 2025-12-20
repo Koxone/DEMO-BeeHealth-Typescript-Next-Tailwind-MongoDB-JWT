@@ -15,6 +15,28 @@
 
 ---
 
+## 🔐 Demo Credentials
+
+The application includes **three different user roles**.  
+All roles share the **same password**, only the email changes based on the role.
+
+### 👨‍⚕️ Doctor
+
+- **Email:** doctor@demo.com
+- **Password:** demo2025
+
+### 🧑‍💼 Employee
+
+- **Email:** employee@demo.com
+- **Password:** demo2025
+
+### 🧑‍🦱 Patient
+
+- **Email:** patient@demo.com
+- **Password:** demo2025
+
+---
+
 ## 🚀 **Features**
 
 ### 🩺 **Consultation Management**

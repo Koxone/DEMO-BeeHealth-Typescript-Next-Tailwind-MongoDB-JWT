@@ -83,12 +83,6 @@ export default function Sidebar({ role, specialty }) {
             </button>
           );
         })}
-
-        {role === 'patient' && (
-          <div className="mt-10 pt-4">
-            <NextAppointmentCard />
-          </div>
-        )}
       </nav>
     </aside>
   );

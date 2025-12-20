@@ -93,7 +93,7 @@ export default function ModalAssignDiet({
                   </div>
 
                   <div className="flex-1">
-                    <p className="text-lg font-bold text-gray-900">{dietToAssign?.name}</p>
+                    <p className="text-lg font-bold text-gray-700">{dietToAssign?.name}</p>
                   </div>
                 </div>
 

@@ -73,7 +73,7 @@ export default function LoginForm() {
       <div className="flex h-full items-center justify-center overflow-hidden p-4">
         <div className="bg-beehealth-body-main w-full max-w-md rounded-2xl border border-gray-200 p-8 shadow-xl">
           {/* Title */}
-          <h2 className="mb-2 text-center text-2xl font-bold text-gray-900">Iniciar Sesión</h2>
+          <h2 className="mb-2 text-center text-2xl font-bold text-gray-700">Iniciar Sesión</h2>
           <p className="mb-8 text-center text-gray-600">Accede a tu cuenta médica</p>
 
           {/* Form */}
@@ -162,11 +162,11 @@ export default function LoginForm() {
             </div>
 
             {/* Title */}
-            <h3 className="mb-2 text-center text-2xl font-bold text-gray-900">¡Bienvenido!</h3>
+            <h3 className="mb-2 text-center text-2xl font-bold text-gray-700">¡Bienvenido!</h3>
 
             {/* Message */}
             <p className="mb-6 text-center text-gray-600">
-              Hola <span className="font-semibold text-gray-900">{userName}</span>, tu sesión se ha
+              Hola <span className="font-semibold text-gray-700">{userName}</span>, tu sesión se ha
               iniciado correctamente.
             </p>
 
@@ -212,7 +212,7 @@ export default function LoginForm() {
             </div>
 
             {/* Title */}
-            <h3 className="mb-2 text-center text-2xl font-bold text-gray-900">
+            <h3 className="mb-2 text-center text-2xl font-bold text-gray-700">
               Error al iniciar sesión
             </h3>
 

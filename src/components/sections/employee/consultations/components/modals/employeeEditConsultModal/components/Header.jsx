@@ -11,7 +11,7 @@ export default function Header({ title, onClose }) {
               <Calendar className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+              <h2 className="text-2xl font-bold text-gray-700">{title}</h2>
               <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">
                 <Sparkles className="h-4 w-4 text-indigo-500" />
                 Actualiza la información de la consulta

@@ -17,17 +17,17 @@ export default function HeaderWelcome({
   return (
     <div>
       {role === 'doctor' && (
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
+        <h1 className="mb-2 text-2xl font-bold text-gray-700 md:text-3xl">
           {specialty === 'weight' ? 'Control de Peso' : `Bienvenida Dra ${fullName}`}
         </h1>
       )}
       {role === 'patient' && (
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
+        <h1 className="mb-2 text-2xl font-bold text-gray-700 md:text-3xl">
           Bienvenido(a), {fullName}
         </h1>
       )}
       {role === 'employee' && (
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
+        <h1 className="mb-2 text-2xl font-bold text-gray-700 md:text-3xl">
           Bienvenido(a), {fullName}
         </h1>
       )}

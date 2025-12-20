@@ -9,7 +9,7 @@ export default function GoBackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="flex items-center gap-2 text-gray-600 transition hover:text-gray-900 active:scale-95"
+      className="flex items-center gap-2 text-gray-600 transition hover:text-gray-700 active:scale-95"
     >
       <ArrowLeft className="h-5 w-5" />
       Volver a Dietas

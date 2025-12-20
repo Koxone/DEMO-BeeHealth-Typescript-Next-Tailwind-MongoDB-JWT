@@ -62,7 +62,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                    <h2 className="text-2xl font-bold text-gray-700 sm:text-3xl">
                       Agregar Presupuesto
                     </h2>
                     <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">
@@ -90,7 +90,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                   <div className="rounded-xl bg-linear-to-br from-purple-500 to-indigo-500 p-2.5">
                     <ClipboardList className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Información del presupuesto</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Información del presupuesto</h3>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-4">
@@ -101,7 +101,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                       required
                       value={budgetForm.diagnosis}
                       onChange={(e) => handleChange('diagnosis', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     >
                       <option value="">Seleccionar</option>
                       <option>Prevención</option>
@@ -120,7 +120,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                       type="text"
                       value={budgetForm.other}
                       onChange={(e) => handleChange('other', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -138,7 +138,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                     <select
                       value={budgetForm.discount}
                       onChange={(e) => handleChange('discount', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     >
                       {[0, 10, 20, 30, 40].map((v) => (
                         <option key={v} value={v}>
@@ -156,7 +156,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                   <div className="rounded-xl bg-linear-to-br from-indigo-500 to-blue-500 p-2.5">
                     <FileText className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Tipo y Tratamientos</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Tipo y Tratamientos</h3>
                 </div>
 
                 <div className="mb-6 space-y-2">
@@ -165,7 +165,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                     required
                     value={budgetForm.type}
                     onChange={(e) => handleChange('type', e.target.value)}
-                    className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                    className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                   >
                     <option value="">Seleccionar</option>
                     <option>Operatoria</option>
@@ -181,7 +181,7 @@ export default function DoctorCreateBudgetModal({ onClose }) {
                       key={i}
                       value={t}
                       onChange={(e) => handleTreatmentChange(i, e.target.value)}
-                      className="bg-beehealth-body-main rounded-xl border-2 border-gray-200 px-3 py-2 text-sm text-gray-900 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main rounded-xl border-2 border-gray-200 px-3 py-2 text-sm text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                     >
                       <option>-</option>
                       <option>PROFILAXIS Y FLUOR</option>

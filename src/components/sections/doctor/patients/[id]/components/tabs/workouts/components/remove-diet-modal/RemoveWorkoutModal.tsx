@@ -99,7 +99,7 @@ export default function RemoveWorkoutModal({
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Remover Ejercicio</h2>
+                    <h2 className="text-2xl font-bold text-gray-700">Remover Ejercicio</h2>
                     <p className="mt-1 text-sm text-gray-600">Esta acción no se puede deshacer</p>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function RemoveWorkoutModal({
                         <Trash2 className="h-5 w-5 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg font-bold text-gray-900">
+                        <p className="text-lg font-bold text-gray-700">
                           {workoutToRemove?.workout?.name}
                         </p>
                       </div>

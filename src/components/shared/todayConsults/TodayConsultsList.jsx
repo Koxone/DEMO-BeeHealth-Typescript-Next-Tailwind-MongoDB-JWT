@@ -71,12 +71,6 @@ export default function TodayConsultsList({ totals, consultsData }) {
           onDelete={(item) => askDelete(item, setItemToDelete, setShowDeleteModal)}
         />
 
-        <ConsultationsMobile
-          rows={filteredConsults}
-          onEdit={(item) => openEdit(item, setEditingItem, setShowModal)}
-          onDelete={(item) => askDelete(item, setItemToDelete, setShowDeleteModal)}
-        />
-
         <EmptyState visible={filteredConsults.length === 0} />
       </div>
 

@@ -54,7 +54,7 @@ export default function Header() {
 
           <div className="flex items-center gap-3 border-l-2 border-gray-200 pl-4">
             <div className="text-right">
-              <p className="text-sm font-bold text-gray-900">{fullName}</p>
+              <p className="text-sm font-bold text-gray-700">{fullName}</p>
               <div className="flex items-center justify-start gap-1.5">
                 <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
                 <p className="text-xs font-medium text-gray-500">{roleLabel}</p>
@@ -76,7 +76,7 @@ export default function Header() {
             <div className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-2 border-white bg-green-500" />
           </div>
           <div>
-            <p className="text-sm font-bold text-gray-900">{fullName}</p>
+            <p className="text-sm font-bold text-gray-700">{fullName}</p>
             <div className="flex items-center gap-1.5">
               <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
               <p className="text-xs font-medium text-gray-500">{roleLabel}</p>

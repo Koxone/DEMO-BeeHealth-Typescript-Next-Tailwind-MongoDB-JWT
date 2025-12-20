@@ -71,7 +71,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <div>
-            <h1 className="mb-4 text-3xl leading-tight font-bold text-gray-900 md:mb-6 md:text-5xl">
+            <h1 className="mb-4 text-3xl leading-tight font-bold text-gray-700 md:mb-6 md:text-5xl">
               Salud inteligente, diseñada para ti
             </h1>
             <p className="mb-6 text-lg text-gray-600 md:mb-8 md:text-xl">
@@ -119,7 +119,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <h3 className="text-center text-lg font-semibold text-gray-900 md:text-xl">
+              <h3 className="text-center text-lg font-semibold text-gray-700 md:text-xl">
                 Kilos perdidos por nuestros pacientes
               </h3>
 
@@ -140,7 +140,7 @@ export default function Home() {
 
       {/* Features */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-8 text-center text-2xl font-bold text-gray-900 md:mb-12 md:text-3xl">
+        <h2 className="mb-8 text-center text-2xl font-bold text-gray-700 md:mb-12 md:text-3xl">
           Todo lo que necesitas para cuidar tu salud
         </h2>
 
@@ -149,7 +149,7 @@ export default function Home() {
             <div className="mb-4 flex items-center justify-center rounded-full bg-blue-100 p-3">
               <Activity className="h-8 w-8 text-blue-600" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">Control de Peso</h3>
+            <h3 className="mb-2 text-lg font-semibold text-gray-700">Control de Peso</h3>
             <p className="text-gray-600">
               Lleva un seguimiento claro de tu peso, IMC y progresos diarios
             </p>
@@ -159,7 +159,7 @@ export default function Home() {
             <div className="mb-4 flex items-center justify-center rounded-full bg-red-100 p-3">
               <Heart className="h-8 w-8 text-red-600" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">Historial Clínico</h3>
+            <h3 className="mb-2 text-lg font-semibold text-gray-700">Historial Clínico</h3>
             <p className="text-gray-600">
               Consulta tu información médica de forma ordenada y accesible
             </p>
@@ -169,7 +169,7 @@ export default function Home() {
             <div className="mb-4 flex items-center justify-center rounded-full bg-green-100 p-3">
               <Calendar className="h-8 w-8 text-green-600" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">Citas Médicas</h3>
+            <h3 className="mb-2 text-lg font-semibold text-gray-700">Citas Médicas</h3>
             <p className="text-gray-600">
               Programa y consulta tus próximas citas sin complicaciones
             </p>
@@ -179,7 +179,7 @@ export default function Home() {
             <div className="mb-4 flex items-center justify-center rounded-full bg-yellow-100 p-3">
               <Apple className="h-8 w-8 text-yellow-600" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">Planes Alimenticios</h3>
+            <h3 className="mb-2 text-lg font-semibold text-gray-700">Planes Alimenticios</h3>
             <p className="text-gray-600">
               Recibe recomendaciones nutricionales personalizadas a tus objetivos
             </p>

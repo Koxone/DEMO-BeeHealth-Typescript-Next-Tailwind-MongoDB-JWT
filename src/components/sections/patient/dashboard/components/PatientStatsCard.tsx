@@ -14,10 +14,10 @@ export default function PatientStatsCard({
   const styles = {
     primary: 'bg-beehealth-blue-primary-solid  text-white border-transparent',
     success:
-      'border border-gray-200 bg-beehealth-body-main text-gray-900 hover:border-green-300 active:scale-95',
+      'border border-gray-200 bg-beehealth-body-main text-gray-700 hover:border-green-300 active:scale-95',
     purple:
-      'border border-gray-200 bg-beehealth-body-main text-gray-900 hover:border-purple-300 active:scale-95',
-    danger: 'border-2 border-red-200 bg-red-50 text-gray-900 hover:border-red-300 active:scale-95',
+      'border border-gray-200 bg-beehealth-body-main text-gray-700 hover:border-purple-300 active:scale-95',
+    danger: 'border-2 border-red-200 bg-red-50 text-gray-700 hover:border-red-300 active:scale-95',
     appointment:
       'border border-gray-200 bg-beehealth-green-secondary-dark text-white hover:border-beehealth-green-primary-light active:scale-95',
   };

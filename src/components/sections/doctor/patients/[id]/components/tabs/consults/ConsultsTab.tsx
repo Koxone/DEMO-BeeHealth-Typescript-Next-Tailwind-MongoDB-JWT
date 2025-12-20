@@ -1,4 +1,4 @@
-import ConsultsHistory from '../../clinicalHistory/ConsultsHistory';
+import ConsultsHistory from '../../consults-history/ConsultsHistory';
 import WeightChart from '../../WeightChart';
 import QuickStats from '../../QuickStats';
 

@@ -49,7 +49,7 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
             <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-blue-500"></div>
 
             {/* Loading text */}
-            <h2 className="text-xl font-bold text-gray-900">Cargando</h2>
+            <h2 className="text-xl font-bold text-gray-700">Cargando</h2>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
           className="bg-beehealth-body-main relative w-full max-w-md overflow-hidden rounded-3xl p-8 text-center shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-xl font-bold text-gray-900">Sin historial</h2>
+          <h2 className="text-xl font-bold text-gray-700">Sin historial</h2>
           <p className="mt-2 text-sm text-gray-600">
             Este producto no tiene movimientos registrados.
           </p>

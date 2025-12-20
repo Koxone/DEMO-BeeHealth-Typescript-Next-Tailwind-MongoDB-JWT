@@ -63,7 +63,7 @@ export default function SharedModalOpenWorkout({
           {/* Header */}
           <div className="bg-beehealth-body-main sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 px-6 py-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">{workout?.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-700">{workout?.name}</h2>
               <div className="mt-1 flex items-center gap-2">
                 <span
                   className={`rounded-full px-2 py-1 text-xs font-medium ${getNivelColor(workout?.difficulty)}`}
@@ -128,7 +128,7 @@ export default function SharedModalOpenWorkout({
             <div>
               <div className="mb-3 flex items-center gap-2">
                 <Play className="h-5 w-5 text-red-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Video Tutorial</h3>
+                <h3 className="text-lg font-semibold text-gray-700">Video Tutorial</h3>
               </div>
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 {getEmbedUrl(workout?.video) && (
@@ -147,7 +147,7 @@ export default function SharedModalOpenWorkout({
               <Clock className="h-6 w-6 text-blue-600" />
               <div>
                 <p className="text-sm text-gray-600">Duración</p>
-                <p className="font-semibold text-gray-900">{workout?.duration} minutos</p>
+                <p className="font-semibold text-gray-700">{workout?.duration} minutos</p>
               </div>
             </div>
 
@@ -155,7 +155,7 @@ export default function SharedModalOpenWorkout({
             <div>
               <div className="mb-3 flex items-center gap-2">
                 <Info className="h-5 w-5 text-gray-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Explicación</h3>
+                <h3 className="text-lg font-semibold text-gray-700">Explicación</h3>
               </div>
               <p className="leading-relaxed text-gray-700">{workout?.about}</p>
             </div>
@@ -164,7 +164,7 @@ export default function SharedModalOpenWorkout({
             <div>
               <div className="mb-3 flex items-center gap-2">
                 <Target className="h-5 w-5 text-gray-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Instrucciones</h3>
+                <h3 className="text-lg font-semibold text-gray-700">Instrucciones</h3>
               </div>
               <ol className="space-y-2">
                 {workout?.instructions?.map((inst, index) => (
@@ -182,7 +182,7 @@ export default function SharedModalOpenWorkout({
             <div>
               <div className="mb-3 flex items-center gap-2">
                 <Dumbbell className="h-5 w-5 text-green-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Beneficios</h3>
+                <h3 className="text-lg font-semibold text-gray-700">Beneficios</h3>
               </div>
               <ul className="space-y-2">
                 {workout?.benefits?.map((ben, index) => (
@@ -198,7 +198,7 @@ export default function SharedModalOpenWorkout({
             <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-4">
               <div className="mb-3 flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-yellow-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Precauciones</h3>
+                <h3 className="text-lg font-semibold text-gray-700">Precauciones</h3>
               </div>
               <ul className="space-y-2">
                 {workout?.cautions?.map((prec, index) => (

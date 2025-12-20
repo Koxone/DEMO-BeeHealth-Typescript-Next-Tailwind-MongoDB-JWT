@@ -1,32 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Check, ChevronDown, Pencil, X } from 'lucide-react';
-import { useQueryClient } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
 
-const MONTHS = [
-  { value: 1, label: 'Enero' },
-  { value: 2, label: 'Febrero' },
-  { value: 3, label: 'Marzo' },
-  { value: 4, label: 'Abril' },
-  { value: 5, label: 'Mayo' },
-  { value: 6, label: 'Junio' },
-  { value: 7, label: 'Julio' },
-  { value: 8, label: 'Agosto' },
-  { value: 9, label: 'Septiembre' },
-  { value: 10, label: 'Octubre' },
-  { value: 11, label: 'Noviembre' },
-  { value: 12, label: 'Diciembre' },
-];
+// Local Helpers
+import { MONTHS } from '../services/helpers';
 
 export default function EditRecordDateButton({ onSelect, fetchRecord }) {
-  // React Query Client
-  const queryClient = useQueryClient();
-
-  // Get patient ID from URL params
-  const { id } = useParams();
-
   // UI state
   const [open, setOpen] = useState(false);
   const [updated, setUpdated] = useState(false);
@@ -77,9 +57,6 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     onSelect(formattedDate);
-
-    // Invalidate queries to refetch data
-    queryClient.invalidateQueries(['patientClinicalRecords', id]);
 
     fetchRecord();
     setIsLoading(false);

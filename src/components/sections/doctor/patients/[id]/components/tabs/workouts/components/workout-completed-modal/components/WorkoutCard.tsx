@@ -18,7 +18,7 @@ function WorkoutCard({ selectedWorkout, isDeactivating, formatDate }) {
             )}
           </div>
           <div className="flex-1">
-            <p className="text-lg font-bold text-gray-900">{selectedWorkout?.workout?.name}</p>
+            <p className="text-lg font-bold text-gray-700">{selectedWorkout?.workout?.name}</p>
             <div className="mt-2 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
                 {selectedWorkout?.workout?.type}

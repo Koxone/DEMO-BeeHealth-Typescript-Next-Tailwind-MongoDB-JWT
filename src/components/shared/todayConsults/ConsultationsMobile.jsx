@@ -18,7 +18,7 @@ export default function ConsultationsMobile({ rows, onEdit, onDelete }) {
                 {c.avatar}
               </div>
               <div>
-                <p className="font-bold text-gray-900">{c.paciente}</p>
+                <p className="font-bold text-gray-700">{c.paciente}</p>
                 <p className="text-xs text-gray-600">{c.tipo}</p>
               </div>
             </div>
@@ -36,7 +36,7 @@ export default function ConsultationsMobile({ rows, onEdit, onDelete }) {
           <div className="mb-3 grid grid-cols-2 gap-2">
             <div className="bg-beehealth-body-main rounded-lg p-3">
               <p className="mb-1 text-xs text-gray-600">Fecha</p>
-              <p className="text-sm font-bold text-gray-900">{c.fecha}</p>
+              <p className="text-sm font-bold text-gray-700">{c.fecha}</p>
               <p className="text-xs text-gray-500">{c.hora}</p>
             </div>
             <div className="bg-beehealth-body-main rounded-lg p-3">

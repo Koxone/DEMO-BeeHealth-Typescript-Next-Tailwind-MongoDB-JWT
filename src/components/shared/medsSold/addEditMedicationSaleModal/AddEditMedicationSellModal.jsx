@@ -84,7 +84,7 @@ export default function AddEditMedicationSellModal({
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-gray-700">
                       {editingItem ? 'Editar Venta de' : 'Venta de'}{' '}
                       {isConsulta ? 'Consulta' : 'Medicamento'}
                     </h2>
@@ -116,7 +116,7 @@ export default function AddEditMedicationSellModal({
                     <div className="rounded-lg bg-linear-to-br from-blue-500 to-indigo-500 p-1.5">
                       <Calendar className="h-4 w-4 text-white" />
                     </div>
-                    <h3 className="font-semibold text-gray-900">Información de la Consulta</h3>
+                    <h3 className="font-semibold text-gray-700">Información de la Consulta</h3>
                   </div>
 
                   {/* Time */}
@@ -130,7 +130,7 @@ export default function AddEditMedicationSellModal({
                       required
                       value={form.hora}
                       onChange={(e) => setForm({ ...form, hora: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:shadow-md focus:shadow-blue-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-blue-500 focus:shadow-md focus:shadow-blue-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -144,7 +144,7 @@ export default function AddEditMedicationSellModal({
                       required
                       value={form.paciente}
                       onChange={(e) => setForm({ ...form, paciente: e.target.value })}
-                      className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     >
                       <option value="">Seleccionar paciente...</option>
                       <option value="Juan Pérez">Juan Pérez</option>
@@ -165,7 +165,7 @@ export default function AddEditMedicationSellModal({
                       required
                       value={form.tipo}
                       onChange={(e) => setForm({ ...form, tipo: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                     >
                       <option value="">Seleccionar tipo...</option>
                       <option value="Primera Consulta">🆕 Primera Consulta</option>
@@ -188,7 +188,7 @@ export default function AddEditMedicationSellModal({
                       step="0.01"
                       value={form.costo}
                       onChange={(e) => setForm({ ...form, costo: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-green-500 focus:shadow-md focus:shadow-green-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-green-500 focus:shadow-md focus:shadow-green-500/20 focus:outline-none"
                       placeholder="800.00"
                     />
                   </div>
@@ -238,7 +238,7 @@ export default function AddEditMedicationSellModal({
                     <div className="rounded-lg bg-linear-to-br from-green-500 to-emerald-500 p-1.5">
                       <Pill className="h-4 w-4 text-white" />
                     </div>
-                    <h3 className="font-semibold text-gray-900">Información del Medicamento</h3>
+                    <h3 className="font-semibold text-gray-700">Información del Medicamento</h3>
                   </div>
 
                   {/* Name */}
@@ -252,7 +252,7 @@ export default function AddEditMedicationSellModal({
                       required
                       value={form.nombre}
                       onChange={(e) => setForm({ ...form, nombre: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-green-500 focus:shadow-green-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-green-500 focus:shadow-green-500/20 focus:outline-none"
                       placeholder="Nombre del medicamento"
                     />
                   </div>
@@ -269,7 +269,7 @@ export default function AddEditMedicationSellModal({
                       min="1"
                       value={form.cantidad}
                       onChange={(e) => setForm({ ...form, cantidad: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:shadow-blue-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-blue-500 focus:shadow-blue-500/20 focus:outline-none"
                       placeholder="1"
                     />
                   </div>
@@ -287,7 +287,7 @@ export default function AddEditMedicationSellModal({
                       step="0.01"
                       value={form.precioUnitario}
                       onChange={(e) => setForm({ ...form, precioUnitario: e.target.value })}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-emerald-500 focus:shadow-emerald-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-emerald-500 focus:shadow-emerald-500/20 focus:outline-none"
                       placeholder="150.00"
                     />
                   </div>
@@ -302,7 +302,7 @@ export default function AddEditMedicationSellModal({
                       required
                       value={form.paciente}
                       onChange={(e) => setForm({ ...form, paciente: e.target.value })}
-                      className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 shadow-sm focus:border-purple-500 focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 shadow-sm focus:border-purple-500 focus:shadow-purple-500/20 focus:outline-none"
                     >
                       <option value="">Seleccionar paciente...</option>
                       <option value="Juan Pérez">Juan Pérez</option>

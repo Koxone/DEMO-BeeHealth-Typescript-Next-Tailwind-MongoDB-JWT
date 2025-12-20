@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-import WelcomeCard from './components/WelcomeCard';
+import EditProfileButton from './components/EditProfileButton';
 import ProfileCard from './components/profile-card/ProfileCard';
-import PersonalInfoCard from './components/PersonalInfoCard';
 import SecuritySection from './components/SecuritySection';
 
 // Custom Hooks
@@ -28,7 +27,14 @@ export default function DoctorProfile() {
   const { mutate: changeEmail, isPending } = useChangeUserEmail();
 
   // Change Password Custom Hook
-  const { mutate: changePassword, isPending: isChangingPassword } = useChangeUserPassword();
+  const {
+    mutate: changePassword,
+    isPending: isChangingPassword,
+    isError: isErrorChangePassword,
+    isSuccess: isSuccessChangePassword,
+    reset,
+    error,
+  } = useChangeUserPassword();
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   // Local Editing States
@@ -52,34 +58,21 @@ export default function DoctorProfile() {
   }
 
   return (
-    <div className="mx-auto h-full space-y-6 overflow-y-auto">
+    <div className="mx-auto flex max-w-5xl flex-col gap-4">
       {/* Header and Edit Profile Button */}
-      <WelcomeCard isEditing={isEditing} setIsEditing={setIsEditing} />
+      <EditProfileButton isEditing={isEditing} setIsEditing={setIsEditing} />
 
-      <div className="grid grid-cols-1 gap-6">
-        {/* Profile card */}
-        <ProfileCard
-          user={user}
-          isEditing={isEditing}
-          loadUser={loadUser}
-          setShowSuccessModal={setShowSuccessModal}
-          setTitle={setTitle}
-          setMessage={setMessage}
-          setIsEditing={setIsEditing}
-        />
-
-        {/* Personal info */}
-        <PersonalInfoCard
-          user={user}
-          isEditing={isEditing}
-          changeEmail={changeEmail}
-          setShowSuccessModal={setShowSuccessModal}
-          setTitle={setTitle}
-          setMessage={setMessage}
-          setIsEditing={setIsEditing}
-          loadUser={loadUser}
-        />
-      </div>
+      {/* Profile card */}
+      <ProfileCard
+        user={user}
+        isEditing={isEditing}
+        loadUser={loadUser}
+        setShowSuccessModal={setShowSuccessModal}
+        changeEmail={changeEmail}
+        setTitle={setTitle}
+        setMessage={setMessage}
+        setIsEditing={setIsEditing}
+      />
 
       {/* Security Section */}
       <SecuritySection setShowPasswordModal={setShowPasswordModal} />
@@ -98,8 +91,16 @@ export default function DoctorProfile() {
       {showPasswordModal && (
         <ChangePasswordModal
           userId={user?.id}
+          isSubmitting={isChangingPassword}
+          isError={isErrorChangePassword}
+          isSuccess={isSuccessChangePassword}
+          error={error}
+          reset={reset}
           onClose={() => setShowPasswordModal(false)}
           changePassword={changePassword}
+          setTitle={setTitle}
+          setMessage={setMessage}
+          setShowSuccessModal={setShowSuccessModal}
         />
       )}
     </div>

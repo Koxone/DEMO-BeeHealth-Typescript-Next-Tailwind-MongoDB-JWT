@@ -1,3 +1,5 @@
+import { Calendar, DollarSign, FileText, Users } from 'lucide-react';
+
 // Get today's date (ISO)
 export function todayISO() {
   const d = new Date();
@@ -100,3 +102,48 @@ export function handleDeleteAction(
   setShowDeleteModal(false);
   setItemToDelete(null);
 }
+
+export const columns = [
+  {
+    key: 'fecha',
+    label: 'Fecha',
+    align: 'left',
+    icon: Calendar,
+  },
+  {
+    key: 'paciente',
+    label: 'Paciente',
+    align: 'left',
+    icon: Users,
+  },
+  {
+    key: 'tipo',
+    label: 'Tipo',
+    align: 'left',
+    icon: FileText,
+  },
+  {
+    key: 'costo',
+    label: 'Costo',
+    align: 'right',
+    icon: DollarSign,
+  },
+  {
+    key: 'extras',
+    label: 'Extras',
+    align: 'right',
+    icon: DollarSign,
+  },
+  {
+    key: 'metodo',
+    label: 'Metodo de Pago',
+    align: 'center',
+    icon: null,
+  },
+  {
+    key: 'acciones',
+    label: 'Acciones',
+    align: 'center',
+    icon: null,
+  },
+];

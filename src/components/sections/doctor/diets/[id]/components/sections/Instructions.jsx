@@ -31,7 +31,7 @@ function Instructions({ diet, isEditing = false, editDiet, refreshDiets, setShow
         <div className="rounded-lg bg-blue-100 p-2">
           <Utensils className="h-5 w-5 text-blue-600" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Instrucciones</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Instrucciones</h2>
       </div>
 
       {/* Read mode */}

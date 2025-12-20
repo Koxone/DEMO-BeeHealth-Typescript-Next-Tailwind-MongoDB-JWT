@@ -109,7 +109,7 @@ export default function DietForm() {
       <form className="mx-auto max-w-5xl space-y-8 p-4 md:p-0">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">
+          <h1 className="mb-2 text-3xl font-bold text-gray-700 md:text-4xl">
             Crear Plan Nutricional
           </h1>
           <p className="text-gray-600">

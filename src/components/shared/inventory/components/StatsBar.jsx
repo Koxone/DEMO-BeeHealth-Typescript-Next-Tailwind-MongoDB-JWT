@@ -70,7 +70,7 @@ export default function StatsBar({ inventory }) {
           >
             {s.label}
           </div>
-          <p className="text-2xl font-bold text-gray-900">{s.value}</p>
+          <p className="text-2xl font-bold text-gray-700">{s.value}</p>
         </div>
       ))}
     </div>

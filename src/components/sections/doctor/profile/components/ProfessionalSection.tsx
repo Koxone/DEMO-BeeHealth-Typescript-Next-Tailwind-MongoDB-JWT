@@ -7,7 +7,7 @@ function ProfessionalSection({ isEditing }: { isEditing: boolean }) {
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
           <Briefcase className="h-5 w-5 text-purple-600" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Información Profesional</h3>
+        <h3 className="text-xl font-bold text-gray-700">Información Profesional</h3>
       </div>
 
       <div className="grid gap-6">

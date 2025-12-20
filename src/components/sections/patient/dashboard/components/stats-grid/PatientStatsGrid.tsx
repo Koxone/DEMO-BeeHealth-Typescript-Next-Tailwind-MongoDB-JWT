@@ -70,7 +70,9 @@ export default function PatientStatsGrid({ weightLogs, patientWeightLogs, appoin
         {
           Icon: Clock,
           mainData: upcomingAppointment
-            ? `${daysUntilAppointment} ${daysUntilAppointment === 1 ? 'día' : 'días'}`
+            ? daysUntilAppointment === 0
+              ? '¡Es hoy!'
+              : `${daysUntilAppointment} ${daysUntilAppointment === 1 ? 'día' : 'días'}`
             : `${lastVisitCount || 0} ${lastVisitCount === 1 ? 'día' : 'días'}`,
           title: upcomingAppointment
             ? 'Para tu próxima consulta'

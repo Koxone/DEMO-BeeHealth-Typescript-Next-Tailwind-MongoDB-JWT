@@ -79,39 +79,39 @@ export default function MedsSoldTable({ consultsData }) {
             <th className="px-6 py-4 text-left">
               <div className="flex items-center gap-2">
                 <Pill className="h-4 w-4 text-gray-500" />
-                <span className="text-sm font-semibold tracking-wide text-gray-900">
+                <span className="text-sm font-semibold tracking-wide text-gray-700">
                   Medicamento
                 </span>
               </div>
             </th>
 
             <th className="px-6 py-4 text-center">
-              <span className="text-sm font-semibold tracking-wide text-gray-900">Cant.</span>
+              <span className="text-sm font-semibold tracking-wide text-gray-700">Cant.</span>
             </th>
 
             <th className="px-6 py-4 text-right">
               <div className="flex items-center justify-end gap-2">
                 <DollarSign className="h-4 w-4 text-gray-500" />
-                <span className="text-sm font-semibold tracking-wide text-gray-900">P. Unit.</span>
+                <span className="text-sm font-semibold tracking-wide text-gray-700">P. Unit.</span>
               </div>
             </th>
 
             <th className="px-6 py-4 text-right">
               <div className="flex items-center justify-end gap-2">
                 <DollarSign className="h-4 w-4 text-gray-500" />
-                <span className="text-sm font-semibold tracking-wide text-gray-900">Total</span>
+                <span className="text-sm font-semibold tracking-wide text-gray-700">Total</span>
               </div>
             </th>
 
             <th className="px-6 py-4 text-left">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-500" />
-                <span className="text-sm font-semibold tracking-wide text-gray-900">Paciente</span>
+                <span className="text-sm font-semibold tracking-wide text-gray-700">Paciente</span>
               </div>
             </th>
 
             <th className="px-6 py-4 text-center">
-              <span className="text-sm font-semibold tracking-wide text-gray-900">Acciones</span>
+              <span className="text-sm font-semibold tracking-wide text-gray-700">Acciones</span>
             </th>
           </tr>
         </thead>
@@ -126,7 +126,7 @@ export default function MedsSoldTable({ consultsData }) {
             >
               {/* Nombre */}
               <td className="px-6 py-4">
-                <span className="text-sm font-semibold text-gray-900">{med?.product?.name}</span>
+                <span className="text-sm font-semibold text-gray-700">{med?.product?.name}</span>
               </td>
 
               {/* Cantidad */}
@@ -180,7 +180,7 @@ export default function MedsSoldTable({ consultsData }) {
         {/* FOOTER */}
         <tfoot className="w-full border-t-2 border-gray-200">
           <tr className="font-semibold">
-            <td colSpan="3" className="px-6 py-4 text-sm text-gray-900">
+            <td colSpan="3" className="px-6 py-4 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <span>Total General</span>
               </div>

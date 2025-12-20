@@ -11,7 +11,7 @@ export default function ReasonField({ value, onChange }) {
           <FileText className="h-5 w-5 text-green-600" />
         </div>
         <div>
-          <h2 className="text-lg font-bold text-gray-900">Motivo de la consulta</h2>
+          <h2 className="text-lg font-bold text-gray-700">Motivo de la consulta</h2>
           <p className="text-sm text-gray-600">Describe brevemente tu motivo de consulta</p>
         </div>
       </div>

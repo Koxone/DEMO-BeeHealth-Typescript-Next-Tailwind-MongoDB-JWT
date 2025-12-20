@@ -104,7 +104,7 @@ export default function DietsHistory({
 
                   {/* Info */}
                   <div>
-                    <p className="font-semibold text-gray-900">
+                    <p className="font-semibold text-gray-700">
                       {record?.snapshot?.dietName ||
                         record?.diet?.name ||
                         'Nombre de dieta no disponible'}

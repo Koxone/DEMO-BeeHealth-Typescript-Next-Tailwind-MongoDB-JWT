@@ -1,5 +1,5 @@
 'use client';
-import CreateFirstRecordButton from '../../clinicalHistory/components/CreateFirstRecordButton';
+import CreateFirstRecordButton from '../../consults-history/components/CreateFirstRecordButton';
 
 export default function FullHistoryButton({ onClickFullHistory, patientRecord, onCreateNew }) {
   return (

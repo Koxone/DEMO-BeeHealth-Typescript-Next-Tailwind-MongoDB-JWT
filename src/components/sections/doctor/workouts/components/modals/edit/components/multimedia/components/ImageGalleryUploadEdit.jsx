@@ -146,7 +146,7 @@ export default function ImageGalleryUploadEdit({
                         accept="image/*"
                         onChange={(e) => handleFileChange(index, e.target.files?.[0] || null)}
                         disabled={uploadingImages[existingImages.length + index]}
-                        className="bg-beehealth-body-main file:text-beehealth-blue-secondary-solid file:bg-beehealth-blue-primary-light hover:file:bg-beehealth-blue-primary-light-hover focus:border-beehealth-blue-primary-solid focus:shadow-beehealth-blue-primary-solid/20 w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-sm text-gray-900 shadow-sm transition-all duration-300 file:mr-3 file:rounded-lg file:border-0 file:px-3 file:py-1 file:text-xs file:font-semibold placeholder:text-gray-400 focus:shadow-md focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        className="bg-beehealth-body-main file:text-beehealth-blue-secondary-solid file:bg-beehealth-blue-primary-light hover:file:bg-beehealth-blue-primary-light-hover focus:border-beehealth-blue-primary-solid focus:shadow-beehealth-blue-primary-solid/20 w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-sm text-gray-700 shadow-sm transition-all duration-300 file:mr-3 file:rounded-lg file:border-0 file:px-3 file:py-1 file:text-xs file:font-semibold placeholder:text-gray-400 focus:shadow-md focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                       />
                     </div>
                     <button

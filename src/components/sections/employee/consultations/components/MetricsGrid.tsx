@@ -2,7 +2,6 @@
 
 import { Pill, TrendingUp, Users } from 'lucide-react';
 
-/* metrics */
 export default function MetricsGrid({ totals, consultsData }) {
   // prevent NaN
   const grandTotal = Number(totals?.grandTotal ?? 0);
@@ -16,8 +15,7 @@ export default function MetricsGrid({ totals, consultsData }) {
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-      {/* total ingresos */}
-      <div className="bg-beehealth-body-main rounded-2xl border-2 border-gray-200 p-5 shadow-lg">
+      <div className="bg-beehealth-body-main relative overflow-hidden rounded-2xl border-2 border-gray-200 p-5 shadow-lg">
         <div className="bg-beehealth-body-main/10 absolute top-0 right-0 -mt-12 -mr-12 h-24 w-24 rounded-full" />
         <div className="relative z-10">
           <div className="mb-3 flex items-center justify-between">
@@ -43,7 +41,7 @@ export default function MetricsGrid({ totals, consultsData }) {
             {consultsData?.length || 0}
           </span>
         </div>
-        <p className="mb-1 text-3xl font-bold text-gray-900">${consultsTotal.toLocaleString()}</p>
+        <p className="mb-1 text-3xl font-bold text-gray-700">${consultsTotal.toLocaleString()}</p>
         <p className="text-sm font-medium text-gray-600">Consultas</p>
       </div>
 
@@ -57,7 +55,7 @@ export default function MetricsGrid({ totals, consultsData }) {
             {totalQuantity || 0}
           </span>
         </div>
-        <p className="mb-1 text-3xl font-bold text-gray-900">${medsTotal.toLocaleString()}</p>
+        <p className="mb-1 text-3xl font-bold text-gray-700">${medsTotal.toLocaleString()}</p>
         <p className="text-sm font-medium text-gray-600">Medicamentos</p>
       </div>
     </div>

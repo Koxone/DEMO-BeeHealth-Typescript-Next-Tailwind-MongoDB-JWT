@@ -2,7 +2,7 @@
 
 import { Edit2, Save } from 'lucide-react';
 
-function WelcomeCard({
+function EditProfileButton({
   isEditing,
   setIsEditing,
 }: {
@@ -12,7 +12,7 @@ function WelcomeCard({
   return (
     <button
       onClick={() => setIsEditing((prev) => !prev)}
-      className="group bg-beehealth-blue-primary-solid flex scale-90 items-center gap-2 justify-self-end rounded-xl px-6 py-3 font-semibold text-white transition-all hover:scale-100"
+      className="group bg-beehealth-blue-primary-solid j flex w-fit scale-90 items-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition-all hover:scale-100"
     >
       {isEditing ? (
         <>
@@ -29,4 +29,4 @@ function WelcomeCard({
   );
 }
 
-export default WelcomeCard;
+export default EditProfileButton;

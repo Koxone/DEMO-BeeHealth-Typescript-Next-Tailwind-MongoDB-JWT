@@ -310,7 +310,7 @@ export default function ConsultsHistory({
                 <button
                   onClick={handlePrevious}
                   disabled={currentPage === 1}
-                  className="hover:bg-beehealth-blue-primary-solid flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-gray-900"
+                  className="hover:bg-beehealth-blue-primary-solid flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-gray-700"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   Anterior
@@ -323,7 +323,7 @@ export default function ConsultsHistory({
                 <button
                   onClick={handleNext}
                   disabled={currentPage === totalPages}
-                  className="hover:bg-beehealth-blue-primary-solid flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-gray-900"
+                  className="hover:bg-beehealth-blue-primary-solid flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-gray-700"
                 >
                   Siguiente
                   <ChevronRight className="h-4 w-4" />

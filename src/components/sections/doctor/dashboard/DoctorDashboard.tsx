@@ -6,13 +6,15 @@ import DoctorAccountingSummary from '@/components/sections/doctor/dashboard/comp
 import SharedInventoryAlerts from '@/components/shared/dashboard/InventoryAlerts/SharedInventoryAlerts';
 import DoctorStatsGrid from './components/DoctorStatsGrid';
 
+// Local Helpers
+import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
+
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
 import { useTodayAppointmentsBySpecialty } from '@/hooks/appointments/useTodayAppointmentsBySpecialty';
 import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
-import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
 import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
 
 // Types

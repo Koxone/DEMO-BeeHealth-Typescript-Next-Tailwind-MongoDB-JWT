@@ -20,7 +20,7 @@ export default function PatientsAssignedCompact({ patients }) {
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="h-5 w-5 text-blue-600" />
-            <h2 className="text-sm font-semibold text-gray-900">Pacientes asignados</h2>
+            <h2 className="text-sm font-semibold text-gray-700">Pacientes asignados</h2>
           </div>
 
           <button
@@ -49,7 +49,7 @@ export default function PatientsAssignedCompact({ patients }) {
                 </div>
 
                 <div className="flex flex-col">
-                  <p className="text-sm font-semibold text-gray-900">{item.patient.fullName}</p>
+                  <p className="text-sm font-semibold text-gray-700">{item.patient.fullName}</p>
                   <p className="text-xs text-gray-500">{item.patient.email}</p>
                 </div>
               </li>

@@ -22,19 +22,19 @@ export default function SuccessModal({ data, onClose }) {
           </div>
         </div>
 
-        <h2 className="mb-2 text-center text-3xl font-bold text-gray-900">¡Cita Confirmada!</h2>
+        <h2 className="mb-2 text-center text-3xl font-bold text-gray-700">¡Cita Confirmada!</h2>
         <p className="mb-6 text-center text-gray-600">Tu cita ha sido agendada exitosamente</p>
 
         <div className="bg-beehealth-body-main space-y-4 rounded-2xl p-6">
           <div className="border-b border-gray-200 pb-3">
             <p className="text-sm font-semibold text-gray-500 uppercase">Médico</p>
-            <p className="text-lg font-bold text-gray-900">{data.doctor.nombre}</p>
+            <p className="text-lg font-bold text-gray-700">{data.doctor.nombre}</p>
             <p className="text-sm text-gray-600">{data.doctor.especialidad}</p>
           </div>
 
           <div className="border-b border-gray-200 pb-3">
             <p className="text-sm font-semibold text-gray-500 uppercase">Fecha</p>
-            <p className="text-lg font-bold text-gray-900 capitalize">
+            <p className="text-lg font-bold text-gray-700 capitalize">
               {data.date.toLocaleDateString('es-ES', {
                 weekday: 'long',
                 day: 'numeric',
@@ -46,7 +46,7 @@ export default function SuccessModal({ data, onClose }) {
 
           <div className="border-b border-gray-200 pb-3">
             <p className="text-sm font-semibold text-gray-500 uppercase">Hora</p>
-            <p className="text-2xl font-bold text-gray-900">{data.time}</p>
+            <p className="text-2xl font-bold text-gray-700">{data.time}</p>
           </div>
 
           <div>

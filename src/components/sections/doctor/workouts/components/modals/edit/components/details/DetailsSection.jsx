@@ -26,7 +26,7 @@ function DetailsSection({
         <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
           <List className="h-5 w-5 text-white" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Descripción Completa</h3>
+        <h3 className="text-xl font-bold text-gray-700">Descripción Completa</h3>
       </div>
 
       <div className="space-y-5">
@@ -38,7 +38,7 @@ function DetailsSection({
             value={form.about}
             onChange={(e) => setForm({ ...form, about: e.target.value })}
             placeholder="Describe el ejercicio, qué músculos trabaja y sus características principales..."
-            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
+            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
             rows="3"
           />
         </div>

@@ -39,11 +39,11 @@ export default function Name({
           <div className="rounded-lg bg-gray-100 p-2">
             <FileText className="h-5 w-5 text-gray-700" />
           </div>
-          <h2 className="text-xl font-semibold text-gray-900">Nombre</h2>
+          <h2 className="text-xl font-semibold text-gray-700">Nombre</h2>
         </div>
       )}
       {!isEditing && (
-        <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">{diet?.name}</h1>
+        <h1 className="mb-4 text-3xl font-bold text-gray-700 md:text-4xl">{diet?.name}</h1>
       )}
 
       {isEditing && (

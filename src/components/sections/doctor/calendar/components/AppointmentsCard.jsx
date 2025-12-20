@@ -42,13 +42,13 @@ export default function AppointmentsCard({ selectedDate, appointments }) {
                     {/* Kind */}
                     <div className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-1.5">
                       <Cross className="h-4 w-4 text-blue-600" />
-                      <span className="font-bold text-gray-900">{apt.tipo}</span>
+                      <span className="font-bold text-gray-700">{apt.tipo}</span>
                     </div>
 
                     {/* Time */}
                     <div className="flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-1.5">
                       <Clock className="h-4 w-4 text-blue-600" />
-                      <span className="font-bold text-gray-900">{apt.hora}</span>
+                      <span className="font-bold text-gray-700">{apt.hora}</span>
                     </div>
                   </div>
                   {/* Patient */}
@@ -57,7 +57,7 @@ export default function AppointmentsCard({ selectedDate, appointments }) {
                       {/* Name */}
                       <div className="mb-1 flex items-center gap-2">
                         <User className="h-4 w-4 shrink-0 text-gray-400" />
-                        <span className="truncate font-bold text-gray-900">{apt.paciente}</span>
+                        <span className="truncate font-bold text-gray-700">{apt.paciente}</span>
                       </div>
 
                       {/* Phone */}
@@ -95,7 +95,7 @@ export default function AppointmentsCard({ selectedDate, appointments }) {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
               <CalendarIcon className="h-8 w-8 text-gray-400" />
             </div>
-            <p className="mb-1 font-semibold text-gray-900">No hay citas programadas</p>
+            <p className="mb-1 font-semibold text-gray-700">No hay citas programadas</p>
             <p className="text-sm text-gray-500">Este día está libre</p>
           </div>
         ) : (
@@ -103,7 +103,7 @@ export default function AppointmentsCard({ selectedDate, appointments }) {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
               <CalendarIcon className="h-8 w-8 text-blue-600" />
             </div>
-            <p className="mb-1 font-semibold text-gray-900">Selecciona un día</p>
+            <p className="mb-1 font-semibold text-gray-700">Selecciona un día</p>
             <p className="text-sm text-gray-500">Haz clic en una fecha del calendario</p>
           </div>
         )}

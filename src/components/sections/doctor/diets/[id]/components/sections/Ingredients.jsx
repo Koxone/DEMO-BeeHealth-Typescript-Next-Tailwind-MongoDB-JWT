@@ -40,7 +40,7 @@ export default function Ingredients({
 
   return (
     <section className="bg-beehealth-body-main rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md md:p-4">
-      <h2 className="mb-4 text-xl font-semibold text-gray-900">Ingredientes</h2>
+      <h2 className="mb-4 text-xl font-semibold text-gray-700">Ingredientes</h2>
 
       {!isEditing && (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

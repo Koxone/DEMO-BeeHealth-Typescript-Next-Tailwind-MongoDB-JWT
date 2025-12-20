@@ -37,7 +37,7 @@ export default function Description({
         <div className="rounded-lg bg-gray-100 p-2">
           <FileText className="h-5 w-5 text-gray-700" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Descripción</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Descripción</h2>
       </div>
 
       {!isEditing && <p className="leading-relaxed text-gray-700">{diet.description}</p>}

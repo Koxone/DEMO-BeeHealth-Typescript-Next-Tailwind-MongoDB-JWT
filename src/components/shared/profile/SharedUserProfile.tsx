@@ -65,7 +65,7 @@ export default function SharedUserProfile({ role }) {
               </div>
 
               <div className="mb-2 flex items-center gap-2">
-                <h2 className="text-center text-xl font-bold text-gray-900">
+                <h2 className="text-center text-xl font-bold text-gray-700">
                   Dr(a). {user?.fullName}
                 </h2>
                 <CheckCircle2 className="h-5 w-5 text-green-500" />
@@ -96,7 +96,7 @@ export default function SharedUserProfile({ role }) {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                 <User className="h-5 w-5 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Información Personal</h3>
+              <h3 className="text-xl font-bold text-gray-700">Información Personal</h3>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -124,7 +124,7 @@ export default function SharedUserProfile({ role }) {
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
               <Briefcase className="h-5 w-5 text-purple-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900">Información Profesional</h3>
+            <h3 className="text-xl font-bold text-gray-700">Información Profesional</h3>
           </div>
 
           <div className="grid gap-6">
@@ -219,7 +219,7 @@ export default function SharedUserProfile({ role }) {
               </div>
             </div>
 
-            <h2 className="mb-2 text-3xl font-bold text-gray-900">{empleado.nombre}</h2>
+            <h2 className="mb-2 text-3xl font-bold text-gray-700">{empleado.nombre}</h2>
             <div className="mb-4 flex items-center gap-2 rounded-full bg-purple-50 px-4 py-2">
               <Briefcase className="h-4 w-4 text-purple-600" />
               <p className="font-medium text-purple-700">{empleado.puesto}</p>
@@ -292,7 +292,7 @@ export default function SharedUserProfile({ role }) {
                 <User className="h-16 w-16 text-white" />
               </div>
 
-              <h2 className="mb-2 text-center text-xl font-bold text-gray-900">{user?.fullName}</h2>
+              <h2 className="mb-2 text-center text-xl font-bold text-gray-700">{user?.fullName}</h2>
 
               <div className="mb-4 flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5">
                 <User className="h-4 w-4 text-blue-600" />
@@ -318,7 +318,7 @@ export default function SharedUserProfile({ role }) {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                 <User className="h-5 w-5 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Información Personal</h3>
+              <h3 className="text-xl font-bold text-gray-700">Información Personal</h3>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -402,7 +402,7 @@ function InfoCard({ icon: Icon, label, value, color = 'gray' }) {
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium text-gray-600">{label}</p>
-        <p className="truncate font-semibold text-gray-900">{value}</p>
+        <p className="truncate font-semibold text-gray-700">{value}</p>
       </div>
     </div>
   );
@@ -417,7 +417,7 @@ function SecuritySection() {
           <Shield className="h-5 w-5 text-red-600" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gray-900">Seguridad</h3>
+          <h3 className="text-xl font-bold text-gray-700">Seguridad</h3>
           <p className="text-sm text-gray-500">Protege tu cuenta</p>
         </div>
       </div>
@@ -427,7 +427,7 @@ function SecuritySection() {
           <div className="flex items-center gap-3">
             <Lock className="h-5 w-5 text-gray-600 transition-colors group-hover:text-blue-600" />
             <div className="text-left">
-              <p className="font-semibold text-gray-900">Cambiar Contraseña</p>
+              <p className="font-semibold text-gray-700">Cambiar Contraseña</p>
               <p className="text-xs text-gray-500">Actualiza tu contraseña</p>
             </div>
           </div>
@@ -438,7 +438,7 @@ function SecuritySection() {
           <div className="flex items-center gap-3">
             <Shield className="h-5 w-5 text-gray-600 transition-colors group-hover:text-green-600" />
             <div className="text-left">
-              <p className="font-semibold text-gray-900">Verificación en 2 pasos</p>
+              <p className="font-semibold text-gray-700">Verificación en 2 pasos</p>
               <p className="text-xs text-gray-500">Mayor seguridad</p>
             </div>
           </div>

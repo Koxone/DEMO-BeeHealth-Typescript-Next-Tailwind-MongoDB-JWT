@@ -25,14 +25,14 @@ export default function PatientSupport() {
   return (
     <div className="space-y-4 md:space-y-6">
       <div>
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">Soporte</h1>
+        <h1 className="mb-2 text-2xl font-bold text-gray-700 md:text-3xl">Soporte</h1>
         <p className="text-gray-600">Estamos aquí para ayudarte</p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-6">
         <div className="space-y-4 md:space-y-6">
           <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900 md:text-xl">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700 md:text-xl">
               Preguntas Frecuentes
             </h2>
             <div className="space-y-3">
@@ -42,7 +42,7 @@ export default function PatientSupport() {
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                     className="hover:bg-beehealth-body-main flex w-full items-center justify-between p-4 text-left transition"
                   >
-                    <span className="font-medium text-gray-900">{faq.q}</span>
+                    <span className="font-medium text-gray-700">{faq.q}</span>
                     {openFaq === idx ? (
                       <ChevronUp className="h-5 w-5 text-gray-400" />
                     ) : (
@@ -56,28 +56,28 @@ export default function PatientSupport() {
           </div>
 
           <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900 md:text-xl">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700 md:text-xl">
               Información de Contacto
             </h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Mail className="mt-1 h-5 w-5 text-blue-500" />
                 <div>
-                  <p className="font-medium text-gray-900">Email</p>
+                  <p className="font-medium text-gray-700">Email</p>
                   <p className="text-gray-600">soporte@medtrack.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="mt-1 h-5 w-5 text-green-500" />
                 <div>
-                  <p className="font-medium text-gray-900">Telefono</p>
+                  <p className="font-medium text-gray-700">Telefono</p>
                   <p className="text-gray-600">+52 55 1234 5678</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="mt-1 h-5 w-5 text-red-500" />
                 <div>
-                  <p className="font-medium text-gray-900">Dirección</p>
+                  <p className="font-medium text-gray-700">Dirección</p>
                   <p className="text-gray-600">Av. Reforma 123, CDMX</p>
                 </div>
               </div>

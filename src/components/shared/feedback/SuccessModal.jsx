@@ -27,7 +27,7 @@ export default function SuccessModal({ title, message, showSuccessModal, setShow
         </div>
 
         {/* Title */}
-        <h2 className="mb-2 text-center text-3xl font-bold text-gray-900">{title}</h2>
+        <h2 className="mb-2 text-center text-3xl font-bold text-gray-700">{title}</h2>
 
         {/* Subtitle */}
         <p className="mb-6 text-center text-gray-600">{message}</p>

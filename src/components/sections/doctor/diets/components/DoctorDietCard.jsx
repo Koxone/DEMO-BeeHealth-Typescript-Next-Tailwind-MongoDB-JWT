@@ -14,7 +14,7 @@ export default function DoctorDietCard({ diet, onClickAssign }) {
 
       {/* Diet Name */}
       <Link href={`/doctor/diets/${diet?._id}?mode=read`} className="mb-4 space-y-2 text-sm">
-        <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+        <h3 className="mb-2 text-lg font-semibold text-gray-700 transition-colors group-hover:text-blue-600">
           {diet?.name}
         </h3>
       </Link>

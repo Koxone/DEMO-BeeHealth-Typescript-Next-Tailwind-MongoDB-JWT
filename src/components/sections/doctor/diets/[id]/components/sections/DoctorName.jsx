@@ -9,7 +9,7 @@ function DoctorName({ diet }) {
       </div>
       <div>
         <p className="text-xs tracking-wide text-gray-500 uppercase">Doctor</p>
-        <p className="text-sm font-semibold text-gray-900">Dr. {diet.doctor.fullName}</p>
+        <p className="text-sm font-semibold text-gray-700">Dr. {diet.doctor.fullName}</p>
       </div>
     </div>
   );

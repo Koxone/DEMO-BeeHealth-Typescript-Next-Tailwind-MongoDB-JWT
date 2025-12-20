@@ -69,7 +69,7 @@ export default function SharedInventoryAlerts({ role, inventory = [], showButton
             <Package className="h-4 w-4 text-gray-600" />
             <p className="text-xs font-semibold text-gray-600">Total</p>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{inventory.length}</p>
+          <p className="text-2xl font-bold text-gray-700">{inventory.length}</p>
         </div>
       </div>
 
@@ -92,7 +92,7 @@ export default function SharedInventoryAlerts({ role, inventory = [], showButton
               <span className="text-xl text-white">✓</span>
             </div>
           </div>
-          <h3 className="mb-2 text-xl font-bold text-gray-900">¡Todo está bajo control!</h3>
+          <h3 className="mb-2 text-xl font-bold text-gray-700">¡Todo está bajo control!</h3>
           <p className="mb-1 text-gray-600">No hay alertas de inventario</p>
           <p className="text-sm text-gray-500">Todo el stock está en niveles óptimos</p>
         </div>

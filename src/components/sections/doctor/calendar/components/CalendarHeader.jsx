@@ -12,7 +12,7 @@ export default function CalendarHeader({ monthName, onPrev, onNext, icons }) {
         <ChevronLeft className="h-5 w-5 text-gray-600 transition group-hover:-translate-x-1 group-hover:text-blue-600" />
       </button>
       <div className="text-center">
-        <h2 className="text-xl font-bold text-gray-900 capitalize md:text-2xl">{monthName}</h2>
+        <h2 className="text-xl font-bold text-gray-700 capitalize md:text-2xl">{monthName}</h2>
       </div>
       <button
         onClick={onNext}

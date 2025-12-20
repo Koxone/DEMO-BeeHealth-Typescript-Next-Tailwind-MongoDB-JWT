@@ -31,7 +31,7 @@ function Benefits({ diet, isEditing = false, editDiet, refreshDiets, setShowSucc
         <div className="rounded-lg bg-green-100 p-2">
           <CheckCircle className="h-5 w-5 text-green-600" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Beneficios</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Beneficios</h2>
       </div>
 
       {/* Read mode */}

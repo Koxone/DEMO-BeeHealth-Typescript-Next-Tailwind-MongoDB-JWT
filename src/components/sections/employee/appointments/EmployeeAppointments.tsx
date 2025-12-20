@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ControlsBar from './components/ControlsBar';
 import AppointmentCard from './components/AppointmentCard';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
@@ -58,17 +58,11 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
     refetch?: () => void;
   };
 
-  // Appointments state
-  const [citas, setCitas] = useState<Appointment[]>([]);
+  // Appointments (derivado de data)
+  const citas = useMemo<Appointment[]>(() => {
+    if (!data?.all) return [];
 
-  /* =====================
-     Effects
-  ===================== */
-
-  useEffect(() => {
-    if (!data?.all) return;
-
-    const mapped: Appointment[] = data.all.map((item) => ({
+    return data.all.map((item) => ({
       id: item.id,
       fecha: item._dateKey,
       hora: item.hora,
@@ -77,16 +71,14 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
       email: item.email,
       motivo: item.motivo,
       specialty: item.specialty,
-      estado: 'Confirmada',
+      estado: 'Confirmada' as AppointmentStatus,
       avatar: item.paciente
         .split(' ')
         .map((n: string) => n[0])
         .join('')
         .toUpperCase(),
     }));
-
-    setCitas(mapped);
-  }, [data]);
+  }, [data?.all]);
 
   // Form state
   const [citaForm, setCitaForm] = useState<{

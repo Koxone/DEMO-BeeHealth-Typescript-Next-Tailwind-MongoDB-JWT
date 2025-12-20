@@ -12,54 +12,9 @@ import {
   CreditCard,
   ArrowLeftRight,
 } from 'lucide-react';
+import { columns } from './utils/helpers';
 
 export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
-  // Table columns
-  const columns = [
-    {
-      key: 'fecha',
-      label: 'Fecha',
-      align: 'left',
-      icon: Calendar,
-    },
-    {
-      key: 'paciente',
-      label: 'Paciente',
-      align: 'left',
-      icon: Users,
-    },
-    {
-      key: 'tipo',
-      label: 'Tipo',
-      align: 'left',
-      icon: FileText,
-    },
-    {
-      key: 'costo',
-      label: 'Costo',
-      align: 'right',
-      icon: DollarSign,
-    },
-    {
-      key: 'extras',
-      label: 'Extras',
-      align: 'right',
-      icon: DollarSign,
-    },
-    {
-      key: 'metodo',
-      label: 'Metodo de Pago',
-      align: 'center',
-      icon: null,
-    },
-    {
-      key: 'acciones',
-      label: 'Acciones',
-      align: 'center',
-      icon: null,
-    },
-  ];
-
   return (
     <div className="hidden md:block">
       <table className="w-full table-fixed">
@@ -71,7 +26,7 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
                   className={`flex items-center ${col.align === 'right' ? 'justify-end' : ''} ${col.align === 'center' ? 'justify-center' : 'gap-2'} `}
                 >
                   {col.icon && <col.icon className="h-4 w-4 text-gray-500" />}
-                  <span className="text-sm font-semibold tracking-wide text-gray-900">
+                  <span className="text-sm font-semibold tracking-wide text-gray-700">
                     {col.label}
                   </span>
                 </div>
@@ -94,7 +49,7 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
                     <Calendar className="h-4 w-4 text-white transition group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">
+                    <p className="text-sm font-bold text-gray-700">
                       {new Date(c?.createdAt).toLocaleDateString()}
                     </p>
                     <p className="text-xs text-gray-500">
@@ -114,7 +69,7 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
                       <img
                         src={c.patient.avatar}
                         alt={c.patient.fullName || 'Avatar'}
-                        className="h-full w-full object-cover rounded-xl"
+                        className="h-full w-full rounded-xl object-cover"
                       />
                     ) : (
                       /* Initials */
@@ -128,7 +83,7 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
                     )}
                   </div>
 
-                  <span className="text-sm font-semibold text-gray-900">
+                  <span className="text-sm font-semibold text-gray-700">
                     {c?.patient?.fullName}
                   </span>
                 </div>
@@ -195,7 +150,7 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
 
         <tfoot className="w-full border-t-2 border-gray-200">
           <tr className="font-semibold">
-            <td colSpan="3" className="px-6 py-4 text-sm text-gray-900">
+            <td colSpan="3" className="px-6 py-4 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <span>Total General</span>
               </div>

@@ -8,7 +8,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
         <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
           <Info className="h-5 w-5 text-white" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Información Básica</h3>
+        <h3 className="text-xl font-bold text-gray-700">Información Básica</h3>
       </div>
 
       {/* Name */}
@@ -24,7 +24,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
+            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
           />
         </div>
 
@@ -38,7 +38,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
             <select
               value={form.type}
               onChange={(e) => setForm({ ...form, type: e.target.value })}
-              className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+              className="bg-beehealth-body-main w-full appearance-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
             >
               <option value="">Selecciona una categoría</option>
               <option value="Fuerza">Fuerza</option>
@@ -76,7 +76,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
             min="1"
             value={form.duration}
             onChange={(e) => setForm({ ...form, duration: e.target.value })}
-            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
+            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
           />
         </div>
 

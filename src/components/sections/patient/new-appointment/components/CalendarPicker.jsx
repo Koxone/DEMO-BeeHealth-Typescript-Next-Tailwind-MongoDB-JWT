@@ -20,12 +20,12 @@ export default function CalendarPicker({
           <CalendarIcon className="h-5 w-5 text-indigo-600" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Paso 2: Selecciona una fecha</h2>
+          <h2 className="text-xl font-bold text-gray-700">Paso 2: Selecciona una fecha</h2>
           <p className="text-sm text-gray-600">Elige el día de tu consulta</p>
         </div>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-beehealth-body-main p-5">
+      <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-5">
         {/* header */}
         <div className="mb-6 flex items-center justify-between">
           <button
@@ -35,7 +35,7 @@ export default function CalendarPicker({
           >
             <ChevronLeft className="h-5 w-5 text-gray-600 transition-transform duration-200 group-hover:-translate-x-1" />
           </button>
-          <h3 className="bg-beehealth-body-main rounded-xl border border-gray-200 px-4 py-2 text-lg font-bold text-gray-900 capitalize shadow-sm">
+          <h3 className="bg-beehealth-body-main rounded-xl border border-gray-200 px-4 py-2 text-lg font-bold text-gray-700 capitalize shadow-sm">
             {monthName}
           </h3>
           <button
@@ -73,7 +73,7 @@ export default function CalendarPicker({
                   selected
                     ? 'bg-beehealth-blue-primary-solid z-10 scale-110 text-white shadow-lg'
                     : isAvailable && !past
-                      ? 'bg-beehealth-body-main border-2 border-blue-300 text-gray-900 hover:scale-105 hover:bg-blue-50 hover:shadow-md active:scale-95'
+                      ? 'bg-beehealth-body-main border-2 border-blue-300 text-gray-700 hover:scale-105 hover:bg-blue-50 hover:shadow-md active:scale-95'
                       : 'cursor-not-allowed bg-gray-100 text-gray-400 opacity-50'
                 }`}
               >

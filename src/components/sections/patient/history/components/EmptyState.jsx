@@ -8,7 +8,7 @@ export default function EmptyState({ onAdd }) {
       <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-purple-100">
         <FileText className="h-10 w-10 text-purple-600" />
       </div>
-      <h3 className="mb-2 text-xl font-bold text-gray-900">No hay registros aún</h3>
+      <h3 className="mb-2 text-xl font-bold text-gray-700">No hay registros aún</h3>
       <p className="mb-6 text-gray-600">Comienza a registrar tus mediciones para ver tu progreso</p>
       <button
         onClick={onAdd}

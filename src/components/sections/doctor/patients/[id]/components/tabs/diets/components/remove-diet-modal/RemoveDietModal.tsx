@@ -160,7 +160,7 @@ export default function RemoveDietModal({
                         <Trash2 className="h-5 w-5 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg font-bold text-gray-900">
+                        <p className="text-lg font-bold text-gray-700">
                           {dietToRemove?.diet?.name}
                         </p>
                       </div>

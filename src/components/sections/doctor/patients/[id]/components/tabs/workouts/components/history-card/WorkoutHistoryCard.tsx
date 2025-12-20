@@ -32,7 +32,7 @@ function WorkoutHistoryCard({
 
         {/* Info */}
         <div>
-          <p className="font-semibold text-gray-900">
+          <p className="font-semibold text-gray-700">
             {record?.snapshot?.workoutName ||
               record?.workout?.name ||
               'Nombre de entrenamiento no disponible'}

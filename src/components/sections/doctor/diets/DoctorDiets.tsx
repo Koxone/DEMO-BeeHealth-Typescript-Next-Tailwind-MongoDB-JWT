@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 
 import DoctorDietCard from '@/components/sections/doctor/diets/components/DoctorDietCard';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
@@ -10,7 +11,6 @@ import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 // Custom Hooks
 import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
-import { useState } from 'react';
 
 // Types
 import { IDiet } from '@/models/Diet';

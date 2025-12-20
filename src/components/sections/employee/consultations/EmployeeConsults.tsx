@@ -26,7 +26,7 @@ export default function EmployeeConsults({ role }) {
   };
 
   return (
-    <div className="pb-8">
+    <div className="h-full overflow-y-auto pb-8">
       {/* Header */}
       <SharedSectionHeader
         role={role}
@@ -35,7 +35,7 @@ export default function EmployeeConsults({ role }) {
         subtitle="Registrar y controlar la atención médica de los pacientes."
       />
 
-      <div className="space-y-6">
+      <div className="flex flex-col gap-6">
         {/* Metrics summary */}
         <MetricsGrid
           consultsData={consults}

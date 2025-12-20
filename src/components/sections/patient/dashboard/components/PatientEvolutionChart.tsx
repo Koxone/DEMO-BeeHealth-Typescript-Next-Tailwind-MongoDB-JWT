@@ -55,7 +55,7 @@ export default function PatientEvolutionChart({
     <div className="bg-beehealth-body-main h-[400px] rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-900 md:text-xl">{title}</h2>
+        <h2 className="text-lg font-semibold text-gray-700 md:text-xl">{title}</h2>
 
         <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1">
           <div className="h-3 w-3 rounded-full" style={{ backgroundColor: legendColor }} />

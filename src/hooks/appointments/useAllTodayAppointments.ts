@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 // Types
 import {
@@ -84,55 +85,48 @@ function normalizeEvents(
   });
 }
 
-// Hook para todas las citas de hoy
+/* --- Fetcher --- */
+async function fetchAllTodayAppointments(): Promise<NormalizedAppointment[]> {
+  const res = await fetch('/api/google/calendar/appointments/all');
+
+  if (!res.ok) throw new Error('Error al cargar las citas');
+
+  const json: { weightEvents?: CalendarEvent[]; dentalEvents?: CalendarEvent[] } = await res.json();
+
+  // Normalizar todas las especialidades
+  const weight = normalizeEvents(json.weightEvents || [], 'weight');
+  const dental = normalizeEvents(json.dentalEvents || [], 'dental');
+  const all = [...weight, ...dental];
+
+  // Fecha local correcta
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' });
+  return all.filter((ev) => ev._dateKey === today);
+}
+
+/* --- Hook principal --- */
 export function useAllTodayAppointments(): {
   appointments: NormalizedAppointment[];
   loading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
 } {
-  const [appointments, setAppointments] = useState<NormalizedAppointment[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const queryClient = useQueryClient();
 
-  const fetchTodayAppointments = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['allTodayAppointments'],
+    queryFn: fetchAllTodayAppointments,
+  });
 
-    try {
-      const res = await fetch('/api/google/calendar/appointments/all');
+  const refetch = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['allTodayAppointments'] });
+  }, [queryClient]);
 
-      if (!res.ok) throw new Error('Error al cargar las citas');
-      const json: { weightEvents?: CalendarEvent[]; dentalEvents?: CalendarEvent[] } =
-        await res.json();
-
-      // Normalizar todas las especialidades
-      const weight = normalizeEvents(json.weightEvents || [], 'weight');
-      const dental = normalizeEvents(json.dentalEvents || [], 'dental');
-      const all = [...weight, ...dental];
-
-      // Fecha local correcta
-      const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' });
-      const todayAppointments = all.filter((ev) => ev._dateKey === today);
-
-      setAppointments(todayAppointments);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError('Error desconocido');
-      }
-      setAppointments([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void fetchTodayAppointments();
-  }, [fetchTodayAppointments]);
-
-  return { appointments, loading, error, refetch: fetchTodayAppointments };
+  return {
+    appointments: data || [],
+    loading: isLoading,
+    error: error ? (error as Error).message : null,
+    refetch,
+  };
 }
 
 // Usage example:

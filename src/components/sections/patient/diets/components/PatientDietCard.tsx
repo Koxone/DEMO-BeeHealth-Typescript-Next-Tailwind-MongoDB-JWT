@@ -11,7 +11,7 @@ export default function PatientDietCard({ diet }) {
       </div>
 
       {/* Diet Name */}
-      <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+      <h3 className="mb-2 text-lg font-semibold text-gray-700 transition-colors group-hover:text-blue-600">
         {diet?.diet?.name}
       </h3>
 

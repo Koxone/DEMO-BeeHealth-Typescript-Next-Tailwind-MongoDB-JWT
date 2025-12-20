@@ -45,7 +45,7 @@ export default function AddRecordModal({ peso, notas, setPeso, setNotas, onClose
             }}
           >
             <div>
-              <label className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-900">
+              <label className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-700">
                 <Weight className="h-4 w-4 text-purple-600" />
                 Peso (kg)
               </label>
@@ -60,7 +60,7 @@ export default function AddRecordModal({ peso, notas, setPeso, setNotas, onClose
             </div>
 
             <div>
-              <label className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-900">
+              <label className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-700">
                 <FileText className="h-4 w-4 text-purple-600" />
                 Notas (opcional)
               </label>

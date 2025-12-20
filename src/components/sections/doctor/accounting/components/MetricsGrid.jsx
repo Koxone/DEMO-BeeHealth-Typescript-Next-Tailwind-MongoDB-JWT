@@ -30,7 +30,7 @@ export default function MetricsGrid({
             {consultasCount}
           </span>
         </div>
-        <p className="mb-1 text-2xl font-bold text-gray-900 md:text-3xl">
+        <p className="mb-1 text-2xl font-bold text-gray-700 md:text-3xl">
           ${totalConsultas.toLocaleString()}
         </p>
         <p className="text-xs text-gray-600 md:text-sm">Consultas</p>
@@ -44,7 +44,7 @@ export default function MetricsGrid({
             {medsCount}
           </span>
         </div>
-        <p className="mb-1 text-2xl font-bold text-gray-900 md:text-3xl">
+        <p className="mb-1 text-2xl font-bold text-gray-700 md:text-3xl">
           ${totalMedicamentos.toLocaleString()}
         </p>
         <p className="text-xs text-gray-600 md:text-sm">Medicamentos</p>
@@ -58,7 +58,7 @@ export default function MetricsGrid({
             +12%
           </span>
         </div>
-        <p className="mb-1 text-2xl font-bold text-gray-900 md:text-3xl">${promedio || 0}</p>
+        <p className="mb-1 text-2xl font-bold text-gray-700 md:text-3xl">${promedio || 0}</p>
         <p className="text-xs text-gray-600 md:text-sm">Promedio/paciente</p>
       </div>
     </div>

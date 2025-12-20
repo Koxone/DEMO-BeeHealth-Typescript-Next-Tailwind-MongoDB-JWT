@@ -59,7 +59,7 @@ export default function PatientDietDetail({ params, role }) {
       <div className="mx-auto max-w-5xl px-0">
         {/* Title */}
         <div className="mb-8 flex flex-col gap-6">
-          <h1 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">{diet?.name}</h1>
+          <h1 className="mb-4 text-3xl font-bold text-gray-700 md:text-4xl">{diet?.name}</h1>
 
           {/* Meta info grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">

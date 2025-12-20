@@ -46,7 +46,7 @@ export default function EmployeeDeleteConsultModal({ item, onClose, onConfirm })
                     <AlertCircle className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Eliminar Consulta</h2>
+                <h2 className="text-2xl font-bold text-gray-700">Eliminar Consulta</h2>
               </div>
               <button
                 onClick={onClose}
@@ -72,7 +72,7 @@ export default function EmployeeDeleteConsultModal({ item, onClose, onConfirm })
                 <Calendar className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-gray-900">{item.paciente}</p>
+                <p className="font-semibold text-gray-700">{item.paciente}</p>
                 <p className="text-sm text-gray-600">
                   {item.fecha} • {item.tipo}
                 </p>

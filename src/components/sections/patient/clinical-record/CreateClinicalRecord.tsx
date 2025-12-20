@@ -135,7 +135,7 @@ export default function CreateClinicalRecord() {
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-6 text-center">
-          <h1 className="mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
+          <h1 className="mb-2 text-2xl font-bold text-gray-700 md:text-3xl">
             Crea tu primer Historial Clinico
           </h1>
           <p className="text-sm text-gray-600 md:text-base">Selecciona el tipo de consulta</p>

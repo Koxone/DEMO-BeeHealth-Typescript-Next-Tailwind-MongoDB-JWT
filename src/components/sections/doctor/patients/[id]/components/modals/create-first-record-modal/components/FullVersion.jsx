@@ -30,7 +30,7 @@ export default function FullVersion({ specialty, patientId, isEditing, setIsEdit
     <div>
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1">
-          <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
+          <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-700">
             <CalendarIcon className="h-5 w-5 text-blue-600" />
             Información Completa
           </h3>

@@ -28,7 +28,7 @@ export default function AppointmentCard({ index, cita, getEstadoBadge }) {
           {/* info */}
           <div className="min-w-0 flex-1">
             <div className="mb-2 flex items-center gap-2">
-              <h3 className="truncate text-lg font-bold text-gray-900">{cita.paciente}</h3>
+              <h3 className="truncate text-lg font-bold text-gray-700">{cita.paciente}</h3>
             </div>
 
             <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-2">

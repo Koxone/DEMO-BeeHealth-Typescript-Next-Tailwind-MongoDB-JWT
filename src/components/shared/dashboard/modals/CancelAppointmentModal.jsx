@@ -14,7 +14,7 @@ export default function CancelAppointmentModal() {
               <div className="rounded-lg bg-red-100 p-2">
                 <AlertCircle className="h-6 w-6 text-red-600" />
               </div>
-              <h2 className="text-xl font-bold text-gray-900">Cancelar Cita</h2>
+              <h2 className="text-xl font-bold text-gray-700">Cancelar Cita</h2>
             </div>
           </div>
 
@@ -25,7 +25,7 @@ export default function CancelAppointmentModal() {
             <div className="bg-beehealth-body-main mb-6 space-y-2 rounded-lg p-4">
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4 text-gray-600" />
-                <p className="text-sm font-medium text-gray-900">Juan Pérez</p>
+                <p className="text-sm font-medium text-gray-700">Juan Pérez</p>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-gray-600" />

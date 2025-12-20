@@ -19,7 +19,7 @@ function MultimediaSection({
         <div className="bg-beehealth-blue-primary-solid rounded-xl p-2.5">
           <ImageIcon className="h-5 w-5 text-white" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">Contenido Multimedia</h3>
+        <h3 className="text-xl font-bold text-gray-700">Contenido Multimedia</h3>
       </div>
 
       {/* Images Gallery */}
@@ -45,7 +45,7 @@ function MultimediaSection({
             value={form.video}
             onChange={(e) => setForm({ ...form, video: e.target.value })}
             placeholder="https://www.youtube.com/embed/..."
-            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 font-mono text-sm text-gray-900 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
+            className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 font-mono text-sm text-gray-700 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400"
           />
           <div className="bg-beehealth-blue-primary-light flex items-start gap-2 rounded-lg px-3 py-2">
             <Play className="text-beehealth-blue-primary-solid mt-0.5 h-4 w-4 shrink-0" />

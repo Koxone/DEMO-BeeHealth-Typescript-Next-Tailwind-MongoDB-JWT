@@ -51,7 +51,7 @@ export default function DeleteMedSaleModal({ type, item, onCancel, onConfirm }) 
                     <AlertCircle className="h-6 w-6 text-white" />
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Confirmar Eliminación</h2>
+                <h2 className="text-2xl font-bold text-gray-700">Confirmar Eliminación</h2>
               </div>
               <button
                 onClick={onCancel}
@@ -81,7 +81,7 @@ export default function DeleteMedSaleModal({ type, item, onCancel, onConfirm }) 
                 )}
               </div>
               <div>
-                <p className="font-semibold text-gray-900">
+                <p className="font-semibold text-gray-700">
                   {isConsulta
                     ? `${item.paciente} - ${item.hora}`
                     : `${item.nombre} (${item.cantidad} unidades)`}

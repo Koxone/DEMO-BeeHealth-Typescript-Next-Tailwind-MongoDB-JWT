@@ -115,7 +115,7 @@ export default function HistoryCardFeedbackModal({ onClose, selectedHistoryCard 
                     <Apple className="h-8 w-8 text-blue-600" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="mb-1 text-xl font-bold text-gray-900">
+                    <p className="mb-1 text-xl font-bold text-gray-700">
                       {snapshot?.dietName || diet?.name}
                     </p>
                     <div className="text-sm text-gray-600">

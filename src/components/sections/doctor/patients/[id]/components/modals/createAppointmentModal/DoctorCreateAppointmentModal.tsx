@@ -119,7 +119,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                       required
                       value={citaForm.fecha}
                       onChange={(e) => handleChange('fecha', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 focus:border-emerald-500 focus:shadow-md focus:shadow-emerald-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 focus:border-emerald-500 focus:shadow-md focus:shadow-emerald-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -134,7 +134,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                       required
                       value={citaForm.hora}
                       onChange={(e) => handleChange('hora', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 focus:border-teal-500 focus:shadow-md focus:shadow-teal-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 focus:border-teal-500 focus:shadow-md focus:shadow-teal-500/20 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -179,7 +179,7 @@ export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClo
                   value={citaForm.motivo}
                   onChange={(e) => handleChange('motivo', e.target.value)}
                   placeholder="Describe el motivo de la cita..."
-                  className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-300 focus:border-orange-500 focus:shadow-md focus:shadow-orange-500/20 focus:outline-none"
+                  className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 focus:border-orange-500 focus:shadow-md focus:shadow-orange-500/20 focus:outline-none"
                   rows={4}
                 />
               </div>

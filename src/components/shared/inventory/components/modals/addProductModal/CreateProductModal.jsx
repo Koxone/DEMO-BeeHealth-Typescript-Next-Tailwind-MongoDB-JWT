@@ -79,7 +79,7 @@ export default function CreateProductModal({ activeTab, onClose, successRefresh,
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-gray-700">
                     Agregar{' '}
                     {activeTab === 'medicamentos'
                       ? 'Medicamento'

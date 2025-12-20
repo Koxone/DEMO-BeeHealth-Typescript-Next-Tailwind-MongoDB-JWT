@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { XCircle, Plus, Trash2 } from 'lucide-react';
 
-export default function ForbiddenFoods({ diet, isEditing = false, editDiet, refreshDiets, setShowSuccessModal }) {
+export default function ForbiddenFoods({
+  diet,
+  isEditing = false,
+  editDiet,
+  refreshDiets,
+  setShowSuccessModal,
+}) {
   const [items, setItems] = useState(diet.forbiddenFoods.items || []);
   const [note, setNote] = useState(diet.forbiddenFoods.note || '');
   const [newItem, setNewItem] = useState('');
@@ -42,7 +48,7 @@ export default function ForbiddenFoods({ diet, isEditing = false, editDiet, refr
         <div className="rounded-lg bg-red-100 p-2">
           <XCircle className="h-5 w-5 text-red-600" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Alimentos Prohibidos</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Alimentos Prohibidos</h2>
       </div>
 
       {!isEditing && (

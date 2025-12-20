@@ -71,7 +71,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                    <h2 className="text-2xl font-bold text-gray-700 sm:text-3xl">
                       Registrar venta de producto
                     </h2>
                     <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">
@@ -99,7 +99,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                   <div className="rounded-xl bg-linear-to-br from-purple-500 to-indigo-500 p-2.5">
                     <Info className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Información del producto</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Información del producto</h3>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -109,7 +109,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       <Calendar className="h-4 w-4 text-purple-500" />
                       Fecha
                     </label>
-                    <div className="bg-beehealth-body-main rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm">
+                    <div className="bg-beehealth-body-main rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm">
                       {productForm.fecha}
                     </div>
                   </div>
@@ -124,7 +124,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       required
                       value={productForm.producto}
                       onChange={(e) => handleChange('producto', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                     >
                       <option value="">Seleccionar</option>
                       <option>GUM FLOSSERS CRAYOLA (INFANTIL)</option>
@@ -142,7 +142,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                   <div className="rounded-xl bg-linear-to-br from-indigo-500 to-purple-500 p-2.5">
                     <Package className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Detalles del producto</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Detalles del producto</h3>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -153,7 +153,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       type="number"
                       value={productForm.cantidad}
                       onChange={(e) => handleChange('cantidad', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -164,7 +164,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       type="number"
                       value={productForm.precio}
                       onChange={(e) => handleChange('precio', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -175,7 +175,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       type="text"
                       value={productForm.consultorio}
                       onChange={(e) => handleChange('consultorio', e.target.value)}
-                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                     />
                   </div>
 
@@ -185,7 +185,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                     <textarea
                       value={productForm.observaciones}
                       onChange={(e) => handleChange('observaciones', e.target.value)}
-                      className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                      className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                       rows="2"
                     />
                   </div>
@@ -198,7 +198,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                   <div className="rounded-xl bg-linear-to-br from-violet-500 to-purple-500 p-2.5">
                     <CreditCard className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Pagos y formas de cobro</h3>
+                  <h3 className="text-xl font-bold text-gray-700">Pagos y formas de cobro</h3>
                 </div>
 
                 {[1, 2].map((i) => (
@@ -209,7 +209,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                         type="number"
                         value={productForm[`pago${i}`]}
                         onChange={(e) => handleChange(`pago${i}`, e.target.value)}
-                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                       />
                     </div>
 
@@ -218,7 +218,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       <select
                         value={productForm[`caja${i}`]}
                         onChange={(e) => handleChange(`caja${i}`, e.target.value)}
-                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
+                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
                       >
                         <option>Caja 1</option>
                         <option>Caja 2</option>
@@ -230,7 +230,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       <select
                         value={productForm[`formaPago${i}`]}
                         onChange={(e) => handleChange(`formaPago${i}`, e.target.value)}
-                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-900 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
+                        className="bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-purple-500 focus:shadow-md focus:shadow-purple-500/20 focus:outline-none"
                       >
                         <option>Pendiente de pago</option>
                         <option>Efectivo</option>

@@ -12,7 +12,7 @@ export default function HeaderBar({ onBack }) {
             <CalendarIcon className="h-8 w-8 text-white" />
           </div>
           <div>
-            <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight text-gray-700 md:text-4xl">
               Agendar Nueva Cita
             </h1>
             <p className="text-base text-gray-600 md:text-lg">

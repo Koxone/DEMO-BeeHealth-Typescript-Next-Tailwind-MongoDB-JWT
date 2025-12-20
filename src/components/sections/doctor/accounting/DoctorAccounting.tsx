@@ -78,7 +78,7 @@ export default function DoctorAccounting({ role, specialty }) {
       {/* Consults */}
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 md:text-xl">Consultas del Día</h2>
+          <h2 className="text-lg font-semibold text-gray-700 md:text-xl">Consultas del Día</h2>
         </div>
 
         <TodayConsultsList consultsData={consults} totals={metrics} />
@@ -87,7 +87,7 @@ export default function DoctorAccounting({ role, specialty }) {
       {/* Meds Sold */}
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 md:text-xl">
+          <h2 className="text-lg font-semibold text-gray-700 md:text-xl">
             Medicamentos Vendidos del Día
           </h2>
         </div>

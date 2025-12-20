@@ -29,7 +29,7 @@ export default function DoctorPatientCard({ patient }: DoctorPatientCardProps) {
 
           <div className="flex-1">
             {/* Patient Name */}
-            <h3 className="mb-2 font-semibold text-gray-900 capitalize">{patient?.fullName}</h3>
+            <h3 className="mb-2 font-semibold text-gray-700 capitalize">{patient?.fullName}</h3>
 
             <div className="grid grid-cols-1 gap-2 text-sm text-gray-600 sm:grid-cols-3">
               {/* Patient Phone */}

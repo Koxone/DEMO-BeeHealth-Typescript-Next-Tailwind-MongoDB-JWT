@@ -79,7 +79,7 @@ function DateInput({ question, required, value, id, onChange }) {
             onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
             className="flex w-32 items-center justify-between rounded-lg border border-gray-300 px-3 py-2 md:py-3"
           >
-            <span className={selectedMonthLabel ? 'text-gray-900' : 'text-gray-400'}>
+            <span className={selectedMonthLabel ? 'text-gray-700' : 'text-gray-400'}>
               {selectedMonthLabel || 'Mes'}
             </span>
             <ChevronDown className="h-4 w-4 text-gray-400" />

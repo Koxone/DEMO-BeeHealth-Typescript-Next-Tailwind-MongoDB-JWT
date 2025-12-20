@@ -50,7 +50,7 @@ export default function DeleteProductModal({ item, onClose, onConfirm }) {
 
                 {/* Title and subtitle */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Eliminar elemento</h2>
+                  <h2 className="text-2xl font-bold text-gray-700">Eliminar elemento</h2>
                   <p className="mt-1 text-sm text-gray-600">
                     Esta acción no se puede deshacer. El elemento será eliminado permanentemente.
                   </p>

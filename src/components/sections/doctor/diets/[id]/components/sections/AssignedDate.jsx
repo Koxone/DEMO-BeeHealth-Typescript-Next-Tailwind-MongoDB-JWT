@@ -9,7 +9,7 @@ function AssignedDate({ diet }) {
       </div>
       <div>
         <p className="text-xs tracking-wide text-gray-500 uppercase">Creado</p>
-        <p className="text-sm font-semibold text-gray-900">
+        <p className="text-sm font-semibold text-gray-700">
           {new Date(diet.createdAt).toLocaleDateString('es-ES', {
             day: '2-digit',
             month: 'short',

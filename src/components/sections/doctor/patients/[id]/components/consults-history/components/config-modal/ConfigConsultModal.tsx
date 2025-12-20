@@ -37,7 +37,7 @@ function ConfigConsultModal({
         <div className="border-b border-gray-200 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">Configurar preguntas visibles</h2>
+              <h2 className="text-xl font-semibold text-gray-700">Configurar preguntas visibles</h2>
               <p className="mt-1 text-sm text-gray-500">
                 Selecciona qué información quieres ver en todas las consultas
               </p>
@@ -123,7 +123,7 @@ function ConfigConsultModal({
                 return (
                   <div key={category}>
                     <div className="mb-3 flex items-center justify-between">
-                      <h3 className="text-sm font-semibold text-gray-900">{category}</h3>
+                      <h3 className="text-sm font-semibold text-gray-700">{category}</h3>
 
                       <button
                         onClick={() => toggleCategory(category)}

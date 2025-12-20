@@ -18,7 +18,7 @@ export default function DaysGrid({ days, selectedDate, onSelectDate, helpers }) 
               isSelected
                 ? 'bg-beehealth-blue-primary-solid z-10 scale-110 text-white shadow-lg'
                 : hasApts
-                  ? 'border-beehealth-green-primary-dark/50 border-2 bg-linear-to-br from-blue-50 to-indigo-50 text-gray-900 hover:scale-105 hover:from-blue-100 hover:to-indigo-100 hover:shadow-md'
+                  ? 'border-beehealth-green-primary-dark/50 border-2 bg-linear-to-br from-blue-50 to-indigo-50 text-gray-700 hover:scale-105 hover:from-blue-100 hover:to-indigo-100 hover:shadow-md'
                   : 'bg-beehealth-body-main text-gray-600 hover:scale-105 hover:bg-gray-100'
             } ${isToday && !isSelected ? 'ring-beehealth-green-primary-dark ring-2 ring-offset-1' : ''} active:scale-95`}
           >

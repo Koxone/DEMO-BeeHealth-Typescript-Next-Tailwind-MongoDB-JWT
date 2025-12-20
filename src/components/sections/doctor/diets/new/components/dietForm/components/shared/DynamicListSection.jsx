@@ -75,7 +75,7 @@ function DynamicListSection({
         <div className={`rounded-lg ${styles.background} p-2`}>
           <Icon className={`h-5 w-5 ${styles.text}`} />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+        <h2 className="text-xl font-semibold text-gray-700">{title}</h2>
         {optional && <span className="ml-1 text-xs text-gray-400">(Opcional)</span>}
         {!optional && <span className="ml-1 text-xs text-gray-400">(Requerido)</span>}
       </div>

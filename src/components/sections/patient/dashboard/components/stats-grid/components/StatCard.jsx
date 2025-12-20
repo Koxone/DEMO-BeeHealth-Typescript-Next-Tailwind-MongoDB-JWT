@@ -9,7 +9,7 @@ function StatCard({ Icon, label, value, unit }) {
           <Icon className="h-4 w-4 text-white" />
         </div>
       </div>
-      <p className="text-2xl font-bold text-gray-900">
+      <p className="text-2xl font-bold text-gray-700">
         {value} {unit}
       </p>
     </div>

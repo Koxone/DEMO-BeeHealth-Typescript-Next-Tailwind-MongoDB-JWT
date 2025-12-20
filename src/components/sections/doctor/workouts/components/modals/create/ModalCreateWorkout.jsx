@@ -270,7 +270,7 @@ export default function ModalCreateWorkout({
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                    <h2 className="text-2xl font-bold text-gray-700 sm:text-3xl">
                       Crear Nuevo Ejercicio
                     </h2>
                     <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">

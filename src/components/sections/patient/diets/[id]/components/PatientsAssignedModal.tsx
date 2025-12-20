@@ -39,7 +39,7 @@ export default function PatientsAssignedModal({ patients, onClose }) {
 
                 {/* Title */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Pacientes asignados</h2>
+                  <h2 className="text-2xl font-bold text-gray-700">Pacientes asignados</h2>
                   <p className="mt-1 text-sm text-gray-600">
                     Lista completa de pacientes vinculados a esta dieta
                   </p>
@@ -69,7 +69,7 @@ export default function PatientsAssignedModal({ patients, onClose }) {
 
                 {/* Patient info */}
                 <div className="flex flex-col">
-                  <p className="text-sm font-semibold text-gray-900">{item.patient.fullName}</p>
+                  <p className="text-sm font-semibold text-gray-700">{item.patient.fullName}</p>
 
                   <p className="text-xs text-gray-500">{item.patient.email}</p>
 

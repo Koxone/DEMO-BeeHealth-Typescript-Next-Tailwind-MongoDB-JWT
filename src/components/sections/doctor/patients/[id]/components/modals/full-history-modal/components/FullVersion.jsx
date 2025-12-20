@@ -72,7 +72,7 @@ function GoogleStyleDateInput({ value, isEditing, onChange }) {
   };
 
   const baseInputClass = isEditing
-    ? 'border-blue-300 bg-white text-gray-900 focus:border-blue-500'
+    ? 'border-blue-300 bg-white text-gray-700 focus:border-blue-500'
     : 'bg-beehealth-body-main border-gray-300 text-gray-500';
 
   return (
@@ -249,7 +249,7 @@ export default function FullVersion({
                       onChange={(e) => handleInputChange(q.questionId, e.target.value)}
                       className={`w-full resize-none rounded-xl border-2 px-4 py-3 outline-none ${
                         isEditing
-                          ? 'border-blue-300 bg-white text-gray-900 focus:border-blue-500'
+                          ? 'border-blue-300 bg-white text-gray-700 focus:border-blue-500'
                           : 'bg-beehealth-body-main border-gray-300 text-gray-500'
                       }`}
                     />
@@ -260,7 +260,7 @@ export default function FullVersion({
                       onChange={(e) => handleInputChange(q.questionId, e.target.value)}
                       className={`w-full rounded-xl border-2 px-4 py-3 outline-none ${
                         isEditing
-                          ? 'border-blue-300 bg-white text-gray-900 focus:border-blue-500'
+                          ? 'border-blue-300 bg-white text-gray-700 focus:border-blue-500'
                           : 'bg-beehealth-body-main border-gray-300 text-gray-500'
                       }`}
                     >
@@ -316,7 +316,7 @@ export default function FullVersion({
                       onChange={(e) => handleInputChange(q.questionId, e.target.value)}
                       className={`w-full rounded-xl border-2 px-4 py-3 outline-none ${
                         isEditing
-                          ? 'border-blue-300 bg-white text-gray-900 focus:border-blue-500'
+                          ? 'border-blue-300 bg-white text-gray-700 focus:border-blue-500'
                           : 'bg-beehealth-body-main border-gray-300 text-gray-500'
                       }`}
                     />

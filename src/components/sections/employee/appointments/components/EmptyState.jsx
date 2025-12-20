@@ -9,7 +9,7 @@ export default function EmptyState() {
       <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100">
         <Calendar className="text-beehealth-green-secondary-solid h-10 w-10" />
       </div>
-      <h3 className="mb-2 text-xl font-bold text-gray-900">No se encontraron citas</h3>
+      <h3 className="mb-2 text-xl font-bold text-gray-700">No se encontraron citas</h3>
       <p className="mb-6 text-gray-600">Intenta con otros filtros o agenda una nueva cita</p>
     </div>
   );

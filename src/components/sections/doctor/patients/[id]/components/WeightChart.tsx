@@ -92,7 +92,7 @@ export default function WeightChart({ id }: WeightChartProps) {
             <TrendingUp className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Evolución de Peso</h2>
+            <h2 className="text-xl font-bold text-gray-700">Evolución de Peso</h2>
             <p className="text-sm text-gray-500">Seguimiento del progreso del paciente</p>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function AllowedFoods({ diet }) {
         <div className="rounded-lg bg-green-100 p-2">
           <CheckCircle className="h-5 w-5 text-green-600" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Alimentos Permitidos</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Alimentos Permitidos</h2>
       </div>
 
       {/* Items */}

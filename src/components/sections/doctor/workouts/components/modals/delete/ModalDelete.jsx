@@ -71,7 +71,7 @@ export default function ModalDelete({ workoutToDelete, handleDelete, setShowDele
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-gray-700">
                       {isDeleted ? '¡Eliminado!' : 'Eliminar Ejercicio'}
                     </h2>
                     <p className="mt-1 text-sm text-gray-600">
@@ -125,7 +125,7 @@ export default function ModalDelete({ workoutToDelete, handleDelete, setShowDele
                         <Trash2 className="h-5 w-5 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg font-bold text-gray-900">{workoutToDelete?.name}</p>
+                        <p className="text-lg font-bold text-gray-700">{workoutToDelete?.name}</p>
                         <div className="mt-2 flex items-center gap-2">
                           <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700">
                             {workoutToDelete?.type}

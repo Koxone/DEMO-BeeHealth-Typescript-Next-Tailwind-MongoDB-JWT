@@ -95,7 +95,7 @@ export default function DoctorAccountingSummary({
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-600">{item.label}</p>
-                  <p className="font-bold text-gray-900">{item.value}</p>
+                  <p className="font-bold text-gray-700">{item.value}</p>
                 </div>
               </div>
               <div className="text-right">

@@ -11,7 +11,7 @@ export default function SuppliesTable({ rows, getStockStatus, onEdit, onDelete, 
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
             <span className="text-2xl text-gray-400">📦</span>
           </div>
-          <p className="mb-1 text-base font-medium text-gray-900">No hay suministros registrados</p>
+          <p className="mb-1 text-base font-medium text-gray-700">No hay suministros registrados</p>
           <p className="text-sm text-gray-500">Comienza agregando tu primer suministro</p>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function SuppliesTable({ rows, getStockStatus, onEdit, onDelete, 
                         <div className="min-w-0">
                           <p
                             className={clsx(
-                              'truncate text-sm font-semibold text-gray-900',
+                              'truncate text-sm font-semibold text-gray-700',
                               disabled && 'text-gray-600'
                             )}
                           >
@@ -154,7 +154,7 @@ export default function SuppliesTable({ rows, getStockStatus, onEdit, onDelete, 
                       <span
                         className={clsx(
                           'text-sm font-semibold',
-                          disabled ? 'text-gray-600' : 'text-gray-900'
+                          disabled ? 'text-gray-600' : 'text-gray-700'
                         )}
                       >
                         ${parseFloat(sum?.product?.costPrice).toFixed(2)}

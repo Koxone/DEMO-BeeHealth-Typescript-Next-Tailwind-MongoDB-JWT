@@ -19,7 +19,7 @@ export default function DistributionCard({ data }) {
 
   return (
     <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
-      <h2 className="mb-4 text-lg font-semibold text-gray-900 md:text-xl">Distribución</h2>
+      <h2 className="mb-4 text-lg font-semibold text-gray-700 md:text-xl">Distribución</h2>
 
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
@@ -47,7 +47,7 @@ export default function DistributionCard({ data }) {
               <div className="h-3 w-3 rounded-full" style={{ backgroundColor: item.color }} />
               <span className="text-gray-700">{item.name}</span>
             </div>
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-gray-700">
               ${Number(item.value).toLocaleString()}
             </span>
           </div>

@@ -31,31 +31,31 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
           <div className="px-6 py-4">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-bold text-gray-900">Fecha</span>
+              <span className="text-sm font-bold text-gray-700">Fecha</span>
             </div>
           </div>
           <div className="px-6 py-4">
             <div className="flex items-center gap-2">
               <Weight className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-bold text-gray-900">Peso (kg)</span>
+              <span className="text-sm font-bold text-gray-700">Peso (kg)</span>
             </div>
           </div>
           <div className="px-6 py-4">
             <div className="flex items-center gap-2">
               <Ruler className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-bold text-gray-900">Talla (cm)</span>
+              <span className="text-sm font-bold text-gray-700">Talla (cm)</span>
             </div>
           </div>
           <div className="px-6 py-4">
             <div className="flex items-center gap-2">
               <FileText className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-bold text-gray-900">Diferencia (kg)</span>
+              <span className="text-sm font-bold text-gray-700">Diferencia (kg)</span>
             </div>
           </div>
           <div className="px-6 py-4">
             <div className="flex items-center gap-2">
               <FileText className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-bold text-gray-900">Diferencia (cm)</span>
+              <span className="text-sm font-bold text-gray-700">Diferencia (cm)</span>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
                 </div>
                 <div className="lg:flex lg:items-center lg:gap-2">
                   <p className="text-xs font-medium text-gray-500 lg:hidden">Fecha</p>
-                  <p className="text-sm font-bold text-gray-900 lg:font-semibold">
+                  <p className="text-sm font-bold text-gray-700 lg:font-semibold">
                     {new Date(record?.createdAt).toISOString().split('T')[0]}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
                     <p className="text-xs font-medium text-gray-600">Peso</p>
                   </div>
                   <div className="flex items-baseline gap-1 lg:items-center lg:gap-2">
-                    <p className="text-xl font-bold text-gray-900 lg:text-2xl lg:text-gray-600">
+                    <p className="text-xl font-bold text-gray-700 lg:text-2xl lg:text-gray-600">
                       {record?.currentWeight}
                     </p>
                     <p className="text-xs text-gray-500 lg:text-sm">kg</p>
@@ -105,7 +105,7 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
                     <p className="text-xs font-medium text-gray-600">Talla</p>
                   </div>
                   <div className="flex items-baseline gap-1 lg:items-center lg:gap-3">
-                    <p className="text-xl font-bold text-gray-900 lg:text-2xl lg:text-gray-600">
+                    <p className="text-xl font-bold text-gray-700 lg:text-2xl lg:text-gray-600">
                       {record?.currentSize}
                     </p>
                     <p className="text-xs text-gray-500 lg:text-sm">cm</p>
@@ -119,7 +119,7 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
                     <p className="text-xs font-medium text-gray-600">Dif. Peso</p>
                   </div>
                   <div className="flex items-baseline gap-1 lg:items-center lg:gap-3">
-                    <p className="text-xl font-bold text-gray-900 lg:text-2xl lg:text-gray-600">
+                    <p className="text-xl font-bold text-gray-700 lg:text-2xl lg:text-gray-600">
                       {record?.differenceFromPrevious}
                     </p>
                     <p className="text-xs text-gray-500 lg:text-sm">kg</p>
@@ -133,7 +133,7 @@ export default function RecordsTable({ historyData = [], patientWeightLogs }) {
                     <p className="text-xs font-medium text-gray-600">Dif. Talla</p>
                   </div>
                   <div className="flex items-baseline gap-1 lg:items-center lg:gap-3">
-                    <p className="text-xl font-bold text-gray-900 lg:text-2xl lg:text-gray-600">
+                    <p className="text-xl font-bold text-gray-700 lg:text-2xl lg:text-gray-600">
                       {record?.differenceSizeFromPrevious}
                     </p>
                     <p className="text-xs text-gray-500 lg:text-sm">cm</p>

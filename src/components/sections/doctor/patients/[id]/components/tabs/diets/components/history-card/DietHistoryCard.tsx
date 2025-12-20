@@ -31,7 +31,7 @@ function DietHistoryCard({
 
         {/* Info */}
         <div>
-          <p className="font-semibold text-gray-900">
+          <p className="font-semibold text-gray-700">
             {record?.snapshot?.dietName || record?.diet?.name || 'Nombre de dieta no disponible'}
           </p>
           <p className="text-sm text-gray-500">Por: {record?.doctor?.fullName}</p>

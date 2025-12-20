@@ -34,7 +34,7 @@ function Duration({ diet, isEditing, editDiet, refreshDiets, setShowSuccessModal
         <div className="rounded-lg bg-orange-100 p-2">
           <Clock className="h-5 w-5 text-orange-600" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Duración</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Duración</h2>
       </div>
 
       {/* Content block */}

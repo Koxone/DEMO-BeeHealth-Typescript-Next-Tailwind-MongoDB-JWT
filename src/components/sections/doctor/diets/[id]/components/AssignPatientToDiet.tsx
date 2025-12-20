@@ -82,7 +82,7 @@ export default function AssignPatientToDiet({
       {/* Dropdown button */}
       <button
         onClick={() => setOpen(!open)}
-        className="bg-beehealth-body-main flex w-full items-center justify-between rounded-md border border-gray-300 px-3 py-2 text-left text-sm text-gray-900 transition-colors hover:border-gray-400"
+        className="bg-beehealth-body-main flex w-full items-center justify-between rounded-md border border-gray-300 px-3 py-2 text-left text-sm text-gray-700 transition-colors hover:border-gray-400"
       >
         <span>
           {selected.length === 0 && 'Asignar pacientes'}
@@ -99,7 +99,7 @@ export default function AssignPatientToDiet({
             <input
               type="text"
               placeholder="Buscar..."
-              className="w-full rounded-md border border-gray-300 px-2 py-1 text-sm text-gray-900 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-gray-300 px-2 py-1 text-sm text-gray-700 focus:border-blue-500 focus:outline-none"
             />
           </div>
 

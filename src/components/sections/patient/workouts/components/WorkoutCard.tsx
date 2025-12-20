@@ -40,7 +40,7 @@ export default function WorkoutCard({ workout, onOpen }) {
       </div>
 
       <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold text-gray-900 transition-colors duration-200 group-hover:text-blue-600">
+        <h3 className="mb-2 text-lg font-semibold text-gray-700 transition-colors duration-200 group-hover:text-blue-600">
           {workout?.workout?.name}
         </h3>
         <div className="flex items-center gap-2 text-sm text-gray-600">

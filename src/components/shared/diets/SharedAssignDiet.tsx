@@ -76,7 +76,7 @@ export default function SharedAssignDiet({
       {/* Dropdown button */}
       <button
         onClick={() => setDropdownOpen(!openDropdown)}
-        className="bg-beehealth-body-main flex w-full items-center justify-between rounded-md border border-gray-300 px-3 py-2 text-left text-sm text-gray-900 transition-colors hover:border-gray-400"
+        className="bg-beehealth-body-main flex w-full items-center justify-between rounded-md border border-gray-300 px-3 py-2 text-left text-sm text-gray-700 transition-colors hover:border-gray-400"
       >
         <span>
           {selectedPatients.length === 0 && 'Seleccionar pacientes'}
@@ -99,7 +99,7 @@ export default function SharedAssignDiet({
               placeholder="Buscar..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="focus:border-beehealth-blue-primary-solid w-full rounded-md border border-gray-300 px-2 py-1 text-sm text-gray-900 focus:outline-none"
+              className="focus:border-beehealth-blue-primary-solid w-full rounded-md border border-gray-300 px-2 py-1 text-sm text-gray-700 focus:outline-none"
             />
           </div>
 

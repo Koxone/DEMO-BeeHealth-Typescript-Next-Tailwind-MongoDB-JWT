@@ -71,7 +71,7 @@ export default function ToggleProductModal({ item, onClose, onConfirm }) {
 
                 {/* Title */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-gray-700">
                     {isActive ? 'Desactivar producto' : 'Reactivar producto'}
                   </h2>
                   <p className="mt-1 text-sm text-gray-600">

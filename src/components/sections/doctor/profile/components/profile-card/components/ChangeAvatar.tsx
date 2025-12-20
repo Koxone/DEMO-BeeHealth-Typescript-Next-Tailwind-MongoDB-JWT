@@ -66,12 +66,17 @@ function ChangeAvatar({
     <div
       onClick={handleClick}
       className={[
-        'relative mb-6 flex h-50 w-50 items-center justify-center rounded-full shadow-lg ring-4 ring-green-100',
-        'bg-linear-to-br from-green-500 to-emerald-600',
-        isEditing ? 'group border-beehealth-blue-primary-solid cursor-pointer border-4' : '',
+        'relative mb-6 flex h-50 w-50 items-center justify-center rounded-full',
+        isEditing
+          ? 'group border-beehealth-blue-primary-solid bg-beehealth-blue-primary-solid cursor-pointer border-10'
+          : '',
       ].join(' ')}
     >
-      <img src={user?.avatar} alt="Profile" className="h-full w-full rounded-full object-cover" />
+      <img
+        src={user?.avatar}
+        alt="Profile"
+        className={`${isEditing ? 'scale-100' : 'scale-90'} h-full w-full rounded-full object-cover`}
+      />
 
       {isEditing && (
         <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">

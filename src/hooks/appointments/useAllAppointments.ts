@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 /* Parse fields */
 function parseDescription(desc) {
@@ -74,79 +75,68 @@ function normalizeEvents(items, specialty) {
   });
 }
 
+/* Fetcher */
+async function fetchAllAppointments() {
+  const [wRes, dRes] = await Promise.all([
+    fetch('/api/google/calendar/appointments?specialty=weight'),
+    fetch('/api/google/calendar/appointments?specialty=dental'),
+  ]);
+
+  if (!wRes.ok && !dRes.ok) {
+    throw new Error('Error al cargar citas');
+  }
+
+  const [wJson, dJson] = await Promise.all([
+    wRes.ok ? wRes.json() : { events: [] },
+    dRes.ok ? dRes.json() : { events: [] },
+  ]);
+
+  const weight = normalizeEvents(wJson.events, 'weight');
+  const dental = normalizeEvents(dJson.events, 'dental');
+  const all = [...weight, ...dental].sort((a, b) =>
+    a.startISO < b.startISO ? 1 : a.startISO > b.startISO ? -1 : 0
+  );
+
+  return {
+    all,
+    bySpecialty: { weight, dental },
+  };
+}
+
 /* Main hook */
 export function useAllAppointments() {
-  // Local state
-  const [data, setData] = useState({
-    all: [],
-    bySpecialty: { weight: [], dental: [] },
+  const queryClient = useQueryClient();
+
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useQuery({
+    queryKey: ['allAppointments'],
+    queryFn: fetchAllAppointments,
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  /* Fetcher */
-  const fetchAll = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [wRes, dRes] = await Promise.all([
-        fetch('/api/google/calendar/appointments?specialty=weight'),
-        fetch('/api/google/calendar/appointments?specialty=dental'),
-      ]);
-
-      if (!wRes.ok && !dRes.ok) {
-        const txt = `Error al cargar citas`;
-        throw new Error(txt);
-      }
-
-      const [wJson, dJson] = await Promise.all([
-        wRes.ok ? wRes.json() : { events: [] },
-        dRes.ok ? dRes.json() : { events: [] },
-      ]);
-
-      const weight = normalizeEvents(wJson.events, 'weight');
-      const dental = normalizeEvents(dJson.events, 'dental');
-      const all = [...weight, ...dental].sort((a, b) =>
-        a.startISO < b.startISO ? 1 : a.startISO > b.startISO ? -1 : 0
-      );
-
-      setData({
-        all,
-        bySpecialty: { weight, dental },
-      });
-    } catch (e) {
-      setError(e.message || 'Error desconocido');
-      setData({
-        all: [],
-        bySpecialty: { weight: [], dental: [] },
-      });
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  /* Auto load */
-  useEffect(() => {
-    fetchAll();
-  }, [fetchAll]);
+  const refetch = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['allAppointments'] });
+  }, [queryClient]);
 
   /* Derived maps */
   const byDay = useMemo(() => {
     const map = {};
-    for (const ev of data.all) {
+    for (const ev of data?.all || []) {
       if (!ev._dateKey) continue;
       if (!map[ev._dateKey]) map[ev._dateKey] = [];
       map[ev._dateKey].push(ev);
     }
     return map;
-  }, [data.all]);
+  }, [data?.all]);
 
   /* Public api */
   return {
-    data, // { all, bySpecialty: { weight, dental } }
-    byDay, // { 'yyyy-mm-dd': [...] }
+    data: data || { all: [], bySpecialty: { weight: [], dental: [] } },
+    byDay,
     loading,
-    error,
-    refetch: fetchAll,
+    error: error ? error.message : null,
+    refetch,
   };
 }

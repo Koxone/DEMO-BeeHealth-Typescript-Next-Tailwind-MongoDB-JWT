@@ -229,7 +229,7 @@ export default function ConsultCard({
                       </div>
                       <BadgeIcon className="h-5 w-5 text-white" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-700">
                       {event?.diet?.name || 'Ninguna'}
                     </p>
                   </Link>
@@ -253,7 +253,7 @@ export default function ConsultCard({
                       </div>
                       <BadgeIcon className="h-5 w-5 text-white" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-700">
                       {event?.snapshot?.workoutName || 'Ninguna'}
                     </p>
                   </Link>

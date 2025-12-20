@@ -11,7 +11,7 @@ export default function TimeSlots({ dateLabel, times, selectedTime, onSelectTime
           <Clock className="h-5 w-5 text-purple-600" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Paso 3: Selecciona un horario</h2>
+          <h2 className="text-xl font-bold text-gray-700">Paso 3: Selecciona un horario</h2>
           <p className="text-sm text-gray-600">Horarios disponibles para {dateLabel}</p>
         </div>
       </div>

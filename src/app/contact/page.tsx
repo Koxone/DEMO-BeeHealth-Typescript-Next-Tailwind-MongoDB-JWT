@@ -12,20 +12,20 @@ export default function Contact() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <button onClick={() => router.push('/')} className="flex items-center gap-2">
             <img src="/fish.png" alt="" className="max-w-10" />
-            <span className="text-2xl font-bold text-gray-900">BeeHealth</span>
+            <span className="text-2xl font-bold text-gray-700">BeeHealth</span>
           </button>
         </div>
       </header>
 
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mb-6 text-4xl font-bold text-gray-900">Contáctanos</h1>
+        <h1 className="mb-6 text-4xl font-bold text-gray-700">Contáctanos</h1>
         <p className="mb-12 text-xl text-gray-600">
           Estamos aquí para ayudarte. Envíanos un mensaje.
         </p>
 
         <div className="grid gap-8 md:grid-cols-2">
           <div className="bg-beehealth-body-main rounded-xl p-8 shadow-md">
-            <h2 className="mb-6 text-2xl font-semibold text-gray-900">Envíanos un mensaje</h2>
+            <h2 className="mb-6 text-2xl font-semibold text-gray-700">Envíanos un mensaje</h2>
             <form className="space-y-4">
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-700">Nombre</label>
@@ -61,21 +61,21 @@ export default function Contact() {
             <div className="bg-beehealth-body-main flex items-start gap-4 rounded-xl p-6 shadow-md">
               <Mail className="mt-1 h-6 w-6 text-blue-500" />
               <div>
-                <h3 className="mb-1 font-semibold text-gray-900">Email</h3>
+                <h3 className="mb-1 font-semibold text-gray-700">Email</h3>
                 <p className="text-gray-600">beehealth@littlebear.vip</p>
               </div>
             </div>
             <div className="bg-beehealth-body-main flex items-start gap-4 rounded-xl p-6 shadow-md">
               <Phone className="mt-1 h-6 w-6 text-green-500" />
               <div>
-                <h3 className="mb-1 font-semibold text-gray-900">Telefono</h3>
+                <h3 className="mb-1 font-semibold text-gray-700">Telefono</h3>
                 <p className="text-gray-600">+52 55 2036 4971</p>
               </div>
             </div>
             <div className="bg-beehealth-body-main flex items-start gap-4 rounded-xl p-6 shadow-md">
               <MapPin className="mt-1 h-6 w-6 text-red-500" />
               <div>
-                <h3 className="mb-1 font-semibold text-gray-900">Dirección</h3>
+                <h3 className="mb-1 font-semibold text-gray-700">Dirección</h3>
                 <p className="text-gray-600">
                   Av. Pdte. Plutarco Elías Calles 712-local 101, Nueva Sta Anita, Iztacalco, 08210
                   Ciudad de México, CDMX

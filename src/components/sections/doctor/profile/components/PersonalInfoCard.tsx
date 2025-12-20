@@ -49,27 +49,16 @@ function PersonalInfoCard({
   }, [isEditing]);
 
   return (
-    <div className="bg-beehealth-body-main rounded-2xl border border-gray-200 p-6 shadow-lg md:col-span-2">
-      <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
-          <User className="h-5 w-5 text-blue-600" />
-        </div>
-        <h3 className="text-xl font-bold text-gray-900">Información Personal</h3>
-      </div>
+    <div className="grid gap-4 md:grid-cols-2">
+      <Field
+        label="Correo Electrónico"
+        value={email}
+        isEditing={isEditing}
+        icon={Mail}
+        onChange={setEmail}
+      />
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <Field
-          label="Correo Electrónico"
-          value={email}
-          isEditing={isEditing}
-          icon={Mail}
-          onChange={setEmail}
-        />
-
-        <Field label="Telefono" value={user?.phone || ''} isEditing={false} icon={Phone} />
-        <Field label="Cédula Profesional" value="1234567" isEditing={false} icon={Award} />
-        <Field label="Universidad" value="UNAM" isEditing={false} icon={MapPin} />
-      </div>
+      <Field label="Telefono" value={user?.phone || ''} isEditing={false} icon={Phone} />
     </div>
   );
 }

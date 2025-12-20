@@ -9,7 +9,7 @@ function Category({ diet }) {
       </div>
       <div>
         <p className="text-xs tracking-wide text-gray-500 uppercase">Categoría</p>
-        <p className="text-sm font-semibold text-gray-900">{diet.category}</p>
+        <p className="text-sm font-semibold text-gray-700">{diet.category}</p>
       </div>
     </div>
   );

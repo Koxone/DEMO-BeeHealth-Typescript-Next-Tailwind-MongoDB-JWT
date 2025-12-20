@@ -26,7 +26,7 @@ export default function DoctorsGrid({ selectedDoctor, onSelect }) {
           <Stethoscope className="h-5 w-5 text-blue-600" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Paso 1: Selecciona tu médico</h2>
+          <h2 className="text-xl font-bold text-gray-700">Paso 1: Selecciona tu médico</h2>
           <p className="text-sm text-gray-600">Elige el especialista que deseas consultar</p>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function DoctorsGrid({ selectedDoctor, onSelect }) {
                     </div>
                   )}
                 </div>
-                <p className="mb-1 font-bold text-gray-900">{doctor.nombre}</p>
+                <p className="mb-1 font-bold text-gray-700">{doctor.nombre}</p>
                 <p className="text-sm text-gray-600">{doctor.especialidad}</p>
               </div>
 

@@ -66,7 +66,7 @@ export default function Images({
         <div className="rounded-lg bg-gray-100 p-2">
           <ImageIcon className="h-5 w-5 text-gray-700" />
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">Imágenes</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Imágenes</h2>
       </div>
 
       {/* Images Grid */}

@@ -149,7 +149,7 @@ export default function EditProductModal({ activeTab, item, onClose, onSubmit, s
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-gray-700">
                     Editar{' '}
                     {activeTab === 'medicamentos'
                       ? 'Medicamento'

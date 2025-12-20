@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useAuthStore from '@/zustand/useAuthStore';
 
 // Types
@@ -85,6 +86,21 @@ function normalizeEvents(
   });
 }
 
+/* --- Fetcher --- */
+async function fetchTodayAppointments(
+  specialty: CurrentUserData['specialty']
+): Promise<NormalizedAppointment[]> {
+  const res = await fetch(`/api/google/calendar/appointments?specialty=${specialty}`);
+
+  if (!res.ok) throw new Error('Error al cargar las citas');
+
+  const json: { events: CalendarEvent[] } = await res.json();
+  const normalized = normalizeEvents(json.events, specialty);
+
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' });
+  return normalized.filter((ev) => ev._dateKey === today);
+}
+
 /* --- Hook principal --- */
 export function useTodayAppointmentsBySpecialty(): {
   appointments: NormalizedAppointment[];
@@ -93,47 +109,25 @@ export function useTodayAppointmentsBySpecialty(): {
   refetch: () => Promise<void>;
 } {
   const { user } = useAuthStore();
+  const queryClient = useQueryClient();
 
-  const [appointments, setAppointments] = useState<NormalizedAppointment[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['todayAppointments', user?.specialty],
+    queryFn: () => fetchTodayAppointments(user!.specialty),
+    enabled: !!user?.specialty,
+  });
 
-  const fetchTodayAppointments = useCallback(async () => {
-    if (!user || !user.specialty) return;
+  const refetch = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['todayAppointments', user?.specialty] });
+  }, [queryClient, user?.specialty]);
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch(`/api/google/calendar/appointments?specialty=${user.specialty}`);
-
-      if (!res.ok) throw new Error('Error al cargar las citas');
-
-      const json: { events: CalendarEvent[] } = await res.json();
-      const normalized = normalizeEvents(json.events, user.specialty);
-
-      const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Mexico_City' });
-      const todayAppointments = normalized.filter((ev) => ev._dateKey === today);
-
-      setAppointments(todayAppointments);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        setError(e.message);
-      } else {
-        setError('Error desconocido');
-      }
-      setAppointments([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [user?.specialty]);
-
-  useEffect(() => {
-    fetchTodayAppointments();
-  }, [fetchTodayAppointments]);
-
-  return { appointments, isLoading, error, refetch: fetchTodayAppointments };
+  return {
+    appointments: data || [],
+    isLoading,
+    error: error ? (error as Error).message : null,
+    refetch,
+  };
 }
 
 // // Google Calendar Custom Hooks
-// const { appointments, isLoading, error } = useTodayAppointmentsBySpecialty();
+// const { appointments, isLoading, error, refetch } = useTodayAppointmentsBySpecialty();

@@ -7,7 +7,6 @@ export const runtime = 'nodejs';
 export default async function DoctorDashboardPage() {
   // Get current User info
   const currentUser = await getCurrentUser();
-  console.log(currentUser)
 
   if (currentUser?.hasRecord === false) {
     redirect('/patient/clinical-record');

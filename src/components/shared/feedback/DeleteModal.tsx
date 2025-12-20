@@ -73,7 +73,7 @@ export default function DeleteModal({
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-gray-700">
                       {isDeleted ? '¡Eliminado!' : title}
                     </h2>
                     <p className="mt-1 text-sm text-gray-600">
@@ -123,7 +123,7 @@ export default function DeleteModal({
                         <Trash2 className="h-5 w-5 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-lg font-bold text-gray-900">{itemName}</p>
+                        <p className="text-lg font-bold text-gray-700">{itemName}</p>
                         {itemBadges.length > 0 && (
                           <div className="mt-2 flex flex-wrap items-center gap-2">
                             {itemBadges.map((badge, index) => (

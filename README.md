@@ -1,4 +1,4 @@
-# 🏥 **MedTrack — Medical Management Platform**
+# 🏥 **BeeHealth — Medical Management Platform**
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)
@@ -118,8 +118,8 @@ src/
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/Koxone/MedTrack.git
-cd MedTrack
+git clone https://github.com/Koxone/DEMO-BeeHealth-Typescript-Next-Tailwind-MongoDB-JWT.git
+cd BeeHealth
 ```
 
 ### 2️⃣ Install dependencies
@@ -180,7 +180,7 @@ This project is licensed under the MIT License.
 
 ---
 
-## 💡 Why MedTrack?
+## 💡 Why BeeHealth?
 
 This platform is designed to function as a **real**, production-ready medical system with:
 

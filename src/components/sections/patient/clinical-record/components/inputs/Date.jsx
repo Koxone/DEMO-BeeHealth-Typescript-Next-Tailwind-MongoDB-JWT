@@ -19,7 +19,6 @@ const MONTHS = [
 function Date({ question, required, value, id, onChange }) {
   const [monthDropdownOpen, setMonthDropdownOpen] = useState(false);
 
-  // Parsear valor YYYY-MM-DD
   const parseDate = (dateStr) => {
     if (!dateStr) return { day: '', month: '', year: '' };
     const parts = dateStr.split('-');
@@ -36,11 +35,9 @@ function Date({ question, required, value, id, onChange }) {
   const parsed = parseDate(value);
   const selectedMonthLabel = MONTHS.find((m) => m.value === parsed.month)?.label || '';
 
-  // Actualizar fecha y llamar onChange con formato YYYY-MM-DD
   const updateDate = (field, newValue) => {
     const newParsed = { ...parsed, [field]: newValue };
 
-    // Solo llamar onChange si tenemos al menos un valor
     if (newParsed.year || newParsed.month || newParsed.day) {
       const formatted = `${newParsed.year || ''}-${newParsed.month ? String(newParsed.month).padStart(2, '0') : ''}-${newParsed.day ? String(newParsed.day).padStart(2, '0') : ''}`;
       onChange(formatted);
@@ -53,8 +50,9 @@ function Date({ question, required, value, id, onChange }) {
     <div className="mb-6">
       <label className="mb-2 block text-sm font-medium text-gray-700">{question}</label>
 
-      <div className="flex gap-2">
-        {/* Day Input */}
+      {/* Cambio: flex-wrap en mobile, gap más pequeño en mobile */}
+      <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-2">
+        {/* Day Input - más ancho en mobile para mejor touch target */}
         <input
           type="text"
           inputMode="numeric"
@@ -62,26 +60,26 @@ function Date({ question, required, value, id, onChange }) {
           value={parsed.day}
           onChange={(e) => updateDate('day', e.target.value.replace(/\D/g, ''))}
           placeholder="Día"
-          className="w-16 rounded-lg border border-gray-300 px-3 py-2 text-center md:py-3"
+          className="w-[72px] shrink-0 rounded-lg border border-gray-300 px-3 py-3 text-center text-base sm:w-16 sm:py-2 md:py-3"
         />
 
-        {/* Month Dropdown */}
-        <div className="relative">
+        {/* Month Dropdown - flex-1 en mobile para ocupar espacio disponible */}
+        <div className="relative min-w-0 flex-1 sm:flex-initial">
           <button
             type="button"
             onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
-            className="flex w-32 items-center justify-between rounded-lg border border-gray-300 px-3 py-2 md:py-3"
+            className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-3 py-3 text-base sm:w-32 sm:py-2 md:py-3"
           >
-            <span className={selectedMonthLabel ? 'text-gray-700' : 'text-gray-400'}>
+            <span className={`truncate ${selectedMonthLabel ? 'text-gray-700' : 'text-gray-400'}`}>
               {selectedMonthLabel || 'Mes'}
             </span>
-            <ChevronDown className="h-4 w-4 text-gray-400" />
+            <ChevronDown className="ml-1 h-4 w-4 shrink-0 text-gray-400" />
           </button>
 
           {monthDropdownOpen && (
             <>
               <div className="fixed inset-0 z-50" onClick={() => setMonthDropdownOpen(false)} />
-              <div className="absolute top-full left-0 z-50 mt-1 max-h-48 w-full overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg">
+              <div className="absolute top-full left-0 z-50 mt-1 max-h-48 w-full min-w-[120px] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg">
                 {MONTHS.map((m) => (
                   <button
                     key={m.value}
@@ -90,7 +88,7 @@ function Date({ question, required, value, id, onChange }) {
                       updateDate('month', m.value);
                       setMonthDropdownOpen(false);
                     }}
-                    className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                    className="w-full px-3 py-3 text-left text-base text-gray-700 hover:bg-gray-100 sm:py-2 sm:text-sm"
                   >
                     {m.label}
                   </button>
@@ -100,7 +98,7 @@ function Date({ question, required, value, id, onChange }) {
           )}
         </div>
 
-        {/* Year Input */}
+        {/* Year Input - más ancho en mobile */}
         <input
           type="text"
           inputMode="numeric"
@@ -108,7 +106,7 @@ function Date({ question, required, value, id, onChange }) {
           value={parsed.year}
           onChange={(e) => updateDate('year', e.target.value.replace(/\D/g, ''))}
           placeholder="Año"
-          className="w-20 rounded-lg border border-gray-300 px-3 py-2 text-center md:py-3"
+          className="w-20 shrink-0 rounded-lg border border-gray-300 px-3 py-3 text-center text-base sm:w-20 sm:py-2 md:py-3"
         />
       </div>
     </div>

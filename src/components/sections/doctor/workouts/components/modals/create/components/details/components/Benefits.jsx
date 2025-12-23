@@ -22,6 +22,7 @@ function Benefits({
               <span className="text-beehealth-blue-primary-dark text-xs font-bold">•</span>
             </div>
             <textarea
+              maxLength={250}
               value={benefit}
               onChange={(e) => handleBenefitInputChange(index, e.target.value)}
               placeholder={`Beneficio ${index + 1}...`}

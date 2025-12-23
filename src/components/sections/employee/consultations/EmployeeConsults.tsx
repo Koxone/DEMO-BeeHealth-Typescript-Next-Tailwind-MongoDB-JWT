@@ -1,29 +1,32 @@
 'use client';
+import { useState } from 'react';
 
 import MetricsGrid from './components/MetricsGrid';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 import TodayConsultsList from '@/components/shared/todayConsults/TodayConsultsList';
-import MedsSoldTable from '../../../shared/medsSold/MedsSoldTable';
+import MedsSoldTable from '@/components/shared/medsSold/MedsSoldTable';
 
 // Custom Hooks
 import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+
+// Local Helpers
 import { getConsultTotals } from './utils/getConsultTotals';
+
+// Feedback Components
+import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 export default function EmployeeConsults({ role }) {
   // Get consults data
-  const { consults, isLoading, error } = useGetAllConsults();
+  const { consults, isLoading, error, refetch } = useGetAllConsults();
 
-  // Calculate totals
-  const totals = getConsultTotals(consults);
-  const totalConsultsCost = totals?.consultPrice || 0;
-  const totalItemsSold = totals?.totalItemsSold || 0;
-  const totalCost = totals?.totalCost || 0;
+  // Success Modal States
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successModalMessage, setSuccessModalMessage] = useState('');
+  const [successModalTitle, setSuccessModalTitle] = useState('');
 
-  const metrics = {
-    grandTotal: totalCost,
-    consultsTotal: totalConsultsCost,
-    medsTotal: totalItemsSold,
-  };
+  // Calculate totals with Custom Hook
+  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
+    getConsultTotals(consults);
 
   return (
     <div className="h-full overflow-y-auto pb-8">
@@ -38,22 +41,38 @@ export default function EmployeeConsults({ role }) {
       <div className="flex flex-col gap-6">
         {/* Metrics summary */}
         <MetricsGrid
-          consultsData={consults}
-          totals={{
-            grandTotal: metrics?.grandTotal,
-            consultsTotal: metrics?.consultsTotal,
-            medsTotal: metrics?.medsTotal,
-          }}
+          totalCost={totalCost}
+          totalItemsSold={totalItemsSold}
+          consultPrice={consultPrice}
+          consultsCount={consultsCount}
+          itemsSoldCount={itemsSoldCount}
         />
 
         {/* Consultations Table */}
-        <TodayConsultsList consultsData={consults} totals={metrics} />
+        <TodayConsultsList
+          consultsData={consults}
+          totalCost={totalCost}
+          setShowSuccessModal={setShowSuccessModal}
+          setSuccessModalMessage={setSuccessModalMessage}
+          setSuccessModalTitle={setSuccessModalTitle}
+          refetch={refetch}
+        />
 
         {/* Medications Sold Table */}
         <div className="bg-beehealth-body-main rounded-2xl border-2 border-gray-200">
           <MedsSoldTable consultsData={consults} />
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <SuccessModal
+          message={successModalMessage}
+          title={successModalTitle}
+          setShowSuccessModal={setShowSuccessModal}
+          showSuccessModal={showSuccessModal}
+        />
+      )}
     </div>
   );
 }

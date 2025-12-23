@@ -41,6 +41,7 @@ function Benefits({ diet, isEditing = false, editDiet, refreshDiets, setShowSucc
       {isEditing && (
         <div className="mt-4 space-y-4">
           <textarea
+            maxLength={250}
             className="focus:border-beehealth-green-secondary-solid w-full rounded-lg border border-gray-300 p-3 text-gray-700 focus:outline-none"
             value={benValue}
             onChange={(e) => setBenValue(e.target.value)}

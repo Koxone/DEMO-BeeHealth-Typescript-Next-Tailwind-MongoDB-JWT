@@ -126,6 +126,7 @@ export default function AddEditMedicationSellModal({
                       Hora
                     </label>
                     <input
+                      maxLength={250}
                       type="time"
                       required
                       value={form.hora}
@@ -182,6 +183,7 @@ export default function AddEditMedicationSellModal({
                       Costo
                     </label>
                     <input
+                      maxLength={250}
                       type="number"
                       required
                       min="0"
@@ -197,6 +199,7 @@ export default function AddEditMedicationSellModal({
                   <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-4">
                     <label className="flex cursor-pointer items-center gap-3">
                       <input
+                        maxLength={250}
                         type="checkbox"
                         checked={form.pagado}
                         onChange={(e) => setForm({ ...form, pagado: e.target.checked })}
@@ -248,6 +251,7 @@ export default function AddEditMedicationSellModal({
                       Medicamento
                     </label>
                     <input
+                      maxLength={250}
                       type="text"
                       required
                       value={form.nombre}

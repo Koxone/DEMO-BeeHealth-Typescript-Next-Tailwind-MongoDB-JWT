@@ -98,6 +98,7 @@ export default function AllowedFoods({
 
           <div className="mb-4 flex gap-2">
             <input
+              maxLength={250}
               type="text"
               value={newItem}
               onChange={(e) => setNewItem(e.target.value)}
@@ -115,6 +116,7 @@ export default function AllowedFoods({
 
           <label className="mb-1 block text-sm font-medium text-gray-700">Nota opcional</label>
           <textarea
+            maxLength={250}
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Escribe una nota para esta sección"

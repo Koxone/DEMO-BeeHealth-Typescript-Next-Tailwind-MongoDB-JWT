@@ -86,6 +86,7 @@ export default function LoginForm() {
               <div className="relative">
                 <Mail className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="email"
                   required
                   value={email}
@@ -102,6 +103,7 @@ export default function LoginForm() {
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="password"
                   required
                   value={password}
@@ -115,7 +117,7 @@ export default function LoginForm() {
             {/* Options */}
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
+                <input maxLength={250} type="checkbox" className="mr-2" />
                 <span className="text-gray-600">Recordarme</span>
               </label>
               <button type="button" className="text-blue-600 hover:text-blue-700">

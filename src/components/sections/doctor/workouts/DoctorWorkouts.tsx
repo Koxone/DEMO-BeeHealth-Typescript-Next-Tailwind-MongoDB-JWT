@@ -120,6 +120,7 @@ export default function DoctorWorkouts({ role }) {
           <div className="relative flex-1 md:w-64">
             <Search className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
             <input
+              maxLength={250}
               type="text"
               placeholder="Buscar..."
               value={searchTerm}

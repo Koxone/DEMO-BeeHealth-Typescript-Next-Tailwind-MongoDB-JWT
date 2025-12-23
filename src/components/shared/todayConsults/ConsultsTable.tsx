@@ -1,20 +1,9 @@
 'use client';
 
-import {
-  Calendar,
-  Users,
-  FileText,
-  DollarSign,
-  Edit2,
-  Trash2,
-  Award,
-  Banknote,
-  CreditCard,
-  ArrowLeftRight,
-} from 'lucide-react';
+import { Calendar, Edit2, Trash2, Award, Banknote, CreditCard, ArrowLeftRight } from 'lucide-react';
 import { columns } from './utils/helpers';
 
-export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
+export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
   return (
     <div className="hidden md:block">
       <table className="w-full table-fixed">
@@ -40,7 +29,11 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
             <tr
               key={c?._id}
               style={{ animationDelay: `${i * 50}ms` }}
-              className="group animate-fadeInUp transition hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50"
+              className={`group animate-fadeInUp transition ${
+                c?.consultStatus === 'cancelled'
+                  ? 'bg-beehealth-red-primary-light'
+                  : 'hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50'
+              } `}
             >
               {/* Dates */}
               <td className="px-6 py-4">
@@ -63,25 +56,6 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
               <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
                   {/* Avatar or Initials */}
-                  <div className="bg-beehealth-blue-primary-solid flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md">
-                    {c?.patient?.avatar ? (
-                      /* Image */
-                      <img
-                        src={c.patient.avatar}
-                        alt={c.patient.fullName || 'Avatar'}
-                        className="h-full w-full rounded-xl object-cover"
-                      />
-                    ) : (
-                      /* Initials */
-                      <span>
-                        {c?.patient?.fullName
-                          ?.split(' ')
-                          .map((n) => n[0])
-                          .join('')
-                          .toUpperCase()}
-                      </span>
-                    )}
-                  </div>
 
                   <span className="text-sm font-semibold text-gray-700">
                     {c?.patient?.fullName}
@@ -127,21 +101,35 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
                 </span>
               </td>
 
+              {/* Status */}
+              <td className="px-6 py-4 text-right">
+                <span className="text-sm font-semibold text-neutral-700">
+                  {c?.consultStatus === 'completed' ? 'Completa' : 'Cancelada'}
+                </span>
+              </td>
+
               {/* Actions */}
               <td className="px-6 py-4">
                 <div className="flex items-center justify-center gap-2">
-                  <button
-                    onClick={() => onEdit(c)}
-                    className="group/btn rounded-xl border-2 border-transparent p-2 transition hover:border-blue-200 hover:bg-blue-50 active:scale-95"
-                  >
-                    <Edit2 className="h-4 w-4 text-blue-600 transition-transform group-hover/btn:rotate-12" />
-                  </button>
-                  <button
-                    onClick={() => onDelete(c)}
-                    className="group/btn rounded-xl border-2 border-transparent p-2 transition hover:border-red-200 hover:bg-red-50 active:scale-95"
-                  >
-                    <Trash2 className="h-4 w-4 text-red-600 transition-transform group-hover/btn:scale-110" />
-                  </button>
+                  {/* Edit Consult Button */}
+                  {c?.consultStatus !== 'cancelled' && (
+                    <button
+                      onClick={() => onEdit(c)}
+                      className="group/btn rounded-xl border-2 border-transparent p-2 transition hover:border-blue-200 hover:bg-blue-50 active:scale-95"
+                    >
+                      <Edit2 className="h-4 w-4 text-blue-600 transition-transform group-hover/btn:rotate-12" />
+                    </button>
+                  )}
+
+                  {/* Delete Consult Button */}
+                  {c?.consultStatus !== 'cancelled' && (
+                    <button
+                      onClick={() => onDelete(c)}
+                      className="group/btn rounded-xl border-2 border-transparent p-2 transition hover:border-red-200 hover:bg-red-50 active:scale-95"
+                    >
+                      <Trash2 className="h-4 w-4 text-red-600 transition-transform group-hover/btn:scale-110" />
+                    </button>
+                  )}
                 </div>
               </td>
             </tr>
@@ -150,14 +138,14 @@ export default function ConsultsTable({ rows, totals, onEdit, onDelete }) {
 
         <tfoot className="w-full border-t-2 border-gray-200">
           <tr className="font-semibold">
-            <td colSpan="3" className="px-6 py-4 text-sm text-gray-700">
+            <td colSpan={3} className="px-6 py-4 text-sm text-gray-700">
               <div className="flex items-center gap-2">
                 <span>Total General</span>
               </div>
             </td>
 
             <td className="text-beehealth-blue-primary-solid px-6 py-4 text-right text-lg font-bold">
-              ${totals.grandTotal.toLocaleString()}
+              ${totalCost}
             </td>
           </tr>
         </tfoot>

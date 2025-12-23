@@ -141,6 +141,12 @@ export const columns = [
     icon: null,
   },
   {
+    key: 'status',
+    label: 'Estado',
+    align: 'center',
+    icon: null,
+  },
+  {
     key: 'acciones',
     label: 'Acciones',
     align: 'center',

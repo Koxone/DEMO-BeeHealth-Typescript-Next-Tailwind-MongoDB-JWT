@@ -35,7 +35,7 @@ const getRatingText = (rating) => {
 };
 
 export default function HistoryCardFeedbackModal({ onClose, selectedHistoryCard }) {
-  /* Block comment: Close handler */
+  // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
   const { compliance, patient, doctor, diet, snapshot, startDate, completedDate, createdAt } =

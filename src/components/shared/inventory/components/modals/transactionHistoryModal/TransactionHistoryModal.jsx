@@ -1,14 +1,17 @@
 'use client';
 
 import { X, History } from 'lucide-react';
-import { useModalClose } from '@/hooks/useModalClose';
 import RestockBlock from './components/RestockBlock';
 import StatusOnBlock from './components/StatusOnBlock';
 import StatusOffBlock from './components/StatusOffBlock';
 import InitialStockBlock from './components/InitialStockBlock';
 import TransactionBlock from './components/TransactionBlock';
 
+// Custom Hooks
+import { useModalClose } from '@/hooks/useModalClose';
+
 export default function TransactionHistoryModal({ onClose, history, item, isLoading }) {
+  // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
   const itemName = item?.product?.name;
@@ -20,6 +23,7 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
     correction: 'bg-green-100/60',
     status_change_IN: 'bg-blue-200/60',
     status_change_OUT: 'bg-blue-200/60',
+    cancellation: 'bg-red-200/60',
   };
 
   function getTransactionBg(transaction) {
@@ -31,7 +35,7 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
     return bgColorMap[reasonType] || 'bg-beehealth-body-main';
   }
 
-  /* Loading state */
+  // Loading state
   if (isLoading) {
     return (
       <div
@@ -56,7 +60,7 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
     );
   }
 
-  /* No history */
+  // No history
   if (!history || history.length === 0) {
     return (
       <div
@@ -160,6 +164,11 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
 
               {/* Consult Sales */}
               {transaction?.changedFields?.length === 0 && transaction?.reasonType === 'sale' && (
+                <TransactionBlock transaction={transaction} />
+              )}
+
+              {/* Consult Cancelled */}
+              {transaction?.changedFields?.length === 0 && transaction?.reasonType === 'cancellation' && (
                 <TransactionBlock transaction={transaction} />
               )}
             </div>

@@ -33,15 +33,24 @@ export async function GET(req) {
   try {
     await connectDB();
 
+    // Normalize legacy consults
+    await Consultation.updateMany(
+      { consultStatus: { $exists: false } },
+      { $set: { consultStatus: 'completed' } }
+    );
+
     const { today, tomorrow } = getMexicoDateRange();
 
     const consults = await Consultation.find({
       createdAt: { $gte: today, $lt: tomorrow },
     })
       .populate('patient')
+      .select('-password -consultViewConfig')
       .populate('employee')
+      .select('-password -consultViewConfig')
       .populate('itemsSold.product')
       .populate('itemsSold.inventory')
+      .populate('transaction')
       .lean();
 
     return NextResponse.json(consults, { status: 200 });

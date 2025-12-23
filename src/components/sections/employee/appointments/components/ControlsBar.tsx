@@ -9,6 +9,7 @@ export default function ControlsBar({ searchTerm, setSearchTerm, onCreate }) {
         <div className="relative flex-1">
           <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
+            maxLength={250}
             type="text"
             placeholder="Buscar por nombre o teléfono..."
             value={searchTerm}

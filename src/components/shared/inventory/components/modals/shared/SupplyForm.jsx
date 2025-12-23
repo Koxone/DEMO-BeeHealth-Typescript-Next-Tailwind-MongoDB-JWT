@@ -78,6 +78,7 @@ export default function SupplyForm({ mode, initialData, onCancel, onSubmit, role
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Nombre del suministro</label>
           <input
+            maxLength={250}
             type="text"
             required
             value={form.name}
@@ -110,6 +111,7 @@ export default function SupplyForm({ mode, initialData, onCancel, onSubmit, role
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Cantidad</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.quantity}
@@ -163,6 +165,7 @@ export default function SupplyForm({ mode, initialData, onCancel, onSubmit, role
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Precio de venta ($)</label>
           <input
+            maxLength={250}
             type="number"
             min="0"
             value={form.salePrice}

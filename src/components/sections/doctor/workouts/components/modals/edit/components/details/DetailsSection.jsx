@@ -35,6 +35,7 @@ function DetailsSection({
             Explicación General
           </label>
           <textarea
+            maxLength={250}
             value={form.about}
             onChange={(e) => setForm({ ...form, about: e.target.value })}
             placeholder="Describe el ejercicio, qué músculos trabaja y sus características principales..."

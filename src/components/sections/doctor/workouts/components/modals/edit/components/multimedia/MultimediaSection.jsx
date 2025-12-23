@@ -41,6 +41,7 @@ function MultimediaSection({
             Video Tutorial (YouTube)
           </label>
           <input
+            maxLength={250}
             type="url"
             value={form.video}
             onChange={(e) => setForm({ ...form, video: e.target.value })}

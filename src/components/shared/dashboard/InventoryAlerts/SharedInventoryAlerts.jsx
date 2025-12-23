@@ -13,7 +13,7 @@ export default function SharedInventoryAlerts({ role, inventory = [], showButton
   const totalAlerts = alertItems.length;
 
   return (
-    <div className="bg-beehealth-body-main overflow-hidden rounded-2xl border-2 border-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl">
+    <div className="bg-beehealth-body-main overflow-hidden rounded-2xl border-2 border-gray-200 transition-all duration-300 ">
       {/* Header section */}
       <div className="bg-beehealth-red-primary-solid relative overflow-hidden px-6 py-5">
         <div className="bg-beehealth-body-main/10 absolute top-0 right-0 -mt-16 -mr-16 h-32 w-32 animate-pulse rounded-full" />

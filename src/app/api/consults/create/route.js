@@ -38,14 +38,7 @@ export async function POST(req) {
     } = await req.json();
 
     // Validate required fields
-    if (
-      !patient ||
-      !consultType ||
-      consultPrice == null ||
-      !paymentMethod ||
-      !itemsSold ||
-      itemsSold.length === 0
-    ) {
+    if (!patient || !consultType || consultPrice == null || !paymentMethod) {
       return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 });
     }
 
@@ -133,13 +126,18 @@ export async function POST(req) {
         inv.quantity -= item.quantity;
         await inv.save();
 
+        const reason =
+          consultType === 'sale'
+            ? 'Venta directa de medicamento'
+            : `Venta en consulta - ${consultType}`;
+
         // Create transaction OUT
         const newTransaction = await Transaction.create({
           inventory: inv._id,
           movement: 'OUT',
           quantity: item.quantity,
           reasonType: 'sale',
-          reason: `Venta en consulta - ${consultType}`,
+          reason,
           performedBy: new mongoose.Types.ObjectId(userId),
           patient: new mongoose.Types.ObjectId(patient),
         });

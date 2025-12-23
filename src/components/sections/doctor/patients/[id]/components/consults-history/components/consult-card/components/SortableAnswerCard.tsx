@@ -46,7 +46,7 @@ function SortableAnswerCard({ answer, category }: { answer: Answer; category: st
         <span className="truncate">{answer.question.text}:</span>
       </div>
 
-      <p className="text-sm font-medium whitespace-pre-wrap text-white">{displayValue}</p>
+      <p className="text-sm font-medium wrap-break-word text-white">{displayValue}</p>
     </div>
   );
 }

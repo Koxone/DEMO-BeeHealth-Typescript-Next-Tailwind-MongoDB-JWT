@@ -1,14 +1,17 @@
 'use client';
 
-import { useTodayAppointmentsBySpecialty } from '@/hooks/appointments/useTodayAppointmentsBySpecialty';
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
 import { Users, DollarSign, AlertTriangle, Activity, Pill } from 'lucide-react';
 import DoctorStatsCard from './DoctorStatsCard';
+
+// Custom Hooks
 import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
+import { useTodayAppointmentsBySpecialty } from '@/hooks/appointments/useTodayAppointmentsBySpecialty';
+import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
 
 export default function DoctorStatsGrid({ role, specialty }) {
   // Appointments Today logic
-  const { appointments, loading } = useTodayAppointmentsBySpecialty();
+  const { appointments } = useTodayAppointmentsBySpecialty();
   const todaysAppointmentsNumber = appointments?.length || 0;
 
   // Inventory and Alerts logic
@@ -17,21 +20,16 @@ export default function DoctorStatsGrid({ role, specialty }) {
   // Consultations logic
   const { consults } = useGetAllConsults({ speciality: specialty });
 
-  const todayConsultsTotal = consults.map((c) => c.consultPrice).reduce((a, b) => a + b, 0) || 0;
-  const medsSoldTotal =
-    consults
-      .flatMap((c) => c.itemsSold)
-      .map((item) => item.total)
-      .reduce((a, b) => a + b, 0) || 0;
-
-  const totalSales = todayConsultsTotal + medsSoldTotal;
+  // Today's consults total amount
+  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
+    getConsultTotals(consults);
 
   return (
     <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
       {[
         {
           Icon: DollarSign,
-          mainData: '$' + totalSales,
+          mainData: '$' + totalCost,
           extraData: 'Hoy',
           title: 'Ingresos de Hoy',
           variant: 'primary',
@@ -46,7 +44,7 @@ export default function DoctorStatsGrid({ role, specialty }) {
         },
         {
           Icon: Pill,
-          mainData: '$' + medsSoldTotal,
+          mainData: '$' + totalItemsSold,
           extraData: 'Hoy',
           title: 'Venta de Medicamentos',
           variant: 'purple',

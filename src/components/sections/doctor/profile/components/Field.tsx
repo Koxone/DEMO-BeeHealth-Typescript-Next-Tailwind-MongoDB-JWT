@@ -22,6 +22,7 @@ export default function Field({
 
       <div className="relative">
         <input
+          maxLength={250}
           type="text"
           value={value}
           disabled={!isEditing}

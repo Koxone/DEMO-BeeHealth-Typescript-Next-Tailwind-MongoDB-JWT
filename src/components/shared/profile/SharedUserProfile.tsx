@@ -134,6 +134,7 @@ export default function SharedUserProfile({ role }) {
                 Biografía Profesional
               </label>
               <textarea
+                maxLength={250}
                 rows={4}
                 defaultValue="Especialista en nutrición clínica con más de 10 años de experiencia ayudando a pacientes a alcanzar sus objetivos de salud."
                 disabled={!isEditing}
@@ -360,6 +361,7 @@ function Field({ label, value, isEditing, icon: Icon }) {
       </label>
       <div className="relative">
         <input
+          maxLength={250}
           type="text"
           defaultValue={value}
           disabled={!isEditing}

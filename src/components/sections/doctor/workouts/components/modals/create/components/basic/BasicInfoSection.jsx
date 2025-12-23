@@ -19,6 +19,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
             Nombre del Ejercicio
           </label>
           <input
+            maxLength={250}
             type="text"
             placeholder="Ej: Sentadillas con Peso"
             required
@@ -71,6 +72,7 @@ function BasicInfoSection({ form, setForm, getNivelColor }) {
             Duración (minutos)
           </label>
           <input
+            maxLength={250}
             type="number"
             placeholder="Ej: 30"
             min="1"

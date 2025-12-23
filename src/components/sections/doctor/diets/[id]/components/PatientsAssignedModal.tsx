@@ -6,7 +6,7 @@ import { X, Clock, CheckCircle } from 'lucide-react';
 import { useModalClose } from '@/hooks/useModalClose';
 
 export default function PatientsAssignedModal({ patients, onClose }) {
-  /* Block comment: Close handler */
+  // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
   return (

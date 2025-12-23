@@ -147,6 +147,7 @@ export default function RestockProductModal({
               Cantidad a agregar
             </label>
             <input
+              maxLength={250}
               type="number"
               min="1"
               value={quantity}
@@ -162,6 +163,7 @@ export default function RestockProductModal({
               Motivo (opcional)
             </label>
             <input
+              maxLength={250}
               type="text"
               value={reason}
               onChange={(e) => setReason(e.target.value)}

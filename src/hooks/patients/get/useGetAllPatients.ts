@@ -14,7 +14,10 @@ export function useGetAllPatients() {
     const json = await res.json();
 
     // Zod validation
-    const data = patientResponseSchema.parse(json);
+    const data = patientResponseSchema.parse(json); /* Sort */
+    data.patients.sort((a, b) =>
+      a.fullName.localeCompare(b.fullName, 'es', { sensitivity: 'base' })
+    );
 
     // Return list
     return data.patients;

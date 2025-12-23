@@ -17,6 +17,7 @@ function ProfessionalSection({ isEditing }: { isEditing: boolean }) {
             Biografía Profesional
           </label>
           <textarea
+            maxLength={250}
             rows={4}
             defaultValue="Especialista en nutrición clínica con más de 10 años de experiencia ayudando a pacientes a alcanzar sus objetivos de salud."
             disabled={!isEditing}

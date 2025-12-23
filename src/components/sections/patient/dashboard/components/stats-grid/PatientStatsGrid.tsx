@@ -3,67 +3,68 @@ import { Weight, TrendingDown, Ruler, Clock } from 'lucide-react';
 import PatientStatsCard from '../PatientStatsCard';
 
 export default function PatientStatsGrid({ weightLogs, patientWeightLogs, appointments }) {
-  // Calculate last visit in days
-  const lastVisitCount = Math.floor(
-    (Date.now() - new Date(patientWeightLogs[0]?.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-  );
+  // Current date in Mexico timezone
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' }));
 
-  // Check for upcoming appointments
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // Normalize appointments
+  const normalizedAppointments = (appointments || []).map((apt) => ({
+    ...apt,
+    dateTime: new Date(`${apt.date}T${apt.time}:00`),
+  }));
 
-  const upcomingAppointment = appointments?.find((apt) => {
-    const aptDate = new Date(apt.date + 'T00:00:00');
-    return aptDate >= today;
-  });
+  // Upcoming appointment (closest future)
+  const upcomingAppointment = normalizedAppointments
+    .filter((apt) => apt.dateTime >= now)
+    .sort((a, b) => a.dateTime - b.dateTime)[0];
+
+  // Last appointment (closest past)
+  const lastAppointment = normalizedAppointments
+    .filter((apt) => apt.dateTime < now)
+    .sort((a, b) => b.dateTime - a.dateTime)[0];
 
   const daysUntilAppointment = upcomingAppointment
-    ? Math.ceil(
-        (new Date(upcomingAppointment.date + 'T00:00:00').getTime() - today.getTime()) /
-          (1000 * 60 * 60 * 24)
-      )
+    ? Math.ceil((upcomingAppointment.dateTime.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+    : null;
+
+  const daysSinceLastAppointment = lastAppointment
+    ? Math.floor((now.getTime() - lastAppointment.dateTime.getTime()) / (1000 * 60 * 60 * 24))
     : null;
 
   const appointmentDate = upcomingAppointment
-    ? new Date(upcomingAppointment.date + 'T00:00:00').toLocaleDateString('es-MX', {
+    ? upcomingAppointment.dateTime.toLocaleDateString('es-MX', {
         day: 'numeric',
         month: 'long',
       })
     : null;
+
+  const currentWeight = patientWeightLogs[0]?.currentWeight || 0;
+  const originalWeight = patientWeightLogs[0]?.originalWeight || 0;
+  const currentSize = patientWeightLogs[0]?.currentSize || 0;
+  const originalSize = patientWeightLogs[0]?.originalSize || 0;
+
+  const weightProgress = currentWeight - originalWeight;
 
   return (
     <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
       {[
         {
           Icon: Weight,
-          mainData: `${patientWeightLogs[0]?.currentWeight} kg`,
-          extraData: `${(
-            ((patientWeightLogs[0]?.originalWeight - patientWeightLogs[0]?.currentWeight) /
-              patientWeightLogs[0]?.originalWeight) *
-            100
-          ).toFixed(1)}%`,
+          mainData: `${currentWeight.toFixed(1)} kg`,
+          extraData: `${(((originalWeight - currentWeight) / originalWeight) * 100).toFixed(1)}%`,
           title: 'Peso Actual',
           variant: 'primary',
         },
         {
           Icon: Ruler,
-          mainData: `${patientWeightLogs[0]?.currentSize} cm`,
-          extraData: `${(
-            ((patientWeightLogs[0]?.originalSize - patientWeightLogs[0]?.currentSize) /
-              patientWeightLogs[0]?.originalSize) *
-            100
-          ).toFixed(1)}%`,
+          mainData: `${currentSize.toFixed(1)} cm`,
+          extraData: `${(((originalSize - currentSize) / originalSize) * 100).toFixed(1)}%`,
           title: 'Talla Actual',
           variant: 'success',
         },
         {
           Icon: TrendingDown,
-          mainData: `${patientWeightLogs[0]?.currentWeight - patientWeightLogs[0]?.originalWeight} kg`,
-          extraData: `${(
-            ((patientWeightLogs[0]?.originalWeight - patientWeightLogs[0]?.currentWeight) /
-              patientWeightLogs[0]?.originalWeight) *
-            100
-          ).toFixed(1)}%`,
+          mainData: `${Math.abs(weightProgress).toFixed(1)} kg`,
+          extraData: `${(((originalWeight - currentWeight) / originalWeight) * 100).toFixed(1)}%`,
           title: 'Progreso',
           variant: 'purple',
         },
@@ -73,14 +74,14 @@ export default function PatientStatsGrid({ weightLogs, patientWeightLogs, appoin
             ? daysUntilAppointment === 0
               ? '¡Es hoy!'
               : `${daysUntilAppointment} ${daysUntilAppointment === 1 ? 'día' : 'días'}`
-            : `${lastVisitCount || 0} ${lastVisitCount === 1 ? 'día' : 'días'}`,
+            : `${daysSinceLastAppointment || 0} ${daysSinceLastAppointment === 1 ? 'día' : 'días'}`,
           title: upcomingAppointment
             ? 'Para tu próxima consulta'
-            : 'Tiempo desde tu ultima consulta',
+            : 'Tiempo desde tu última consulta',
           variant: upcomingAppointment ? 'appointment' : 'danger',
-          count: upcomingAppointment ? undefined : true,
+          count: !upcomingAppointment,
           href: '/patient/new-appointment',
-          appointmentDate: appointmentDate,
+          appointmentDate,
         },
       ].map((card, index) => (
         <PatientStatsCard
@@ -88,7 +89,7 @@ export default function PatientStatsGrid({ weightLogs, patientWeightLogs, appoin
           Icon={card.Icon}
           href={card.href}
           mainData={card.mainData}
-          extraData={card.extraData || null}
+          extraData={card.extraData}
           title={card.title}
           variant={card.variant}
           count={card.count}

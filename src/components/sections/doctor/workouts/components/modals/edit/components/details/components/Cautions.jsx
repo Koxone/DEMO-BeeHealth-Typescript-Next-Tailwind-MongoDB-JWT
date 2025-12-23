@@ -22,6 +22,7 @@ function Cautions({
               <span className="text-beehealth-blue-primary-dark text-xs font-bold">!</span>
             </div>
             <textarea
+              maxLength={250}
               value={caution}
               onChange={(e) => handleCautionInputChange(index, e.target.value)}
               placeholder={`Precaución ${index + 1}...`}

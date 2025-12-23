@@ -155,6 +155,7 @@ export default function ChangePasswordModal({
                     <Lock className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    maxLength={250}
                     type={showCurrentPassword ? 'text' : 'password'}
                     placeholder="Ingresa tu contraseña actual"
                     value={currentPassword}
@@ -193,6 +194,7 @@ export default function ChangePasswordModal({
                     <Key className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    maxLength={250}
                     type={showNewPassword ? 'text' : 'password'}
                     placeholder="Ingresa tu nueva contraseña"
                     value={newPassword}
@@ -234,6 +236,7 @@ export default function ChangePasswordModal({
                     <Key className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    maxLength={250}
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirma tu nueva contraseña"
                     value={confirmPassword}

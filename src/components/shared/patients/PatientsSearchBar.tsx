@@ -28,6 +28,7 @@ export default function PatientsSearchBar({
 
       {/* Input */}
       <input
+        maxLength={250}
         type="text"
         placeholder="Buscar por nombre, teléfono o email..."
         value={searchValue}

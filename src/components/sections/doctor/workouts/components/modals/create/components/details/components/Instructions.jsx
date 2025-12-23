@@ -24,6 +24,7 @@ function Instructions({
               </span>
             </div>
             <textarea
+              maxLength={250}
               value={instruction}
               onChange={(e) => handleInstructionInputChange(index, e.target.value)}
               placeholder={`Paso ${index + 1}: Describe la instrucción...`}

@@ -69,6 +69,7 @@ function Header({ currentUser, isEditing, setIsEditing, setShowSuccessModal }) {
             )}
 
             <input
+              maxLength={250}
               ref={fileInputRef}
               type="file"
               accept="image/*"

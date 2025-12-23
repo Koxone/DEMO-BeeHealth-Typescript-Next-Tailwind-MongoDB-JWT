@@ -5,6 +5,7 @@ function Number({ question, required, value, placeholder, id, onChange }) {
     <div className="mb-6">
       <label className="mb-2 block text-sm font-medium text-gray-700">{question}</label>
       <input
+        maxLength={250}
         type="number"
         required={required}
         value={value ?? ''} 

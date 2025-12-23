@@ -11,6 +11,7 @@ function Radio({ id, question, value, options, onChange, required }) {
           return (
             <label key={val} className="flex items-center gap-2">
               <input
+                maxLength={250}
                 type="radio"
                 name={`q-${id}`}
                 value={val}

@@ -13,7 +13,6 @@ export default function Header({ title, onClose }) {
             <div>
               <h2 className="text-2xl font-bold text-gray-700">{title}</h2>
               <p className="mt-1 flex items-center gap-2 text-sm text-gray-600">
-                <Sparkles className="h-4 w-4 text-indigo-500" />
                 Completa todos los campos requeridos
               </p>
             </div>

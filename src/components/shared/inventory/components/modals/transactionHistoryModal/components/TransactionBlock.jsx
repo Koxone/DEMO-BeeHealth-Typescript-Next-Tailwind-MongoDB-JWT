@@ -94,7 +94,7 @@ function TransactionBlock({ transaction }) {
       {/* Table of changes */}
       {!isSimpleMovement && (
         <div className="mt-2 overflow-hidden rounded-lg border border-gray-200">
-          <table className="w-full text-sm table-fixed">
+          <table className="w-full table-fixed text-sm">
             <thead className="bg-gray-100 text-gray-700">
               <tr>
                 <th className="px-3 py-2 text-left">Tipo</th>
@@ -138,7 +138,7 @@ function TransactionBlock({ transaction }) {
       {/* Footer */}
       <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
         <User className="h-4 w-4 text-gray-500" />
-        <span>{transaction.performedBy?.fullName}</span>
+        <span>Responsable: {transaction.performedBy?.fullName}</span>
       </div>
 
       <p className="mt-1 text-xs text-gray-400">

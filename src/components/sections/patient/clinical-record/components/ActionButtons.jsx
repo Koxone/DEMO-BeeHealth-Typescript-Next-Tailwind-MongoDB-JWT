@@ -2,7 +2,7 @@ import { ArrowLeft, Check } from 'lucide-react';
 
 export default function ActionButtons({ activeTab, loadingCreate }) {
   return (
-    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+    <div className="mt-8 mb-10 flex gap-3 sm:flex-row md:mb-0 md:flex-col">
       <button
         type="button"
         className="hover:bg-beehealth-body-main flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition active:scale-95"

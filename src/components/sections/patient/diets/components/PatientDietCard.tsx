@@ -2,7 +2,6 @@ import { Clock } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PatientDietCard({ diet }) {
-  console.log(diet);
   return (
     <div className="group border-beehealth-green-primary-light group hover:border-beehealth-blue-primary-solid-hover bg-beehealth-body-main rounded-xl border-2 p-4 shadow-sm transition-all duration-200 hover:shadow-lg md:p-6">
       {/* Diet Image */}

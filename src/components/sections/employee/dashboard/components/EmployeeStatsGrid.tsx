@@ -5,6 +5,7 @@ import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
 import { Calendar, DollarSign, FileText, TriangleAlert } from 'lucide-react';
 import { useAllTodayAppointments } from '@/hooks/appointments/useAllTodayAppointments';
 import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { getConsultTotals } from '../../consultations/utils/getConsultTotals';
 
 export default function EmployeeStatsGrid({ role }) {
   // Appointments Today logic
@@ -16,6 +17,10 @@ export default function EmployeeStatsGrid({ role }) {
 
   // Consultations logic
   const { consults } = useGetAllConsults();
+
+  // Calculate totals with Custom Hook
+  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
+    getConsultTotals(consults);
 
   const todayConsultsTotal = consults.map((c) => c.consultPrice).reduce((a, b) => a + b, 0) || 0;
   const medsSoldTotal =
@@ -36,16 +41,16 @@ export default function EmployeeStatsGrid({ role }) {
         },
         {
           Icon: FileText,
-          mainData: '$' + todayConsultsTotal,
+          mainData: '$' + consultPrice.toFixed(2),
           title: 'Consultas Hoy',
-          extraData: 'Hoy',
+          extraData: consultsCount + ` ${consultsCount === 1 ? 'consulta' : 'consultas'}`,
           variant: 'purple',
         },
         {
           Icon: DollarSign,
-          mainData: '$' + medsSoldTotal,
+          mainData: '$' + totalItemsSold.toFixed(2),
           title: 'Venta de Medicamentos',
-          extraData: 'Hoy',
+          extraData: itemsSoldCount + ` ${itemsSoldCount === 1 ? 'vendido' : 'vendidos'}`,
           variant: 'success',
         },
         {

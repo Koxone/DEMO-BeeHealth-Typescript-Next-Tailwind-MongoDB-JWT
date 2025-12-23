@@ -63,6 +63,7 @@ export default function PrescriptionForm({ mode, initialData, onCancel, onSubmit
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Tipo de receta</label>
           <input
+            maxLength={250}
             type="text"
             required
             value={form.category}
@@ -77,6 +78,7 @@ export default function PrescriptionForm({ mode, initialData, onCancel, onSubmit
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Cantidad</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.quantity}
@@ -103,6 +105,7 @@ export default function PrescriptionForm({ mode, initialData, onCancel, onSubmit
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Stock máximo</label>
           <input
+            maxLength={250}
             type="number"
             min="0"
             value={form.maxStock}

@@ -140,6 +140,7 @@ export default function AssignWorkoutToPatient({
           {/* Search */}
           <div className="bg-beehealth-body-main sticky top-0 p-2 shadow-sm">
             <input
+              maxLength={250}
               type="text"
               placeholder="Buscar ejercicios..."
               value={search}
@@ -165,6 +166,7 @@ export default function AssignWorkoutToPatient({
                   }`}
                 >
                   <input
+                    maxLength={250}
                     type="checkbox"
                     checked={isSelected}
                     disabled={isSelected}

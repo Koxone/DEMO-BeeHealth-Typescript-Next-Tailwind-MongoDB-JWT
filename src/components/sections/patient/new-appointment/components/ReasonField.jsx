@@ -17,6 +17,7 @@ export default function ReasonField({ value, onChange }) {
       </div>
 
       <textarea
+        maxLength={250}
         rows="4"
         value={value}
         onChange={(e) => onChange(e.target.value)}

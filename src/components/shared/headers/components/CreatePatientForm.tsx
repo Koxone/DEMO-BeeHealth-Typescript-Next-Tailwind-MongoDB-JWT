@@ -126,6 +126,7 @@ export default function CreatePatientForm({
               <div className="relative">
                 <User className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="text"
                   name="nombre"
                   value={formData.nombre}
@@ -145,6 +146,7 @@ export default function CreatePatientForm({
               <div className="relative">
                 <Mail className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="email"
                   name="email"
                   value={formData.email}
@@ -162,6 +164,7 @@ export default function CreatePatientForm({
               <div className="relative">
                 <Phone className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="tel"
                   name="telefono"
                   value={formData.telefono}
@@ -179,6 +182,7 @@ export default function CreatePatientForm({
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <input
+                  maxLength={250}
                   type="password"
                   name="password"
                   value={formData.password}

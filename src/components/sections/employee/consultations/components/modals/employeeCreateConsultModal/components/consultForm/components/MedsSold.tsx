@@ -5,12 +5,16 @@ import { Pill } from 'lucide-react';
 import { useGetMeds } from '@/hooks/inventory/useGetMeds';
 import { handleSelect, handleQuantity, handleRemove } from '../utils/helpers';
 
-export default function MedsSold({ form, setForm }) {
+export default function MedsSold({ form, setForm, transactionType }) {
   // Get Patients list call
   const { meds, isLoading, error } = useGetMeds('medicamento');
 
   // Enable meds sold section
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    transactionType === 'sale' ? setEnabled(true) : setEnabled(false);
+  }, [transactionType]);
 
   // Selected medicines with quantity
   const [selected, setSelected] = useState([]);

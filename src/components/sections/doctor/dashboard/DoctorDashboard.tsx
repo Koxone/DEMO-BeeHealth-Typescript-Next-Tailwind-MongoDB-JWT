@@ -38,7 +38,9 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
   // All Consults
   const { consults, isLoading: loadingConsults } = useGetAllConsults({ speciality: specialty });
 
-  const { consultPrice, totalItemsSold, totalCost } = getConsultTotals(consults);
+  // Calculate totals with Custom Hook
+  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
+    getConsultTotals(consults);
 
   if (loadingAppointments || loadingInventory || loadingConsults) {
     return <LoadingState />;
@@ -62,6 +64,8 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
           totalItemsSold={totalItemsSold}
           totalCost={totalCost}
           consults={consults}
+          itemsSoldCount={itemsSoldCount}
+          consultsCount={consultsCount}
         />
         <SharedInventoryAlerts inventory={inventory} role={role} showButton={true} />
       </div>

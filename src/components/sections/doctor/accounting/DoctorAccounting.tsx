@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import MetricsGrid from './components/MetricsGrid';
 import WeeklyIncomeChart from './components/WeeklyIncomeChart';
 import DistributionCard from './components/DistributionCard';
@@ -9,6 +11,7 @@ import TodayConsultsList from '@/components/shared/todayConsults/TodayConsultsLi
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';
+import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 // Custom Hooks
 import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
@@ -16,27 +19,27 @@ import { getConsultTotals } from '@/components/sections/employee/consultations/u
 
 export default function DoctorAccounting({ role, specialty }) {
   // Get consults data
-  const { consults, isLoading, error } = useGetAllConsults({ speciality: specialty });
+  const { consults, isLoading, error, refetch } = useGetAllConsults({ speciality: specialty });
+
+  // Get Totals for Metrics
+  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
+    getConsultTotals(consults);
+
+  // Success Modal States
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successModalMessage, setSuccessModalMessage] = useState('');
+  const [successModalTitle, setSuccessModalTitle] = useState('');
 
   // Calculate totals
-  const totals = getConsultTotals(consults);
-  const totalConsultsCost = totals?.consultPrice || 0;
-  const totalItemsSold = totals?.totalItemsSold || 0;
-  const totalCost = totals?.totalCost || 0;
   const quantityItemsSold = consults.reduce(
     (sum, consult) => sum + (consult.itemsSold?.length || 0),
     0
   );
-  const metrics = {
-    grandTotal: totalCost || 0,
-    consultsTotal: totalConsultsCost || 0,
-    medsTotal: totalItemsSold || 0,
-  };
 
   /* Derived */
   const incomeDistribution = [
-    { name: 'Consultas', value: metrics.consultsTotal, color: '#678bda' },
-    { name: 'Medicamentos', value: metrics.medsTotal, color: '#73c89f' },
+    { name: 'Consultas', value: consultPrice, color: '#678bda' },
+    { name: 'Medicamentos', value: totalItemsSold, color: '#73c89f' },
   ];
 
   const ingresosPorPaciente = consults.map((c) => ({
@@ -61,12 +64,11 @@ export default function DoctorAccounting({ role, specialty }) {
 
       {/* Metrics */}
       <MetricsGrid
-        totalDia={metrics?.grandTotal || 0}
-        totalConsultas={metrics?.consultsTotal || 0}
-        totalMedicamentos={metrics?.medsTotal || 0}
-        consultasCount={consults.length}
-        medsCount={quantityItemsSold}
-        promedio={consults.length > 0 ? (metrics.grandTotal / consults.length).toFixed(2) : 0}
+        consultPrice={consultPrice}
+        totalItemsSold={totalItemsSold}
+        totalCost={totalCost}
+        itemsSoldCount={quantityItemsSold}
+        consultsCount={consultsCount}
       />
 
       {/* Charts */}
@@ -81,7 +83,14 @@ export default function DoctorAccounting({ role, specialty }) {
           <h2 className="text-lg font-semibold text-gray-700 md:text-xl">Consultas del Día</h2>
         </div>
 
-        <TodayConsultsList consultsData={consults} totals={metrics} />
+        <TodayConsultsList
+          consultsData={consults}
+          totalCost={totalCost}
+          setShowSuccessModal={setShowSuccessModal}
+          setSuccessModalMessage={setSuccessModalMessage}
+          setSuccessModalTitle={setSuccessModalTitle}
+          refetch={refetch}
+        />
       </div>
 
       {/* Meds Sold */}
@@ -94,6 +103,16 @@ export default function DoctorAccounting({ role, specialty }) {
 
         <MedsSoldTable consultsData={consults} />
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <SuccessModal
+          message={successModalMessage}
+          title={successModalTitle}
+          setShowSuccessModal={setShowSuccessModal}
+          showSuccessModal={showSuccessModal}
+        />
+      )}
     </div>
   );
 }

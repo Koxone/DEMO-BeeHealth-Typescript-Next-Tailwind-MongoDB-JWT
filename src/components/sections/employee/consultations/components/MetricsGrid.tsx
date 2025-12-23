@@ -2,17 +2,13 @@
 
 import { Pill, TrendingUp, Users } from 'lucide-react';
 
-export default function MetricsGrid({ totals, consultsData }) {
-  // prevent NaN
-  const grandTotal = Number(totals?.grandTotal ?? 0);
-  const consultsTotal = Number(totals?.consultsTotal ?? 0);
-  const medsTotal = Number(totals?.medsTotal ?? 0);
-
-  const totalQuantity = consultsData?.reduce((acc, consult) => {
-    const itemsTotal = consult.itemsSold?.reduce((sum, item) => sum + (item.quantity || 0), 0);
-    return acc + itemsTotal;
-  }, 0);
-
+export default function MetricsGrid({
+  totalCost,
+  totalItemsSold,
+  consultPrice,
+  consultsCount,
+  itemsSoldCount,
+}) {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
       <div className="bg-beehealth-body-main relative overflow-hidden rounded-2xl border-2 border-gray-200 p-5 shadow-lg">
@@ -26,7 +22,7 @@ export default function MetricsGrid({ totals, consultsData }) {
               Total
             </span>
           </div>
-          <p className="mb-1 text-3xl font-bold">${grandTotal.toLocaleString()}</p>
+          <p className="mb-1 text-3xl font-bold">${totalCost.toFixed(2)}</p>
           <p className="text-sm">Ingresos del Dia</p>
         </div>
       </div>
@@ -38,10 +34,10 @@ export default function MetricsGrid({ totals, consultsData }) {
             <Users className="h-6 w-6 text-white" />
           </div>
           <span className="bg-beehealth-blue-primary-solid rounded-full px-3 py-1.5 text-xs font-bold text-white">
-            {consultsData?.length || 0}
+            {consultsCount || 0}
           </span>
         </div>
-        <p className="mb-1 text-3xl font-bold text-gray-700">${consultsTotal.toLocaleString()}</p>
+        <p className="mb-1 text-3xl font-bold text-gray-700">${consultPrice.toFixed(2)}</p>
         <p className="text-sm font-medium text-gray-600">Consultas</p>
       </div>
 
@@ -52,10 +48,10 @@ export default function MetricsGrid({ totals, consultsData }) {
             <Pill className="h-6 w-6 text-white" />
           </div>
           <span className="bg-beehealth-blue-primary-solid rounded-full px-3 py-1.5 text-xs font-bold text-white">
-            {totalQuantity || 0}
+            {itemsSoldCount || 0}
           </span>
         </div>
-        <p className="mb-1 text-3xl font-bold text-gray-700">${medsTotal.toLocaleString()}</p>
+        <p className="mb-1 text-3xl font-bold text-gray-700">${totalItemsSold.toFixed(2)}</p>
         <p className="text-sm font-medium text-gray-600">Medicamentos</p>
       </div>
     </div>

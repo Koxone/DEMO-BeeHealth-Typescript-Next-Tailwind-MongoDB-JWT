@@ -3,7 +3,6 @@ import { IUser } from './User';
 import { IProduct } from './Product';
 import { ITransaction } from './Transaction';
 
-/* --- Sub Interface for items sold --- */
 interface ISoldItem {
   product: mongoose.Types.ObjectId | IProduct;
   inventory: mongoose.Types.ObjectId;
@@ -12,12 +11,13 @@ interface ISoldItem {
   total: number;
 }
 
-/* --- Main Interface --- */
 interface IConsultation extends Document {
   patient: mongoose.Types.ObjectId | IUser;
   employee: mongoose.Types.ObjectId | IUser;
   consultType: string;
   speciality?: string;
+
+  consultStatus?: 'completed' | 'cancelled';
 
   consultPrice: number;
   totalItemsSold: number;
@@ -31,7 +31,6 @@ interface IConsultation extends Document {
   updatedAt?: Date;
 }
 
-/* --- Mongoose Schema --- */
 const ConsultationSchema = new Schema<IConsultation>(
   {
     patient: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -39,6 +38,12 @@ const ConsultationSchema = new Schema<IConsultation>(
 
     consultType: { type: String, trim: true, required: true },
     speciality: { type: String, trim: true },
+
+    consultStatus: {
+      type: String,
+      enum: ['completed', 'cancelled'],
+      default: 'completed',
+    },
 
     consultPrice: { type: Number, required: true, min: 0 },
     totalItemsSold: { type: Number, required: true, min: 0 },
@@ -72,7 +77,6 @@ const ConsultationSchema = new Schema<IConsultation>(
   { timestamps: true }
 );
 
-/* --- Model Export --- */
 const models = mongoose.models ?? {};
 
 export const Consultation: Model<IConsultation> =

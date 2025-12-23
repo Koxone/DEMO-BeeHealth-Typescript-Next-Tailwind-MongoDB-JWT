@@ -1,8 +1,12 @@
 'use client';
 
 import { useMemo, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import TabsHeader from './components/TabsHeader';
 import ActionButtons from './components/ActionButtons';
+
+// Local Helpers
+import { CATEGORY_ORDER } from './services/helpers';
 
 // Inputs to render
 import Text from './components/inputs/Text';
@@ -15,27 +19,18 @@ import Radio from './components/inputs/Radio';
 import { useCreateClinicalRecordPatient } from '@/hooks/clinicalRecords/create/useCreateClinicalRecordPatient';
 import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
 
-// Orden de categorías
-const CATEGORY_ORDER = [
-  'Datos Generales',
-  'Antropometria',
-  'Antecedentes Personales',
-  'Patologias',
-  'Antecedentes Personales No Patologicos',
-  'Medicamentos',
-  'Informacion',
-  'Antecedentes Heredofamiliares',
-  'Alimentacion',
-  'Inmunizaciones',
-  'Signos Vitales',
-];
+// Feedback Components
+import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 export default function CreateClinicalRecord() {
   // Local States
   const [formData, setFormData] = useState({});
   const [activeTab, setActiveTab] = useState('weight');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(formData);
+
+  const router = useRouter();
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Fetch all questions
   const { questions } = useGetAllQuestions();
@@ -119,6 +114,12 @@ export default function CreateClinicalRecord() {
 
     setFormData({});
     setIsSubmitting(false);
+    setShowSuccessModal(true);
+
+    setTimeout(() => {
+      setShowSuccessModal(false);
+      router.push('/patient/dashboard');
+    }, 1000);
   };
 
   // Render helper
@@ -131,7 +132,7 @@ export default function CreateClinicalRecord() {
   };
 
   return (
-    <div className="h-full overflow-y-auto p-4 py-6 md:py-10">
+    <div className="h-full overflow-y-auto py-6 md:py-10">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-6 text-center">
@@ -183,6 +184,15 @@ export default function CreateClinicalRecord() {
           </form>
         </div>
       </div>
+
+      {showSuccessModal && (
+        <SuccessModal
+          title="Historial Clinico Creado"
+          message="El historial clinico ha sido creado exitosamente."
+          setShowSuccessModal={setShowSuccessModal}
+          showSuccessModal={showSuccessModal}
+        />
+      )}
     </div>
   );
 }

@@ -16,6 +16,7 @@ export default function MedsSoldTable({ consultsData }) {
       consult.itemsSold.map((item) => ({
         ...item,
         patient: consult.patient,
+        consultStatus: consult.consultStatus,
       }))
     );
 
@@ -116,25 +117,28 @@ export default function MedsSoldTable({ consultsData }) {
           </tr>
         </thead>
 
-        {/* BODY */}
         <tbody className="divide-y divide-gray-200">
           {medSold.map((med, index) => (
             <tr
               key={med?.product?._id + index}
               style={{ animationDelay: `${index * 50}ms` }}
-              className="group animate-fadeInUp transition hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50"
+              className={`group animate-fadeInUp transition ${
+                med?.consultStatus === 'cancelled'
+                  ? 'bg-beehealth-red-primary-light'
+                  : 'hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50'
+              }`}
             >
-              {/* Nombre */}
+              {/* Name */}
               <td className="px-6 py-4">
                 <span className="text-sm font-semibold text-gray-700">{med?.product?.name}</span>
               </td>
 
-              {/* Cantidad */}
+              {/* Quantity */}
               <td className="px-6 py-4 text-center">
                 <span className="text-sm font-medium text-gray-700">{med?.quantity}</span>
               </td>
 
-              {/* Precio Unitario */}
+              {/* Unit Price */}
               <td className="px-6 py-4 text-right">
                 <span className="text-sm font-medium text-gray-700">
                   ${med?.price.toLocaleString()}
@@ -148,14 +152,14 @@ export default function MedsSoldTable({ consultsData }) {
                 </span>
               </td>
 
-              {/* Paciente */}
+              {/* Patient */}
               <td className="px-6 py-4">
                 <span className="text-sm font-semibold text-gray-800">
                   {med?.patient?.fullName}
                 </span>
               </td>
 
-              {/* Acciones */}
+              {/* Actions */}
               <td className="px-6 py-4">
                 <div className="flex items-center justify-center gap-2">
                   <button
@@ -177,7 +181,6 @@ export default function MedsSoldTable({ consultsData }) {
           ))}
         </tbody>
 
-        {/* FOOTER */}
         <tfoot className="w-full border-t-2 border-gray-200">
           <tr className="font-semibold">
             <td colSpan="3" className="px-6 py-4 text-sm text-gray-700">

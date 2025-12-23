@@ -69,6 +69,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Nombre</label>
           <input
+            maxLength={250}
             type="text"
             required
             value={form.name}
@@ -82,6 +83,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Categoría</label>
           <input
+            maxLength={250}
             type="text"
             required
             value={form.category}
@@ -96,6 +98,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Cantidad</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.quantity}
@@ -108,6 +111,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Stock mínimo</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.minStock}
@@ -123,6 +127,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Stock máximo</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.maxStock}
@@ -135,6 +140,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
           <div className="grid gap-1">
             <label className="text-sm font-semibold text-gray-600">Costo ($)</label>
             <input
+              maxLength={250}
               type="number"
               min="0"
               value={form.costPrice}
@@ -162,6 +168,7 @@ export default function MedicationForm({ mode, initialData, onCancel, onSubmit, 
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-gray-600">Reason</label>
           <input
+            maxLength={250}
             type="text"
             required
             value={form.reason}

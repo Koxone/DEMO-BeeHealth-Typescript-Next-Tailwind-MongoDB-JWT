@@ -3,17 +3,19 @@ import { Users, Pill, AlertCircle, ChevronRight, TrendingUp, DollarSign } from '
 
 export default function DoctorAccountingSummary({
   role,
+  consults,
   consultPrice,
   totalItemsSold,
   totalCost,
-  consults,
+  itemsSoldCount,
+  consultsCount,
 }) {
   const itemsSoldNumber = consults.reduce((sum, consult) => {
     return sum + (consult.itemsSold?.length || 0);
   }, 0);
 
   return (
-    <div className="bg-beehealth-body-main overflow-hidden rounded-2xl border-2 border-gray-200 shadow-lg transition-all duration-300 hover:shadow-xl">
+    <div className="bg-beehealth-body-main overflow-hidden rounded-2xl border-2 border-gray-200 transition-all duration-300">
       {/* Header */}
       <div className="bg-beehealth-blue-primary-solid relative overflow-hidden px-6 py-5">
         <div className="bg-beehealth-body-main/10 absolute top-0 right-0 -mt-16 -mr-16 h-32 w-32 rounded-full" />
@@ -48,9 +50,7 @@ export default function DoctorAccountingSummary({
             </div>
           </div>
           <div className="text-right">
-            <p className="bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-bold text-transparent">
-              ${totalCost}
-            </p>
+            <p className="text-beehealth-blue-primary-dark text-3xl font-bold">${totalCost}</p>
           </div>
         </div>
       </div>
@@ -61,25 +61,25 @@ export default function DoctorAccountingSummary({
           {
             icon: Users,
             label: 'Consultas',
-            value: `${consults.length} pacientes`,
+            value: `${consultsCount} ${consultsCount === 1 ? 'consulta' : 'consultas'}`,
             amount: consultPrice,
             gradient: 'from-blue-500 to-indigo-600',
             bgGradient: 'from-blue-50 to-indigo-50',
             iconBg: 'bg-blue-100',
             iconColor: 'text-blue-600',
-            textColor: 'text-blue-600',
+            textColor: 'text-beehealth-blue-primary-dark',
             borderColor: 'border-blue-200',
           },
           {
             icon: Pill,
             label: 'Medicamentos',
-            value: `${itemsSoldNumber} vendidos`,
+            value: `${itemsSoldCount} ${itemsSoldCount === 1 ? 'vendido' : 'vendidos'}`,
             amount: totalItemsSold,
             gradient: 'from-emerald-500 to-green-600',
             bgGradient: 'from-emerald-50 to-green-50',
             iconBg: 'bg-emerald-100',
             iconColor: 'text-emerald-600',
-            textColor: 'text-emerald-600',
+            textColor: 'text-beehealth-green-secondary-dark',
             borderColor: 'border-emerald-200',
           },
         ].map((item, index) => {

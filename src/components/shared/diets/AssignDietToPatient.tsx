@@ -155,6 +155,7 @@ export default function AssignDietToPatient({
         <div className="bg-beehealth-body-main h-56 overflow-y-auto rounded-lg border border-gray-400 shadow-md">
           <div className="bg-beehealth-body-main sticky top-0 p-2 shadow-sm">
             <input
+              maxLength={250}
               type="text"
               placeholder="Buscar dieta..."
               value={search}
@@ -179,6 +180,7 @@ export default function AssignDietToPatient({
                   }`}
                 >
                   <input
+                    maxLength={250}
                     type="checkbox"
                     checked={isSelected}
                     disabled={isSelected}

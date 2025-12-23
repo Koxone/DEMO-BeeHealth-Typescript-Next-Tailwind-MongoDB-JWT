@@ -30,6 +30,7 @@ export default function Contact() {
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-700">Nombre</label>
                 <input
+                  maxLength={250}
                   type="text"
                   className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500"
                 />
@@ -37,6 +38,7 @@ export default function Contact() {
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-700">Correo</label>
                 <input
+                  maxLength={250}
                   type="email"
                   className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500"
                 />
@@ -44,6 +46,7 @@ export default function Contact() {
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-700">Mensaje</label>
                 <textarea
+                  maxLength={250}
                   rows={4}
                   className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500"
                 ></textarea>

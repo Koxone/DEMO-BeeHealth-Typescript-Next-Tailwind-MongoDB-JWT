@@ -1,21 +1,13 @@
-import { Clock, User, DollarSign, Notebook } from 'lucide-react';
-import MedsSold from './components/MedsSold';
-import { useGetAllPatients } from '@/hooks/patients/get/useGetAllPatients';
 import { useEffect } from 'react';
+import { User, DollarSign, Notebook } from 'lucide-react';
+import MedsSold from './components/MedsSold';
 
-/* Form */
-export default function ConsultForm({ form, setForm }) {
+// Custom Hooks
+import { useGetAllPatients } from '@/hooks/patients/get/useGetAllPatients';
+
+export default function ConsultForm({ form, setForm, transactionType }) {
   // Get Patients list call
   const { patients, isLoading, error } = useGetAllPatients();
-
-  // Calculate totals
-  const medsTotal = Array.isArray(form.itemsSold)
-    ? form.itemsSold.reduce((acc, item) => acc + item.total, 0)
-    : 0;
-  const grandTotal = {
-    consultPrice: form.consultPrice ? parseFloat(form.consultPrice) : 0,
-    medsTotal,
-  };
 
   useEffect(() => {
     // Subtotal meds
@@ -59,23 +51,25 @@ export default function ConsultForm({ form, setForm }) {
       </div>
 
       {/* Consult Type */}
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-gray-700">Tipo de consulta</label>
-        <p className="text-xs text-gray-500">
-          Si es paciente de primera vez, priorizar crear su cuenta e historia clinica.
-        </p>
+      {transactionType !== 'sale' && (
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-gray-700">Tipo de consulta</label>
+          <p className="text-xs text-gray-500">
+            Si es paciente de primera vez, priorizar crear su cuenta e historia clinica.
+          </p>
 
-        <select
-          required
-          value={form.consultType}
-          onChange={(e) => setForm({ ...form, consultType: e.target.value })}
-          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3"
-        >
-          <option value="">Seleccionar</option>
-          <option value="Primera Consulta">Primera Vez</option>
-          <option value="Consulta General">Subsecuente</option>
-        </select>
-      </div>
+          <select
+            required={transactionType !== 'sale'}
+            value={form.consultType}
+            onChange={(e) => setForm({ ...form, consultType: e.target.value })}
+            className="w-full rounded-xl border-2 border-gray-200 px-4 py-3"
+          >
+            <option value="">Seleccionar</option>
+            <option value="Primera Consulta">Primera Vez</option>
+            <option value="Consulta General">Subsecuente</option>
+          </select>
+        </div>
+      )}
 
       {/* Patient */}
       <div className="space-y-2">
@@ -87,7 +81,7 @@ export default function ConsultForm({ form, setForm }) {
         {form.consultType === 'Primera Consulta' ? (
           <input
             type="text"
-            required
+            required={transactionType !== 'sale'}
             disabled={!form.consultType}
             value={form.patient}
             onChange={(e) => setForm({ ...form, patient: e.target.value })}
@@ -96,7 +90,7 @@ export default function ConsultForm({ form, setForm }) {
           />
         ) : (
           <select
-            required
+            required={transactionType !== 'sale'}
             disabled={!form.consultType}
             value={form.patient}
             onChange={(e) => setForm({ ...form, patient: e.target.value })}
@@ -104,8 +98,8 @@ export default function ConsultForm({ form, setForm }) {
           >
             <option value="">Seleccionar paciente</option>
 
-            {patients.map((patient) => (
-              <option key={patient._id} value={patient._id}>
+            {patients?.map((patient) => (
+              <option className="capitalize" key={patient?._id} value={patient?._id}>
                 {patient.fullName}
               </option>
             ))}
@@ -114,22 +108,24 @@ export default function ConsultForm({ form, setForm }) {
       </div>
 
       {/* Consult Price */}
-      <div className="space-y-2">
-        <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-          <DollarSign className="h-4 w-4 text-emerald-500" />
-          Costo de consulta
-        </label>
-        <input
-          type="number"
-          required
-          min="0"
-          step="0.01"
-          value={form.consultPrice}
-          onChange={(e) => setForm({ ...form, consultPrice: Number(e.target.value) })}
-          placeholder="800.00"
-          className="w-full rounded-xl border-2 border-gray-200 px-4 py-3"
-        />
-      </div>
+      {transactionType !== 'sale' && (
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+            <DollarSign className="h-4 w-4 text-emerald-500" />
+            Costo de consulta
+          </label>
+          <input
+            type="number"
+            required={transactionType !== 'sale'}
+            min="0"
+            step="0.01"
+            value={form.consultPrice}
+            onChange={(e) => setForm({ ...form, consultPrice: Number(e.target.value) })}
+            placeholder="800.00"
+            className="w-full rounded-xl border-2 border-gray-200 px-4 py-3"
+          />
+        </div>
+      )}
 
       {/* Payment Method */}
       <div className="space-y-1">
@@ -148,7 +144,7 @@ export default function ConsultForm({ form, setForm }) {
       </div>
 
       {/* Meds Sold */}
-      <MedsSold form={form} setForm={setForm} />
+      <MedsSold form={form} setForm={setForm} transactionType={transactionType} />
 
       {/* Optional Notes */}
       <div className="space-y-2">
@@ -158,7 +154,6 @@ export default function ConsultForm({ form, setForm }) {
         </label>
         <input
           type="text"
-          required
           value={form.notes}
           onChange={(e) => setForm({ ...form, notes: e.target.value })}
           placeholder="Notas adicionales (opcional)"

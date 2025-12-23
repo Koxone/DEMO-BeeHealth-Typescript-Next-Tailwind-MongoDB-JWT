@@ -95,6 +95,7 @@ export default function SharedAssignDiet({
         <div className="bg-beehealth-body-main h-56 overflow-y-auto rounded-lg border border-gray-400 shadow-md">
           <div className="bg-beehealth-body-main sticky top-0 p-2 shadow-sm">
             <input
+              maxLength={250}
               type="text"
               placeholder="Buscar..."
               value={search}
@@ -111,6 +112,7 @@ export default function SharedAssignDiet({
                 onClick={() => togglePatient(patient?._id)}
               >
                 <input
+                  maxLength={250}
                   type="checkbox"
                   checked={selectedPatients.includes(patient._id)}
                   readOnly

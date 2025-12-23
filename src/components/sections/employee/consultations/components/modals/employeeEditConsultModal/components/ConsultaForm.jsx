@@ -13,6 +13,7 @@ export default function ConsultaForm({ form, setForm }) {
           Hora
         </label>
         <input
+          maxLength={250}
           type="time"
           required
           value={form.hora}
@@ -27,6 +28,7 @@ export default function ConsultaForm({ form, setForm }) {
           Paciente
         </label>
         <input
+          maxLength={250}
           type="text"
           required
           value={form.paciente}
@@ -58,6 +60,7 @@ export default function ConsultaForm({ form, setForm }) {
           Costo
         </label>
         <input
+          maxLength={250}
           type="number"
           required
           min="0"
@@ -72,6 +75,7 @@ export default function ConsultaForm({ form, setForm }) {
       <div className="rounded-xl border-2 border-indigo-200 bg-indigo-50 p-4">
         <label className="flex cursor-pointer items-center gap-3">
           <input
+            maxLength={250}
             type="checkbox"
             checked={form.pagado}
             onChange={(e) => setForm({ ...form, pagado: e.target.checked })}

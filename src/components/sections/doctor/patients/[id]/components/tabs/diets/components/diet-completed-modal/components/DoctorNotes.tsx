@@ -17,6 +17,7 @@ function DoctorNotes({
         </p>
       </div>
       <textarea
+        maxLength={250}
         value={doctorNotes}
         onChange={(e) => setDoctorNotes(e.target.value)}
         placeholder="Escribe observaciones sobre el cumplimiento del paciente..."

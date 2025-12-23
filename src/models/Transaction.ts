@@ -3,7 +3,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 interface ITransaction extends Document {
   inventory: mongoose.Types.ObjectId;
   movement?: 'IN' | 'OUT' | 'PRODUCT_UPDATE';
-  reasonType: 'initial' | 'sale' | 'restock' | 'correction' | 'status_change';
+  reasonType: 'initial' | 'sale' | 'restock' | 'correction' | 'status_change' | 'cancellation';
   quantity?: number;
   reason?: string;
   performedBy: mongoose.Types.ObjectId;
@@ -53,7 +53,7 @@ const TransactionSchema = new Schema<ITransaction>(
     movement: { type: String, enum: ['IN', 'OUT', 'PRODUCT_UPDATE'], required: false },
     reasonType: {
       type: String,
-      enum: ['initial', 'sale', 'restock', 'correction', 'status_change'],
+      enum: ['initial', 'sale', 'restock', 'correction', 'status_change', 'cancellation'],
       required: true,
     },
     quantity: { type: Number, required: false },

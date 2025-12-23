@@ -1,14 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import ConsultForm from './components/consultForm/ConsultForm';
 import Actions from './components/Actions';
-import { useModalClose } from '@/hooks/useModalClose';
+
+// Zustand Store
 import useAuthStore from '@/zustand/useAuthStore';
 
+// Custom Hooks
+import { useModalClose } from '@/hooks/useModalClose';
+
 /* Container */
-export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
+export default function EmployeeCreateConsultModal({
+  onClose,
+  onCreate,
+  setShowSuccessModal,
+  setSuccessModalMessage,
+  setSuccessModalTitle,
+  refetch,
+  transactionType,
+}) {
   // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
@@ -19,15 +31,24 @@ export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
   const [form, setForm] = useState({
     patient: '',
     employee: user?.id || '',
-    consultType: '',
-    speciality: user?.speciality || '',
-    consultPrice: '',
+    consultType: transactionType === 'sale' ? 'sale' : '',
+    speciality: 'weight',
+    consultPrice: transactionType === 'sale' ? 0 : '',
     totalItemsSold: 0,
     totalCost: 0,
     paymentMethod: '',
     itemsSold: [],
     notes: '',
   });
+
+  // Sync transaction type
+  useEffect(() => {
+    setForm((prev) => ({
+      ...prev,
+      consultType: transactionType === 'sale' ? 'Venta de Producto' : '',
+      consultPrice: transactionType === 'sale' ? 0 : '',
+    }));
+  }, [transactionType]);
 
   // Loading and error states
   const [isLoading, setIsLoading] = useState(false);
@@ -38,9 +59,12 @@ export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
     e.preventDefault();
     setError(null);
 
-    // ===== VALIDATION =====
     // 1. Validate required fields
-    if (!form.patient || !form.consultType || !form.consultPrice || !form.paymentMethod) {
+    if (
+      !form.patient ||
+      !form.paymentMethod ||
+      (transactionType === 'consult' && (!form.consultType || !form.consultPrice))
+    ) {
       setError('Por favor completa todos los campos obligatorios');
       return;
     }
@@ -59,7 +83,7 @@ export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
       consultType: form.consultType,
       speciality: form.speciality,
       consultPrice: form.consultPrice,
-      paymentMethod: form.paymentMethod.toLowerCase(), // ✅ Convertir a minúsculas
+      paymentMethod: form.paymentMethod.toLowerCase(),
       itemsSold: form.itemsSold,
       notes: form.notes,
     };
@@ -90,6 +114,17 @@ export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
 
       // Close modal
       onClose();
+
+      // Show success modal
+      setSuccessModalTitle('Éxito');
+      setSuccessModalMessage('¡Consulta registrada con éxito!');
+      setShowSuccessModal(true);
+
+      refetch();
+
+      setTimeout(() => {
+        setShowSuccessModal(false);
+      }, 1000);
     } catch (err) {
       console.error('Error creating consultation:', err);
       setError('Error de conexión al crear la consulta');
@@ -121,13 +156,8 @@ export default function EmployeeCreateConsultModal({ onClose, onCreate }) {
 
           {/* Content */}
           <form onSubmit={handleSubmit} className="max-h-[calc(90vh-160px)] overflow-y-auto p-6">
-            <ConsultForm form={form} setForm={setForm} />
-            <Actions
-              onClose={onClose}
-              submitLabel="Guardar"
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
+            <ConsultForm form={form} setForm={setForm} transactionType={transactionType} />
+            <Actions onClose={onClose} submitLabel="Guardar" />
           </form>
         </div>
       </div>

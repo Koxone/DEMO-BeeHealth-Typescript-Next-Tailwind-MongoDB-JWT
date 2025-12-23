@@ -1,3 +1,4 @@
+'use client';
 import { useRouter } from 'next/navigation';
 
 export default function PatientStatsCard({
@@ -11,6 +12,7 @@ export default function PatientStatsCard({
   appointmentDate,
 }) {
   const router = useRouter();
+
   const styles = {
     primary: 'bg-beehealth-blue-primary-solid  text-white border-transparent',
     success:
@@ -27,6 +29,7 @@ export default function PatientStatsCard({
     success: 'text-gray-600',
     purple: 'text-gray-600',
     danger: 'text-gray-600',
+    appointment: 'text-white',
   };
 
   const badgeColors = {
@@ -60,6 +63,7 @@ export default function PatientStatsCard({
             </button>
           )}
         </div>
+
         {extraData && (
           <span className={`rounded px-2 py-1 text-xs font-medium ${badgeColors[variant]}`}>
             {extraData}
@@ -74,7 +78,7 @@ export default function PatientStatsCard({
       <p className={`text-xs md:text-sm ${textColors[variant]}`}>{title}</p>
 
       {/* Appointment */}
-      {variant === 'appointment' && (
+      {variant === 'appointment' && appointmentDate && (
         <p className={`text-xs md:text-sm ${textColors[variant]}`}>Fecha: {appointmentDate}</p>
       )}
     </div>

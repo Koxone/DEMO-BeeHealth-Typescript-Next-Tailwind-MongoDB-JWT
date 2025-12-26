@@ -1,29 +1,17 @@
 'use client';
 
-/* icons */
-import { FaTooth, FaSyringe } from 'react-icons/fa';
-import { GiWeightScale } from 'react-icons/gi';
 import { Check, Stethoscope } from 'lucide-react';
 
-export default function DoctorsGrid({ selectedDoctor, onSelect }) {
-  /* Mock Data */
-  const doctors = [
-    {
-      id: 1,
-      nombre: 'Control de Peso',
-      especialidad: 'Nutrición y Metabolismo',
-      icon: GiWeightScale,
-    },
-    { id: 2, nombre: 'Odontología', especialidad: 'Periodoncia', icon: FaTooth },
-    { id: 3, nombre: 'Tratamientos Estéticos', especialidad: 'Medicina Estética', icon: FaSyringe },
-  ];
+// Local Helpers
+import { doctors } from '../services/helpers';
 
+export default function DoctorsGrid({ selectedDoctor, onSelect }) {
   return (
-    <div className="bg-beehealth-body-main rounded-2xl border-2 border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
-      {/* header */}
+    <div className="bg-beehealth-body-main rounded-2xl border-2 border-gray-200 p-6 shadow-sm hover:shadow-lg">
+      {/* Header */}
       <div className="mb-4 flex items-center gap-3">
         <div className="rounded-lg bg-blue-100 p-2">
-          <Stethoscope className="h-5 w-5 text-blue-600" />
+          <Stethoscope className="text-beehealth-blue-primary-solid h-5 w-5" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-gray-700">Paso 1: Selecciona tu médico</h2>
@@ -31,7 +19,7 @@ export default function DoctorsGrid({ selectedDoctor, onSelect }) {
         </div>
       </div>
 
-      {/* grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {doctors.map((doctor, index) => {
           const Icon = doctor.icon;
@@ -41,9 +29,9 @@ export default function DoctorsGrid({ selectedDoctor, onSelect }) {
               type="button"
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => onSelect(doctor.id)}
-              className={`group animate-fadeInUp relative overflow-hidden rounded-xl border-2 p-5 text-left transition-all duration-300 ${
+              className={`group animate-fadeInUp relative overflow-hidden rounded-xl border-2 p-5 text-left ${
                 selectedDoctor === doctor.id
-                  ? 'scale-105 border-blue-600 bg-linear-to-br from-blue-50 to-indigo-50 shadow-lg'
+                  ? 'border-beehealth-blue-primary-dark scale-105 bg-linear-to-br from-blue-50 to-indigo-50 shadow-lg'
                   : 'border-gray-200 hover:border-blue-300 hover:shadow-md active:scale-95'
               }`}
             >
@@ -52,14 +40,14 @@ export default function DoctorsGrid({ selectedDoctor, onSelect }) {
                   <div
                     className={`flex h-14 w-14 items-center justify-center rounded-full text-lg font-bold transition-all duration-300 ${
                       selectedDoctor === doctor.id
-                        ? 'bg-linear-to-br from-blue-600 to-blue-700 text-white shadow-lg'
+                        ? 'bg-beehealth-blue-primary-dark text-white shadow-lg'
                         : 'text-beehealth-blue-primary-solid bg-linear-to-br from-blue-100 to-indigo-100 group-hover:scale-110'
                     }`}
                   >
                     <Icon className="h-7 w-7" />
                   </div>
                   {selectedDoctor === doctor.id && (
-                    <div className="absolute top-0 right-0 rounded-full bg-blue-600 p-1.5 shadow-lg">
+                    <div className="bg-beehealth-blue-primary-dark absolute top-0 right-0 rounded-full p-1.5 shadow-lg">
                       <Check className="h-4 w-4 text-white" />
                     </div>
                   )}

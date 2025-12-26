@@ -192,6 +192,7 @@ export default function ConsultCard({
         {/* Edit Date Button */}
         <EditRecordDateButton
           fetchRecord={fetchRecord}
+          recordDate={r.recordDate}
           onSelect={(formattedDate) => {
             editClinicalRecord(r._id, { recordDate: formattedDate });
           }}

@@ -6,10 +6,9 @@ export default async function PatientDietDetailPage({ params }) {
   const resolvedParams = await params;
   // Get current User info
   const currentUser = await getCurrentUser();
-  const role = currentUser?.role;
   return (
     <div>
-      <PatientDietDetail params={resolvedParams} role={role} />
+      <PatientDietDetail params={resolvedParams} />
     </div>
   );
 }

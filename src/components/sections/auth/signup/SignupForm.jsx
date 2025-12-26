@@ -36,7 +36,6 @@ export default function SignupForm() {
     }
 
     try {
-      // Crear usuario en el backend
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -194,7 +193,7 @@ export default function SignupForm() {
             {/* Continue Button */}
             <button
               type="submit"
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-medium text-white shadow-md transition hover:bg-blue-600 active:scale-95"
+              className="bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-solid-hover flex w-full items-center justify-center gap-2 rounded-lg py-3 font-medium text-white shadow-md transition active:scale-95"
             >
               Crear cuenta
               <ArrowRight className="h-5 w-5" />

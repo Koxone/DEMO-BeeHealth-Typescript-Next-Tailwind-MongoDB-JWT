@@ -24,6 +24,7 @@ export default function PatientWorkouts({ role, currentUser }) {
 
   // Get Workouts from API
   const { workoutsData, isLoading, error, refetch } = useGetAllWorkoutsFromPatient(patientId);
+  const filteredWorkouts = workoutsData?.filter((workout) => workout.isActive === true);
 
   // Local States
   const [filterCategorie, setFilterCategorie] = useState('Todos');
@@ -89,10 +90,10 @@ export default function PatientWorkouts({ role, currentUser }) {
 
       {/* Workout Card */}
       <div
-        className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${workoutsData.length === 0 ? 'lg:grid-cols-1' : 'lg:grid-cols-3'}`}
+        className={`grid grid-cols-1 gap-4 md:grid-cols-2 ${filteredWorkouts.length === 0 ? 'lg:grid-cols-1' : 'lg:grid-cols-3'}`}
       >
-        {workoutsData.length > 0 ? (
-          workoutsData.map((workout) => (
+        {filteredWorkouts.length > 0 ? (
+          filteredWorkouts.map((workout) => (
             <WorkoutCard
               key={workout.workout?._id}
               workout={workout}

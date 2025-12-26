@@ -1,7 +1,6 @@
 'use client';
 
 import { AlertCircle } from 'lucide-react';
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
 
 import AllowedFoods from './components/sections/allowed/AllowedFoods';
 import AllowedLiquids from './components/sections/allowed/AllowedLiquids';
@@ -19,37 +18,30 @@ import Category from './components/sections/Category';
 import GoBackButton from '@/components/shared/diets/GoBackButton';
 import DietImage from './components/sections/DietImage';
 
-export default function PatientDietDetail({ params, role }) {
+// Custom Hooks
+import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
+import LoadingState from '@/components/shared/feedback/LoadingState';
+import ErrorState from '@/components/shared/feedback/ErrorState';
+
+export default function PatientDietDetail({ params }) {
   const { id } = params;
 
   const { dietsData, isLoading, error } = useGetAllDiets();
   const diet = dietsData?.find((d) => d._id === id);
 
+  // Loading State
   if (isLoading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600"></div>
-          <p className="text-gray-500">Cargando información...</p>
-        </div>
-      </div>
-    );
+    return <LoadingState />;
   }
 
+  // Error State
   if (error || !diet) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="space-y-4 text-center">
-          <AlertCircle className="mx-auto h-12 w-12 text-red-500" />
-          <p className="text-gray-600">Error al cargar la dieta</p>
-        </div>
-      </div>
-    );
+    return <ErrorState />;
   }
   return (
     <div className="bg-beehealth-body-main mb-20 h-full min-h-full overflow-auto md:mb-0">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 space-y-4">
         <GoBackButton />
 
         {diet?.images?.[0] && <DietImage diet={diet} />}

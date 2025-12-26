@@ -14,8 +14,8 @@ export default function ActionButtons({ activeTab, loadingCreate }) {
         type="submit"
         disabled={loadingCreate}
         className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white shadow-md transition active:scale-95 ${
-          activeTab === 'peso'
-            ? 'bg-blue-500 hover:bg-blue-600'
+          activeTab === 'weight'
+            ? 'bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-dark'
             : 'bg-purple-500 hover:bg-purple-600'
         }`}
       >

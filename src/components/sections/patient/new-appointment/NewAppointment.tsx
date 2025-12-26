@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import HeaderBar from './components/HeaderBar';
 import ProgressSteps from './components/ProgressSteps';
 import DoctorsGrid from './components/DoctorsGrid';
 import CalendarPicker from './components/CalendarPicker';
@@ -15,64 +14,18 @@ import useSound from 'use-sound';
 
 // Local Helpers
 import { isPastDate, getDaysInMonth } from './components/NewAppointmentUtils';
+import { getAvailableSlots, doctors } from './services/helpers';
 
 // Zustand
 import useAuthStore from '@/zustand/useAuthStore';
-
-/* Slots helper */
-function getAvailableSlots(date, tipo) {
-  if (!date) return [];
-  const day = date.getDay();
-  const slots = [];
-  const addSlots = (startHour, endHour) => {
-    for (let h = startHour; h < endHour; h++) {
-      slots.push(`${String(h).padStart(2, '0')}:00`);
-      slots.push(`${String(h).padStart(2, '0')}:30`);
-    }
-  };
-  if (tipo === 'Odontología') {
-    if (day === 0) addSlots(11, 17);
-    return slots;
-  }
-  switch (day) {
-    case 1:
-      addSlots(8, 14);
-      addSlots(16, 19);
-      break;
-    case 2:
-    case 3:
-      addSlots(10, 14);
-      addSlots(16, 19);
-      break;
-    case 4:
-      addSlots(16, 19);
-      break;
-    case 5:
-      addSlots(8, 14);
-      addSlots(16, 19);
-      break;
-    case 6:
-      return [];
-    case 0:
-      addSlots(10, 13);
-      break;
-  }
-  return slots;
-}
-
-/* Doctors list */
-const doctors = [
-  { id: 1, nombre: 'Control de Peso', especialidad: 'Nutrición y Metabolismo' },
-  { id: 2, nombre: 'Odontología', especialidad: 'Periodoncia' },
-  { id: 3, nombre: 'Tratamientos Estéticos', especialidad: 'Medicina Estética' },
-];
+import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 
 /* Main component */
 export default function NewAppointment() {
   // Zustand
   const { user } = useAuthStore();
 
-  // Custom Hooks
+  // Library Hooks
   const router = useRouter();
 
   // Local States
@@ -164,9 +117,13 @@ export default function NewAppointment() {
   };
 
   return (
-    <div className="mb-20 h-full overflow-x-hidden overflow-y-auto md:mb-0">
-      <HeaderBar onBack={() => router.back()} />
-      <div className="mx-auto max-w-4xl">
+    <div className="mx-auto mb-20 flex h-full max-w-4xl flex-col gap-4 overflow-x-hidden overflow-y-auto md:mb-0">
+      <SharedSectionHeader
+        Icon="calendar"
+        title="Agendar Nueva Cita"
+        subtitle="Sigue los pasos para programar tu consulta médica"
+      />
+      <div>
         <ProgressSteps getStepStatus={getStepStatus} />
 
         <form onSubmit={handleSubmit} className="space-y-6">

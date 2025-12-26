@@ -2,7 +2,6 @@
 
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
-/* calendar */
 export default function CalendarPicker({
   monthName,
   days,
@@ -17,7 +16,7 @@ export default function CalendarPicker({
     <div className="animate-slideDown bg-beehealth-body-main rounded-2xl border-2 border-gray-200 p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
       <div className="mb-4 flex items-center gap-3">
         <div className="rounded-lg bg-indigo-100 p-2">
-          <CalendarIcon className="h-5 w-5 text-indigo-600" />
+          <CalendarIcon className="text-beehealth-blue-primary-dark h-5 w-5" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-gray-700">Paso 2: Selecciona una fecha</h2>
@@ -26,7 +25,7 @@ export default function CalendarPicker({
       </div>
 
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-5">
-        {/* header */}
+        {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <button
             type="button"
@@ -47,7 +46,7 @@ export default function CalendarPicker({
           </button>
         </div>
 
-        {/* days of week */}
+        {/* Days of week */}
         <div className="mb-3 grid grid-cols-7 gap-2">
           {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((d) => (
             <div key={d} className="py-2 text-center text-xs font-bold text-gray-500">
@@ -56,7 +55,7 @@ export default function CalendarPicker({
           ))}
         </div>
 
-        {/* days */}
+        {/* Days */}
         <div className="grid grid-cols-7 gap-2">
           {days.map((date, idx) => {
             if (!date) return <div key={`empty-${idx}`} className="aspect-square" />;
@@ -86,7 +85,7 @@ export default function CalendarPicker({
           })}
         </div>
 
-        {/* legend */}
+        {/* Legend */}
         <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-gray-200 pt-5 text-xs">
           <div className="flex items-center gap-2">
             <div className="bg-beehealth-body-main h-5 w-5 rounded-lg border-2 border-blue-300 shadow-sm" />

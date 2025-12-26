@@ -1,27 +1,15 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { Heart, Award, Users, Shield } from 'lucide-react';
+import HomeHeader from '@/components/sections/home/components/HomeHeader';
+import { useState } from 'react';
 
 export default function About() {
-  const router = useRouter();
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className="bg-beehealth-body-main min-h-screen">
-      <header className="bg-beehealth-body-main/80 border-b backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <button onClick={() => router.push('/')} className="flex items-center gap-2">
-            <img src="/fish.png" alt="" className="max-w-10" />
-            <span className="text-2xl font-bold text-gray-700">BeeHealth</span>
-          </button>
-          <button
-            onClick={() => router.push('/auth/login')}
-            className="rounded-lg bg-blue-500 px-4 py-2 text-white transition hover:bg-blue-600"
-          >
-            Ingresar
-          </button>
-        </div>
-      </header>
+      <HomeHeader about={false} contact={true} showMenu={showMenu} setShowMenu={setShowMenu} />
 
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="mb-6 text-4xl font-bold text-gray-700">Acerca de BeeHealth</h1>

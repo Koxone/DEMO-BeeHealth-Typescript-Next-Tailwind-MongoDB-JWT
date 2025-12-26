@@ -30,13 +30,13 @@ export async function PATCH(req, { params }) {
       return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
     }
 
-    // Validar formato phone (7-15 dígitos)
+    // Validate phone format (simple regex for demonstration)
     const phoneRegex = /^[0-9]{7,15}$/;
     if (!phoneRegex.test(phone)) {
       return NextResponse.json({ error: 'Phone must be 7-15 digits' }, { status: 400 });
     }
 
-    // Verificar que phone no exista
+    // Verify if phone is already in use by another user
     const existingUser = await User.findOne({ phone });
     if (existingUser && existingUser._id.toString() !== id) {
       return NextResponse.json({ error: 'Phone number already in use' }, { status: 400 });
@@ -57,6 +57,8 @@ export async function PATCH(req, { params }) {
       role: user.role,
       specialty: user.specialty,
       isActive: user.isActive,
+      hasRecord: user.hasRecord,
+      createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
 

@@ -3,7 +3,17 @@
 import { Menu, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-function HomeHeader({ setShowMenu, showMenu }) {
+function HomeHeader({
+  setShowMenu,
+  showMenu,
+  about = false,
+  contact = false,
+}: {
+  setShowMenu: (show: boolean) => void;
+  showMenu: boolean;
+  about?: boolean;
+  contact?: boolean;
+}) {
   const router = useRouter();
   return (
     <header className="bg-beehealth-body-main/80 sticky top-0 z-50 border-b border-gray-300 backdrop-blur-sm">
@@ -15,21 +25,28 @@ function HomeHeader({ setShowMenu, showMenu }) {
 
         {/* Desktop Menu */}
         <div className="hidden items-center gap-4 md:flex">
-          <button
-            onClick={() => router.push('/about')}
-            className="text-gray-600 transition hover:text-gray-700"
-          >
-            Acerca de
-          </button>
-          <button
-            onClick={() => router.push('/contact')}
-            className="text-gray-600 transition hover:text-gray-700"
-          >
-            Contacto
-          </button>
+          {/* About Button */}
+          {about && (
+            <button
+              onClick={() => router.push('/public/about')}
+              className="text-gray-600 transition hover:text-gray-700"
+            >
+              Acerca de
+            </button>
+          )}
+
+          {/* Contact Buttons */}
+          {contact && (
+            <button
+              onClick={() => router.push('/public/contact')}
+              className="text-gray-600 transition hover:text-gray-700"
+            >
+              Contacto
+            </button>
+          )}
           <button
             onClick={() => router.push('/auth/login')}
-            className="px-4 py-2 font-medium text-blue-600 transition hover:text-blue-700"
+            className="text-beehealth-blue-primary-dark hover:text-beehealth-blue-primary-dark-hover px-4 py-2 font-medium transition"
           >
             Ingresar
           </button>
@@ -52,26 +69,31 @@ function HomeHeader({ setShowMenu, showMenu }) {
 
       {/* Mobile Menu */}
       {showMenu && (
-        <div className="bg-beehealth-body-main border-t md:hidden">
+        <div className="bg-beehealth-body-main border-t border-gray-300 md:hidden">
           <div className="space-y-2 px-4 py-3">
-            <button
-              onClick={() => {
-                setShowMenu(false);
-                router.push('/about');
-              }}
-              className="hover:bg-beehealth-body-main w-full rounded-lg px-4 py-2 text-left text-gray-700 transition"
-            >
-              Acerca de
-            </button>
-            <button
-              onClick={() => {
-                setShowMenu(false);
-                router.push('/contact');
-              }}
-              className="hover:bg-beehealth-body-main w-full rounded-lg px-4 py-2 text-left text-gray-700 transition"
-            >
-              Contacto
-            </button>
+            {about && (
+              <button
+                onClick={() => {
+                  setShowMenu(false);
+                  router.push('/public/about');
+                }}
+                className="hover:bg-beehealth-body-main w-full rounded-lg px-4 py-2 text-left text-gray-700 transition"
+              >
+                Acerca de
+              </button>
+            )}
+
+            {contact && (
+              <button
+                onClick={() => {
+                  setShowMenu(false);
+                  router.push('/public/contact');
+                }}
+                className="hover:bg-beehealth-body-main w-full rounded-lg px-4 py-2 text-left text-gray-700 transition"
+              >
+                Contacto
+              </button>
+            )}
             <button
               onClick={() => {
                 setShowMenu(false);

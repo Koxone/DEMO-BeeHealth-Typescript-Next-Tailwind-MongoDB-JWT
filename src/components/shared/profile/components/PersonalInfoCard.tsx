@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Field from './Field';
-import { Award, Mail, MapPin, Phone, User } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
+
+// Custom Hooks
 
 function PersonalInfoCard({
   user,
   isEditing,
   changeEmail,
+  changePhone,
   setShowSuccessModal,
   setTitle,
   setMessage,
@@ -14,12 +17,14 @@ function PersonalInfoCard({
 }) {
   // State
   const [email, setEmail] = useState(user?.email || '');
+  const [phone, setPhone] = useState(user?.phone || '');
 
   useEffect(() => {
     setEmail(user?.email || '');
-  }, [user?.email]);
+    setPhone(user?.phone || '');
+  }, [user?.email, user?.phone]);
 
-  const handleSave = () => {
+  const handleSaveEmail = () => {
     if (email === user.email) return;
 
     changeEmail(
@@ -42,9 +47,33 @@ function PersonalInfoCard({
     );
   };
 
+  const handleSavePhone = () => {
+    if (phone === user.phone) return;
+
+    changePhone(
+      { userId: user.id, phone },
+      {
+        onSuccess: async () => {
+          await loadUser();
+          setTitle('¡Éxito!');
+          setMessage('Teléfono actualizado con éxito!');
+          setShowSuccessModal(true);
+          setIsEditing(false);
+
+          setTimeout(() => {
+            setShowSuccessModal(false);
+            setMessage('');
+            setTitle('');
+          }, 1000);
+        },
+      }
+    );
+  };
+
   useEffect(() => {
     if (!isEditing) {
-      handleSave();
+      handleSaveEmail();
+      handleSavePhone();
     }
   }, [isEditing]);
 
@@ -53,12 +82,20 @@ function PersonalInfoCard({
       <Field
         label="Correo Electrónico"
         value={email}
+        type="email"
         isEditing={isEditing}
         icon={Mail}
         onChange={setEmail}
       />
 
-      <Field label="Telefono" value={user?.phone || ''} isEditing={false} icon={Phone} />
+      <Field
+        label="Telefono"
+        type="text"
+        value={phone}
+        isEditing={isEditing}
+        icon={Phone}
+        onChange={setPhone}
+      />
     </div>
   );
 }

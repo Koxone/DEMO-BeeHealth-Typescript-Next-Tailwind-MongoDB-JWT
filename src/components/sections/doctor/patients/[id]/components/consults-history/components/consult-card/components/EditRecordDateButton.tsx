@@ -1,16 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Check, ChevronDown, Pencil, X } from 'lucide-react';
 
 // Local Helpers
 import { MONTHS } from '../services/helpers';
 
-export default function EditRecordDateButton({ onSelect, fetchRecord }) {
+export default function EditRecordDateButton({ onSelect, fetchRecord, recordDate }) {
   // UI state
   const [open, setOpen] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Initialize date fields when opening
+  useEffect(() => {
+    if (!open || !recordDate) return;
+    const [year, month, day] = recordDate.split('T')[0].split('-');
+    setDay(day);
+    setMonth(String(Number(month)));
+    setYear(year);
+  }, [open, recordDate]);
 
   // Date fields
   const [day, setDay] = useState('');
@@ -58,7 +67,7 @@ export default function EditRecordDateButton({ onSelect, fetchRecord }) {
 
     onSelect(formattedDate);
 
-    fetchRecord();
+    await fetchRecord();
     setIsLoading(false);
     setOpen(false);
     setDay('');

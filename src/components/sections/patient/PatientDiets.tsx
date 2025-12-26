@@ -21,6 +21,8 @@ export default function PatientDiets({ role, currentUser }) {
     refetch: refetchDiets,
   } = useGetAllDietsFromPatient(patientId);
 
+  const filteredDiets = dietsData?.filter((diet) => diet.isActive === true);
+
   // Loading state
   if (dietsLoading) {
     return <LoadingState />;
@@ -32,7 +34,7 @@ export default function PatientDiets({ role, currentUser }) {
   }
 
   return (
-    <div className="h-full space-y-4 overflow-y-auto md:space-y-6 mb-20 md:mb-0">
+    <div className="mb-20 h-full space-y-4 overflow-y-auto md:mb-0 md:space-y-6">
       {/* Header block */}
       <SharedSectionHeader
         role="patient"
@@ -43,10 +45,10 @@ export default function PatientDiets({ role, currentUser }) {
 
       {/* Content block */}
       <div
-        className={`grid gap-6 md:grid-cols-2 ${dietsData?.length === 0 ? 'lg:grid-cols-1' : 'lg:grid-cols-3'}`}
+        className={`grid gap-6 md:grid-cols-2 ${filteredDiets?.length === 0 ? 'lg:grid-cols-1' : 'lg:grid-cols-3'}`}
       >
-        {dietsData && dietsData?.length > 0 ? (
-          dietsData?.map((diet) => <PatientDietCard diet={diet} key={diet._id} />)
+        {filteredDiets && filteredDiets?.length > 0 ? (
+          filteredDiets?.map((diet) => <PatientDietCard diet={diet} key={diet._id} />)
         ) : (
           // Empty state block
           <EmptyState

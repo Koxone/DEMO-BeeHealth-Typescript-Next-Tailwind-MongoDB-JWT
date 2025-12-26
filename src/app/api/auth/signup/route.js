@@ -5,6 +5,9 @@ import { NextResponse } from 'next/server';
 import User from '@/models/User';
 import mongoose from 'mongoose';
 
+// Zod Schemas
+import { signupSchema } from '@/zod/auth/auth.signup.schema';
+
 // @route    POST api/auth/signup
 // @desc     Create New User
 // @access   Public
@@ -13,11 +16,14 @@ export async function POST(req) {
     // Connect to DataBase
     await connectDB();
 
-    // Get Body from Request
-    const { fullName, email, phone, password, role, specialty } = await req.json();
-    if (!fullName || !email || !phone || !password) {
-      return NextResponse.json({ error: 'All Fields are required' }, { status: 400 });
-    }
+    // Parse
+    const body = await req.json();
+
+    // Validate
+    const { fullName, email, phone, password, role, specialty } = signupSchema.parse({
+      ...body,
+      email: body.email?.trim().toLowerCase(),
+    });
 
     // Check if User Data already exists
     const exists = await User.findOne({ $or: [{ email }, { phone }] });
@@ -96,6 +102,10 @@ export async function POST(req) {
 
     return res;
   } catch (error) {
+    if (error?.name === 'ZodError') {
+      return NextResponse.json({ error: 'Invalid signup data' }, { status: 400 });
+    }
+
     console.error(error);
     return NextResponse.json({ error: 'Error creating user' }, { status: 500 });
   }

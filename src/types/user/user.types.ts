@@ -3,9 +3,10 @@ export interface CurrentUserData {
   fullName: string;
   email: string;
   phone: string;
-  hasRecord?: boolean;
-  role: string;
   avatar?: string;
-  createdAt?: Date;
+  role: string;
   specialty?: string;
+  hasRecord?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

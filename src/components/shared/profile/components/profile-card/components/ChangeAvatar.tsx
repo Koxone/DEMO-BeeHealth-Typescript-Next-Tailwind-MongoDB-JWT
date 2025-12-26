@@ -5,6 +5,9 @@ import { useRef } from 'react';
 import { useChangeAvatar } from '@/hooks/users/useChangeAvatar';
 import { useVercelBlobUpload } from '@/hooks/upload/useVercelBlobUpload';
 
+// Types
+import { CurrentUserData } from '@/types/user/user.types';
+
 function ChangeAvatar({
   user,
   isEditing,
@@ -14,7 +17,7 @@ function ChangeAvatar({
   setMessage,
   setIsEditing,
 }: {
-  user: any;
+  user: CurrentUserData;
   isEditing: boolean;
   loadUser: () => Promise<void>;
   setShowSuccessModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,11 +75,17 @@ function ChangeAvatar({
           : '',
       ].join(' ')}
     >
-      <img
-        src={user?.avatar}
-        alt="Profile"
-        className={`${isEditing ? 'scale-100' : 'scale-90'} h-full w-full rounded-full object-cover`}
-      />
+      {user?.avatar ? (
+        <img
+          src={user?.avatar}
+          alt="Profile"
+          className={`${isEditing ? 'scale-100' : 'scale-90'} h-full w-full rounded-full object-cover`}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-gray-200">
+          <span className="text-3xl font-bold text-gray-500">{user?.fullName?.charAt(0)}</span>
+        </div>
+      )}
 
       {isEditing && (
         <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">

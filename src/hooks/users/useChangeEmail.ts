@@ -1,6 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+// Types
+import { CurrentUserData } from '@/types/user/user.types';
+
 interface UpdateEmailPayload {
   userId: string;
   email: string;
@@ -8,17 +11,7 @@ interface UpdateEmailPayload {
 
 interface UpdateEmailResponse {
   message: string;
-  user: {
-    id: string;
-    fullName: string;
-    email: string;
-    phone: string;
-    avatar?: string;
-    role: string;
-    specialty?: string;
-    isActive: boolean;
-    updatedAt: string;
-  };
+  user: CurrentUserData;
 }
 
 interface UpdateEmailError {

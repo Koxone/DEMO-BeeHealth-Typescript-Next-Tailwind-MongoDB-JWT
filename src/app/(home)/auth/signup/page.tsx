@@ -1,11 +1,14 @@
+'use client';
+
 import SignupForm from '@/components/sections/auth/signup/SignupForm';
 import HomeHeader from '@/components/sections/home/components/HomeHeader';
-import React from 'react';
+import { useState } from 'react';
 
 function SignUpPage() {
+  const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="grid h-screen grid-rows-[auto_1fr] overflow-hidden">
-      <HomeHeader />
+    <div>
+      <HomeHeader about contact showMenu={showMenu} setShowMenu={setShowMenu} />
       <SignupForm />
     </div>
   );

@@ -71,14 +71,12 @@ export default function Header() {
       {/* Mobile header */}
       <div className="flex items-center justify-between px-4 py-3 md:hidden">
         <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-indigo-600 shadow-lg">
-            <User className="h-5 w-5 text-white" />
-            <div className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-2 border-white bg-green-500" />
+          <div className="relative flex items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-indigo-600 shadow-lg">
+            <ProfileButton currentUser={currentUser} />
           </div>
           <div>
             <p className="text-sm font-bold text-gray-700">{fullName}</p>
             <div className="flex items-center gap-1.5">
-              <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
               <p className="text-xs font-medium text-gray-500">{roleLabel}</p>
             </div>
           </div>

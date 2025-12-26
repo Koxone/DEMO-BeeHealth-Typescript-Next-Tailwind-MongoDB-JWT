@@ -6,9 +6,11 @@ export default function Field({
   isEditing,
   icon: Icon,
   onChange,
+  type,
 }: {
   label: string;
   value: string;
+  type?: string;
   isEditing: boolean;
   icon?: any;
   onChange?: (value: string) => void;
@@ -23,11 +25,11 @@ export default function Field({
       <div className="relative">
         <input
           maxLength={250}
-          type="text"
+          type={type}
           value={value}
           disabled={!isEditing}
           onChange={(e) => onChange?.(e.target.value)}
-          className="focus:bg-beehealth-body-main bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:opacity-60"
+          className="focus:bg-beehealth-body-main bg-beehealth-body-main w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-700 transition-all duration-200 outline-none disabled:cursor-not-allowed disabled:opacity-60"
         />
 
         {isEditing && (

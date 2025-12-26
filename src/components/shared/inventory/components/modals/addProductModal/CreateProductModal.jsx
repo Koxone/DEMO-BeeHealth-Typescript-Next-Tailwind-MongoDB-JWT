@@ -8,7 +8,6 @@ import SupplyForm from '../shared/SupplyForm';
 // Custom Hooks and Services
 import { createProduct } from './services/createProduct';
 import { getGradient, getIcon } from './utils/helpers';
-import { useEffect } from 'react';
 import { useModalClose } from '@/hooks/useModalClose';
 
 export default function CreateProductModal({ activeTab, onClose, successRefresh, role }) {

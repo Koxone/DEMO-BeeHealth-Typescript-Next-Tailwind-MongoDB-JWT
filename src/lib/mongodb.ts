@@ -35,7 +35,7 @@ export const connectDB = async (): Promise<typeof mongoose> => {
 
     cached.promise = mongoose
       .connect(uri, {
-        dbName: process.env.MONGODB_DB_DEMO || 'MedTrack_DB_DEMO',
+        dbName: 'MedTrack_DB',
         bufferCommands: false,
         maxPoolSize: 5,
         minPoolSize: 1,

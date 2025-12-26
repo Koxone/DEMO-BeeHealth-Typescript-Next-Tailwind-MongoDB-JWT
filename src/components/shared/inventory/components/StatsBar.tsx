@@ -1,4 +1,5 @@
 'use client';
+
 import { useMemo } from 'react';
 
 export default function StatsBar({ inventory }) {
@@ -70,7 +71,9 @@ export default function StatsBar({ inventory }) {
           >
             {s.label}
           </div>
-          <p className="text-2xl font-bold text-gray-700">{s.value}</p>
+          <p className="text-2xl font-bold text-gray-700">
+            {s?.value.length > 25 ? s?.value.slice(0, 25) + '...' : s?.value}
+          </p>
         </div>
       ))}
     </div>

@@ -1,5 +1,3 @@
----
-
 # BeeHealth — Medical Practice Management System
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs)
@@ -7,12 +5,17 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)
 ![MongoDB](https://img.shields.io/badge/MongoDB-8-green?style=flat-square&logo=mongodb)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?style=flat-square&logo=tailwindcss)
+![Zustand](https://img.shields.io/badge/Zustand-State%20Management-orange?style=flat-square)
+![Zod](https://img.shields.io/badge/Zod-Schema%20Validation-3068ff?style=flat-square)
+![Google Calendar API](https://img.shields.io/badge/Google%20API-Calendar-red?style=flat-square&logo=google)
+![Vercel](https://img.shields.io/badge/Vercel-Hosting-black?style=flat-square&logo=vercel)
 
 A full-featured medical practice management platform built for multi-specialty clinics. Handles patient records, appointments, inventory, accounting, and clinical workflows with role-based access for doctors, employees, and patients.
 
 **Live Demo:** https://demo-beehealth.vercel.app
 
 **Demo Credentials:**
+
 | Role | Email | Password |
 |------|-------|----------|
 | Doctor | doctor@demo.com | demo2025 |
@@ -26,21 +29,18 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Clinical Management
 
 **Patient Records**
-
 - Complete patient profiles with medical history
 - Clinical records with customizable fields per doctor
 - Weight and measurement tracking with visual progress charts
 - Patient timeline showing all events: consultations, prescriptions, diet changes, workout assignments
 
 **Consultations**
-
 - Full consultation workflow with configurable UI
 - Drag-and-drop field ordering with per-doctor persistence
 - Link consultations to assigned diets, workouts, and prescriptions
 - Medical notes and follow-up tracking
 
-**Diets & Workouts**
-
+**Diets and Workouts**
 - Create, edit, and manage diet and workout plans
 - Assign plans to patients with activation/deactivation
 - Track compliance and history per patient
@@ -49,7 +49,6 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Scheduling
 
 **Google Calendar Integration**
-
 - Real-time sync with Google Calendar API
 - Appointment scheduling with time slot management
 - Multi-specialty calendar routing (weight, dental, aesthetic)
@@ -58,7 +57,6 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Inventory Management
 
 **Full Stock Control**
-
 - Medications, supplies, and prescriptions tracking
 - Low stock and critical stock alerts
 - Complete transaction history per product
@@ -68,7 +66,6 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Accounting
 
 **Financial Tracking**
-
 - Daily and weekly income reports
 - Consultation vs product sales breakdown
 - Revenue distribution by specialty
@@ -78,7 +75,6 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Role-Based Access
 
 **Doctor**
-
 - Full patient management and clinical records
 - Consultation management with UI customization
 - Diet and workout creation and assignment
@@ -88,14 +84,12 @@ A full-featured medical practice management platform built for multi-specialty c
 - Configurable views saved per user profile
 
 **Employee**
-
 - Appointment scheduling and management
 - Inventory management with full transaction logging
 - Consultation registration
 - Product sales
 
 **Patient**
-
 - View assigned diets and workouts
 - Book appointments
 - Access personal medical history
@@ -107,7 +101,6 @@ A full-featured medical practice management platform built for multi-specialty c
 ### Authentication
 
 Dual-token JWT system:
-
 - Access token (15 min) for API requests
 - Refresh token (7 days) in httpOnly secure cookies
 - Server-side validation on every request
@@ -115,7 +108,6 @@ Dual-token JWT system:
 ### Authorization
 
 Hybrid RBAC + ABAC model:
-
 - **RBAC:** Role-based module separation (doctor, employee, patient)
 - **ABAC:** Attribute-based filtering by specialty (weight, dental, aesthetic)
 - Doctors only access patients within their specialty
@@ -123,28 +115,28 @@ Hybrid RBAC + ABAC model:
 
 ### Security
 
-| Layer            | Implementation                           |
-| ---------------- | ---------------------------------------- |
-| Authentication   | JWT with refresh token rotation          |
-| Cookies          | httpOnly, secure, sameSite strict        |
-| Passwords        | bcrypt hashing                           |
-| Validation       | Zod schemas on client and server         |
+| Layer | Implementation |
+|-------|----------------|
+| Authentication | JWT with refresh token rotation |
+| Cookies | httpOnly, secure, sameSite strict |
+| Passwords | bcrypt hashing |
+| Validation | Zod schemas on client and server |
 | Route Protection | ServerRoleGuard with automatic redirects |
 
 ### Data Flow
 
 ```
 Frontend (React + Zustand)
-    │
-    ▼
+    |
+    v
 React Query (caching + sync)
-    │
-    ▼
+    |
+    v
 API Routes (Next.js)
-    │
-    ├── getAuthUser (validates every request)
-    │
-    ▼
+    |
+    |-- getAuthUser (validates every request)
+    |
+    v
 MongoDB (Mongoose ODM)
 ```
 
@@ -173,20 +165,20 @@ src/
 
 ## Tech Stack
 
-| Category   | Technology              |
-| ---------- | ----------------------- |
-| Framework  | Next.js 16 (App Router) |
-| UI Library | React 19                |
-| Language   | TypeScript              |
-| Database   | MongoDB + Mongoose      |
-| Auth       | JWT (stateless)         |
-| Validation | Zod                     |
-| State      | Zustand + React Query   |
-| Styling    | Tailwind CSS v4         |
-| Animations | Framer Motion           |
-| Calendar   | Google Calendar API     |
-| Charts     | Recharts                |
-| Deployment | Vercel                  |
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 16 (App Router) |
+| UI Library | React 19 |
+| Language | TypeScript |
+| Database | MongoDB + Mongoose |
+| Auth | JWT (stateless) |
+| Validation | Zod |
+| State | Zustand + React Query |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| Calendar | Google Calendar API |
+| Charts | Recharts |
+| Deployment | Vercel |
 
 ---
 
@@ -232,8 +224,3 @@ npm start       # Production server
 ## License
 
 MIT License - 2025
-
-```
-
----
-```

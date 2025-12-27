@@ -1,155 +1,188 @@
-# 🏥 **MedTrack — Medical Management Platform**
+---
+
+# BeeHealth — Medical Practice Management System
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)
 ![MongoDB](https://img.shields.io/badge/MongoDB-8-green?style=flat-square&logo=mongodb)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?style=flat-square&logo=tailwindcss)
-![Zustand](https://img.shields.io/badge/Zustand-State%20Management-orange?style=flat-square)
-![Zod](https://img.shields.io/badge/Zod-Schema%20Validation-3068ff?style=flat-square)
-![Google Calendar API](https://img.shields.io/badge/Google%20API-Calendar-red?style=flat-square&logo=google)
-![Vercel](https://img.shields.io/badge/Vercel-Hosting-black?style=flat-square&logo=vercel)
 
-**A modern medical platform designed for doctors, employees, and patients with real-time scheduling, consult management, inventory tracking, and Google Calendar integration.**
+A full-featured medical practice management platform built for multi-specialty clinics. Handles patient records, appointments, inventory, accounting, and clinical workflows with role-based access for doctors, employees, and patients.
 
-🔗 **Live Demo:** [https://www.efsett.org/](https://www.efsett.org/)
+**Live Demo:** https://demo-beehealth.vercel.app
+
+**Demo Credentials:**
+| Role | Email | Password |
+|------|-------|----------|
+| Doctor | doctor@demo.com | demo2025 |
+| Employee | employee@demo.com | demo2025 |
+| Patient | patient@demo.com | demo2025 |
 
 ---
 
-## 🏗️ **Architecture & Security**
+## Features
+
+### Clinical Management
+
+**Patient Records**
+
+- Complete patient profiles with medical history
+- Clinical records with customizable fields per doctor
+- Weight and measurement tracking with visual progress charts
+- Patient timeline showing all events: consultations, prescriptions, diet changes, workout assignments
+
+**Consultations**
+
+- Full consultation workflow with configurable UI
+- Drag-and-drop field ordering with per-doctor persistence
+- Link consultations to assigned diets, workouts, and prescriptions
+- Medical notes and follow-up tracking
+
+**Diets & Workouts**
+
+- Create, edit, and manage diet and workout plans
+- Assign plans to patients with activation/deactivation
+- Track compliance and history per patient
+- Patients only see their assigned plans
+
+### Scheduling
+
+**Google Calendar Integration**
+
+- Real-time sync with Google Calendar API
+- Appointment scheduling with time slot management
+- Multi-specialty calendar routing (weight, dental, aesthetic)
+- Same-day appointment detection
+
+### Inventory Management
+
+**Full Stock Control**
+
+- Medications, supplies, and prescriptions tracking
+- Low stock and critical stock alerts
+- Complete transaction history per product
+- Every action logged: sales, restocks, edits, price changes
+- Audit trail with timestamp, user, and reason for each change
+
+### Accounting
+
+**Financial Tracking**
+
+- Daily and weekly income reports
+- Consultation vs product sales breakdown
+- Revenue distribution by specialty
+- Event reversal handling (appointment cancellations reflected in accounting)
+- Visual charts with Recharts
+
+### Role-Based Access
+
+**Doctor**
+
+- Full patient management and clinical records
+- Consultation management with UI customization
+- Diet and workout creation and assignment
+- Calendar and appointment scheduling
+- Inventory access and sales
+- Complete accounting dashboard
+- Configurable views saved per user profile
+
+**Employee**
+
+- Appointment scheduling and management
+- Inventory management with full transaction logging
+- Consultation registration
+- Product sales
+
+**Patient**
+
+- View assigned diets and workouts
+- Book appointments
+- Access personal medical history
+
+---
+
+## Architecture
 
 ### Authentication
 
-MedTrack implements a **dual-token JWT authentication system**:
+Dual-token JWT system:
 
-- **Access Token** (15 min): Used for API requests
-- **Refresh Token** (7 days): Stored in httpOnly secure cookies
+- Access token (15 min) for API requests
+- Refresh token (7 days) in httpOnly secure cookies
+- Server-side validation on every request
 
-All tokens are verified server-side on every request. The frontend never handles sensitive authentication logic.
+### Authorization
 
-### Authorization Model
+Hybrid RBAC + ABAC model:
 
-The platform uses a **hybrid RBAC + ABAC** approach:
+- **RBAC:** Role-based module separation (doctor, employee, patient)
+- **ABAC:** Attribute-based filtering by specialty (weight, dental, aesthetic)
+- Doctors only access patients within their specialty
+- Complete module isolation between roles
 
-**RBAC (Role-Based Access Control):**
+### Security
 
-- Three distinct roles: `doctor`, `employee`, `patient`
-- Each role has its own module, routes, and UI components
-- Route protection via `ServerRoleGuard` component
+| Layer            | Implementation                           |
+| ---------------- | ---------------------------------------- |
+| Authentication   | JWT with refresh token rotation          |
+| Cookies          | httpOnly, secure, sameSite strict        |
+| Passwords        | bcrypt hashing                           |
+| Validation       | Zod schemas on client and server         |
+| Route Protection | ServerRoleGuard with automatic redirects |
 
-**ABAC (Attribute-Based Access Control):**
-
-- Access is further restricted by `specialty` attribute (weight, dental, stetic)
-- Doctors only access patients matching their specialty
-- All attribute validation occurs server-side
-
-### Security Practices
-
-| Practice               | Implementation                                     |
-| ---------------------- | -------------------------------------------------- |
-| Server-side validation | Every API route validates auth and permissions     |
-| httpOnly cookies       | Refresh tokens are never accessible via JavaScript |
-| Password hashing       | bcrypt with salt rounds                            |
-| Input validation       | Zod schemas on both client and server              |
-| Role separation        | Complete module isolation between roles            |
-
-### Data Flow Architecture
+### Data Flow
 
 ```
-┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│   Frontend  │────▶│  API Routes  │────▶│   MongoDB   │
-│  (React +   │     │  (Next.js)   │     │  (Mongoose) │
-│   Zustand)  │◀────│              │◀────│             │
-└─────────────┘     └──────────────┘     └─────────────┘
-       │                   │
-       │                   ▼
-       │           ┌──────────────┐
-       │           │  getAuthUser │
-       │           │  (validates  │
-       │           │   every req) │
-       │           └──────────────┘
-       ▼
-┌─────────────┐
-│ React Query │
-│  (caching)  │
-└─────────────┘
+Frontend (React + Zustand)
+    │
+    ▼
+React Query (caching + sync)
+    │
+    ▼
+API Routes (Next.js)
+    │
+    ├── getAuthUser (validates every request)
+    │
+    ▼
+MongoDB (Mongoose ODM)
 ```
 
-### Module Structure
-
-Each role operates in complete isolation:
+### Project Structure
 
 ```
-app/(main)/
-├── doctor/      # Clinical records, patients, diets, workouts
-├── employee/    # Appointments, inventory, consultations
-└── patient/     # Personal records, appointments, assigned content
+src/
+├── app/
+│   ├── (main)/
+│   │   ├── doctor/      # Clinical records, patients, diets, workouts, accounting
+│   │   ├── employee/    # Appointments, inventory, consultations
+│   │   └── patient/     # Personal dashboard, assigned content
+│   └── api/             # REST endpoints
+├── components/
+│   ├── sections/        # Role-specific components
+│   └── shared/          # Cross-role UI components
+├── hooks/               # React Query hooks for data fetching
+├── models/              # Mongoose schemas
+├── lib/                 # Auth, database, utilities
+├── types/               # TypeScript definitions
+├── zod/                 # Validation schemas
+└── zustand/             # Global state stores
 ```
-
-Shared logic is limited to UI components only. Business logic never crosses role boundaries.
-
-### Patterns Used
-
-- **Guard Pattern**: Route protection with automatic redirects
-- **Repository Pattern**: Hooks abstract all data fetching
-- **Schema Validation**: Zod validates API responses at runtime
-- **Modular Architecture**: Domain-separated modules by role
-- **Stateless Auth**: JWT-based, no server sessions
 
 ---
 
-## 🚀 **Features**
-
-### 🩺 **Consultation Management**
-
-- Daily consultation dashboard
-- Pricing, items sold and totals
-- Patient history and notes
-
-### 📅 **Google Calendar Integration**
-
-- Events parsed and normalized for medical use
-- Automatic specialty routing
-- Same-day appointment detection in real time
-
-### 🧪 **Medical Inventory System**
-
-- Intelligent stock tracking
-- Low and critical stock alerts
-- Full inventory history per product
-
-### 👨‍⚕️👩‍⚕️ **Role-Based Access**
-
-- **Doctor:** Clinical data, appointments, consults
-- **Employee:** Reception, sales, prescriptions
-- **Patient:** Profile, history, future appointments
-
-### 📊 **Analytics & Charts**
-
-- Income distribution
-- Consult vs medication insights
-- Recharts with responsive UI
-
-### ⚙️ **Performance & Architecture**
-
-- Built with **Next.js 16 App Router**
-- Modular architecture following real enterprise patterns
-- Type-safe backend and frontend with **Zod**
-- Persistent auth and state with **Zustand**
-- Integrated JWT-based authentication
-
----
-
-## 🛠 **Tech Stack**
+## Tech Stack
 
 | Category   | Technology              |
 | ---------- | ----------------------- |
 | Framework  | Next.js 16 (App Router) |
+| UI Library | React 19                |
 | Language   | TypeScript              |
-| Backend    | MongoDB + Mongoose      |
+| Database   | MongoDB + Mongoose      |
 | Auth       | JWT (stateless)         |
 | Validation | Zod                     |
-| State      | Zustand                 |
-| UI         | Tailwind CSS v4         |
+| State      | Zustand + React Query   |
+| Styling    | Tailwind CSS v4         |
 | Animations | Framer Motion           |
 | Calendar   | Google Calendar API     |
 | Charts     | Recharts                |
@@ -157,95 +190,50 @@ Shared logic is limited to UI components only. Business logic never crosses role
 
 ---
 
-## 📂 **Project Structure**
+## Local Development
 
-```
-src/
-├── app/               # Routes, layouts and server actions
-├── components/        # Reusable UI blocks
-├── lib/               # Utils, DB connect, validators
-├── models/            # Mongoose models (User, Patient, Inventory, Consults)
-├── hooks/             # Zustand logic + Calendar hooks
-├── services/          # Data services and controllers
-├── styles/            # Tailwind and global styles
-└── zustand/           # Auth, UI, Inventory stores
-```
+### Prerequisites
 
----
+- Node.js 18+
+- MongoDB instance
+- Google Cloud project with Calendar API enabled
 
-## ⚡ **Getting Started**
-
-### 1️⃣ Clone the repo
+### Setup
 
 ```bash
-git clone https://github.com/Koxone/MedTrack.git
-cd MedTrack
-```
-
-### 2️⃣ Install dependencies
-
-```bash
+git clone https://github.com/Koxone/DEMO-BeeHealth-Typescript-Next-Tailwind-MongoDB-JWT.git
+cd DEMO-BeeHealth-Typescript-Next-Tailwind-MongoDB-JWT
 npm install
 ```
 
-### 3️⃣ Environment Variables
+### Environment Variables
 
-Create a `.env.local` file and add:
+Create `.env.local`:
 
 ```env
 MONGODB_URI=your_mongo_uri
 JWT_SECRET=your_jwt_secret
 GOOGLE_CLIENT_EMAIL=your_google_service_account_email
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-GOOGLE_CALENDAR_WEIGHT_ID=calendar_id_here
-GOOGLE_CALENDAR_DENTAL_ID=calendar_id_here
+GOOGLE_CALENDAR_WEIGHT_ID=calendar_id
+GOOGLE_CALENDAR_DENTAL_ID=calendar_id
 ```
 
-### 4️⃣ Run the dev server
+### Run
 
 ```bash
-npm run dev
-```
-
-### 5️⃣ Build for production
-
-```bash
-npm run build
-npm start
+npm run dev     # Development
+npm run build   # Production build
+npm start       # Production server
 ```
 
 ---
 
-## 📦 **Features in Development**
+## License
 
-- Full patient portal
-- Rich medical record system
-- Multi-clinic support
-- Medication barcode scanning
-- Staff performance analytics
+MIT License - 2025
+
+```
 
 ---
-
-## 🤝 Contributing
-
-Contributions are welcome.
-Fork the repo, open an issue or submit a PR.
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-© 2025 Kox
-
----
-
-## 💡 Why MedTrack?
-
-This platform is designed to function as a **real**, production-ready medical system with:
-
-✔ Clinical workflows
-✔ Inventory management
-✔ Google Calendar sync
-✔ Scalable modular architecture
-✔ Professional TypeScript patterns
+```

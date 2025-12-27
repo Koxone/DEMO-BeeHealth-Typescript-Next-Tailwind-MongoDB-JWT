@@ -1,4 +1,4 @@
-# 🏥 **BeeHealth — Medical Management Platform**
+# 🏥 **MedTrack — Medical Management Platform**
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat-square&logo=typescript)
@@ -11,29 +11,89 @@
 
 **A modern medical platform designed for doctors, employees, and patients with real-time scheduling, consult management, inventory tracking, and Google Calendar integration.**
 
-🔗 **Live Demo:** [https://demo-beehealth.vercel.app/](https://demo-beehealth.vercel.app/)
+🔗 **Live Demo:** [https://www.efsett.org/](https://www.efsett.org/)
 
 ---
 
-## 🔐 Demo Credentials
+## 🏗️ **Architecture & Security**
 
-The application includes **three different user roles**.  
-All roles share the **same password**, only the email changes based on the role.
+### Authentication
 
-### 👨‍⚕️ Doctor
+MedTrack implements a **dual-token JWT authentication system**:
 
-- **Email:** doctor@demo.com
-- **Password:** demo2025
+- **Access Token** (15 min): Used for API requests
+- **Refresh Token** (7 days): Stored in httpOnly secure cookies
 
-### 🧑‍💼 Employee
+All tokens are verified server-side on every request. The frontend never handles sensitive authentication logic.
 
-- **Email:** employee@demo.com
-- **Password:** demo2025
+### Authorization Model
 
-### 🧑‍🦱 Patient
+The platform uses a **hybrid RBAC + ABAC** approach:
 
-- **Email:** patient@demo.com
-- **Password:** demo2025
+**RBAC (Role-Based Access Control):**
+
+- Three distinct roles: `doctor`, `employee`, `patient`
+- Each role has its own module, routes, and UI components
+- Route protection via `ServerRoleGuard` component
+
+**ABAC (Attribute-Based Access Control):**
+
+- Access is further restricted by `specialty` attribute (weight, dental, stetic)
+- Doctors only access patients matching their specialty
+- All attribute validation occurs server-side
+
+### Security Practices
+
+| Practice               | Implementation                                     |
+| ---------------------- | -------------------------------------------------- |
+| Server-side validation | Every API route validates auth and permissions     |
+| httpOnly cookies       | Refresh tokens are never accessible via JavaScript |
+| Password hashing       | bcrypt with salt rounds                            |
+| Input validation       | Zod schemas on both client and server              |
+| Role separation        | Complete module isolation between roles            |
+
+### Data Flow Architecture
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐
+│   Frontend  │────▶│  API Routes  │────▶│   MongoDB   │
+│  (React +   │     │  (Next.js)   │     │  (Mongoose) │
+│   Zustand)  │◀────│              │◀────│             │
+└─────────────┘     └──────────────┘     └─────────────┘
+       │                   │
+       │                   ▼
+       │           ┌──────────────┐
+       │           │  getAuthUser │
+       │           │  (validates  │
+       │           │   every req) │
+       │           └──────────────┘
+       ▼
+┌─────────────┐
+│ React Query │
+│  (caching)  │
+└─────────────┘
+```
+
+### Module Structure
+
+Each role operates in complete isolation:
+
+```
+app/(main)/
+├── doctor/      # Clinical records, patients, diets, workouts
+├── employee/    # Appointments, inventory, consultations
+└── patient/     # Personal records, appointments, assigned content
+```
+
+Shared logic is limited to UI components only. Business logic never crosses role boundaries.
+
+### Patterns Used
+
+- **Guard Pattern**: Route protection with automatic redirects
+- **Repository Pattern**: Hooks abstract all data fetching
+- **Schema Validation**: Zod validates API responses at runtime
+- **Modular Architecture**: Domain-separated modules by role
+- **Stateless Auth**: JWT-based, no server sessions
 
 ---
 
@@ -118,8 +178,8 @@ src/
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/Koxone/DEMO-BeeHealth-Typescript-Next-Tailwind-MongoDB-JWT.git
-cd BeeHealth
+git clone https://github.com/Koxone/MedTrack.git
+cd MedTrack
 ```
 
 ### 2️⃣ Install dependencies
@@ -180,7 +240,7 @@ This project is licensed under the MIT License.
 
 ---
 
-## 💡 Why BeeHealth?
+## 💡 Why MedTrack?
 
 This platform is designed to function as a **real**, production-ready medical system with:
 

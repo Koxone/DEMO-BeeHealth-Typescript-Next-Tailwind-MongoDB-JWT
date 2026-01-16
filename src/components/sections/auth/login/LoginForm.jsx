@@ -2,8 +2,30 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Heart, Mail, Lock, CheckCircle, AlertCircle, X } from 'lucide-react';
+import {
+  Heart,
+  Mail,
+  Lock,
+  CheckCircle,
+  AlertCircle,
+  X,
+  Stethoscope,
+  Briefcase,
+  User,
+} from 'lucide-react';
 import useAuthStore from '@/zustand/useAuthStore';
+
+// Demo credentials
+const DEMO_ACCOUNTS = {
+  doctor: { email: 'doctor@demo.com', password: 'demo2025', label: 'Doctor', icon: Stethoscope },
+  employee: {
+    email: 'employee@demo.com',
+    password: 'demo2025',
+    label: 'Empleado',
+    icon: Briefcase,
+  },
+  patient: { email: 'patient@demo.com', password: 'demo2025', label: 'Paciente', icon: User },
+};
 
 export default function LoginForm() {
   // Custom Hooks
@@ -13,19 +35,20 @@ export default function LoginForm() {
   const { setUser, setToken } = useAuthStore.getState();
 
   // Local states
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingRole, setLoadingRole] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Handle submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Handle demo login
+  const handleDemoLogin = async (role) => {
     setLoading(true);
+    setLoadingRole(role);
+
+    const { email, password } = DEMO_ACCOUNTS[role];
 
     try {
       const res = await fetch('/api/auth/login', {
@@ -41,6 +64,7 @@ export default function LoginForm() {
         setErrorMessage(data.error || 'Error al iniciar sesión');
         setShowErrorModal(true);
         setLoading(false);
+        setLoadingRole(null);
         return;
       }
 
@@ -52,19 +76,21 @@ export default function LoginForm() {
       setUserRole(data.user.role);
       setShowSuccessModal(true);
 
-      // Redirect after 2 seconds
+      // Redirect after 500ms
       setTimeout(() => {
-        const role = data.user.role;
-        if (role === 'patient') router.push('/patient/dashboard');
-        else if (role === 'doctor') router.push('/doctor/dashboard');
-        else if (role === 'employee') router.push('/employee/dashboard');
+        const userRoleRedirect = data.user.role;
+        if (userRoleRedirect === 'patient') router.push('/patient/dashboard');
+        else if (userRoleRedirect === 'doctor') router.push('/doctor/dashboard');
+        else if (userRoleRedirect === 'employee') router.push('/employee/dashboard');
         else router.push('/auth/login');
       }, 500);
     } catch (error) {
       console.error('Login error:', error);
-      alert('Error al conectar con el servidor');
+      setErrorMessage('Error al conectar con el servidor');
+      setShowErrorModal(true);
     } finally {
       setLoading(false);
+      setLoadingRole(null);
     }
   };
 
@@ -73,82 +99,40 @@ export default function LoginForm() {
       <div className="flex h-full items-center justify-center overflow-hidden p-4">
         <div className="bg-beehealth-body-main w-full max-w-md rounded-2xl border border-gray-200 p-8 shadow-xl">
           {/* Title */}
-          <h2 className="mb-2 text-center text-2xl font-bold text-gray-700">Iniciar Sesión</h2>
-          <p className="mb-8 text-center text-gray-600">Accede a tu cuenta médica</p>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-            {/* Email */}
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Correo Electrónico
-              </label>
-              <div className="relative">
-                <Mail className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                <input
-                  maxLength={250}
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-3 pr-4 pl-10 outline-none"
-                  placeholder="tu@email.com"
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Contraseña</label>
-              <div className="relative">
-                <Lock className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400" />
-                <input
-                  maxLength={250}
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-3 pr-4 pl-10 outline-none"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
-            {/* Options */}
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center">
-                <input maxLength={250} type="checkbox" className="mr-2" />
-                <span className="text-gray-600">Recordarme</span>
-              </label>
-              <button type="button" className="text-blue-600 hover:text-blue-700">
-                ¿Olvidaste tu contraseña?
-              </button>
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full rounded-lg py-3 font-medium text-white transition ${
-                loading
-                  ? 'cursor-not-allowed bg-blue-400'
-                  : 'bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-solid-hover'
-              }`}
-            >
-              {loading ? 'Ingresando...' : 'Iniciar Sesión'}
-            </button>
-          </form>
-
-          {/* Sign up link */}
-          <p className="mt-6 text-center text-gray-600">
-            ¿No tienes cuenta?{' '}
-            <button
-              onClick={() => router.push('/auth/signup')}
-              className="text-beehealth-blue-primary-solid hover:text-beehealth-blue-primary-solid-hover font-medium"
-            >
-              Regístrate aquí
-            </button>
+          <h2 className="mb-2 text-center text-2xl font-bold text-gray-700">Demo BeeHealth</h2>
+          <p className="mb-8 text-center text-gray-600">
+            Selecciona un rol para explorar la plataforma
           </p>
+
+          {/* Demo Login Buttons */}
+          <div className="space-y-4">
+            {Object.entries(DEMO_ACCOUNTS).map(([role, { label, icon: Icon }]) => (
+              <button
+                key={role}
+                onClick={() => handleDemoLogin(role)}
+                disabled={loading}
+                className={`flex w-full items-center justify-center gap-3 rounded-lg py-4 font-medium text-white transition ${
+                  loading
+                    ? 'cursor-not-allowed bg-gray-400'
+                    : role === 'doctor'
+                      ? 'bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-dark'
+                      : role === 'employee'
+                        ? 'bg-beehealth-green-secondary-solid hover:bg-beehealth-green-secondary-dark'
+                        : 'bg-beehealth-orange-primary-solid hover:bg-beehealth-orange-primary-dark'
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+                {loadingRole === role ? 'Ingresando...' : `Entrar como ${label}`}
+              </button>
+            ))}
+          </div>
+
+          {/* Info */}
+          <div className="mt-8 rounded-lg bg-blue-50 p-4">
+            <p className="text-center text-sm text-blue-800">
+              💡 Esta es una demo. Cada rol tiene acceso a diferentes módulos y funcionalidades.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -221,13 +205,6 @@ export default function LoginForm() {
             {/* Error Message */}
             <p className="mb-6 text-center text-gray-600">{errorMessage}</p>
 
-            {/* Suggestion */}
-            <div className="mb-6 rounded-lg bg-yellow-50 p-4">
-              <p className="text-sm text-yellow-800">
-                💡 Verifica que tu correo y contraseña sean correctos e intenta nuevamente.
-              </p>
-            </div>
-
             {/* Close Button */}
             <button
               onClick={() => setShowErrorModal(false)}
@@ -235,20 +212,6 @@ export default function LoginForm() {
             >
               Intentar de nuevo
             </button>
-
-            {/* Sign up link */}
-            <p className="mt-4 text-center text-sm text-gray-600">
-              ¿No tienes cuenta?{' '}
-              <button
-                onClick={() => {
-                  setShowErrorModal(false);
-                  router.push('/auth/signup');
-                }}
-                className="text-beehealth-blue-primary-solid hover:text-beehealth-blue-primary-solid-hover font-medium"
-              >
-                Regístrate aquí
-              </button>
-            </p>
           </div>
         </div>
       )}

@@ -2,7 +2,12 @@
 
 import EmployeePatientCard from './EmployeePatientCard';
 
-export default function EmployeePatientsList({ currentUser, role, searchTerm, patients }) {
+export default function EmployeePatientsList({
+  setSelectedPatientId,
+  setIsEditingModalOpen,
+  searchTerm,
+  patients,
+}) {
   const sortedPatients = [...patients].sort((a, b) => a.fullName.localeCompare(b.fullName));
   const filteredPatients = sortedPatients.filter((patient) => {
     const searchLower = searchTerm.toLowerCase();
@@ -16,7 +21,12 @@ export default function EmployeePatientsList({ currentUser, role, searchTerm, pa
   return (
     <div className="grid h-full grid-cols-1 gap-3 overflow-y-auto">
       {filteredPatients.map((patient) => (
-        <EmployeePatientCard key={patient._id} patient={patient} />
+        <EmployeePatientCard
+          key={patient._id}
+          patient={patient}
+          setSelectedPatientId={setSelectedPatientId}
+          setIsEditingModalOpen={setIsEditingModalOpen}
+        />
       ))}
     </div>
   );

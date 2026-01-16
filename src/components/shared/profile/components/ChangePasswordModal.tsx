@@ -1,6 +1,6 @@
 'use client';
 
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 import { AlertCircle, Lock, X, Key, Loader, Eye, EyeOff, AlertTriangle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 

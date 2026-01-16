@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 // Custom hooks
-import { useGetUserById } from '@/hooks/users/useGetUserById';
-import { useAssignWorkout } from '@/hooks/workouts/assign/useAssignWorkout';
-import { useGetAllWorkouts } from '@/hooks/workouts/get/useGetAllWorkouts';
+import { useGetUserById } from '@/@hooks/users/useGetUserById';
+import { useAssignWorkout } from '@/@hooks/workouts/assign/useAssignWorkout';
+import { useGetAllWorkouts } from '@/@hooks/workouts/get/useGetAllWorkouts';
 
 // Feedback components
 import LoadingState from '../feedback/LoadingState';

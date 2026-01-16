@@ -8,15 +8,14 @@ export default function ConsultsTab({
   specialty,
   questions,
   fetchRecord,
-  setShowDeleteModal,
-  setShowCreateFirstRecordModal,
-  setSelectedRecord,
-  setIsReadOnly,
-  setHistoryMode,
   setShowHistoryModal,
-  setShowEditRecordModal,
   setShowCreateGoalModal,
   events,
+  onOpen,
+  onEdit,
+  onDelete,
+  onAdd,
+  onCreateNew,
 }) {
   return (
     <div className="flex flex-col gap-4">
@@ -31,34 +30,11 @@ export default function ConsultsTab({
         patientId={patientId}
         patientRecord={patientRecord}
         events={events}
-        onCreateNew={() => setShowCreateFirstRecordModal(true)}
-        // Edit Section
-        onOpen={(record, readOnly) => {
-          setSelectedRecord(record);
-          setIsReadOnly(readOnly);
-          setHistoryMode(readOnly ? 'view' : 'edit');
-          setShowHistoryModal(true);
-        }}
-        // Add Section
-        onAdd={() => {
-          const lastRecord = patientRecord?.[0] || null;
-          setSelectedRecord(lastRecord);
-          setIsReadOnly(false);
-          setHistoryMode('create');
-          setShowHistoryModal(true);
-        }}
-        // Edit Section
-        onEdit={(record, readOnly) => {
-          setSelectedRecord(record);
-          setIsReadOnly(readOnly);
-          setHistoryMode(readOnly ? 'view' : 'edit');
-          setShowEditRecordModal(true);
-        }}
-        // Delete Section
-        onDelete={(record) => {
-          setSelectedRecord(record);
-          setShowDeleteModal(true);
-        }}
+        onCreateNew={onCreateNew}
+        onOpen={onOpen}
+        onAdd={onAdd}
+        onEdit={onEdit}
+        onDelete={onDelete}
         setShowHistoryModal={setShowHistoryModal}
         setShowCreateGoalModal={setShowCreateGoalModal}
       />

@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import { useGetPatientWeightLogs } from '@/hooks/clinicalRecords/get/useGetPatientWeightLogs';
+import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 
 interface WeightLog {
   _id: string;

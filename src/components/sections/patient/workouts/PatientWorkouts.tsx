@@ -13,10 +13,10 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Custom Hooks
-import { useGetAllWorkoutsFromPatient } from '@/hooks/workouts/get/useGetAllWorkoutsFromPatient';
+import { useGetAllWorkoutsFromPatient } from '@/@hooks/workouts/get/useGetAllWorkoutsFromPatient';
 
 // Types
-import { UserWorkout } from '@/types/workouts/workout.types';
+import { UserWorkout } from '@/@types/workouts/workout.types';
 
 export default function PatientWorkouts({ role, currentUser }) {
   // Get Current Patient ID

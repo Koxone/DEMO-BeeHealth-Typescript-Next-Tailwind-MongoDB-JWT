@@ -15,8 +15,8 @@ import Textarea from './components/inputs/TextArea';
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 // Custom Hooks
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
-import { useCreateFirstRecordDoctor } from '@/hooks/clinicalRecords/create/useCreateFirstRecordDoctor';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
+import { useCreateFirstRecordDoctor } from '@/@hooks/clinicalRecords/create/useCreateFirstRecordDoctor';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Orden de categorías

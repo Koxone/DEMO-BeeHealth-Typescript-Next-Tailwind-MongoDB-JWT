@@ -5,8 +5,8 @@ import RecordsTable from './components/RecordsTable';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 
 // Custom Hooks
-import { useGetPatientClinicalRecords } from '@/hooks/clinicalRecords/get/useGetPatientClinicalRecords';
-import { useGetPatientWeightLogs } from '@/hooks/clinicalRecords/get/useGetPatientWeightLogs';
+import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
+import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 
 // Feedback components
 import LoadingState from '@/components/shared/feedback/LoadingState';

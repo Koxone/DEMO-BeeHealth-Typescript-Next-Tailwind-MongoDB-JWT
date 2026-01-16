@@ -1,6 +1,6 @@
 'use client';
 
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 import {
   ChevronLeft,
   ChevronRight,

@@ -1,8 +1,5 @@
 export function getConsultTotals(consults = []) {
-  // Filter cancelled consults
-  const activeConsults = consults.filter((c) => c?.consultStatus !== 'cancelled');
-
-  const totals = activeConsults.reduce(
+  const totals = consults.reduce(
     (acc, c) => {
       // Totals
       acc.consultPrice += Number(c?.consultPrice) || 0;

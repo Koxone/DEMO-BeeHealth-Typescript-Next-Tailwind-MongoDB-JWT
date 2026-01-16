@@ -3,9 +3,9 @@ import ChangeAvatar from './components/ChangeAvatar';
 import PersonalInfoCard from '../PersonalInfoCard';
 
 // Types
-import { CurrentUserData } from '@/types/user/user.types';
-import { useChangeUserEmail } from '@/hooks/users/useChangeEmail';
-import { useChangeUserPhone } from '@/hooks/users/useChangePhone';
+import { CurrentUserData } from '@/@types/user/user.types';
+import { useChangeUserEmail } from '@/@hooks/users/useChangeEmail';
+import { useChangeUserPhone } from '@/@hooks/users/useChangePhone';
 
 function ProfileCard({
   user,

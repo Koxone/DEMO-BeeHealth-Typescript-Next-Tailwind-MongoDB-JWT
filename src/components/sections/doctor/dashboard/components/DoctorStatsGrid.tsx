@@ -1,28 +1,14 @@
 'use client';
 
-import { Users, DollarSign, AlertTriangle, Activity, Pill } from 'lucide-react';
+import { Users, DollarSign, AlertTriangle, Pill } from 'lucide-react';
 import DoctorStatsCard from './DoctorStatsCard';
 
 // Custom Hooks
-import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
-import { useTodayAppointmentsBySpecialty } from '@/hooks/appointments/useTodayAppointmentsBySpecialty';
-import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
 
-export default function DoctorStatsGrid({ role, specialty }) {
-  // Appointments Today logic
-  const { appointments } = useTodayAppointmentsBySpecialty();
-  const todaysAppointmentsNumber = appointments?.length || 0;
-
+export default function DoctorStatsGrid({ role, totalItemsSold, totalCost, consultsCount }) {
   // Inventory and Alerts logic
   const { totalAlerts } = useGetFullInventory();
-
-  // Consultations logic
-  const { consults } = useGetAllConsults({ speciality: specialty });
-
-  // Today's consults total amount
-  const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
-    getConsultTotals(consults);
 
   return (
     <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
@@ -36,11 +22,11 @@ export default function DoctorStatsGrid({ role, specialty }) {
         },
         {
           Icon: Users,
-          mainData: todaysAppointmentsNumber,
-          extraData: 'Hoy',
-          title: 'Citas Programadas',
+          mainData: consultsCount,
+          extraData: 'Total',
+          title: 'Pacientes atendidos',
           variant: 'success',
-          href: '/doctor/calendar',
+          href: '/doctor/accounting',
         },
         {
           Icon: Pill,

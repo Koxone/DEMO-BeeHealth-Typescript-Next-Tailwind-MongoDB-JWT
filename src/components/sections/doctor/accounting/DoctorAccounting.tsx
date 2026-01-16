@@ -3,8 +3,7 @@
 import { useState } from 'react';
 
 import MetricsGrid from './components/MetricsGrid';
-import WeeklyIncomeChart from './components/WeeklyIncomeChart';
-import DistributionCard from './components/DistributionCard';
+import PaymentMethodDistribution from './components/PaymentMethodDistribution';
 import MedsSoldTable from '@/components/shared/medsSold/MedsSoldTable';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 import TodayConsultsList from '@/components/shared/todayConsults/TodayConsultsList';
@@ -12,18 +11,22 @@ import TodayConsultsList from '@/components/shared/todayConsults/TodayConsultsLi
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
+import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Custom Hooks
-import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
 import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
 
 export default function DoctorAccounting({ role, specialty }) {
   // Get consults data
   const { consults, isLoading, error, refetch } = useGetAllConsults({ speciality: specialty });
 
+  // Filter consults by consultStatus value
+  const filteredConsults = consults.filter((consult) => consult?.consultStatus !== 'cancelled');
+
   // Get Totals for Metrics
   const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
-    getConsultTotals(consults);
+    getConsultTotals(filteredConsults);
 
   // Success Modal States
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -36,20 +39,14 @@ export default function DoctorAccounting({ role, specialty }) {
     0
   );
 
-  /* Derived */
-  const incomeDistribution = [
-    { name: 'Consultas', value: consultPrice, color: '#678bda' },
-    { name: 'Medicamentos', value: totalItemsSold, color: '#73c89f' },
-  ];
-
-  const ingresosPorPaciente = consults.map((c) => ({
-    nombre: c.patient.fullName,
-    consultas: c.consultPrice,
-    medicamentos: c.totalItemsSold,
-  }));
-
+  // Loading State
   if (isLoading) {
     return <LoadingState />;
+  }
+
+  // Error State
+  if (error) {
+    return <ErrorState />;
   }
 
   return (
@@ -72,9 +69,8 @@ export default function DoctorAccounting({ role, specialty }) {
       />
 
       {/* Charts */}
-      <div className="hidden grid-cols-2 gap-4 md:grid md:gap-6">
-        <WeeklyIncomeChart data={ingresosPorPaciente} />
-        <DistributionCard data={incomeDistribution} />
+      <div className="hidden grid-cols-1 gap-4 md:grid md:gap-6">
+        <PaymentMethodDistribution data={filteredConsults} />
       </div>
 
       {/* Consults */}
@@ -84,8 +80,10 @@ export default function DoctorAccounting({ role, specialty }) {
         </div>
 
         <TodayConsultsList
-          consultsData={consults}
+          consultsData={filteredConsults}
           totalCost={totalCost}
+          totalItemsSold={totalItemsSold}
+          consultPrice={consultPrice}
           setShowSuccessModal={setShowSuccessModal}
           setSuccessModalMessage={setSuccessModalMessage}
           setSuccessModalTitle={setSuccessModalTitle}
@@ -101,7 +99,7 @@ export default function DoctorAccounting({ role, specialty }) {
           </h2>
         </div>
 
-        <MedsSoldTable consultsData={consults} />
+        <MedsSoldTable consultsData={filteredConsults} />
       </div>
 
       {/* Success Modal */}

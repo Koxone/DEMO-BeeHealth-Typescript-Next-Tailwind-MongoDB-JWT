@@ -1,4 +1,4 @@
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import { connectDB } from '@/lib/mongodb';

@@ -7,11 +7,11 @@ import ModalHeader from './components/ModalHeader';
 import ShortVersion from './components/ShortVersion';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
-import { useCreateClinicalRecordDoctor } from '@/hooks/clinicalRecords/create/useCreateClinicalRecordDoctor';
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
-import { useEditWorkout } from '@/hooks/workouts/edit/useEditWorkout';
-import { useAssignPatientToDiet } from '@/hooks/diets/assign/useAssignPatientToDiet';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useCreateClinicalRecordDoctor } from '@/@hooks/clinicalRecords/create/useCreateClinicalRecordDoctor';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
+import { useEditWorkout } from '@/@hooks/workouts/edit/useEditWorkout';
+import { useAssignPatientToDiet } from '@/@hooks/diets/assign/useAssignPatientToDiet';
 
 export default function ClinicalRecordModal({
   onClose,

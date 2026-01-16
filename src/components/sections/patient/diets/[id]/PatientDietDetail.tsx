@@ -19,7 +19,7 @@ import GoBackButton from '@/components/shared/diets/GoBackButton';
 import DietImage from './components/sections/DietImage';
 
 // Custom Hooks
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
+import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronDown, Check, X } from 'lucide-react';
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
+import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
 import { useParams } from 'next/navigation';
 
 export default function AssignDiet({ onSelectDiet }) {

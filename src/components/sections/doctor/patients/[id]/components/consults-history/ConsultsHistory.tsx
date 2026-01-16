@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Plus, ClipboardList, ChevronLeft, ChevronRight, Settings } from 'lucide-react';
+
 import AddHistoryButton from './components/AddHistoryButton';
 import ConsultCard from './components/consult-card/ConsultCard';
 import GoalButton from './components/GoalButton';
 import CreateFirstRecordButton from './components/CreateFirstRecordButton';
 
 // Custom Hooks
-import { useConsultViewConfig } from '@/hooks/config/useConsultViewConfig';
+import { useConsultViewConfig } from '@/@hooks/config/useConsultViewConfig';
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';

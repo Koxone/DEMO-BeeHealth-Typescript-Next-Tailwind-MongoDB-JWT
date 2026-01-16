@@ -1,10 +1,10 @@
 import { Search, X } from 'lucide-react';
 
 // Types
-import { ConfigConsultModalProps } from '@/types/consults/consults.types';
+import { ConfigConsultModalProps } from '@/@types/consults/consults.types';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 function ConfigConsultModal({
   selectedQuestions,

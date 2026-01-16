@@ -1,7 +1,7 @@
 'use client';
 
-import { useRemoveDiet } from '@/hooks/diets/remove/useRemoveDiet';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useRemoveDiet } from '@/@hooks/diets/remove/useRemoveDiet';
+import { useModalClose } from '@/@hooks/useModalClose';
 import { AlertCircle, Trash2, X, AlertTriangle, CheckCircle, Loader } from 'lucide-react';
 import { useState } from 'react';
 

@@ -2,11 +2,11 @@
 
 import { Camera } from 'lucide-react';
 import { useRef } from 'react';
-import { useChangeAvatar } from '@/hooks/users/useChangeAvatar';
-import { useVercelBlobUpload } from '@/hooks/upload/useVercelBlobUpload';
+import { useChangeAvatar } from '@/@hooks/users/useChangeAvatar';
+import { useVercelBlobUpload } from '@/@hooks/upload/useVercelBlobUpload';
 
 // Types
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 
 function ChangeAvatar({
   user,

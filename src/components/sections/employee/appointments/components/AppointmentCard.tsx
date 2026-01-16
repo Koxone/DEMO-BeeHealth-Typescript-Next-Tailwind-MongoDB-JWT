@@ -2,7 +2,7 @@
 
 import { Calendar, Clock, Phone, Mail, Sparkles } from 'lucide-react';
 
-export default function AppointmentCard({ index, cita, getEstadoBadge }) {
+export default function AppointmentCard({ index, cita }) {
   return (
     <div
       style={{ animationDelay: `${index * 50}ms` }}

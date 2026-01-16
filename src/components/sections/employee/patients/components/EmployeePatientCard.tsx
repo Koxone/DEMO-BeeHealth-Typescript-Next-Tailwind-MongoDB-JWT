@@ -7,9 +7,19 @@ const getInitials = (name = '') =>
     .map((n) => n[0])
     .join('');
 
-export default function EmployeePatientCard({ patient }) {
+export default function EmployeePatientCard({
+  patient,
+  setSelectedPatientId,
+  setIsEditingModalOpen,
+}) {
   return (
-    <div className="bg-beehealth-body-main rounded-xl border-2 border-gray-200 p-4 transition hover:border-blue-300">
+    <div
+      onClick={() => {
+        setSelectedPatientId(patient?._id);
+        setIsEditingModalOpen(true);
+      }}
+      className="bg-beehealth-body-main cursor-pointer rounded-xl border-2 border-gray-200 p-4 transition hover:border-blue-300"
+    >
       <div className="flex items-center gap-4">
         {/* Patient Avatar */}
         {patient?.avatar ? (

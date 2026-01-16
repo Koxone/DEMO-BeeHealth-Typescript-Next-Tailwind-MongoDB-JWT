@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Pill } from 'lucide-react';
-import { useGetMeds } from '@/hooks/inventory/useGetMeds';
+import { useGetMeds } from '@/@hooks/inventory/useGetMeds';
 import { handleSelect, handleQuantity, handleRemove } from '../utils/helpers';
 
 export default function MedsSold({ form, setForm, transactionType }) {

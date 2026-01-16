@@ -16,8 +16,8 @@ import Select from './components/inputs/Select';
 import Radio from './components/inputs/Radio';
 
 // Custom Hooks
-import { useCreateClinicalRecordPatient } from '@/hooks/clinicalRecords/create/useCreateClinicalRecordPatient';
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
+import { useCreateClinicalRecordPatient } from '@/@hooks/clinicalRecords/create/useCreateClinicalRecordPatient';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 
 // Feedback Components
 import SuccessModal from '@/components/shared/feedback/SuccessModal';

@@ -1,5 +1,5 @@
 import LoadingState from '@/components/shared/feedback/LoadingState';
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 import { CalendarIcon } from 'lucide-react';
 import AssignSection from './assign-section/AssignSection';
 import FooterActions from './FooterActions';

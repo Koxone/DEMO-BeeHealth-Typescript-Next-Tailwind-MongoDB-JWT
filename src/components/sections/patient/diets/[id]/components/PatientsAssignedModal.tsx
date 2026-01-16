@@ -3,7 +3,7 @@
 'use client';
 
 import { X, Clock, CheckCircle } from 'lucide-react';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function PatientsAssignedModal({ patients, onClose }) {
   // Modal close handler

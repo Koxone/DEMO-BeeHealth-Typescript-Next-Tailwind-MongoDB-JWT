@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { X, Calendar, Clock, User, Sparkles, Info, Mail, Phone, Plus } from 'lucide-react';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
-import { useCreateAppointment } from '@/hooks/appointments/useCreateAppointment';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useCreateAppointment } from '@/@hooks/appointments/useCreateAppointment';
 
 export default function DoctorCreateAppointmentModal({ currentPatientInfo, onClose }) {
   // Modal close handler

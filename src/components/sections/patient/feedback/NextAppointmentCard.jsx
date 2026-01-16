@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 
 // Custom Hooks
-import { useGetMyAppointments } from '@/hooks/appointments/useGetMyAppointments';
+import { useGetMyAppointments } from '@/@hooks/appointments/useGetMyAppointments';
 
 export default function NextAppointmentCard() {
   const { user } = useAuthStore();

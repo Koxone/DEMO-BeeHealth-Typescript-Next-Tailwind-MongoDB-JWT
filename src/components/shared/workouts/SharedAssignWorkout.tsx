@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 // Custom Hooks
-import { useAssignWorkout } from '@/hooks/workouts/assign/useAssignWorkout';
-import { useGetPatientsBySpecialty } from '@/hooks/patients/get/useGetPatientsBySpecialty';
+import { useAssignWorkout } from '@/@hooks/workouts/assign/useAssignWorkout';
+import { useGetPatientsBySpecialty } from '@/@hooks/patients/get/useGetPatientsBySpecialty';
 
 // Zustand Store
 import useAuthStore from '@/zustand/useAuthStore';

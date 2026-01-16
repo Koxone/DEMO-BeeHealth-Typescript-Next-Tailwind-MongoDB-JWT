@@ -1,6 +1,6 @@
 import { Phone, Mail, Calendar, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 
 interface DoctorPatientCardProps {
   patient: {

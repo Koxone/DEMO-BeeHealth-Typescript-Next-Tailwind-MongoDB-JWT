@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 // Custom Hooks
-import { useAssignPatientToDiet } from '@/hooks/diets/assign/useAssignPatientToDiet';
-import { useGetPatientsBySpecialty } from '@/hooks/patients/get/useGetPatientsBySpecialty';
+import { useAssignPatientToDiet } from '@/@hooks/diets/assign/useAssignPatientToDiet';
+import { useGetPatientsBySpecialty } from '@/@hooks/patients/get/useGetPatientsBySpecialty';
 
 // Zustand Store
 import useAuthStore from '@/zustand/useAuthStore';

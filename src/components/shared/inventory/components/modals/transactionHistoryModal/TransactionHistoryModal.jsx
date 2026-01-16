@@ -8,7 +8,7 @@ import InitialStockBlock from './components/InitialStockBlock';
 import TransactionBlock from './components/TransactionBlock';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function TransactionHistoryModal({ onClose, history, item, isLoading }) {
   // Modal close handler
@@ -168,9 +168,10 @@ export default function TransactionHistoryModal({ onClose, history, item, isLoad
               )}
 
               {/* Consult Cancelled */}
-              {transaction?.changedFields?.length === 0 && transaction?.reasonType === 'cancellation' && (
-                <TransactionBlock transaction={transaction} />
-              )}
+              {transaction?.changedFields?.length === 0 &&
+                transaction?.reasonType === 'cancellation' && (
+                  <TransactionBlock transaction={transaction} />
+                )}
             </div>
           ))}
         </div>

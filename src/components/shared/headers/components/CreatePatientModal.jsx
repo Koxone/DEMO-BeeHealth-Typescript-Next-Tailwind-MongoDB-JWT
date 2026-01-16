@@ -1,6 +1,6 @@
 'use client';
 
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 import CreatePatientForm from './CreatePatientForm';
 
 export default function CreatePatientModal({ setIsModalPatientsOpen, specialty, role, refetch }) {

@@ -4,7 +4,7 @@ import { X, PackagePlus } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getGradient } from './utils/helpers';
 import { restockProduct } from './services/restockProduct';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function RestockProductModal({
   activeTab,

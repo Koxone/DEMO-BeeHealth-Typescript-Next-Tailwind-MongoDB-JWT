@@ -12,7 +12,7 @@ import Diet from '@/models/Diet';
 import { getAuthUser } from '@/lib/auth/getAuthUser';
 
 // @route    GET /api/clinicalRecords/weight-logs
-// @desc     Get all Weight Logs
+// @desc     Get all Weight Logs 
 // @access   Private
 export async function GET(req) {
   try {

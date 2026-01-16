@@ -24,13 +24,13 @@ import {
 } from '@dnd-kit/sortable';
 
 // Types
-import { ConsultCardProps, Answer } from '@/types/consults/consults.types';
+import { ConsultCardProps, Answer } from '@/@types/consults/consults.types';
 
 // Local Helpers
 import { getActionBadge } from './services/helpers';
 
 // Custom Hooks
-import { useEditClinicalRecord } from '@/hooks/clinicalRecords/edit/useEditClinicalRecord';
+import { useEditClinicalRecord } from '@/@hooks/clinicalRecords/edit/useEditClinicalRecord';
 
 export default function ConsultCard({
   r,

@@ -7,15 +7,15 @@ import DietCard from './components/DietCard';
 import Header from './components/Header';
 
 // Hooks
-import { useToggleDiet } from '@/hooks/diets/toggle/useToggleDiet';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useToggleDiet } from '@/@hooks/diets/toggle/useToggleDiet';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 // Feedback
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Types
-import type { DietFeedbackModalProps } from '@/types/diet/diet.types';
+import type { DietFeedbackModalProps } from '@/@types/diet/diet.types';
 
 export default function DietReactivateModal({
   selectedDiet,

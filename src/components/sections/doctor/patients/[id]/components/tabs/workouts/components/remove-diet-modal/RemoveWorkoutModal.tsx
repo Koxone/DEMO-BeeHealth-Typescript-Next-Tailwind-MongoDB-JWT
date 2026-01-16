@@ -1,7 +1,7 @@
 'use client';
 
-import { useModalClose } from '@/hooks/useModalClose';
-import { useRemoveWorkout } from '@/hooks/workouts/remove/useRemoveWorkout';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useRemoveWorkout } from '@/@hooks/workouts/remove/useRemoveWorkout';
 import { AlertCircle, Trash2, X, AlertTriangle, CheckCircle, Loader } from 'lucide-react';
 import { useState } from 'react';
 

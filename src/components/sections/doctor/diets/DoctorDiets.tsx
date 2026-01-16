@@ -10,7 +10,7 @@ import ModalAssignDiet from './components/ModalAssignDiet';
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 // Custom Hooks
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
+import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
 
 // Types
 import { IDiet } from '@/models/Diet';

@@ -6,7 +6,7 @@ import EmptyState from '@/components/shared/feedback/EmptyState';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
-import { useGetAllDietsFromPatient } from '@/hooks/diets/get/useGetAllDietsFromPatient';
+import { useGetAllDietsFromPatient } from '@/@hooks/diets/get/useGetAllDietsFromPatient';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
 export default function PatientDiets({ role, currentUser }) {

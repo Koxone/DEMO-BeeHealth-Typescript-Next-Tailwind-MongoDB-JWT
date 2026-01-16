@@ -10,8 +10,8 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Custom Hooks
-import { useAllTodayAppointments } from '@/hooks/appointments/useAllTodayAppointments';
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
+import { useAllTodayAppointments } from '@/@hooks/appointments/useAllTodayAppointments';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
 
 export default function EmployeeDashboard({ currentUser }) {
   // Hook to get all appointments

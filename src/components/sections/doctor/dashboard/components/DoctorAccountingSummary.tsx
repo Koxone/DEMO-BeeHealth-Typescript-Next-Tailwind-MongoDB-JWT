@@ -1,19 +1,14 @@
 import ViewMoreButton from '@/components/shared/dashboard/accountingSummary/components/ViewMoreButton';
-import { Users, Pill, AlertCircle, ChevronRight, TrendingUp, DollarSign } from 'lucide-react';
+import { Users, Pill, TrendingUp, DollarSign } from 'lucide-react';
 
 export default function DoctorAccountingSummary({
   role,
-  consults,
   consultPrice,
   totalItemsSold,
   totalCost,
   itemsSoldCount,
   consultsCount,
 }) {
-  const itemsSoldNumber = consults.reduce((sum, consult) => {
-    return sum + (consult.itemsSold?.length || 0);
-  }, 0);
-
   return (
     <div className="bg-beehealth-body-main overflow-hidden rounded-2xl border-2 border-gray-200 transition-all duration-300">
       {/* Header */}

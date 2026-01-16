@@ -8,7 +8,7 @@ import ErrorState from '@/components/shared/feedback/ErrorState';
 import WorkoutCompletedModal from '../workout-completed-modal/WorkoutCompletedModal';
 
 // Types
-import { UserWorkout } from '@/types/workouts/workout.types';
+import { UserWorkout } from '@/@types/workouts/workout.types';
 import WorkoutReactivateModal from '../workout-reactivate-modal/WorkoutReactivateModal';
 
 export default function QuickToggleWorkouts({

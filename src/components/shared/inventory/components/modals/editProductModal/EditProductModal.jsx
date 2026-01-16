@@ -6,7 +6,7 @@ import PrescriptionForm from '../shared/PrescriptionForm';
 import SupplyForm from '../shared/SupplyForm';
 
 import { getGradient, getIcon } from './utils/helpers';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 // Edit Product services
 import { editProductInfo } from './services/editProductInfo';

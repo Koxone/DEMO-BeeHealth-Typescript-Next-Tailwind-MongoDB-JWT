@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 /* Store shape */

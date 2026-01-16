@@ -4,8 +4,8 @@ import { useState, useMemo } from 'react';
 import ToggleEditModeButton from './ToggleEditModeButton';
 
 // Custom Hooks
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
-import { useGetPatientClinicalRecords } from '@/hooks/clinicalRecords/get/useGetPatientClinicalRecords';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
+import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
 
 const MONTHS = [
   { value: 1, label: 'Enero' },

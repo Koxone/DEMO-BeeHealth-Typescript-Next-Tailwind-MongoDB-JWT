@@ -13,9 +13,9 @@ import {
 } from 'lucide-react';
 
 export const patientSidebarItems = [
-  { icon: LayoutDashboard, label: 'Inicio', path: '/patient/dashboard', badge: null },
   { icon: Calendar, label: 'Agendar Cita', path: '/patient/new-appointment', badge: null },
   { icon: Activity, label: 'Mi Historial', path: '/patient/history', badge: null },
+  { icon: LayoutDashboard, label: 'Inicio', path: '/patient/dashboard', badge: null },
   { icon: Apple, label: 'Mis Dietas', path: '/patient/diets', badge: null },
   { icon: Dumbbell, label: 'Mis Ejercicios', path: '/patient/workouts', badge: null },
 ];

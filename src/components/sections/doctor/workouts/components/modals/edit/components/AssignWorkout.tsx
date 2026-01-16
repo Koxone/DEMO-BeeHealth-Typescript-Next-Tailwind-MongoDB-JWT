@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useGetAllPatients } from '@/hooks/patients/get/useGetAllPatients';
+import { useGetAllPatients } from '@/@hooks/patients/get/useGetAllPatients';
 
 interface AssignWorkoutProps {
   selectedPatients: string[];

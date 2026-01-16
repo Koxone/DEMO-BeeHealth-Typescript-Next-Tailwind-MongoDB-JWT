@@ -1,10 +1,10 @@
 'use client';
 
 import EmployeeStatsCard from './EmployeeStatsCard';
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
 import { Calendar, DollarSign, FileText, TriangleAlert } from 'lucide-react';
-import { useAllTodayAppointments } from '@/hooks/appointments/useAllTodayAppointments';
-import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { useAllTodayAppointments } from '@/@hooks/appointments/useAllTodayAppointments';
+import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
 import { getConsultTotals } from '../../consultations/utils/getConsultTotals';
 
 export default function EmployeeStatsGrid({ role }) {

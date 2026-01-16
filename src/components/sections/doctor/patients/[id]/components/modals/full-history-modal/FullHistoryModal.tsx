@@ -7,10 +7,10 @@ import ModalHeader from './components/ModalHeader';
 import FullVersion from './components/FullVersion';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
-import { useGetPatientClinicalRecords } from '@/hooks/clinicalRecords/get/useGetPatientClinicalRecords';
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
-import { useEditClinicalRecord } from '@/hooks/clinicalRecords/edit/useEditClinicalRecord';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
+import { useEditClinicalRecord } from '@/@hooks/clinicalRecords/edit/useEditClinicalRecord';
 
 export default function FullHistoryModal({
   onClose,

@@ -9,7 +9,7 @@ import { CATEGORY_ORDER } from '../services/helpers';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 
 export default function ShortVersion({
   specialty,

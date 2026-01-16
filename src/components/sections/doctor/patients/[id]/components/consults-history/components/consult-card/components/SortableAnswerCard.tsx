@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 // Types
-import { Answer } from '@/types/consults/consults.types';
+import { Answer } from '@/@types/consults/consults.types';
 
 // Local Helpers
 import { CATEGORY_BG_MAP } from '../services/helpers';

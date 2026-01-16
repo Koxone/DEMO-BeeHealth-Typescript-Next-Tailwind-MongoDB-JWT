@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 // Custom Hooks
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
-import { useGetUserById } from '@/hooks/users/useGetUserById';
-import { useAssignDiet } from '@/hooks/diets/assign/useAssignDiet';
+import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
+import { useGetUserById } from '@/@hooks/users/useGetUserById';
+import { useAssignDiet } from '@/@hooks/diets/assign/useAssignDiet';
 
 // Feedback Components
 import LoadingState from '../feedback/LoadingState';

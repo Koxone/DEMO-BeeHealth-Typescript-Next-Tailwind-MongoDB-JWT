@@ -1,5 +1,5 @@
 'use client';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 import { Apple, CircleEllipsis, Clipboard, History, Star, X } from 'lucide-react';
 
 // Local Helpers

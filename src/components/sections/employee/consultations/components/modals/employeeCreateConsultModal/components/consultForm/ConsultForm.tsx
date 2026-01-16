@@ -3,7 +3,7 @@ import { User, DollarSign, Notebook } from 'lucide-react';
 import MedsSold from './components/MedsSold';
 
 // Custom Hooks
-import { useGetAllPatients } from '@/hooks/patients/get/useGetAllPatients';
+import { useGetAllPatients } from '@/@hooks/patients/get/useGetAllPatients';
 
 export default function ConsultForm({ form, setForm, transactionType }) {
   // Get Patients list call

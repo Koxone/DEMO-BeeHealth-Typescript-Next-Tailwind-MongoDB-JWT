@@ -1,17 +1,34 @@
 'use client';
 
-import { User } from 'lucide-react';
-import LogoutButton from './components/LogoutButton';
+import { Bell, Megaphone } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ProfileButton from './components/ProfileButton';
 import MobileMenu from './components/MobileMenu';
+import LogoutButton from './components/LogoutButton';
+import Link from 'next/link';
 
 // Zustand
 import useAuthStore from '@/zustand/useAuthStore';
 
+// Custom Hooks
+import { useGetMassiveNotifications } from '@/@hooks/notifications/useGetMassiveNotifications';
+
 export default function Header() {
   const { user, loadUser } = useAuthStore();
   const currentUser = user;
+
+  // Massive notifications
+  const {
+    data: massiveNotifications,
+    isLoading: massiveLoading,
+    error: massiveError,
+  } = useGetMassiveNotifications(user?.role);
+
+  const newNotifications = massiveNotifications?.filter(
+    (notification) =>
+      notification?.readBy?.includes(currentUser?.id) === false && notification?.isActive === true
+  );
 
   useEffect(() => {
     loadUser();
@@ -45,12 +62,18 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* <button className="group relative rounded-xl border-2 border-transparent p-3 transition-all duration-200 hover:border-blue-200 hover:bg-linear-to-br hover:from-blue-50 hover:to-indigo-50 active:scale-95">
-            <Bell className="h-5 w-5 text-gray-600 transition-colors duration-200 group-hover:text-blue-600" />
-            <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-r from-red-500 to-rose-600 text-xs font-bold text-white shadow-lg">
-              3
-            </span>
-          </button> */}
+          {/* Announcements Button */}
+          <Link
+            href={`/${role}/announcements`}
+            className="group relative rounded-xl border-2 border-gray-300 p-3 transition-all duration-200 hover:border-blue-200 hover:bg-linear-to-br hover:from-blue-50 hover:to-indigo-50 active:scale-95"
+          >
+            <Megaphone className="h-5 w-5 text-gray-600 transition-colors duration-200 group-hover:text-blue-600" />
+            {newNotifications?.length > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-r from-red-500 to-rose-600 text-xs font-bold text-white shadow-lg">
+                {newNotifications?.length > 0 ? newNotifications?.length : 0}
+              </span>
+            )}
+          </Link>
 
           <div className="flex items-center gap-3 border-l-2 border-gray-200 pl-4">
             <div className="text-right">
@@ -83,12 +106,19 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* <button className="group relative rounded-xl p-2 transition-all duration-200 hover:bg-gray-100 active:scale-95">
-            <Bell className="h-5 w-5 text-gray-600 transition-colors duration-200 group-hover:text-blue-600" />
-            <span className="absolute top-0.5 right-0.5 flex h-5 w-5 animate-pulse items-center justify-center rounded-full bg-linear-to-r from-red-500 to-rose-600 text-[10px] font-bold text-white shadow-lg">
-              3
-            </span>
-          </button> */}
+          {/* Announcements Button */}
+          <Link
+            href={`/${role}/announcements`}
+            className="group relative rounded-xl border-2 border-transparent p-3 transition-all duration-200 hover:border-blue-200 hover:bg-linear-to-br hover:from-blue-50 hover:to-indigo-50 active:scale-95"
+          >
+            <Megaphone className="h-5 w-5 text-gray-600 transition-colors duration-200 group-hover:text-blue-600" />
+            {newNotifications?.length > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-r from-red-500 to-rose-600 text-xs font-bold text-white shadow-lg">
+                {newNotifications?.length > 0 ? newNotifications?.length : 0}
+              </span>
+            )}
+          </Link>
+
           {/* <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-xl p-2 transition-all duration-200 hover:bg-gray-100 active:scale-95"

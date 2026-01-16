@@ -1,6 +1,6 @@
 import { ClipboardCheck } from 'lucide-react';
 
-import { ComplianceStatus } from '@/types/diet/diet.types';
+import { ComplianceStatus } from '@/@types/diet/diet.types';
 
 const complianceOptions: { value: ComplianceStatus; label: string; color: string }[] = [
   { value: 'completed', label: 'Cumplió', color: 'bg-green-100 text-green-700 border-green-300' },

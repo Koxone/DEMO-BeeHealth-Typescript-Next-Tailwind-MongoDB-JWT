@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 // Custom Hooks
-import { useEditDiet } from '@/hooks/diets/edit/useEditDiet';
-import { useGetAllDiets } from '@/hooks/diets/get/useGetAllDiets';
-import { useDeleteDiet } from '@/hooks/diets/delete/useDeleteDiet';
+import { useEditDiet } from '@/@hooks/diets/edit/useEditDiet';
+import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
+import { useDeleteDiet } from '@/@hooks/diets/delete/useDeleteDiet';
 
 import PatientsAssignedViewer from './components/PatientsAssignedViewer';
 import AllowedFoods from './components/sections/allowed/AllowedFoods';

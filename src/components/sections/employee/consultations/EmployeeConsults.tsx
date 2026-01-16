@@ -7,7 +7,7 @@ import TodayConsultsList from '@/components/shared/todayConsults/TodayConsultsLi
 import MedsSoldTable from '@/components/shared/medsSold/MedsSoldTable';
 
 // Custom Hooks
-import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
 
 // Local Helpers
 import { getConsultTotals } from './utils/getConsultTotals';
@@ -56,6 +56,8 @@ export default function EmployeeConsults({ role }) {
           setSuccessModalMessage={setSuccessModalMessage}
           setSuccessModalTitle={setSuccessModalTitle}
           refetch={refetch}
+          totalItemsSold={totalItemsSold}
+          consultPrice={consultPrice}
         />
 
         {/* Medications Sold Table */}

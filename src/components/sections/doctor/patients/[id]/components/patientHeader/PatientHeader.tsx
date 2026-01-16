@@ -1,10 +1,10 @@
 import { Mail, Phone, CalendarIcon, Stethoscope } from 'lucide-react';
 import moment from 'moment';
 import CreateAppointmentButton from './components/CreateAppointmentButton';
-import RegisterVisitButton from './components/RegisterVisitButton';
 import AssignedDiets from '@/components/sections/doctor/patients/[id]/components/patientHeader/components/AssignedDiets';
 import AssignedWorkouts from '@/components/sections/doctor/patients/[id]/components/patientHeader/components/AssignedWorkouts';
 import FullHistoryButton from './components/FullHistoryButton';
+import EditPatientInfoButton from './components/EditPatientInfoButton';
 
 export default function PatientHeader({
   onClickNew,
@@ -13,6 +13,7 @@ export default function PatientHeader({
   onCreateNew,
   dietsData,
   workoutsData,
+  setShowEditPatientModal,
 }) {
   // Specialty map
   const specialtyLabels = {
@@ -68,7 +69,10 @@ export default function PatientHeader({
           {/* Action Buttons */}
           <div className="flex flex-col items-center gap-2">
             {/* Check In */}
-            <RegisterVisitButton />
+            {/* <RegisterVisitButton /> */}
+
+            {/* Edit Patient Info Button */}
+            <EditPatientInfoButton onClick={() => setShowEditPatientModal(true)} />
 
             {/* Create Appointment */}
             <CreateAppointmentButton onClickNew={onClickNew} />

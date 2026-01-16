@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Power, X } from 'lucide-react';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function ToggleProductModal({ item, onClose, onConfirm }) {
   if (!item) return null;

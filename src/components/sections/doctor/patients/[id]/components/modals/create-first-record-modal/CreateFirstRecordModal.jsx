@@ -5,8 +5,8 @@ import ModalHeader from './components/ModalHeader';
 import CreateFirstRecordForm from './clinical-record/CreateFirstRecordForm';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
-import { useGetSinglePatient } from '@/hooks/patients/get/useGetSinglePatient';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useGetSinglePatient } from '@/@hooks/patients/get/useGetSinglePatient';
 
 // Zustand
 import useAuthStore from '@/zustand/useAuthStore';

@@ -9,11 +9,11 @@ import WorkoutCard from './components/WorkoutCard';
 import Header from './components/Header';
 
 // Types
-import type { ComplianceStatus } from '@/types/workouts/workout.types';
+import type { ComplianceStatus } from '@/@types/workouts/workout.types';
 
 // Custom Hooks
-import { useToggleWorkout } from '@/hooks/workouts/toggle/useToggleWorkout';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useToggleWorkout } from '@/@hooks/workouts/toggle/useToggleWorkout';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';

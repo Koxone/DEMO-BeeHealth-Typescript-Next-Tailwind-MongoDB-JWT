@@ -5,7 +5,7 @@ function ErrorState() {
     <div className="flex h-full items-center justify-center">
       <div className="space-y-4 text-center">
         <AlertCircle className="mx-auto h-12 w-12 text-red-500" />
-        <p className="text-gray-600">Error al cargar la dieta</p>
+        <p className="text-gray-600">Error al cargar</p>
       </div>
     </div>
   );

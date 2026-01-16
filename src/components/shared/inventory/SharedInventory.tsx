@@ -17,7 +17,7 @@ import SuppliesTable from './components/SuppliesTable';
 import RecetasGrid from './components/PrescriptionsTable';
 
 // Custom Hooks
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
 import { toggleProductStatus } from './components/modals/toggleProductModal/services/toggleProductStatus';
 import { fetchProductHistory } from './components/modals/transactionHistoryModal/services/fetchProductHistory';
 

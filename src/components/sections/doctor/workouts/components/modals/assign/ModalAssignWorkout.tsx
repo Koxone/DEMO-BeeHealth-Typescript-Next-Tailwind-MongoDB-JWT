@@ -1,6 +1,6 @@
 'use client';
 
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 import { X, AlertCircle, Apple, Dumbbell } from 'lucide-react';
 import SharedAssignWorkout from '@/components/shared/workouts/SharedAssignWorkout';
 

@@ -13,12 +13,12 @@ import { getConsultTotals } from '@/components/sections/employee/consultations/u
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
-import { useTodayAppointmentsBySpecialty } from '@/hooks/appointments/useTodayAppointmentsBySpecialty';
-import { useGetFullInventory } from '@/hooks/inventory/useGetFullInventory';
-import { useGetAllConsults } from '@/hooks/consults/useGetAllConsults';
+import { useTodayAppointmentsBySpecialty } from '@/@hooks/appointments/useTodayAppointmentsBySpecialty';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
+import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
 
 // Types
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 
 interface DoctorDashboardProps {
   currentUser: CurrentUserData;
@@ -38,10 +38,14 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
   // All Consults
   const { consults, isLoading: loadingConsults } = useGetAllConsults({ speciality: specialty });
 
+  // Filter consults by consultStatus
+  const filteredConsults = consults.filter((consult) => consult?.consultStatus !== 'cancelled');
+
   // Calculate totals with Custom Hook
   const { consultPrice, totalItemsSold, totalCost, itemsSoldCount, consultsCount } =
-    getConsultTotals(consults);
+    getConsultTotals(filteredConsults);
 
+  // Loading State
   if (loadingAppointments || loadingInventory || loadingConsults) {
     return <LoadingState />;
   }
@@ -51,7 +55,12 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
       <HeaderWelcome fullName={currentUser?.fullName} role={role} specialty={specialty} />
 
       {/* Stats */}
-      <DoctorStatsGrid role={role} specialty={specialty} />
+      <DoctorStatsGrid
+        role={role}
+        totalItemsSold={totalItemsSold}
+        totalCost={totalCost}
+        consultsCount={consultsCount}
+      />
 
       {/* Appointments */}
       <AppointmentsToday role={role} appointments={appointments} />
@@ -63,7 +72,6 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
           consultPrice={consultPrice}
           totalItemsSold={totalItemsSold}
           totalCost={totalCost}
-          consults={consults}
           itemsSoldCount={itemsSoldCount}
           consultsCount={consultsCount}
         />

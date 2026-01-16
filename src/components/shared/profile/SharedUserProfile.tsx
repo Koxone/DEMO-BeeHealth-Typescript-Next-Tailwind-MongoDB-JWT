@@ -7,9 +7,9 @@ import ProfileCard from './components/profile-card/ProfileCard';
 import SecuritySection from './components/SecuritySection';
 
 // Custom Hooks
-import { useChangeUserEmail } from '@/hooks/users/useChangeEmail';
-import { useChangeUserPassword } from '@/hooks/users/useChangePassword';
-import { useChangeUserPhone } from '@/hooks/users/useChangePhone';
+import { useChangeUserEmail } from '@/@hooks/users/useChangeEmail';
+import { useChangeUserPassword } from '@/@hooks/users/useChangePassword';
+import { useChangeUserPhone } from '@/@hooks/users/useChangePhone';
 
 // Zustand Store
 import useAuthStore from '@/zustand/useAuthStore';

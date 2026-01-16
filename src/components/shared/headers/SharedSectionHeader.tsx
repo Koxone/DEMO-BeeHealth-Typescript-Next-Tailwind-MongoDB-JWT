@@ -10,6 +10,7 @@ import {
   Plus,
   DollarSign,
   Activity,
+  Bell,
   Dumbbell,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -33,7 +34,8 @@ interface GeneralSectionHeaderProps {
     | 'diets'
     | 'workouts'
     | 'accounting'
-    | 'history';
+    | 'history'
+    | 'bell';
   title?: string;
   subtitle?: string;
 }
@@ -63,6 +65,7 @@ export default function SharedSectionHeader({
     workouts: Dumbbell,
     accounting: DollarSign,
     history: Activity,
+    bell: Bell,
   };
 
   const SelectedIcon = iconsMap[Icon] ?? Package;

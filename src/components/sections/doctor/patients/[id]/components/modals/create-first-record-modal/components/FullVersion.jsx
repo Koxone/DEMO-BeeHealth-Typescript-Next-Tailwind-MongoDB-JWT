@@ -3,8 +3,8 @@ import { CalendarIcon } from 'lucide-react';
 import ToggleEditModeButton from './ToggleEditModeButton';
 
 // Custom Hooks
-import { useGetAllQuestions } from '@/hooks/clinicalRecords/get/useGetAllQuestions';
-import { useGetPatientClinicalRecords } from '@/hooks/clinicalRecords/get/useGetPatientClinicalRecords';
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
+import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
 
 export default function FullVersion({ specialty, patientId, isEditing, setIsEditing }) {
   // Fetch patient records

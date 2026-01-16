@@ -1,11 +1,18 @@
 'use client';
 
-import { Calendar, Edit2, Trash2, Award, Banknote, CreditCard, ArrowLeftRight } from 'lucide-react';
+import { Calendar, Edit2, Trash2, Banknote, CreditCard, ArrowLeftRight } from 'lucide-react';
 import { columns } from './utils/helpers';
 
-export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
+export default function ConsultsTable({
+  rows,
+  totalCost,
+  onEdit,
+  onDelete,
+  totalItemsSold,
+  consultPrice,
+}) {
   return (
-    <div className="hidden md:block">
+    <div className="hidden max-h-[600px] overflow-y-auto md:block">
       <table className="w-full table-fixed">
         <thead className="bg-beehealth-green-primary-light border-b-2 border-gray-200">
           <tr>
@@ -56,8 +63,7 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
               <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
                   {/* Avatar or Initials */}
-
-                  <span className="text-sm font-semibold text-gray-700">
+                  <span className="text-sm font-semibold text-gray-700 capitalize">
                     {c?.patient?.fullName}
                   </span>
                 </div>
@@ -74,9 +80,9 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
               </td>
 
               {/* Extras */}
-              <td className="px-6 py-4 text-right">
+              {/* <td className="px-6 py-4 text-right">
                 <span className="text-lg font-semibold text-neutral-700">${c?.totalItemsSold}</span>
-              </td>
+              </td> */}
 
               {/* Payment Method */}
               <td className="px-6 py-4 text-center">
@@ -102,16 +108,15 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
               </td>
 
               {/* Status */}
-              <td className="px-6 py-4 text-right">
+              {/* <td className="px-6 py-4 text-right">
                 <span className="text-sm font-semibold text-neutral-700">
                   {c?.consultStatus === 'completed' ? 'Completa' : 'Cancelada'}
                 </span>
-              </td>
+              </td> */}
 
               {/* Actions */}
-              <td className="px-6 py-4">
+              {/* <td className="px-6 py-4">
                 <div className="flex items-center justify-center gap-2">
-                  {/* Edit Consult Button */}
                   {c?.consultStatus !== 'cancelled' && (
                     <button
                       onClick={() => onEdit(c)}
@@ -121,7 +126,6 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
                     </button>
                   )}
 
-                  {/* Delete Consult Button */}
                   {c?.consultStatus !== 'cancelled' && (
                     <button
                       onClick={() => onDelete(c)}
@@ -131,7 +135,7 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
                     </button>
                   )}
                 </div>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
@@ -145,8 +149,12 @@ export default function ConsultsTable({ rows, totalCost, onEdit, onDelete }) {
             </td>
 
             <td className="text-beehealth-blue-primary-solid px-6 py-4 text-right text-lg font-bold">
-              ${totalCost}
+              ${consultPrice}
             </td>
+
+            {/* <td className="text-beehealth-blue-primary-solid px-6 py-4 text-right text-lg font-bold">
+              ${totalItemsSold}
+            </td> */}
           </tr>
         </tfoot>
       </table>

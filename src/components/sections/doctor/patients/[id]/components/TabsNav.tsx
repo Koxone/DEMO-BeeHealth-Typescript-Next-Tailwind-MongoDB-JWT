@@ -1,6 +1,6 @@
 'use client';
 
-import { tabs, TabName } from '@/types';
+import { tabs, TabName } from '@/@types';
 
 interface TabsNavProps {
   activeTab: TabName;

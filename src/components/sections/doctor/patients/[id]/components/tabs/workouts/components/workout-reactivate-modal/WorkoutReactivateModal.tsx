@@ -7,15 +7,15 @@ import WorkoutCard from './components/WorkoutCard';
 import Header from './components/Header';
 
 // Hooks
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 // Feedback
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Types
-import { WorkoutFeedbackModalProps } from '@/types/workouts/workout.types';
-import { useToggleWorkout } from '@/hooks/workouts/toggle/useToggleWorkout';
+import { WorkoutFeedbackModalProps } from '@/@types/workouts/workout.types';
+import { useToggleWorkout } from '@/@hooks/workouts/toggle/useToggleWorkout';
 
 export default function WorkoutReactivateModal({
   selectedWorkout,

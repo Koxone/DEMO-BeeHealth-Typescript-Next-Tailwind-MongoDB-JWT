@@ -8,8 +8,8 @@ import MultimediaSection from './components/multimedia/MultimediaSection';
 import DetailsSection from './components/details/DetailsSection';
 
 // Custom Hooks
-import { useEditWorkout } from '@/hooks/workouts/edit/useEditWorkout';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useEditWorkout } from '@/@hooks/workouts/edit/useEditWorkout';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function ModalEditWorkout({
   setShowEditModal,

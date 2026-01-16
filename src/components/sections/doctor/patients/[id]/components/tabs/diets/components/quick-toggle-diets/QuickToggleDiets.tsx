@@ -9,7 +9,7 @@ import ErrorState from '@/components/shared/feedback/ErrorState';
 import DietRenewModal from '../diet-renew-modal/DietRenewModal';
 
 // Types
-import { UserDiet } from '@/types/diet/diet.types';
+import { UserDiet } from '@/@types/diet/diet.types';
 
 export default function QuickToggleDiets({
   patientId,

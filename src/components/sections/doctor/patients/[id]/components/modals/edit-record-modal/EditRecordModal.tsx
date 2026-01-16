@@ -10,10 +10,10 @@ import ShortVersion from './components/ShortVersion';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
-import { useEditWorkout } from '@/hooks/workouts/edit/useEditWorkout';
-import { useAssignPatientToDiet } from '@/hooks/diets/assign/useAssignPatientToDiet';
-import { useEditClinicalRecord } from '@/hooks/clinicalRecords/edit/useEditClinicalRecord';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useEditWorkout } from '@/@hooks/workouts/edit/useEditWorkout';
+import { useAssignPatientToDiet } from '@/@hooks/diets/assign/useAssignPatientToDiet';
+import { useEditClinicalRecord } from '@/@hooks/clinicalRecords/edit/useEditClinicalRecord';
 
 export default function EditRecordModal({
   onClose,

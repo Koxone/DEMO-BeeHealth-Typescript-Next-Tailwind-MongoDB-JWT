@@ -5,7 +5,7 @@ import { Menu, X, Home, Calendar, Users, FileText, Settings, LogOut } from 'luci
 import Link from 'next/link';
 import LogoutButton from './LogoutButton';
 import { useRouter } from 'next/navigation';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 export default function MobileMenu({ isOpen, setIsOpen }) {
   const router = useRouter();

@@ -51,6 +51,7 @@ export async function GET(req) {
       .populate('itemsSold.product')
       .populate('itemsSold.inventory')
       .populate('transaction')
+      .sort({ createdAt: -1 })
       .lean();
 
     return NextResponse.json(consults, { status: 200 });

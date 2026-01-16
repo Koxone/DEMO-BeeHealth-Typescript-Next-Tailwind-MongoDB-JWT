@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronDown, Check, X } from 'lucide-react';
-import { useGetAllWorkouts } from '@/hooks/workouts/get/useGetAllWorkouts';
+import { useGetAllWorkouts } from '@/@hooks/workouts/get/useGetAllWorkouts';
 import { useParams } from 'next/navigation';
-import { useEditWorkout } from '@/hooks/workouts/edit/useEditWorkout';
+import { useEditWorkout } from '@/@hooks/workouts/edit/useEditWorkout';
 
 export default function AssignWorkout({ user, onSelectWorkout, patientId }) {
   const { id: workoutId } = useParams();

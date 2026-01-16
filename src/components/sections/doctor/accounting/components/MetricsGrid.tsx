@@ -11,7 +11,7 @@ export default function MetricsGrid({
 }) {
   return (
     <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
-      {/* total día */}
+      {/* Totals */}
       <div className="bg-beehealth-blue-primary-solid rounded-xl p-4 text-white shadow-sm md:p-6">
         <div className="mb-2 flex items-center justify-between">
           <DollarSign className="h-8 w-8 opacity-80" />
@@ -21,11 +21,11 @@ export default function MetricsGrid({
         <p className="text-xs text-blue-100 md:text-sm">Total del día</p>
       </div>
 
-      {/* consultas */}
+      {/* Consults */}
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
         <div className="mb-2 flex items-center justify-between">
-          <Users className="h-8 w-8 text-green-500" />
-          <span className="rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+          <Users className="text-beehealth-blue-primary-solid h-8 w-8" />
+          <span className="text-beehealth-blue-primary-dark rounded bg-blue-50 px-2 py-1 text-xs font-medium">
             {consultsCount} {consultsCount === 1 ? 'consulta' : 'consultas'}
           </span>
         </div>
@@ -33,11 +33,11 @@ export default function MetricsGrid({
         <p className="text-xs text-gray-600 md:text-sm">Consultas</p>
       </div>
 
-      {/* medicamentos */}
+      {/* Medicines */}
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
         <div className="mb-2 flex items-center justify-between">
-          <Pill className="h-8 w-8 text-purple-500" />
-          <span className="rounded bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700">
+          <Pill className="text-beehealth-blue-primary-solid h-8 w-8" />
+          <span className="text-beehealth-blue-primary-dark rounded bg-blue-50 px-2 py-1 text-xs font-medium">
             {itemsSoldCount} {itemsSoldCount === 1 ? 'vendido' : 'vendidos'}
           </span>
         </div>
@@ -45,11 +45,11 @@ export default function MetricsGrid({
         <p className="text-xs text-gray-600 md:text-sm">Medicamentos</p>
       </div>
 
-      {/* promedio */}
+      {/* Average */}
       <div className="bg-beehealth-body-main rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
         <div className="mb-2 flex items-center justify-between">
-          <TrendingUp className="h-8 w-8 text-orange-500" />
-          <span className="rounded bg-orange-50 px-2 py-1 text-xs font-medium text-orange-700">
+          <TrendingUp className="text-beehealth-blue-primary-solid h-8 w-8" />
+          <span className="text-beehealth-blue-primary-dark rounded bg-blue-50 px-2 py-1 text-xs font-medium">
             +12%
           </span>
         </div>

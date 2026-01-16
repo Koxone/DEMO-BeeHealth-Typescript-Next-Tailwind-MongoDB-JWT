@@ -9,13 +9,13 @@ import DietCard from './components/DietCard';
 import Header from './components/Header';
 
 // Types
-import type { ComplianceStatus } from '@/types/diet/diet.types';
-import type { DietFeedbackModalProps } from '@/types/diet/diet.types';
+import type { ComplianceStatus } from '@/@types/diet/diet.types';
+import type { DietFeedbackModalProps } from '@/@types/diet/diet.types';
 
 // Custom Hooks
-import { useToggleDiet } from '@/hooks/diets/toggle/useToggleDiet';
-import { useModalClose } from '@/hooks/useModalClose';
-import { useCreateTimelineEvent } from '@/hooks/timeline/useCreateTimelineEvent';
+import { useToggleDiet } from '@/@hooks/diets/toggle/useToggleDiet';
+import { useModalClose } from '@/@hooks/useModalClose';
+import { useCreateTimelineEvent } from '@/@hooks/timeline/useCreateTimelineEvent';
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';

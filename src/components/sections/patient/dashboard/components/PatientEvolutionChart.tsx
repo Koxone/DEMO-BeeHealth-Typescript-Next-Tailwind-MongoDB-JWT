@@ -52,7 +52,7 @@ export default function PatientEvolutionChart({
   });
 
   return (
-    <div className="bg-beehealth-body-main h-[400px] rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
+    <div className="bg-beehealth-body-main h-[400px] overflow-hidden rounded-xl border border-gray-200 p-4 shadow-sm md:p-6">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-semibold text-gray-700 md:text-xl">{title}</h2>

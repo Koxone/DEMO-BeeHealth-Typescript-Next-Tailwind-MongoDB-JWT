@@ -1,5 +1,7 @@
 'use client';
+
 import { useState, useMemo, useEffect } from 'react';
+
 import SearchAddBar from './SearchAddBar';
 import ConsultsTable from './ConsultsTable';
 
@@ -14,7 +16,6 @@ import {
   askDelete,
   handleCreateAction,
   handleUpdateAction,
-  handleDeleteAction,
   todayISO,
 } from './utils/helpers';
 
@@ -30,14 +31,15 @@ export default function TodayConsultsList({
   setSuccessModalMessage,
   setSuccessModalTitle,
   refetch,
+  totalItemsSold,
+  consultPrice,
 }) {
   const [consults, setConsults] = useState([]);
-
   const [searchTerm, setSearchTerm] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Transaction type for Create Consult or Sale
   const [transactionType, setTransactionType] = useState('consult');
@@ -80,8 +82,10 @@ export default function TodayConsultsList({
 
       <div className="bg-beehealth-body-main rounded-2xl border-2 border-gray-200">
         <ConsultsTable
-          rows={filteredConsults}
           totalCost={totalCost}
+          rows={filteredConsults}
+          consultPrice={consultPrice}
+          totalItemsSold={totalItemsSold}
           onEdit={(item) => openEdit(item, setEditingItem, setShowModal)}
           onDelete={(item) => askDelete(item, setItemToDelete, setShowDeleteModal)}
         />
@@ -91,21 +95,21 @@ export default function TodayConsultsList({
 
       {showModal && !editingItem && (
         <EmployeeCreateConsultModal
-          onClose={() => setShowModal(false)}
-          onCreate={handleCreate}
-          setShowSuccessModal={setShowSuccessModal}
-          setSuccessModalMessage={setSuccessModalMessage}
-          setSuccessModalTitle={setSuccessModalTitle}
           refetch={refetch}
+          onCreate={handleCreate}
           transactionType={transactionType}
+          onClose={() => setShowModal(false)}
+          setShowSuccessModal={setShowSuccessModal}
+          setSuccessModalTitle={setSuccessModalTitle}
+          setSuccessModalMessage={setSuccessModalMessage}
         />
       )}
 
       {showModal && editingItem && (
         <EmployeeEditConsultModal
+          onUpdate={handleUpdate}
           editingItem={editingItem}
           onClose={() => setShowModal(false)}
-          onUpdate={handleUpdate}
         />
       )}
 
@@ -114,8 +118,8 @@ export default function TodayConsultsList({
           item={itemToDelete}
           onClose={() => setShowDeleteModal(false)}
           setShowSuccessModal={setShowSuccessModal}
-          setSuccessModalMessage={setSuccessModalMessage}
           setSuccessModalTitle={setSuccessModalTitle}
+          setSuccessModalMessage={setSuccessModalMessage}
         />
       )}
     </div>

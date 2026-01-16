@@ -10,7 +10,7 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import { useParams } from 'next/navigation';
 
 // Custom Hooks
-import { useGetUserById } from '@/hooks/users/useGetUserById';
+import { useGetUserById } from '@/@hooks/users/useGetUserById';
 
 export default function DoctorPatientDetailPage() {
   const params = useParams();

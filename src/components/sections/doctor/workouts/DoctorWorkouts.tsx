@@ -7,8 +7,8 @@ import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader
 import WorkoutCard from './components/workoutCard/WorkoutCard';
 
 // Hooks
-import { useGetAllWorkouts } from '@/hooks/workouts/get/useGetAllWorkouts';
-import { useDeleteWorkout } from '@/hooks/workouts/delete/useDeleteWorkout';
+import { useGetAllWorkouts } from '@/@hooks/workouts/get/useGetAllWorkouts';
+import { useDeleteWorkout } from '@/@hooks/workouts/delete/useDeleteWorkout';
 
 // Feedback Components
 import SharedModalOpenWorkout from '@/components/shared/workouts/SharedModalOpenWorkout';

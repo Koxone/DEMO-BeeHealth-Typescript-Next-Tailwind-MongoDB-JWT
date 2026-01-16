@@ -1,6 +1,6 @@
 import { ImageIcon, Trash2, Upload } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useVercelBlobUpload } from '@/hooks/upload/useVercelBlobUpload';
+import { useVercelBlobUpload } from '@/@hooks/upload/useVercelBlobUpload';
 
 export default function Images({
   diet,

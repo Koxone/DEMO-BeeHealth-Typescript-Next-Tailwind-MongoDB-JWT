@@ -1,6 +1,6 @@
 'use client';
 
-import { useVercelBlobUpload } from '@/hooks/upload/useVercelBlobUpload';
+import { useVercelBlobUpload } from '@/@hooks/upload/useVercelBlobUpload';
 import { ImageIcon, X } from 'lucide-react';
 import { useState } from 'react';
 

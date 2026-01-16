@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { Heart, Mail, Phone, MapPin } from 'lucide-react';
 import HomeHeader from '@/components/sections/home/components/HomeHeader';
 import { useState } from 'react';

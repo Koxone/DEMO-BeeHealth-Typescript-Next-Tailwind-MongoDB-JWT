@@ -5,10 +5,10 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 
 // Types
-import { CurrentUserData } from '@/types/user/user.types';
+import { CurrentUserData } from '@/@types/user/user.types';
 
 // Custom Hooks
-import { useGetPatientsBySpecialty } from '@/hooks/patients/get/useGetPatientsBySpecialty';
+import { useGetPatientsBySpecialty } from '@/@hooks/patients/get/useGetPatientsBySpecialty';
 
 interface DoctorPatientsProps {
   currentUser: CurrentUserData | null;

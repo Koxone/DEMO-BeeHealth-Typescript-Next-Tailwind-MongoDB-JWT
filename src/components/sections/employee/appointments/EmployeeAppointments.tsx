@@ -6,22 +6,15 @@ import AppointmentCard from './components/AppointmentCard';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 
 // Custom Hooks
-import { useAllAppointments } from '@/hooks/appointments/useAllAppointments';
-import { useCreateAppointment } from '@/hooks/appointments/useCreateAppointment';
+import { useAllAppointments } from '@/@hooks/appointments/useAllAppointments';
+import { useCreateAppointment } from '@/@hooks/appointments/useCreateAppointment';
+import { useGetAllPatients } from '@/@hooks/patients/get/useGetAllPatients';
 
 // Feedback Components
 import EmployeeCreateAppointmentModal from './components/EmployeeCreateAppointmentModal';
 import EmptyState from '@/components/shared/feedback/EmptyState';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
-
-// Types
-interface Patient {
-  id: string;
-  fullName: string;
-  phone: string;
-  email: string;
-}
 
 type AppointmentStatus = 'Confirmada' | 'Pendiente' | 'Cancelada';
 
@@ -40,13 +33,11 @@ interface Appointment {
 
 interface EmployeeAppointmentsProps {
   role: 'admin' | 'employee' | 'doctor';
-  patients: Patient[];
 }
 
-export default function EmployeeAppointments({ role, patients }: EmployeeAppointmentsProps) {
+export default function EmployeeAppointments({ role }: EmployeeAppointmentsProps) {
   // UI state
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [editingCita, setEditingCita] = useState<Appointment | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   // Hooks
@@ -57,6 +48,14 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
     loading: boolean;
     refetch?: () => void;
   };
+
+  // Gett all patients from Custom Hook
+  const {
+    patients: patientsData,
+    isLoading,
+    error,
+    refetch: refetchPatients,
+  } = useGetAllPatients();
 
   // Appointments (derivado de data)
   const citas = useMemo<Appointment[]>(() => {
@@ -100,20 +99,6 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
     specialty: '',
   });
 
-  // Helpers
-  const getEstadoBadge = (estado: AppointmentStatus): string => {
-    switch (estado) {
-      case 'Confirmada':
-        return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-      case 'Pendiente':
-        return 'bg-amber-100 text-amber-700 border-amber-200';
-      case 'Cancelada':
-        return 'bg-rose-100 text-rose-700 border-rose-200';
-      default:
-        return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
-
   // Today local (Mexico)
   const now = new Date();
   const offsetDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
@@ -128,7 +113,6 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
 
   // Handlers
   const openCreate = () => {
-    setEditingCita(null);
     setCitaForm({
       fecha: '',
       hora: '',
@@ -157,7 +141,6 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
       });
 
       setShowModal(false);
-      setEditingCita(null);
       setCitaForm({
         fecha: '',
         hora: '',
@@ -175,7 +158,7 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
   };
 
   // Loading State
-  if (loading) {
+  if (loading || isLoading) {
     return <LoadingState />;
   }
 
@@ -184,7 +167,7 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
   }
 
   // Error State
-  if (createError) {
+  if (createError || error) {
     return <ErrorState />;
   }
 
@@ -203,12 +186,7 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
         {filteredCitas.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 px-4">
             {filteredCitas.map((cita, index) => (
-              <AppointmentCard
-                key={cita.id}
-                index={index}
-                cita={cita}
-                getEstadoBadge={getEstadoBadge}
-              />
+              <AppointmentCard key={cita.id} index={index} cita={cita} />
             ))}
           </div>
         ) : (
@@ -221,8 +199,7 @@ export default function EmployeeAppointments({ role, patients }: EmployeeAppoint
 
       {showModal && (
         <EmployeeCreateAppointmentModal
-          patients={patients}
-          editingCita={editingCita}
+          patients={patientsData}
           citaForm={citaForm}
           setCitaForm={setCitaForm}
           onClose={() => setShowModal(false)}

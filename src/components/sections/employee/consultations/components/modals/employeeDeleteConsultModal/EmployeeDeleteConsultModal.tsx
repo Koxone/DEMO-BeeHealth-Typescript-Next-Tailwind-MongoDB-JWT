@@ -1,7 +1,7 @@
 'use client';
 
-import { useCancelConsult } from '@/hooks/consults/delete/useCancelConsult';
-import { useModalClose } from '@/hooks/useModalClose';
+import { useCancelConsult } from '@/@hooks/consults/delete/useCancelConsult';
+import { useModalClose } from '@/@hooks/useModalClose';
 import { AlertCircle, X, Calendar } from 'lucide-react';
 import { useState } from 'react';
 

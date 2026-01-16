@@ -128,28 +128,28 @@ export const columns = [
     align: 'right',
     icon: DollarSign,
   },
-  {
-    key: 'extras',
-    label: 'Extras',
-    align: 'right',
-    icon: DollarSign,
-  },
+  // {
+  //   key: 'extras',
+  //   label: 'Extras',
+  //   align: 'right',
+  //   icon: DollarSign,
+  // },
   {
     key: 'metodo',
     label: 'Metodo de Pago',
     align: 'center',
     icon: null,
   },
-  {
-    key: 'status',
-    label: 'Estado',
-    align: 'center',
-    icon: null,
-  },
-  {
-    key: 'acciones',
-    label: 'Acciones',
-    align: 'center',
-    icon: null,
-  },
+  // {
+  //   key: 'status',
+  //   label: 'Estado',
+  //   align: 'center',
+  //   icon: null,
+  // },
+  // {
+  //   key: 'acciones',
+  //   label: 'Acciones',
+  //   align: 'center',
+  //   icon: null,
+  // },
 ];

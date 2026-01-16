@@ -9,7 +9,7 @@ import Actions from './components/Actions';
 import useAuthStore from '@/zustand/useAuthStore';
 
 // Custom Hooks
-import { useModalClose } from '@/hooks/useModalClose';
+import { useModalClose } from '@/@hooks/useModalClose';
 
 /* Container */
 export default function EmployeeCreateConsultModal({

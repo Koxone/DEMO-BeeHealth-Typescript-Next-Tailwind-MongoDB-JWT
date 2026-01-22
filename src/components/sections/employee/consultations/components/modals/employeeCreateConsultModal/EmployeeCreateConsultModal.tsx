@@ -5,11 +5,12 @@ import Header from './components/Header';
 import ConsultForm from './components/consultForm/ConsultForm';
 import Actions from './components/Actions';
 
-// Zustand Store
-import useAuthStore from '@/zustand/useAuthStore';
-
 // Custom Hooks
 import { useModalClose } from '@/@hooks/useModalClose';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
+
+// Feedback Components
+import LoadingState from '@/components/shared/feedback/LoadingState';
 
 /* Container */
 export default function EmployeeCreateConsultModal({
@@ -24,13 +25,17 @@ export default function EmployeeCreateConsultModal({
   // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
-  // Get user from store
-  const { user } = useAuthStore();
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
   // Local state - Form
   const [form, setForm] = useState({
     patient: '',
-    employee: user?.id || '',
+    employee: currentUser?.id || '',
     consultType: transactionType === 'sale' ? 'sale' : '',
     speciality: 'weight',
     consultPrice: transactionType === 'sale' ? 0 : '',
@@ -131,6 +136,11 @@ export default function EmployeeCreateConsultModal({
       setIsLoading(false);
     }
   };
+
+  // Loading State
+  if (isLoadingCurrentUser) {
+    return <LoadingState />;
+  }
 
   return (
     <div

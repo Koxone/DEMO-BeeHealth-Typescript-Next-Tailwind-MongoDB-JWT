@@ -10,30 +10,9 @@ import {
   Tooltip,
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 
-interface WeightLog {
-  _id: string;
-  patient: {
-    _id: string;
-    email: string;
-  };
-  clinicalRecord: {
-    _id: string;
-    recordDate: string;
-    createdAt: string;
-  } | null;
-  originalWeight: number;
-  currentWeight: number;
-  differenceFromPrevious: number;
-  differenceFromOriginal: number;
-  originalSize: number;
-  currentSize: number;
-  differenceSizeFromPrevious: number;
-  differenceSizeFromOriginal: number;
-  createdAt: string;
-  updatedAt: string;
-}
+// Custom Hooks
+import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 
 interface ChartData {
   fecha: string;

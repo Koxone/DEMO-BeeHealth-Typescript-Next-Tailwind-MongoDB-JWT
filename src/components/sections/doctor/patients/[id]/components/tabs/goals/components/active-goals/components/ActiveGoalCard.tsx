@@ -1,29 +1,6 @@
 import { Calendar, Clock, Trash } from 'lucide-react';
 
-/**
- * ActiveGoalCard
- *
- * Provides a card interface that allows a doctor to toggle (activate/deactivate) a diet for a patient.
- * Activating a diet creates a diet_renewed timeline event.
- * Deactivating a diet creates a diet_completed timeline event.
- * Removing a diet creates a diet_removed timeline event.
- * Renewing a diet creates a diet_renewed timeline event.
- *
- * @param diet - The diet object containing diet details and status
- * @param handleDietClick - Function to handle diet toggle action
- * @param patientId - Target patient identifier
- */
-export default function ActiveGoalCard({
-  goal,
-  removeGoals,
-  setShowSuccessModal,
-  setSuccessTitle,
-  setSuccessMessage,
-  refetchGoals,
-  setShowRemoveGoalModal,
-  selectedGoal,
-  setSelectedGoal,
-}) {
+export default function ActiveGoalCard({ goal, setShowRemoveGoalModal, setSelectedGoal }) {
   // Date format
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-MX', {
@@ -47,20 +24,6 @@ export default function ActiveGoalCard({
   const handleRemoveClick = () => {
     setSelectedGoal(goal);
     setShowRemoveGoalModal(true);
-  };
-
-  // Success Modal States
-  const handleSuccess = (title, message) => {
-    refetchGoals();
-    setSuccessTitle(title);
-    setSuccessMessage(message);
-    setShowSuccessModal(true);
-
-    setTimeout(() => {
-      setShowSuccessModal(false);
-      setSuccessTitle('');
-      setSuccessMessage('');
-    }, 1000);
   };
 
   return (
@@ -94,15 +57,8 @@ export default function ActiveGoalCard({
           </div>
         </div>
 
-        {/* Power button */}
+        {/* Remove Goal Button */}
         <button
-          // onClick={() => {
-          //   removeGoals(goal?.patient, {
-          //     onSuccess: () => {
-          //       handleSuccess('Meta eliminada', 'La meta ha sido eliminada correctamente.');
-          //     },
-          //   });
-          // }}
           onClick={handleRemoveClick}
           className="relative flex h-20 w-20 items-center justify-center rounded-full bg-green-500 shadow-[0_0_20px_rgba(34,197,94,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)] active:scale-95"
         >

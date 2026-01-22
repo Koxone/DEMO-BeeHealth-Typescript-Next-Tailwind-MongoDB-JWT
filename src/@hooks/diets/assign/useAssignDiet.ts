@@ -5,7 +5,7 @@ import { z } from 'zod';
 const assignDietResponseSchema = z.object({
   message: z.string(),
   user: z.object({
-    id: z.string(),
+    id: z.any().transform((val) => String(val)),
     fullName: z.string(),
     email: z.string(),
     phone: z.string(),
@@ -13,7 +13,7 @@ const assignDietResponseSchema = z.object({
     role: z.enum(['patient', 'doctor', 'admin', 'employee']),
     specialty: z.enum(['weight', 'dental', 'stetic', 'none']),
     diets: z.array(z.any()),
-    updatedAt: z.string(),
+    updatedAt: z.any(), 
   }),
 });
 

@@ -9,6 +9,7 @@ import WorkoutCard from './components/workoutCard/WorkoutCard';
 // Hooks
 import { useGetAllWorkouts } from '@/@hooks/workouts/get/useGetAllWorkouts';
 import { useDeleteWorkout } from '@/@hooks/workouts/delete/useDeleteWorkout';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback Components
 import SharedModalOpenWorkout from '@/components/shared/workouts/SharedModalOpenWorkout';
@@ -17,9 +18,15 @@ import ModalCreateWorkout from './components/modals/create/ModalCreateWorkout';
 import ModalEditWorkout from './components/modals/edit/ModalEditWorkout';
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
 import LoadingState from '@/components/shared/feedback/LoadingState';
-import ModalAssignWorkout from './components/modals/assign/ModalAssignWorkout';
 
-export default function DoctorWorkouts({ role }) {
+export default function DoctorWorkouts() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Get Workouts Hook
   const { workoutData, isLoading, error, refetch: fetchWorkouts } = useGetAllWorkouts();
 
@@ -30,10 +37,6 @@ export default function DoctorWorkouts({ role }) {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [filterCategorie, setFilterCategorie] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Assign Workout Modal
-  const [showAssignModal, setShowAssignModal] = useState<boolean>(false);
-  const [workoutToAssign, setWorkoutToAssign] = useState<null | (typeof workoutData)[0]>(null);
 
   // Delete Workout Modal
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -71,7 +74,7 @@ export default function DoctorWorkouts({ role }) {
   };
 
   // Loading state
-  if (isLoading) {
+  if (isLoading || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 
@@ -87,13 +90,17 @@ export default function DoctorWorkouts({ role }) {
 
       {/* Section Header */}
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         Icon="workouts"
         newWorkout
         setEditingWorkout={setEditingWorkout}
         setShowCreateWorkoutModal={setShowCreateWorkoutModal}
-        title={role === 'doctor' ? 'Gestion de Ejercicios' : 'Mis Ejercicios'}
-        subtitle={role === 'doctor' ? 'Crea y personaliza ejercicios' : 'Ejercicios Personalizados'}
+        title={currentUser?.role === 'doctor' ? 'Gestion de Ejercicios' : 'Mis Ejercicios'}
+        subtitle={
+          currentUser?.role === 'doctor'
+            ? 'Crea y personaliza ejercicios'
+            : 'Ejercicios Personalizados'
+        }
       />
 
       {/* Filters and Search */}
@@ -138,10 +145,6 @@ export default function DoctorWorkouts({ role }) {
             <WorkoutCard
               key={workout._id}
               workout={workout}
-              onClickAssign={(e) => {
-                setWorkoutToAssign(workout);
-                setShowAssignModal(true);
-              }}
               handleEdit={(e) => {
                 setEditingWorkout(e);
                 setShowEditModal(true);
@@ -198,16 +201,6 @@ export default function DoctorWorkouts({ role }) {
           setShowCreateModal={setShowCreateWorkoutModal}
           fetchWorkouts={fetchWorkouts}
           setShowSuccessModal={setShowSuccessModal}
-        />
-      )}
-
-      {/* Assign Modal */}
-      {showAssignModal && (
-        <ModalAssignWorkout
-          workoutToAssign={workoutToAssign}
-          setShowAssignModal={setShowAssignModal}
-          setShowSuccessModal={setShowSuccessModal}
-          refetch={fetchWorkouts}
         />
       )}
     </div>

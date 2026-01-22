@@ -1,7 +1,5 @@
 'use client';
 
-import { AlertCircle } from 'lucide-react';
-
 import AllowedFoods from './components/sections/allowed/AllowedFoods';
 import AllowedLiquids from './components/sections/allowed/AllowedLiquids';
 import ForbiddenFoods from './components/sections/forbidden/ForbiddenFoods';

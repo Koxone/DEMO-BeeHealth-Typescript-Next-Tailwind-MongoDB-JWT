@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import useAuthStore from '@/zustand/useAuthStore';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Types
 import { CurrentUserData } from '@/@types/user/user.types';
@@ -108,18 +108,26 @@ export function useTodayAppointmentsBySpecialty(): {
   error: string | null;
   refetch: () => Promise<void>;
 } {
-  const { user } = useAuthStore();
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   const queryClient = useQueryClient();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['todayAppointments', user?.specialty],
-    queryFn: () => fetchTodayAppointments(user!.specialty),
-    enabled: !!user?.specialty,
+    queryKey: ['todayAppointments', currentUser?.specialty],
+    queryFn: () => fetchTodayAppointments(currentUser!.specialty),
+    enabled: !!currentUser?.specialty,
   });
 
   const refetch = useCallback(async () => {
-    await queryClient.invalidateQueries({ queryKey: ['todayAppointments', user?.specialty] });
-  }, [queryClient, user?.specialty]);
+    await queryClient.invalidateQueries({
+      queryKey: ['todayAppointments', currentUser?.specialty],
+    });
+  }, [queryClient, currentUser?.specialty]);
 
   return {
     appointments: data || [],

@@ -1,7 +1,7 @@
 'use client';
 
 // Library Imports
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IClinicalRecord, TabName } from '@/@types';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
@@ -20,31 +20,33 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import CreateGoalModal from './components/modals/create-goal-modal/CreateGoalModal';
 import EditRecordModal from './components/modals/edit-record-modal/EditRecordModal';
 import FullHistoryModal from './components/modals/full-history-modal/FullHistoryModal';
-import ClinicalRecordModal from './components/modals/historyModal/ClinicalRecordModal';
 import DeleteRecordModal from './components/modals/delete-record-modal/DeleteRecordModal';
 import RemoveDietModal from './components/tabs/diets/components/remove-diet-modal/RemoveDietModal';
 import EditPatientModal from '@/components/sections/employee/patients/components/EditPatientModal';
 import CreateFirstRecordModal from './components/modals/create-first-record-modal/CreateFirstRecordModal';
 import RemoveWorkoutModal from './components/tabs/workouts/components/remove-diet-modal/RemoveWorkoutModal';
+import EditWeightAndSizeModal from '@/components/sections/employee/patients/components/EditWeightAndSizeModal';
 import DoctorCreateAppointmentModal from './components/modals/createAppointmentModal/DoctorCreateAppointmentModal';
+import ViewEditAndCreateConsultModal from './components/modals/view-and-edit-consult-modal/ViewAndEditConsultModal';
 import DietEventsHistoryModal from './components/tabs/diets/components/diet-events-history-modal/DietEventsHistoryModal';
 import WorkoutEventsHistoryModal from './components/tabs/workouts/components/diet-events-history-modal/WorkoutEventsHistoryModal';
 
 // Custom Hooks
 import { useEditUser } from '@/@hooks/users/useEditUser';
 import { useGetUserById } from '@/@hooks/users/useGetUserById';
+import { useRemovePatientGoal } from '@/@hooks/users/useRemoveGoal';
 import { useGetUserEvents } from '@/@hooks/timeline/useGetUserEvents';
 import { useGetPatientGoals } from '@/@hooks/users/useGetPatientGoals';
 import { useGetAllPatients } from '@/@hooks/patients/get/useGetAllPatients';
 import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 import { useGetAllDietsFromPatient } from '@/@hooks/diets/get/useGetAllDietsFromPatient';
 import { useEditClinicalRecord } from '@/@hooks/clinicalRecords/edit/useEditClinicalRecord';
+import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 import { useDeleteClinicalRecord } from '@/@hooks/clinicalRecords/delete/useDeleteClinicalRecord';
 import { useGetAllWorkoutsFromPatient } from '@/@hooks/workouts/get/useGetAllWorkoutsFromPatient';
 import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
-import { useRemovePatientGoal } from '@/@hooks/users/useRemoveGoal';
 
-export default function DoctorPatientDetail({ patient, specialty }) {
+export default function DoctorPatientDetail() {
   // Library Hooks
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -90,6 +92,16 @@ export default function DoctorPatientDetail({ patient, specialty }) {
     isLoading: userLoading,
   } = useGetUserById(id);
 
+  // Does patient has initialWeight?
+  const hasInitialWeight =
+    typeof userData?.initialWeight === 'number' && userData?.initialWeight > 1;
+
+  // Does patient has initialSize?
+  const hasInitialSize = typeof userData?.initialSize === 'number' && userData?.initialSize > 1;
+
+  // Does patient has hasRecord?
+  const hasRecord = userData?.hasRecord === true;
+
   // Fetch Patient Timeline Events
   const {
     events,
@@ -116,6 +128,14 @@ export default function DoctorPatientDetail({ patient, specialty }) {
     refetch: refetchGoals,
     isLoading: goalsLoading,
   } = useGetPatientGoals(id);
+
+  // Get Patient Weightlogs with Custom Hook
+  const {
+    weightLogs,
+    loading: weightLogsLoading,
+    error: weightLogsError,
+    refetch: refetchWeightLogs,
+  } = useGetPatientWeightLogs(userData?._id || '');
 
   // Remove Patient Goals with Custom Hook
   const removeGoals = useRemovePatientGoal();
@@ -166,7 +186,17 @@ export default function DoctorPatientDetail({ patient, specialty }) {
   // Editing Patient Modal States
   const { patients, refetch } = useGetAllPatients();
   const [showEditPatientModal, setShowEditPatientModal] = useState<boolean>(false);
-  const [selectedPatientId, setSelectedPatientId] = useState<string>(patient?._id || '');
+  const [selectedPatientId, setSelectedPatientId] = useState<string>(userData?._id || '');
+
+  // Edit Weight and Size Modal States
+  const [showEditWeightAndSizeModal, setShowEditWeightAndSizeModal] = useState<boolean>(false);
+
+  // Current Weight and Size States
+  const [newCurrentWeight, setNewCurrentWeight] = useState<number | null>(null);
+  const [newCurrentSize, setNewCurrentSize] = useState<number | null>(null);
+  useEffect(() => {
+    console.log(newCurrentSize, newCurrentWeight);
+  }, [newCurrentSize, newCurrentWeight]);
 
   // Tabs Nav
   const activeTab = (searchParams.get('tab') as TabName) ?? 'Consultas';
@@ -208,6 +238,20 @@ export default function DoctorPatientDetail({ patient, specialty }) {
     setSelectedRecord(lastRecord);
   };
 
+  // Success Modal States
+  const handleSuccess = (title, message) => {
+    refetchGoals();
+    setSuccessTitle(title);
+    setSuccessMessage(message);
+    setShowSuccessModal(true);
+
+    setTimeout(() => {
+      setShowSuccessModal(false);
+      setSuccessTitle('');
+      setSuccessMessage('');
+    }, 1000);
+  };
+
   // Loading State
   if (
     isLoading ||
@@ -216,7 +260,8 @@ export default function DoctorPatientDetail({ patient, specialty }) {
     dietsLoading ||
     timelineLoading ||
     questionsLoading ||
-    patientWorkoutsLoading
+    patientWorkoutsLoading ||
+    weightLogsLoading
   ) {
     return <LoadingState />;
   }
@@ -229,7 +274,8 @@ export default function DoctorPatientDetail({ patient, specialty }) {
     goalsError ||
     timelineError ||
     questionsError ||
-    patientWorkoutsError
+    patientWorkoutsError ||
+    weightLogsError
   ) {
     return <ErrorState />;
   }
@@ -240,13 +286,14 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       <div className="grid grid-rows-[auto_1fr]">
         <BackButton />
         <PatientHeader
+          userData={userData}
           dietsData={dietsData}
           workoutsData={workoutsData}
           patientRecord={patientRecord}
           setShowEditPatientModal={setShowEditPatientModal}
+          onClickNew={() => setShowCreateAppointmentModal(true)}
           onCreateNew={() => setShowCreateFirstRecordModal(true)}
           onClickFullHistory={() => setShowFullHistoryModal(true)}
-          onClickNew={() => setShowCreateAppointmentModal(true)}
         />
       </div>
 
@@ -261,12 +308,18 @@ export default function DoctorPatientDetail({ patient, specialty }) {
           onEdit={onEdit}
           onOpen={onOpen}
           events={events}
+          userData={userData}
           onDelete={onDelete}
-          specialty={specialty}
+          specialty={userData?.specialty || ''}
           questions={questions}
+          weightLogs={weightLogs}
           onCreateNew={onCreateNew}
           fetchRecord={fetchRecord}
+          setShowEditWeightAndSizeModal={setShowEditWeightAndSizeModal}
           patientRecord={patientRecord}
+          hasInitialWeight={hasInitialWeight}
+          hasInitialSize={hasInitialSize}
+          hasRecord={hasRecord}
           setShowHistoryModal={setShowHistoryModal}
           setShowCreateGoalModal={setShowCreateGoalModal}
         />
@@ -318,11 +371,11 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {activeTab === 'Metas' && (
         <GoalsTab
           goalsData={goalsData}
-          refetchGoals={refetchGoals}
           removeGoals={removeGoals}
-          setShowSuccessModal={setShowSuccessModal}
+          refetchGoals={refetchGoals}
           setSuccessTitle={setSuccessTitle}
           setSuccessMessage={setSuccessMessage}
+          setShowSuccessModal={setShowSuccessModal}
           setShowCreateGoalModal={setShowCreateGoalModal}
         />
       )}
@@ -331,21 +384,25 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {showFullHistoryModal && (
         <FullHistoryModal
           patientId={id}
-          specialty={specialty}
+          specialty={userData?.specialty || ''}
           record={selectedRecord}
           fetchRecord={fetchRecord}
           setShowSuccessModal={setShowSuccessModal}
-          setShowFullHistoryModal={setShowFullHistoryModal}
           onClose={() => setShowFullHistoryModal(false)}
+          setShowFullHistoryModal={setShowFullHistoryModal}
         />
       )}
 
       {/* Short History Modal */}
       {showHistoryModal && (
-        <ClinicalRecordModal
+        <ViewEditAndCreateConsultModal
           patientId={id}
+          editUser={editUser}
           mode={historyMode}
-          specialty={specialty}
+          setNewCurrentWeight={setNewCurrentWeight}
+          setNewCurrentSize={setNewCurrentSize}
+          refetchWeightLogs={refetchWeightLogs}
+          specialty={userData?.specialty || ''}
           readOnly={isReadOnly}
           record={selectedRecord}
           fetchRecord={fetchRecord}
@@ -357,11 +414,12 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {/* Create First Record Modal */}
       {showCreateFirstRecordModal && (
         <CreateFirstRecordModal
+          refetchWeightLogs={refetchWeightLogs}
           fetchRecord={fetchRecord}
           showSuccessModal={showSuccessModal}
           setShowSuccessModal={setShowSuccessModal}
-          setShowCreateFirstRecordModal={setShowCreateFirstRecordModal}
           onClose={() => setShowCreateFirstRecordModal(false)}
+          setShowCreateFirstRecordModal={setShowCreateFirstRecordModal}
         />
       )}
 
@@ -369,7 +427,7 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {showEditRecordModal && (
         <EditRecordModal
           patientId={id}
-          specialty={specialty}
+          specialty={userData?.specialty || ''}
           record={selectedRecord}
           fetchRecord={fetchRecord}
           setShowSuccessModal={setShowSuccessModal}
@@ -410,7 +468,7 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {/* Create Goal Modal */}
       {showCreateGoalModal && (
         <CreateGoalModal
-          patient={patient}
+          patient={userData}
           refetchGoals={refetchGoals}
           setSuccessTitle={setSuccessTitle}
           setSuccessMessage={setSuccessMessage}
@@ -468,11 +526,24 @@ export default function DoctorPatientDetail({ patient, specialty }) {
       {/* Edit Patient Modal */}
       {showEditPatientModal && (
         <EditPatientModal
+          patient={userData}
           editUser={editUser}
           refetch={refetchUser}
           isPending={isPending}
-          patient={patients.find((p) => p._id === selectedPatientId)}
+          handleSuccess={handleSuccess}
           onClose={() => setShowEditPatientModal(false)}
+        />
+      )}
+
+      {/* Edit Weight and Size Modal */}
+      {showEditWeightAndSizeModal && (
+        <EditWeightAndSizeModal
+          patient={userData}
+          editUser={editUser}
+          refetch={refetchUser}
+          isPending={isPending}
+          handleSuccess={handleSuccess}
+          onClose={() => setShowEditWeightAndSizeModal(false)}
         />
       )}
     </div>

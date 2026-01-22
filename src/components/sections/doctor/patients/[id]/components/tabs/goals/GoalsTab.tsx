@@ -39,13 +39,7 @@ export default function GoalsTab({
       ) : (
         <ActiveGoals
           goalsData={goalsData}
-          refetchGoals={refetchGoals}
-          removeGoals={removeGoals}
-          setShowSuccessModal={setShowSuccessModal}
-          setSuccessTitle={setSuccessTitle}
           setSelectedGoal={setSelectedGoal}
-          selectedGoal={selectedGoal}
-          setSuccessMessage={setSuccessMessage}
           setShowRemoveGoalModal={setShowRemoveGoalModal}
         />
       )}

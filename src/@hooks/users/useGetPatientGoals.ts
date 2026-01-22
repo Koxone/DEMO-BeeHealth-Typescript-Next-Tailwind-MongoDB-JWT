@@ -23,6 +23,7 @@ export type ZGoal = z.infer<typeof GoalSchema>;
 export function useGetPatientGoals(patientId: string) {
   const { data, isLoading, error, refetch } = useQuery<ZGoal[], Error>({
     queryKey: ['patient-goals', patientId],
+    enabled: !!patientId,
     queryFn: async () => {
       const response = await fetch(`/api/users/${patientId}/goals/`, {
         method: 'GET',

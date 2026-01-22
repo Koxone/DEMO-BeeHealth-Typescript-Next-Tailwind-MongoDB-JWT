@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Loader, Power, PowerOff } from 'lucide-react';
+
 import DoctorNotes from './components/DoctorNotes';
 import Rating from './components/Rating';
 import Compliance from './components/Compliance';
@@ -15,7 +16,6 @@ import type { DietFeedbackModalProps } from '@/@types/diet/diet.types';
 // Custom Hooks
 import { useToggleDiet } from '@/@hooks/diets/toggle/useToggleDiet';
 import { useModalClose } from '@/@hooks/useModalClose';
-import { useCreateTimelineEvent } from '@/@hooks/timeline/useCreateTimelineEvent';
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';

@@ -29,7 +29,7 @@ function Instructions({
               onChange={(e) => handleInstructionInputChange(index, e.target.value)}
               placeholder={`Paso ${index + 1}: Describe la instrucción...`}
               className="bg-beehealth-body-main flex-1 resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition-all duration-300 outline-none placeholder:text-gray-400 focus:shadow-md focus:outline-none"
-              rows="1"
+              rows={1}
             />
             {instructionInputs.length > 1 && (
               <button

@@ -9,4 +9,8 @@ export interface CurrentUserData {
   hasRecord?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  initialWeight?: number;
+  initialSize?: number;
+  currentWeight?: number;
+  currentSize?: number;
 }

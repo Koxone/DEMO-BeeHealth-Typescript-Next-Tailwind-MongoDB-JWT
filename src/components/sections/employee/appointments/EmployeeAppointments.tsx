@@ -9,6 +9,7 @@ import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader
 import { useAllAppointments } from '@/@hooks/appointments/useAllAppointments';
 import { useCreateAppointment } from '@/@hooks/appointments/useCreateAppointment';
 import { useGetAllPatients } from '@/@hooks/patients/get/useGetAllPatients';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback Components
 import EmployeeCreateAppointmentModal from './components/EmployeeCreateAppointmentModal';
@@ -31,11 +32,14 @@ interface Appointment {
   avatar: string;
 }
 
-interface EmployeeAppointmentsProps {
-  role: 'admin' | 'employee' | 'doctor';
-}
+export default function EmployeeAppointments() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
-export default function EmployeeAppointments({ role }: EmployeeAppointmentsProps) {
   // UI state
   const [showModal, setShowModal] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -174,7 +178,7 @@ export default function EmployeeAppointments({ role }: EmployeeAppointmentsProps
   return (
     <div className="h-full overflow-x-hidden overflow-y-auto pb-8">
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         Icon="pacientes"
         title="Citas del día de hoy"
         subtitle={`Mostrando todas las especialidades — ${today}`}

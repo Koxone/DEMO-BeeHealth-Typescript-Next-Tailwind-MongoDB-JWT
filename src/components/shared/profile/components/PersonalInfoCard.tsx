@@ -13,7 +13,7 @@ function PersonalInfoCard({
   setTitle,
   setMessage,
   setIsEditing,
-  loadUser,
+  refetchCurrentUser,
 }) {
   // State
   const [email, setEmail] = useState(user?.email || '');
@@ -31,7 +31,7 @@ function PersonalInfoCard({
       { userId: user.id, email },
       {
         onSuccess: async () => {
-          await loadUser();
+          await refetchCurrentUser();
           setTitle('¡Éxito!');
           setMessage('Correo electrónico actualizado con éxito!');
           setShowSuccessModal(true);
@@ -54,7 +54,7 @@ function PersonalInfoCard({
       { userId: user.id, phone },
       {
         onSuccess: async () => {
-          await loadUser();
+          await refetchCurrentUser();
           setTitle('¡Éxito!');
           setMessage('Teléfono actualizado con éxito!');
           setShowSuccessModal(true);

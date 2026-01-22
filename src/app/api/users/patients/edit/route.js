@@ -15,7 +15,16 @@ export async function PATCH(req) {
       return NextResponse.json({ error: auth.error }, { status: auth.status });
     }
 
-    const { userId, phone, email, fullName } = await req.json();
+    const {
+      userId,
+      phone,
+      email,
+      fullName,
+      initialWeight,
+      initialSize,
+      currentWeight,
+      currentSize,
+    } = await req.json();
 
     if (!userId) {
       return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
@@ -25,6 +34,10 @@ export async function PATCH(req) {
     if (phone !== undefined) updateData.phone = phone;
     if (email !== undefined) updateData.email = email;
     if (fullName !== undefined) updateData.fullName = fullName;
+    if (initialWeight !== undefined) updateData.initialWeight = initialWeight;
+    if (initialSize !== undefined) updateData.initialSize = initialSize;
+    if (currentWeight !== undefined) updateData.currentWeight = currentWeight;
+    if (currentSize !== undefined) updateData.currentSize = currentSize;
 
     const updatedUser = await User.findByIdAndUpdate(userId, updateData, {
       new: true,

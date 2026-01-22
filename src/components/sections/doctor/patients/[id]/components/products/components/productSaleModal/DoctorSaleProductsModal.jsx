@@ -186,7 +186,7 @@ export default function DoctorSaleProductsModal({ onClose }) {
                       value={productForm.observaciones}
                       onChange={(e) => handleChange('observaciones', e.target.value)}
                       className="bg-beehealth-body-main w-full resize-none rounded-xl border-2 border-gray-200 px-4 py-3.5 text-gray-700 shadow-sm transition focus:border-indigo-500 focus:shadow-md focus:shadow-indigo-500/20 focus:outline-none"
-                      rows="2"
+                      rows={2}
                     />
                   </div>
                 </div>

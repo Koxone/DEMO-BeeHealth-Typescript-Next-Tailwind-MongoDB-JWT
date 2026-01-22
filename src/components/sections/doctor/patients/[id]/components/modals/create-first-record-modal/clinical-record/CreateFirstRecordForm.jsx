@@ -42,6 +42,7 @@ export default function CreateFirstRecordForm({
   setShowSuccessModal,
   setShowCreateFirstRecordModal,
   fetchRecord,
+  refetchWeightLogs,
 }) {
   // Local state
   const [formData, setFormData] = useState({});
@@ -138,6 +139,7 @@ export default function CreateFirstRecordForm({
 
     setShowCreateFirstRecordModal(false);
     fetchRecord();
+    refetchWeightLogs();
     setShowSuccessModal(true);
     setFormData({});
     setIsSubmitting(false);

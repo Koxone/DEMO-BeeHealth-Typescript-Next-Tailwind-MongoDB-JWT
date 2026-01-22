@@ -11,6 +11,10 @@ interface IUser extends Document {
   hasRecord: boolean;
   role: 'patient' | 'doctor' | 'admin' | 'employee';
   specialty: 'weight' | 'dental' | 'stetic' | 'none';
+  initialWeight?: number;
+  initialSize?: number;
+  currentWeight?: number;
+  currentSize?: number;
 
   diets?: {
     diet: mongoose.Types.ObjectId;
@@ -47,6 +51,10 @@ const UserSchema = new Schema<IUser>(
     isActive: { type: Boolean, default: true },
     hasRecord: { type: Boolean, default: false },
     resetToken: { type: String, default: null },
+    initialWeight: { type: Number, required: false },
+    initialSize: { type: Number, required: false },
+    currentWeight: { type: Number, required: false },
+    currentSize: { type: Number, required: false },
 
     diets: [
       {

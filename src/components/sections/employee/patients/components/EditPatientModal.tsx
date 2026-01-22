@@ -2,9 +2,18 @@
 
 import { X, User } from 'lucide-react';
 import { useState } from 'react';
+
+// Custom Hooks
 import { useModalClose } from '@/@hooks/useModalClose';
 
-export default function EditPatientModal({ patient, onClose, refetch, editUser, isPending }) {
+export default function EditPatientModal({
+  patient,
+  onClose,
+  refetch,
+  editUser,
+  isPending,
+  handleSuccess,
+}) {
   // Modal close handler
   const { handleOverlayClick } = useModalClose(onClose);
 
@@ -13,6 +22,8 @@ export default function EditPatientModal({ patient, onClose, refetch, editUser, 
     fullName: patient?.fullName || '',
     email: patient?.email || '',
     phone: patient?.phone || '',
+    initialWeight: patient?.initialWeight || '',
+    initialSize: patient?.initialSize || '',
   });
 
   // Handlers
@@ -27,10 +38,16 @@ export default function EditPatientModal({ patient, onClose, refetch, editUser, 
         fullName: form.fullName.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
+        initialWeight: form.initialWeight,
+        initialSize: form.initialSize,
       },
       {
         onSuccess: () => {
           refetch();
+          handleSuccess(
+            'Paciente actualizado',
+            'La información del paciente ha sido actualizada correctamente.'
+          );
           onClose();
         },
         onError: (error) => {
@@ -122,6 +139,36 @@ export default function EditPatientModal({ patient, onClose, refetch, editUser, 
                   required
                   value={form.phone}
                   onChange={(e) => handleChange('phone', e.target.value)}
+                  placeholder="Ej. 5512345678"
+                  className="w-full rounded-xl border-2 border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+                  disabled={isPending}
+                />
+              </div>
+
+              {/* Initial Weight */}
+              <div className="grid gap-1">
+                <label className="text-sm font-semibold text-gray-600">Peso Inicial</label>
+                <input
+                  maxLength={15}
+                  type="tel"
+                  required
+                  value={form.initialWeight}
+                  onChange={(e) => handleChange('initialWeight', e.target.value)}
+                  placeholder="Ej. 5512345678"
+                  className="w-full rounded-xl border-2 border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
+                  disabled={isPending}
+                />
+              </div>
+
+              {/* Initial Size */}
+              <div className="grid gap-1">
+                <label className="text-sm font-semibold text-gray-600">Talla Inicial</label>
+                <input
+                  maxLength={15}
+                  type="tel"
+                  required
+                  value={form.initialSize}
+                  onChange={(e) => handleChange('initialSize', e.target.value)}
                   placeholder="Ej. 5512345678"
                   className="w-full rounded-xl border-2 border-gray-300 px-4 py-3 outline-none focus:border-blue-500"
                   disabled={isPending}

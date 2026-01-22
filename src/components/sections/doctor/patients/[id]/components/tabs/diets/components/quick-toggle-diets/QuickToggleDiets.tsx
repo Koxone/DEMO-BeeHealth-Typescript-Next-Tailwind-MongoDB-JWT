@@ -95,7 +95,6 @@ export default function QuickToggleDiets({
               diet={diet}
               handleDietClick={handleDietClick}
               handleRenewDietClick={handleRenewDietClick}
-              patientId={patientId}
               recordId={recordId}
               setShowRemoveDietModal={setShowRemoveDietModal}
               setDietToDelete={setDietToDelete}

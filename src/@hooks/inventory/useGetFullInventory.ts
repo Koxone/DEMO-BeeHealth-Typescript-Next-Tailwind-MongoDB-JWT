@@ -2,7 +2,7 @@
 
 import { useMemo, useCallback } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import useAuthStore from '@/zustand/useAuthStore';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Types
 import { InventoryItem } from '@/@types/inventory/inventory.types';
@@ -21,25 +21,31 @@ async function fetchInventory(): Promise<InventoryItem[]> {
 }
 
 export function useGetFullInventory() {
-  const { user } = useAuthStore();
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   const queryClient = useQueryClient();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['inventory'],
     queryFn: fetchInventory,
-    enabled: !!user,
+    enabled: !!currentUser,
   });
 
   // Filter inventory based on user role and specialty
   const inventory = useMemo(() => {
     if (!data) return [];
 
-    return user?.role === 'employee' || !user?.specialty
+    return currentUser?.role === 'employee' || !currentUser?.specialty
       ? data
       : data.filter(
-          (item) => item?.product?.specialty && item?.product?.specialty === user?.specialty
+          (item) => item?.product?.specialty && item?.product?.specialty === currentUser?.specialty
         );
-  }, [data, user?.role, user?.specialty]);
+  }, [data, currentUser?.role, currentUser?.specialty]);
 
   const criticalItems = useMemo(
     () => inventory.filter((i) => i.quantity < i.minStock),

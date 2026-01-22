@@ -12,8 +12,16 @@ import ErrorState from '@/components/shared/feedback/ErrorState';
 // Custom Hooks
 import { useAllTodayAppointments } from '@/@hooks/appointments/useAllTodayAppointments';
 import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
-export default function EmployeeDashboard({ currentUser }) {
+export default function EmployeeDashboard() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Hook to get all appointments
   const {
     appointments,

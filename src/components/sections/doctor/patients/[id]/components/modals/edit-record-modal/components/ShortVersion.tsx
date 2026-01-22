@@ -1,8 +1,9 @@
-import LoadingState from '@/components/shared/feedback/LoadingState';
-import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 import { CalendarIcon } from 'lucide-react';
-import AssignSection from './assign-section/AssignSection';
 import FooterActions from './FooterActions';
+import LoadingState from '@/components/shared/feedback/LoadingState';
+
+// Custom Hooks
+import { useGetAllQuestions } from '@/@hooks/clinicalRecords/get/useGetAllQuestions';
 
 export default function ShortVersion({
   specialty,
@@ -10,9 +11,6 @@ export default function ShortVersion({
   setFormData,
   onClose,
   isSubmitting = false,
-  setDietSelected,
-  setWorkoutSelected,
-  patientId,
 }) {
   // Fetch questions
   const { questions, loading } = useGetAllQuestions();
@@ -25,19 +23,6 @@ export default function ShortVersion({
 
   return (
     <div className="space-y-4">
-      {/* Assign Diet or Workout Section */}
-      {/* <div>
-        <AssignSection
-          patientId={patientId}
-          onSelectDiet={(dietId) => {
-            setDietSelected(dietId);
-          }}
-          onSelectWorkout={(workoutId) => {
-            setWorkoutSelected(workoutId);
-          }}
-        />
-      </div> */}
-
       <div className="flex flex-col gap-1">
         <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-700">
           <CalendarIcon className="h-5 w-5 text-blue-600" />

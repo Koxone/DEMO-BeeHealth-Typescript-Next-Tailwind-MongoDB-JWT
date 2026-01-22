@@ -8,6 +8,7 @@ import MedsSoldTable from '@/components/shared/medsSold/MedsSoldTable';
 
 // Custom Hooks
 import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Local Helpers
 import { getConsultTotals } from './utils/getConsultTotals';
@@ -15,7 +16,14 @@ import { getConsultTotals } from './utils/getConsultTotals';
 // Feedback Components
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
-export default function EmployeeConsults({ role }) {
+export default function EmployeeConsults() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Get consults data
   const { consults, isLoading, error, refetch } = useGetAllConsults();
 
@@ -32,7 +40,7 @@ export default function EmployeeConsults({ role }) {
     <div className="h-full overflow-y-auto pb-8">
       {/* Header */}
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         Icon="accounting"
         title="Gestión de Consultas"
         subtitle="Registrar y controlar la atención médica de los pacientes."

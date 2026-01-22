@@ -1,38 +1,37 @@
 'use client';
 
-import { Bell, Megaphone } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Megaphone } from 'lucide-react';
+import { useState } from 'react';
 import ProfileButton from './components/ProfileButton';
 import MobileMenu from './components/MobileMenu';
 import LogoutButton from './components/LogoutButton';
 import Link from 'next/link';
 
-// Zustand
-import useAuthStore from '@/zustand/useAuthStore';
+// Custom Hooks
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Custom Hooks
 import { useGetMassiveNotifications } from '@/@hooks/notifications/useGetMassiveNotifications';
 
 export default function Header() {
-  const { user, loadUser } = useAuthStore();
-  const currentUser = user;
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
   // Massive notifications
   const {
     data: massiveNotifications,
     isLoading: massiveLoading,
     error: massiveError,
-  } = useGetMassiveNotifications(user?.role);
+  } = useGetMassiveNotifications(currentUser?.role);
 
   const newNotifications = massiveNotifications?.filter(
     (notification) =>
       notification?.readBy?.includes(currentUser?.id) === false && notification?.isActive === true
   );
-
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   const [isOpen, setIsOpen] = useState(false);
 

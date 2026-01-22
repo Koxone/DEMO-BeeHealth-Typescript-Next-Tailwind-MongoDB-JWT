@@ -7,13 +7,21 @@ import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader
 // Custom Hooks
 import { useGetPatientClinicalRecords } from '@/@hooks/clinicalRecords/get/useGetPatientClinicalRecords';
 import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback components
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import EmptyState from '@/components/shared/feedback/EmptyState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
 
-export default function PatientHistory({ role, currentUser }) {
+export default function PatientHistory() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   const { data, isLoading, error } = useGetPatientClinicalRecords(currentUser?.id);
 
   const {
@@ -50,7 +58,7 @@ export default function PatientHistory({ role, currentUser }) {
   return (
     <div className="mb-20 h-full w-full space-y-6 overflow-y-auto md:mb-0">
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         title="Historial Clínico"
         subtitle="Visualiza tus ultimos registros médicos"
         Icon="history"

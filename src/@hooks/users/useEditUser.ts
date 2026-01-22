@@ -6,6 +6,10 @@ interface EditUserParams {
   fullName?: string;
   email?: string;
   phone?: string;
+  initialWeight?: number;
+  initialSize?: number;
+  currentSize?: number;
+  currentWeight?: number;
 }
 
 interface User {
@@ -13,6 +17,10 @@ interface User {
   fullName: string;
   email: string;
   phone: string;
+  initialWeight?: number;
+  initialSize?: number;
+  currentWeight?: number;
+  currentSize?: number;
   [key: string]: any;
 }
 
@@ -20,7 +28,16 @@ export const useEditUser = (userId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation<User, Error, EditUserParams>({
-    mutationFn: async ({ userId, fullName, email, phone }: EditUserParams) => {
+    mutationFn: async ({
+      userId,
+      fullName,
+      email,
+      phone,
+      initialWeight,
+      initialSize,
+      currentWeight,
+      currentSize,
+    }: EditUserParams) => {
       const response = await fetch('/api/users/patients/edit', {
         method: 'PATCH',
         headers: {
@@ -31,6 +48,10 @@ export const useEditUser = (userId: string) => {
           fullName,
           email,
           phone,
+          initialWeight,
+          initialSize,
+          currentWeight,
+          currentSize,
         }),
       });
 

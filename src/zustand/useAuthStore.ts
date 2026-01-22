@@ -3,7 +3,7 @@ import { CurrentUserData } from '@/@types/user/user.types';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 /* Store shape */
-interface AuthState {
+interface AuthState { 
   user: CurrentUserData | null;
   token: string | null;
   isAuthenticated: boolean;

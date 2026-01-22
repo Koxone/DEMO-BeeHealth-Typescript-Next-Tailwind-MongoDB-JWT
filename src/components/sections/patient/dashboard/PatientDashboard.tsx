@@ -2,20 +2,27 @@
 
 import HeaderWelcome from '@/components/shared/dashboard/header/HeaderWelcome';
 import PatientEvolutionChart from './components/PatientEvolutionChart';
-import PatientMotivationalBanner from './components/PatientMotivationalBanner';
+import PatientGoalBanner from './components/PatientGoalBanner';
 import PatientStatsGrid from './components/stats-grid/PatientStatsGrid';
 
 // Custom Hooks
-import { useGetAllWeightLogs } from '@/@hooks/clinicalRecords/get/useGetAllWeightLogs';
 import { useGetPatientWeightLogs } from '@/@hooks/clinicalRecords/get/useGetPatientWeightLogs';
 import { useGetMyAppointments } from '@/@hooks/appointments/useGetMyAppointments';
 import { useGetPatientGoals } from '@/@hooks/users/useGetPatientGoals';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback Components
 import ErrorState from '@/components/shared/feedback/ErrorState';
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
-export default function PatientDashboard({ currentUser }) {
+export default function PatientDashboard() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Patient ID
   const patientId = currentUser?.id;
 
@@ -25,14 +32,6 @@ export default function PatientDashboard({ currentUser }) {
     loading: appointmentsLoading,
     error: appointmentsError,
   } = useGetMyAppointments(patientId);
-
-  // Weight Logs Hook for Global counter
-  const {
-    weightLogs,
-    loading: weightLogsLoading,
-    error: weightLogsError,
-    refetch: refetchWeightLogs,
-  } = useGetAllWeightLogs();
 
   // Patient Weight Logs Hook
   const {
@@ -51,12 +50,12 @@ export default function PatientDashboard({ currentUser }) {
   } = useGetPatientGoals(patientId);
 
   // Loading state
-  if (goalsLoading || appointmentsLoading || weightLogsLoading || patientWeightLogsLoading) {
+  if (goalsLoading || appointmentsLoading || patientWeightLogsLoading || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 
   // Error State
-  if (appointmentsError || goalsError || weightLogsError || patientWeightLogsError) {
+  if (appointmentsError || goalsError || patientWeightLogsError) {
     return <ErrorState />;
   }
 
@@ -68,17 +67,17 @@ export default function PatientDashboard({ currentUser }) {
       {/* Stats */}
       <PatientStatsGrid
         patientWeightLogs={patientWeightLogs}
-        weightLogs={weightLogs}
         appointments={appointments}
+        currentUser={currentUser}
       />
 
       {/* Content */}
       <div className="grid grid-cols-1 gap-4 md:gap-6">
-        <PatientMotivationalBanner goalsData={goalsData} />
+        <PatientGoalBanner goalsData={goalsData} currentUser={currentUser} />
 
         <PatientEvolutionChart
           weightLogs={patientWeightLogs}
-          weightLogsLoading={weightLogsLoading}
+          weightLogsLoading={patientWeightLogsLoading}
           title="Evolución del Peso"
           legendLabel="Peso"
           legendColor="#3b82f6"

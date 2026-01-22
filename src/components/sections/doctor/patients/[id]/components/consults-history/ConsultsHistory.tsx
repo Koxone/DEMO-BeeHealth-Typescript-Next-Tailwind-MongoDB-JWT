@@ -7,6 +7,7 @@ import AddHistoryButton from './components/AddHistoryButton';
 import ConsultCard from './components/consult-card/ConsultCard';
 import GoalButton from './components/GoalButton';
 import CreateFirstRecordButton from './components/CreateFirstRecordButton';
+import InitialDataButton from './components/InitialDataButton';
 
 // Custom Hooks
 import { useConsultViewConfig } from '@/@hooks/config/useConsultViewConfig';
@@ -14,28 +15,32 @@ import { useConsultViewConfig } from '@/@hooks/config/useConsultViewConfig';
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';
 import ErrorState from '@/components/shared/feedback/ErrorState';
+import ConfigConsultModal from './components/config-modal/ConfigConsultModal';
 
 // Local Helpers
 import { CATEGORIES } from './components/consult-card/services/helpers';
-import ConfigConsultModal from './components/config-modal/ConfigConsultModal';
 
 // Pagination Constants
 const RECORDS_PER_PAGE = 4;
 
 export default function ConsultsHistory({
-  onOpen,
   onAdd,
   onEdit,
-  questions,
-  fetchRecord,
+  onOpen,
+  events,
   onDelete,
+  questions,
+  patientId,
+  specialty,
+  fetchRecord,
+  refetchUser,
   onCreateNew,
   patientRecord,
+  hasInitialSize,
+  hasInitialWeight,
   setShowHistoryModal,
-  specialty,
   setShowCreateGoalModal,
-  patientId,
-  events,
+  setShowEditWeightAndSizeModal,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -248,23 +253,31 @@ export default function ConsultsHistory({
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            {patientRecord?.length > 0 && (
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="bg-beehealth-blue-primary-dark hover:bg-beehealth-blue-primary-dark/90 flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">Configurar vista</span>
-              </button>
-            )}
-            {patientRecord?.length > 0 ? (
-              <AddHistoryButton onAdd={onAdd} />
-            ) : (
-              <CreateFirstRecordButton onCreateNew={onCreateNew} />
-            )}
-            <GoalButton onClick={() => setShowCreateGoalModal(true)} />
-          </div>
+          {hasInitialWeight && hasInitialSize && (
+            <div className="flex items-center gap-2">
+              {patientRecord?.length > 0 && (
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-beehealth-blue-primary-dark hover:bg-beehealth-blue-primary-dark/90 flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span className="hidden sm:inline">Configurar vista</span>
+                </button>
+              )}
+              {patientRecord?.length > 0 ? (
+                <AddHistoryButton onAdd={onAdd} />
+              ) : (
+                <CreateFirstRecordButton onCreateNew={onCreateNew} />
+              )}
+              <GoalButton onClick={() => setShowCreateGoalModal(true)} />
+            </div>
+          )}
+
+          {/* Initial Weight and Size */}
+          {!hasInitialWeight ||
+            (!hasInitialSize && (
+              <InitialDataButton onClick={() => setShowEditWeightAndSizeModal(true)} />
+            ))}
         </div>
 
         {/* Records */}

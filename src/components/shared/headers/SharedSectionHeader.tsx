@@ -25,7 +25,7 @@ interface GeneralSectionHeaderProps {
   specialty?: string;
   setShowCreateWorkoutModal?: React.Dispatch<React.SetStateAction<boolean>>;
   setEditingWorkout?: React.Dispatch<React.SetStateAction<any>>;
-  role?: 'doctor' | 'patient' | 'employee' | 'admin';
+  role?: string;
   Icon:
     | 'inventory'
     | 'consultas'

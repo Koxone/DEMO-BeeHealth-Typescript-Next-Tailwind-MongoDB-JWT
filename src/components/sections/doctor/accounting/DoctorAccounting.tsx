@@ -16,8 +16,18 @@ import ErrorState from '@/components/shared/feedback/ErrorState';
 // Custom Hooks
 import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
 import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
-export default function DoctorAccounting({ role, specialty }) {
+export default function DoctorAccounting() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+  const role = currentUser?.role;
+  const specialty = currentUser?.specialty;
+
   // Get consults data
   const { consults, isLoading, error, refetch } = useGetAllConsults({ speciality: specialty });
 
@@ -40,7 +50,7 @@ export default function DoctorAccounting({ role, specialty }) {
   );
 
   // Loading State
-  if (isLoading) {
+  if (isLoading || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 

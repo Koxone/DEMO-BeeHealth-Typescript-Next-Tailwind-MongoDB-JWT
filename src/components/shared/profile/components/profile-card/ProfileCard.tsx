@@ -10,7 +10,7 @@ import { useChangeUserPhone } from '@/@hooks/users/useChangePhone';
 function ProfileCard({
   user,
   isEditing,
-  loadUser,
+  refetchCurrentUser,
   setShowSuccessModal,
   setTitle,
   setMessage,
@@ -20,7 +20,7 @@ function ProfileCard({
 }: {
   user: CurrentUserData;
   isEditing: boolean;
-  loadUser: () => Promise<void>;
+  refetchCurrentUser: () => void;
   setShowSuccessModal: React.Dispatch<React.SetStateAction<boolean>>;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
@@ -45,7 +45,7 @@ function ProfileCard({
           user={user}
           setIsEditing={setIsEditing}
           isEditing={isEditing}
-          loadUser={loadUser}
+          refetchCurrentUser={refetchCurrentUser}
           setShowSuccessModal={setShowSuccessModal}
           setTitle={setTitle}
           setMessage={setMessage}
@@ -66,7 +66,7 @@ function ProfileCard({
         setTitle={setTitle}
         setMessage={setMessage}
         setIsEditing={setIsEditing}
-        loadUser={loadUser}
+        refetchCurrentUser={refetchCurrentUser}
       />
     </div>
   );

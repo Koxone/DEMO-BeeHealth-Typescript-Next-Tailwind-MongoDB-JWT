@@ -65,7 +65,7 @@ export default function AddRecordModal({ peso, notas, setPeso, setNotas, onClose
                 Notas (opcional)
               </label>
               <textarea
-                rows="4"
+                rows={4}
                 value={notas}
                 onChange={(e) => setNotas(e.target.value)}
                 placeholder="Ej: Progreso excelente, mantener rutina actual..."

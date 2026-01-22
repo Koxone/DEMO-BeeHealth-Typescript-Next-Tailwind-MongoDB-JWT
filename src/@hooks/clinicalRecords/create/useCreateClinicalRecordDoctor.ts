@@ -4,7 +4,7 @@ interface SubmitParams {
   patientId: string;
   specialty: string;
   version: string;
-  answers: Array<{ questionId: string; value: any }>;
+  answers: Array<{ questionId: any; value: any }>;
   dietId?: string | null;
   workoutId?: string | null;
 }

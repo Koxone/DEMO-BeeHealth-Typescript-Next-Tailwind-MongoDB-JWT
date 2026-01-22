@@ -14,11 +14,19 @@ import ErrorState from '@/components/shared/feedback/ErrorState';
 
 // Custom Hooks
 import { useGetAllWorkoutsFromPatient } from '@/@hooks/workouts/get/useGetAllWorkoutsFromPatient';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Types
 import { UserWorkout } from '@/@types/workouts/workout.types';
 
-export default function PatientWorkouts({ role, currentUser }) {
+export default function PatientWorkouts() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Get Current Patient ID
   const patientId = currentUser?.id;
 
@@ -48,10 +56,14 @@ export default function PatientWorkouts({ role, currentUser }) {
   return (
     <div className="mb-20 h-full w-full space-y-4 overflow-y-auto px-4 md:mb-0 md:space-y-6">
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         Icon="workouts"
-        title={role === 'doctor' ? 'Gestion de Ejercicios' : 'Mis Ejercicios'}
-        subtitle={role === 'doctor' ? 'Crea y personaliza ejercicios' : 'Ejercicios Personalizados'}
+        title={currentUser?.role === 'doctor' ? 'Gestion de Ejercicios' : 'Mis Ejercicios'}
+        subtitle={
+          currentUser?.role === 'doctor'
+            ? 'Crea y personaliza ejercicios'
+            : 'Ejercicios Personalizados'
+        }
       />
 
       <div className="flex flex-col gap-3 md:flex-row">

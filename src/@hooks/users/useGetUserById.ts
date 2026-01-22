@@ -16,6 +16,8 @@ const userSchema = z.object({
   workouts: z.array(z.any()).optional(),
   createdAt: z.string(),
   updatedAt: z.string(),
+  initialWeight: z.number().optional(),
+  initialSize: z.number().optional(),
 });
 
 const userResponseSchema = z.object({

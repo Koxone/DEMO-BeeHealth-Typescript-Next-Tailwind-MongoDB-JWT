@@ -2,14 +2,24 @@
 
 import PatientDietCard from '@/components/sections/patient/diets/components/PatientDietCard';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
-import EmptyState from '@/components/shared/feedback/EmptyState';
-import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
 import { useGetAllDietsFromPatient } from '@/@hooks/diets/get/useGetAllDietsFromPatient';
-import ErrorState from '@/components/shared/feedback/ErrorState';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
-export default function PatientDiets({ role, currentUser }) {
+// Feedback Components
+import ErrorState from '@/components/shared/feedback/ErrorState';
+import EmptyState from '@/components/shared/feedback/EmptyState';
+import LoadingState from '@/components/shared/feedback/LoadingState';
+
+export default function PatientDiets() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+
   // Get Current User ID
   const patientId = currentUser?.id as string;
 
@@ -24,12 +34,12 @@ export default function PatientDiets({ role, currentUser }) {
   const filteredDiets = dietsData?.filter((diet) => diet.isActive === true);
 
   // Loading state
-  if (dietsLoading) {
+  if (dietsLoading || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 
   // Error state
-  if (dietsError) {
+  if (dietsError || !currentUser) {
     return <ErrorState />;
   }
 

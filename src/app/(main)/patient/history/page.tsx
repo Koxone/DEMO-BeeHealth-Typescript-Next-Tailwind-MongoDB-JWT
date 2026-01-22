@@ -10,11 +10,10 @@ export default async function PatientHistoryPage() {
   if (currentUser?.hasRecord === false) {
     redirect('/patient/clinical-record');
   }
-  // Get current User info
-  const role = currentUser?.role;
+
   return (
     <div>
-      <PatientHistory role={role} currentUser={currentUser} />
+      <PatientHistory />
     </div>
   );
 }

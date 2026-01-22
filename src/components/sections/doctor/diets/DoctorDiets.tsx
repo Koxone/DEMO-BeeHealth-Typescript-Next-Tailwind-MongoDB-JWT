@@ -1,38 +1,28 @@
 'use client';
-import { useState } from 'react';
 
 import DoctorDietCard from '@/components/sections/doctor/diets/components/DoctorDietCard';
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 
 // Feedback Components
 import LoadingState from '@/components/shared/feedback/LoadingState';
-import ModalAssignDiet from './components/ModalAssignDiet';
-import SuccessModal from '@/components/shared/feedback/SuccessModal';
 
 // Custom Hooks
 import { useGetAllDiets } from '@/@hooks/diets/get/useGetAllDiets';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
-// Types
-import { IDiet } from '@/models/Diet';
+export default function DoctorDiets() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
-export default function DoctorDiets({ role }) {
   // Fetch all diets
   const { dietsData, isLoading, error, refetch } = useGetAllDiets();
 
-  // Assign Diet Modal State
-  const [showAssignModal, setShowAssignModal] = useState<boolean>(false);
-  const [dietToAssign, setDietToAssign] = useState<IDiet | null>(null);
-
-  // Success Modal States
-  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-
-  const handleAssignDiet = (diet) => {
-    setDietToAssign(diet);
-    setShowAssignModal(true);
-  };
-
   // Loading
-  if (isLoading) {
+  if (isLoading || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 
@@ -41,11 +31,11 @@ export default function DoctorDiets({ role }) {
       <div className="flex items-center justify-between">
         {/* Header */}
         <SharedSectionHeader
-          role={role}
+          role={currentUser?.role}
           Icon="diets"
-          title={role === 'doctor' ? 'Gestion de Dietas' : 'Mis Dietas'}
+          title={currentUser?.role === 'doctor' ? 'Gestion de Dietas' : 'Mis Dietas'}
           subtitle={
-            role === 'doctor'
+            currentUser?.role === 'doctor'
               ? 'Crea y personaliza planes nutricionales'
               : 'Planes nutricionales personalizados'
           }
@@ -54,13 +44,7 @@ export default function DoctorDiets({ role }) {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {dietsData && dietsData.length > 0 ? (
-          dietsData.map((diet) => (
-            <DoctorDietCard
-              diet={diet}
-              key={diet._id}
-              onClickAssign={() => handleAssignDiet(diet)}
-            />
-          ))
+          dietsData.map((diet) => <DoctorDietCard diet={diet} key={diet._id} />)
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-10 text-center">
             <p className="text-lg font-semibold text-gray-700">No hay dietas registradas</p>
@@ -69,26 +53,6 @@ export default function DoctorDiets({ role }) {
           </div>
         )}
       </div>
-
-      {/* Modal Assign Diet */}
-      {showAssignModal && (
-        <ModalAssignDiet
-          dietToAssign={dietToAssign}
-          setShowAssignModal={setShowAssignModal}
-          refetch={refetch}
-          setShowSuccessModal={setShowSuccessModal}
-        />
-      )}
-
-      {/* Success Modal */}
-      {showSuccessModal && (
-        <SuccessModal
-          title="Dieta asignada"
-          message="La dieta ha sido asignada correctamente a los pacientes seleccionados."
-          setShowSuccessModal={setShowSuccessModal}
-          showSuccessModal={showSuccessModal}
-        />
-      )}
     </div>
   );
 }

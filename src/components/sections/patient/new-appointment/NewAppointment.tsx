@@ -9,21 +9,30 @@ import CalendarPicker from './components/CalendarPicker';
 import TimeSlots from './components/TimeSlots';
 import ReasonField from './components/ReasonField';
 import SummaryCard from './components/SummaryCard';
-import SuccessModal from './components/SuccessModal';
 import useSound from 'use-sound';
+import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
+
+// Feedback Components
+import SuccessModal from './components/SuccessModal';
 
 // Local Helpers
 import { isPastDate, getDaysInMonth } from './components/NewAppointmentUtils';
 import { getAvailableSlots, doctors } from './services/helpers';
 
-// Zustand
-import useAuthStore from '@/zustand/useAuthStore';
-import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
+// Custom Hooks
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
+
+// Feedback Components
+import LoadingState from '@/components/shared/feedback/LoadingState';
 
 /* Main component */
 export default function NewAppointment() {
-  // Zustand
-  const { user } = useAuthStore();
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
   // Library Hooks
   const router = useRouter();
@@ -94,13 +103,13 @@ export default function NewAppointment() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          patientId: user?.id,
-          patientName: user?.fullName,
+          patientId: currentUser?.id,
+          patientName: currentUser?.fullName,
           specialty,
           date: formattedDate,
           time: selectedTime,
-          phone: user?.phone,
-          email: user?.email,
+          phone: currentUser?.phone,
+          email: currentUser?.email,
           reason,
         }),
       });
@@ -115,6 +124,11 @@ export default function NewAppointment() {
       alert('Error al crear la cita');
     }
   };
+
+  // Loading State
+  if (isLoadingCurrentUser) {
+    return <LoadingState />;
+  }
 
   return (
     <div className="mx-auto mb-20 flex h-full max-w-4xl flex-col gap-4 overflow-x-hidden overflow-y-auto md:mb-0">

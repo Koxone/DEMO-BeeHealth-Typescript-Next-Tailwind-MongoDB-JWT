@@ -16,7 +16,6 @@ import { Calendar, Clock, Power, RefreshCcw, Trash2 } from 'lucide-react';
 export default function ToggleDietCard({
   diet,
   handleDietClick,
-  patientId,
   recordId,
   setDietToDelete,
   handleRenewDietClick,

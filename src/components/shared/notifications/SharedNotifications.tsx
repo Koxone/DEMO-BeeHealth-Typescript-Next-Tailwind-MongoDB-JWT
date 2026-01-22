@@ -1,7 +1,18 @@
+'use client';
+
 import SharedSectionHeader from '@/components/shared/headers/SharedSectionHeader';
 import NotificationsManager from './components/NotificationsManager';
 
-function SharedNotifications({ currentUser }) {
+// Custom Hooks
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
+
+function SharedNotifications() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
   return (
     <div>
       <SharedSectionHeader

@@ -21,7 +21,7 @@ export async function GET(req, { params }) {
     const { id } = await params;
 
     const logs = await WeightLog.find({ patient: id })
-      .populate('patient', 'firstName lastName email')
+      .populate('patient', 'email')
       .populate('clinicalRecord', 'createdAt recordDate');
 
     return NextResponse.json({ weightLogs: logs }, { status: 200 });

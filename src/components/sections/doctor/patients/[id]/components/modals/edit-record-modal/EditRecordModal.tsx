@@ -129,14 +129,11 @@ export default function EditRecordModal({
           className="max-h-[calc(90vh-180px)] overflow-y-auto px-6 py-8"
         >
           <ShortVersion
-            patientId={patientId}
             specialty={specialty}
             formData={formData}
             setFormData={setFormData}
             isSubmitting={isSubmitting}
             onClose={onClose}
-            setDietSelected={setDietSelected}
-            setWorkoutSelected={setWorkoutSelected}
           />
         </form>
       </div>

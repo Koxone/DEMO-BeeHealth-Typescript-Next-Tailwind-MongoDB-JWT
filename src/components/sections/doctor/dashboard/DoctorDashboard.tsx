@@ -1,10 +1,10 @@
 'use client';
 
+import DoctorStatsGrid from './components/DoctorStatsGrid';
 import HeaderWelcome from '@/components/shared/dashboard/header/HeaderWelcome';
 import AppointmentsToday from '@/components/shared/appointments/AppointmentsToday';
-import DoctorAccountingSummary from '@/components/sections/doctor/dashboard/components/DoctorAccountingSummary';
 import SharedInventoryAlerts from '@/components/shared/dashboard/InventoryAlerts/SharedInventoryAlerts';
-import DoctorStatsGrid from './components/DoctorStatsGrid';
+import DoctorAccountingSummary from '@/components/sections/doctor/dashboard/components/DoctorAccountingSummary';
 
 // Local Helpers
 import { getConsultTotals } from '@/components/sections/employee/consultations/utils/getConsultTotals';
@@ -13,21 +13,18 @@ import { getConsultTotals } from '@/components/sections/employee/consultations/u
 import LoadingState from '@/components/shared/feedback/LoadingState';
 
 // Custom Hooks
-import { useTodayAppointmentsBySpecialty } from '@/@hooks/appointments/useTodayAppointmentsBySpecialty';
-import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 import { useGetAllConsults } from '@/@hooks/consults/useGetAllConsults';
+import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
+import { useTodayAppointmentsBySpecialty } from '@/@hooks/appointments/useTodayAppointmentsBySpecialty';
 
-// Types
-import { CurrentUserData } from '@/@types/user/user.types';
-
-interface DoctorDashboardProps {
-  currentUser: CurrentUserData;
-}
-
-export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
-  // Props
-  const role = currentUser?.role;
-  const specialty = currentUser?.specialty;
+export default function DoctorDashboard() {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
   // Google Calendar Custom Hooks
   const { appointments, isLoading: loadingAppointments } = useTodayAppointmentsBySpecialty();
@@ -36,7 +33,9 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
   const { inventory, isLoading: loadingInventory } = useGetFullInventory();
 
   // All Consults
-  const { consults, isLoading: loadingConsults } = useGetAllConsults({ speciality: specialty });
+  const { consults, isLoading: loadingConsults } = useGetAllConsults({
+    speciality: currentUser?.specialty,
+  });
 
   // Filter consults by consultStatus
   const filteredConsults = consults.filter((consult) => consult?.consultStatus !== 'cancelled');
@@ -49,33 +48,38 @@ export default function DoctorDashboard({ currentUser }: DoctorDashboardProps) {
   if (loadingAppointments || loadingInventory || loadingConsults) {
     return <LoadingState />;
   }
+
   return (
     <div className="h-full space-y-4 overflow-y-auto md:space-y-6">
       {/* Header */}
-      <HeaderWelcome fullName={currentUser?.fullName} role={role} specialty={specialty} />
+      <HeaderWelcome
+        role={currentUser?.role}
+        fullName={currentUser?.fullName}
+        specialty={currentUser?.specialty}
+      />
 
       {/* Stats */}
       <DoctorStatsGrid
-        role={role}
-        totalItemsSold={totalItemsSold}
         totalCost={totalCost}
+        role={currentUser?.role}
         consultsCount={consultsCount}
+        totalItemsSold={totalItemsSold}
       />
 
       {/* Appointments */}
-      <AppointmentsToday role={role} appointments={appointments} />
+      <AppointmentsToday role={currentUser?.role} appointments={appointments} />
 
       {/* Summaries */}
       <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2">
         <DoctorAccountingSummary
-          role={role}
-          consultPrice={consultPrice}
-          totalItemsSold={totalItemsSold}
           totalCost={totalCost}
-          itemsSoldCount={itemsSoldCount}
+          role={currentUser?.role}
+          consultPrice={consultPrice}
           consultsCount={consultsCount}
+          totalItemsSold={totalItemsSold}
+          itemsSoldCount={itemsSoldCount}
         />
-        <SharedInventoryAlerts inventory={inventory} role={role} showButton={true} />
+        <SharedInventoryAlerts inventory={inventory} role={currentUser?.role} showButton={true} />
       </div>
     </div>
   );

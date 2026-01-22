@@ -7,16 +7,22 @@ import {
   employeeSidebarItems,
   dentalSidebarItems,
 } from '../sidebar/components/SideBarData';
-import useAuthStore from '@/zustand/useAuthStore';
+
+// Custom Hooks
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 function MobileBottomBar() {
-  // Custom Hooks
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+  const role = currentUser?.role;
+  const specialty = currentUser?.specialty;
+
   const pathname = usePathname();
   const router = useRouter();
-
-  const { user, token, isAuthenticated, setUser, setToken, clearAuth, loadUser } = useAuthStore();
-  const role = user?.role;
-  const specialty = user?.specialty;
 
   // Sidebar Options
   const sidebarOptions =

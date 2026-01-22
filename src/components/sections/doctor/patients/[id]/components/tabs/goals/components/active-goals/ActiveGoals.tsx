@@ -3,23 +3,11 @@ import ActiveGoalCard from './components/ActiveGoalCard';
 
 export default function ActiveGoals({
   goalsData,
-  setShowSuccessModal,
-  setSuccessTitle,
-  setSuccessMessage,
-  removeGoals,
-  refetchGoals,
-  selectedGoal,
   setSelectedGoal,
   setShowRemoveGoalModal,
 }: {
   goalsData: any;
-  setShowSuccessModal: (show: boolean) => void;
-  setSuccessTitle: (title: string) => void;
-  setSuccessMessage: (message: string) => void;
-  removeGoals: any;
-  selectedGoal: any;
   setSelectedGoal: (goal: any) => void;
-  refetchGoals: () => void;
   setShowRemoveGoalModal: (show: boolean) => void;
 }) {
   return (
@@ -41,21 +29,15 @@ export default function ActiveGoals({
         </div>
 
         {/* Diet Card */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {goalsData
             ?.filter((goal) => goal?.isActive)
             .map((goal) => (
               <ActiveGoalCard
                 key={goal?._id}
-                refetchGoals={refetchGoals}
-                selectedGoal={selectedGoal}
                 setSelectedGoal={setSelectedGoal}
                 goal={goal}
                 setShowRemoveGoalModal={setShowRemoveGoalModal}
-                removeGoals={removeGoals}
-                setShowSuccessModal={setShowSuccessModal}
-                setSuccessTitle={setSuccessTitle}
-                setSuccessMessage={setSuccessMessage}
               />
             ))}
         </div>

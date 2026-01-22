@@ -12,7 +12,7 @@ const getNivelColor = (nivel) => {
   return map[nivel] || 'bg-gray-100 text-gray-800';
 };
 
-export default function WorkoutCard({ workout, onOpen, handleEdit, onClickAssign }) {
+export default function WorkoutCard({ workout, onOpen, handleEdit }) {
   return (
     <div
       onClick={onOpen}
@@ -54,7 +54,7 @@ export default function WorkoutCard({ workout, onOpen, handleEdit, onClickAssign
         </div>
 
         {/* Doctor Actions */}
-        <ActionsButtons handleEdit={handleEdit} workout={workout} onClickAssign={onClickAssign} />
+        <ActionsButtons handleEdit={handleEdit} workout={workout} />
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import {
   dentalSidebarItems,
 } from './components/SideBarData';
 import { usePathname, useRouter } from 'next/navigation';
-import NextAppointmentCard from '@/components/sections/patient/feedback/NextAppointmentCard';
 
 export default function Sidebar({ role, specialty }) {
   // Custom Hooks

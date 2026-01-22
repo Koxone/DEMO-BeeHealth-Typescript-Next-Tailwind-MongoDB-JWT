@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import EditProfileButton from './components/EditProfileButton';
 import ProfileCard from './components/profile-card/ProfileCard';
@@ -10,9 +10,7 @@ import SecuritySection from './components/SecuritySection';
 import { useChangeUserEmail } from '@/@hooks/users/useChangeEmail';
 import { useChangeUserPassword } from '@/@hooks/users/useChangePassword';
 import { useChangeUserPhone } from '@/@hooks/users/useChangePhone';
-
-// Zustand Store
-import useAuthStore from '@/zustand/useAuthStore';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback Components
 import SuccessModal from '@/components/shared/feedback/SuccessModal';
@@ -20,8 +18,12 @@ import LoadingState from '@/components/shared/feedback/LoadingState';
 import ChangePasswordModal from './components/ChangePasswordModal';
 
 export default function SharedUserProfile() {
-  // Zustand Auth Store
-  const { user, loadUser } = useAuthStore();
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
 
   // Change Email Custom Hook
   const { mutate: changeEmail, isPending } = useChangeUserEmail();
@@ -35,25 +37,22 @@ export default function SharedUserProfile() {
     reset,
     error,
   } = useChangeUserPassword();
+
+  // Change Password Modal States
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   // Local Editing States
   const [isEditing, setIsEditing] = useState(false);
-
-  // Change Phone Custom Hook
-  const { mutate: changePhone } = useChangeUserPhone();
 
   // Success Modal State
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
 
-  // Loading or Error States
-  useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+  // Change Phone Custom Hook
+  const { mutate: changePhone } = useChangeUserPhone();
 
-  if (!user || isPending) {
+  if (!currentUser || isPending || isLoadingCurrentUser) {
     return <LoadingState />;
   }
 
@@ -64,9 +63,9 @@ export default function SharedUserProfile() {
 
       {/* Profile card */}
       <ProfileCard
-        user={user}
+        user={currentUser}
         isEditing={isEditing}
-        loadUser={loadUser}
+        refetchCurrentUser={refetchCurrentUser}
         setShowSuccessModal={setShowSuccessModal}
         changeEmail={changeEmail}
         changePhone={changePhone}
@@ -91,7 +90,7 @@ export default function SharedUserProfile() {
       {/* Password Modal */}
       {showPasswordModal && (
         <ChangePasswordModal
-          userId={user?.id}
+          userId={currentUser?.id}
           isSubmitting={isChangingPassword}
           isError={isErrorChangePassword}
           isSuccess={isSuccessChangePassword}

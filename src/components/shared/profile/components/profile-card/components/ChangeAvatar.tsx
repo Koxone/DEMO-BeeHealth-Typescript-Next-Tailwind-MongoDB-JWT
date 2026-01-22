@@ -11,7 +11,7 @@ import { CurrentUserData } from '@/@types/user/user.types';
 function ChangeAvatar({
   user,
   isEditing,
-  loadUser,
+  refetchCurrentUser,
   setShowSuccessModal,
   setTitle,
   setMessage,
@@ -19,7 +19,7 @@ function ChangeAvatar({
 }: {
   user: CurrentUserData;
   isEditing: boolean;
-  loadUser: () => Promise<void>;
+  refetchCurrentUser: () => void;
   setShowSuccessModal: React.Dispatch<React.SetStateAction<boolean>>;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
@@ -49,7 +49,7 @@ function ChangeAvatar({
       { userId: user.id, avatar: url },
       {
         onSuccess: async () => {
-          await loadUser();
+          await refetchCurrentUser();
           setTitle('¡Éxito!');
           setMessage('Avatar actualizado con éxito');
           setShowSuccessModal(true);

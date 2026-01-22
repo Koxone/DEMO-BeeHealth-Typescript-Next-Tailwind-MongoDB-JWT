@@ -13,6 +13,7 @@ export default function PatientHeader({
   onCreateNew,
   dietsData,
   workoutsData,
+  userData,
   setShowEditPatientModal,
 }) {
   // Specialty map
@@ -25,7 +26,7 @@ export default function PatientHeader({
   const filteredRecords = patientRecord?.filter((record) => record?.version === 'full') || [];
   const patient = filteredRecords?.[0] || null;
 
-  const specialtyName = specialtyLabels[patient?.specialty] || 'Sin especialidad';
+  const specialtyName = specialtyLabels[userData?.specialty] || 'Sin especialidad';
 
   function getAnswer(questionId) {
     const answers = patient?.answers;
@@ -49,7 +50,7 @@ export default function PatientHeader({
     if (answerObj.value === 'false') return 'No';
     return answerObj.value;
   }
-
+  
   return (
     <div className="bg-beehealth-green-primary-dark relative overflow-hidden rounded-2xl p-8 shadow-xl">
       <div className="bg-beehealth-body-main/10 absolute -top-10 -right-10 h-40 w-40 rounded-full blur-3xl" />
@@ -62,7 +63,7 @@ export default function PatientHeader({
             <div className="bg-beehealth-body-main absolute inset-0 rounded-full opacity-75 blur-xl transition-opacity group-hover:opacity-100" />
 
             <div className="bg-beehealth-body-main relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full shadow-2xl ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-105">
-              <img src={patient?.patient?.avatar || '/oochel.jpg'} alt="" />
+              <img src={userData?.avatar || '/oochel.jpg'} alt="" />
             </div>
           </div>
 
@@ -106,15 +107,36 @@ export default function PatientHeader({
 
           <div>
             <h1 className="text-4xl font-bold capitalize">
-              {patient?.patient?.fullName || 'Paciente sin historial clinico'}
+              {userData?.fullName || 'Paciente sin historial clinico'}
             </h1>
-            <p className="text-sm">
-              {patientRecord?.length > 0 ? getAnswer(4) : 'Paciente sin historial clinico'}{' '}
-              {patientRecord?.length > 0 ? 'años' : ''}
-            </p>
-            <p className="mb-4 text-sm">
-              {patientRecord?.length > 0 ? getAnswer(5) : 'Paciente sin historial clinico'}
-            </p>
+
+            <div className="mt-2 grid w-fit grid-cols-2 gap-4">
+              <div>
+                <p className="text-sm">
+                  <span className="text-base font-semibold">Edad:</span>{' '}
+                  {patientRecord?.length > 0 ? getAnswer(4) : 'Paciente sin historial clinico'}{' '}
+                  {patientRecord?.length > 0 ? 'años' : ''}
+                </p>
+                <p className="text-sm">
+                  <span className="text-base font-semibold">Genero:</span>{' '}
+                  {patientRecord?.length > 0 ? getAnswer(5) : 'Paciente sin historial clinico'}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm">
+                  <span className="text-base font-semibold">Peso Inicial:</span>{' '}
+                  {userData?.initialWeight
+                    ? `${userData.initialWeight} kg`
+                    : 'Paciente sin historial clinico'}
+                </p>
+                <p className="mb-4 text-sm">
+                  <span className="text-base font-semibold">Talla Inicial:</span>{' '}
+                  {userData?.initialSize
+                    ? `${userData.initialSize} cm`
+                    : 'Paciente sin historial clinico'}
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -125,7 +147,7 @@ export default function PatientHeader({
               <div className="min-w-0 flex-1">
                 <p className="text-xs text-blue-100">Correo</p>
                 <p className="truncate text-sm font-semibold">
-                  {patient?.patient?.email || 'Paciente sin historial clinico'}
+                  {userData?.email || 'Paciente sin historial clinico'}
                 </p>
               </div>
             </div>
@@ -137,7 +159,7 @@ export default function PatientHeader({
               <div>
                 <p className="text-xs text-blue-100">Teléfono</p>
                 <p className="text-sm font-semibold">
-                  {patient?.patient?.phone || 'Paciente sin historial clinico'}
+                  {userData?.phone || 'Paciente sin historial clinico'}
                 </p>
               </div>
             </div>
@@ -149,8 +171,8 @@ export default function PatientHeader({
               <div>
                 <p className="text-xs text-blue-100">Registro</p>
                 <p className="text-sm font-semibold">
-                  {patient?.createdAt
-                    ? moment(patient.createdAt).format('DD/MM/YYYY')
+                  {userData?.createdAt
+                    ? moment(userData.createdAt).format('DD/MM/YYYY')
                     : 'Paciente sin historial clinico'}
                 </p>
               </div>

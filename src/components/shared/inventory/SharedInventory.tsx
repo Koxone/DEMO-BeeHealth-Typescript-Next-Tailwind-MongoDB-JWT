@@ -14,12 +14,13 @@ import { getStockStatus } from './utils/helpers';
 // Tables
 import MedsTable from './components/MedsTable';
 import SuppliesTable from './components/SuppliesTable';
-import RecetasGrid from './components/PrescriptionsTable';
+import PrescriptionsTable from './components/PrescriptionsTable';
 
 // Custom Hooks
 import { useGetFullInventory } from '@/@hooks/inventory/useGetFullInventory';
 import { toggleProductStatus } from './components/modals/toggleProductModal/services/toggleProductStatus';
 import { fetchProductHistory } from './components/modals/transactionHistoryModal/services/fetchProductHistory';
+import { useGetCurrentUser } from '@/@hooks/users/useGetCurrentUser';
 
 // Feedback Components
 import RestockProductModal from './components/modals/restockProductModal/RestockProductModal';
@@ -31,7 +32,16 @@ import TransactionHistoryModal from './components/modals/transactionHistoryModal
 import SuccessModal from '../feedback/SuccessModal';
 import LoadingState from '../feedback/LoadingState';
 
-export default function SharedInventory({ role, showButton = true }) {
+export default function SharedInventory({ showButton = true }) {
+  // Get current user
+  const {
+    user: currentUser,
+    isLoading: isLoadingCurrentUser,
+    refetch: refetchCurrentUser,
+  } = useGetCurrentUser();
+  const role = currentUser?.role;
+  const specialty = currentUser?.specialty;
+
   // Fetch Full Inventory Items
   const {
     inventory,
@@ -170,7 +180,7 @@ export default function SharedInventory({ role, showButton = true }) {
 
       {/* Header */}
       <SharedSectionHeader
-        role={role}
+        role={currentUser?.role}
         Icon="inventory"
         title="Gestión de Inventario"
         subtitle="Control de medicamentos, recetas y suministros"
@@ -203,7 +213,7 @@ export default function SharedInventory({ role, showButton = true }) {
         )}
 
         {activeTab === 'recetas' && (
-          <RecetasGrid
+          <PrescriptionsTable
             rows={filteredItems}
             getStockStatus={getStockStatus}
             onEdit={openEditModal}
@@ -224,13 +234,17 @@ export default function SharedInventory({ role, showButton = true }) {
       </div>
 
       {/* Inventory Alerts */}
-      <SharedInventoryAlerts role={role} inventory={inventory} showButton={showButton} />
+      <SharedInventoryAlerts
+        role={currentUser?.role}
+        inventory={inventory}
+        showButton={showButton}
+      />
 
       {/* Create New Product Modal */}
       {showModal && !editingItem && (
         <CreateProductModal
           activeTab={activeTab}
-          role={role}
+          role={currentUser?.role}
           onClose={() => setShowModal(false)}
           successRefresh={successRefresh}
         />
@@ -240,6 +254,7 @@ export default function SharedInventory({ role, showButton = true }) {
       {showModal && editingItem && (
         <EditProductModal
           successRefresh={successRefresh}
+          role={role}
           activeTab={activeTab}
           item={editingItem}
           onClose={() => {

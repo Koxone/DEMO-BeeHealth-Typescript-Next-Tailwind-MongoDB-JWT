@@ -65,7 +65,7 @@ export default function PatientEvolutionChart({
 
       {/* Chart */}
       <div className="h-[300px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             <XAxis dataKey="mes" stroke="#6b7280" style={{ fontSize: '12px' }} />

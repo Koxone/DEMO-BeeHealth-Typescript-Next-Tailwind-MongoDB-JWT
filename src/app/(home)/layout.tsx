@@ -1,3 +1,5 @@
-export default function HomeRootLayout({ children }) {
-  return <div className="bg-beehealth-body-main min-h-screen">{children}</div>;
+import { ReactNode } from 'react';
+
+export default function HomeLayout({ children }: { children: ReactNode }) {
+  return <section className="flex w-full flex-1 flex-col">{children}</section>;
 }

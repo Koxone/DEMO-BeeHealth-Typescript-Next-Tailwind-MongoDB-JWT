@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+/* ===== BASE (sin tamaño de texto) ===== */
+
+.button-beehealth-confirm {
+  @apply bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-solid-hover flex h-fit w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold whitespace-nowrap text-white;
+}
+
+.button-beehealth-success {
+  @apply bg-beehealth-green-secondary-solid hover:bg-beehealth-green-secondary-solid-hover flex h-fit w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+.button-beehealth-edit {
+  @apply bg-beehealth-yellow-primary-solid hover:bg-beehealth-yellow-primary-solid-hover flex h-fit w-fit items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+.button-beehealth-cancel {
+  @apply bg-beehealth-red-primary-solid hover:bg-beehealth-red-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+.button-beehealth-delete {
+  @apply bg-beehealth-red-primary-solid hover:bg-beehealth-red-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+.button-beehealth-warning {
+  @apply bg-beehealth-orange-primary-solid hover:bg-beehealth-orange-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+/* ===== TAMAÑOS (modificadores) ===== */
+
+.button-beehealth-xs {
+  @apply gap-1 rounded-lg px-3 py-2 text-xs;
+}
+
+.button-beehealth-sm {
+  @apply gap-1.5 rounded-lg px-4 py-2.5 text-sm whitespace-nowrap;
+}
+
+.button-beehealth-md {
+  @apply gap-2 rounded-xl px-6 py-3.5 text-base;
+}
+
+.button-beehealth-lg {
+  @apply gap-2.5 rounded-xl px-8 py-4 text-lg;
+}
+
+/* Cancelar outline (menos agresivo) */
+.button-beehealth-cancel-outline {
+  @apply border-beehealth-green-primary-solid text-beehealth-green-primary-solid hover:bg-beehealth-green-primary-light flex flex-1 items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 font-semibold;
+}
+
+/* Eliminar outline (confirmación secundaria) */
+.button-beehealth-delete-outline {
+  @apply border-beehealth-red-primary-solid text-beehealth-red-primary-solid hover:bg-beehealth-red-tertiary-light flex flex-1 items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 font-semibold;
+}
+
+/* Editar outline */
+.button-beehealth-edit-outline {
+  @apply border-beehealth-yellow-primary-solid text-beehealth-yellow-primary-dark hover:bg-beehealth-yellow-tertiary-light flex flex-1 items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 font-semibold;
+}
+
+/* Neutro outline */
+.button-beehealth-neutral-outline {
+  @apply border-beehealth-blue-tertiary-solid text-beehealth-blue-primary-dark hover:bg-beehealth-blue-tertiary-light flex flex-1 items-center justify-center gap-2 rounded-xl border-2 px-6 py-3.5 font-semibold;
+}
+/* Primary – Confirm / Save */
+.button-beehealth-primary-blue-solid {
+  @apply bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+/* Positive – Edit / Accept */
+.button-beehealth-primary-green-solid {
+  @apply bg-beehealth-green-secondary-solid hover:bg-beehealth-green-secondary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+/* Warning – Cancel */
+.button-beehealth-primary-yellow-solid {
+  @apply bg-beehealth-yellow-primary-solid hover:bg-beehealth-yellow-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-gray-800;
+}
+
+/* Destructive – Delete */
+.button-beehealth-primary-red-solid {
+  @apply bg-beehealth-red-primary-solid hover:bg-beehealth-red-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+
+/* Secondary – Neutral */
+.button-beehealth-secondary-neutral {
+  @apply bg-beehealth-body-main flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-300 px-6 py-3.5 font-semibold text-gray-700 hover:bg-gray-100;
+}
+.button-beehealth-primary-blue-solid {
+  @apply bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-solid-hover flex w-fit flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+.button-beehealth-primary-medium-blue-solid {
+  @apply bg-beehealth-green-secondary-dark hover:bg-beehealth-green-secondary-dark-hover relative flex w-full items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white shadow-md transition-all duration-300;
+}
+.button-beehealth-primary-green-solid {
+  @apply bg-beehealth-green-secondary-solid hover:bg-beehealth-green-secondary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}
+.button-beehealth-primary-red-solid {
+  @apply bg-beehealth-red-primary-solid hover:bg-beehealth-red-primary-solid-hover flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold text-white;
+}

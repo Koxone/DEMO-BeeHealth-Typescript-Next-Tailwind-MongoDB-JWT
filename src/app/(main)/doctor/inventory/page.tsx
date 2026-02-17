@@ -1,9 +1,5 @@
-import SharedInventory from '@/components/shared/inventory/SharedInventory';
+import DoctorInventoryPage from '@/presentation/ui/pages/main/doctor/inventory/DoctorInventoryPage';
 
-export default function DoctorInventoryPage() {
-  return (
-    <div>
-      <SharedInventory showButton={false} />
-    </div>
-  );
+export default function DoctorInventoryViewRoute() {
+  return <DoctorInventoryPage />;
 }

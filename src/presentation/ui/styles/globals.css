@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+/* Theme tokens */
+@import './theme.css';
+
+/* UI primitives */
+@import './buttons.css';
+
+/* Animations */
+@import './keyframes.css';
+
+/* input {
+  outline: none;
+} */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Remove arrows */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}

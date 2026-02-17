@@ -1,0 +1,34 @@
+import { ArrowLeft, Check } from 'lucide-react';
+
+export default function ActionButtons({ activeTab, loadingCreate = false, onClick }) {
+  return (
+    <div className="mt-8 mb-10 flex gap-3 sm:flex-row md:mb-0 md:flex-col">
+      <button
+        type="button"
+        className="hover:bg-beehealth-body-main flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition active:scale-95"
+      >
+        <ArrowLeft className="h-5 w-5" />
+        Volver
+      </button>
+      <button
+        type="button"
+        disabled={loadingCreate}
+        onClick={onClick}
+        className="button-beehealth-confirm"
+      >
+        {/* <button
+        type="button"
+        disabled={loadingCreate}
+        onClick={onClick}
+        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white shadow-md transition active:scale-95 ${
+          activeTab === 'weight'
+            ? 'bg-beehealth-blue-primary-solid hover:bg-beehealth-blue-primary-dark'
+            : 'bg-purple-500 hover:bg-purple-600'
+        }`}
+      > */}
+        <Check className="h-5 w-5" />
+        Completar Registro
+      </button>
+    </div>
+  );
+}

@@ -1,17 +1,19 @@
 'use client';
 
-import SignupForm from '@/components/sections/auth/signup/SignupForm';
-import HomeHeader from '@/components/sections/home/components/HomeHeader';
 import { useState } from 'react';
 
-function SignUpPage() {
+import SignupPage from '@/presentation/ui/pages/home/auth/signup/SignupPage';
+import HomeHeader from '@/presentation/ui/pages/home/shared/HomeHeader';
+
+export default function SignUpViewRoute() {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <div>
+    <div className="flex w-full flex-1 flex-col">
       <HomeHeader about contact showMenu={showMenu} setShowMenu={setShowMenu} />
-      <SignupForm />
+
+      <div className="flex w-full flex-1">
+        <SignupPage />
+      </div>
     </div>
   );
 }
-
-export default SignUpPage;

@@ -1,9 +1,5 @@
-import SharedUserProfile from '@/components/shared/profile/SharedUserProfile';
+import SharedUserProfilePage from '@/presentation/ui/pages/main/shared/shared-user-profile/SharedUserProfile';
 
-export default function DoctorProfilePage() {
-  return (
-    <div>
-      <SharedUserProfile />
-    </div>
-  );
+export default function DoctorProfileViewRoute() {
+  return <SharedUserProfilePage />;
 }

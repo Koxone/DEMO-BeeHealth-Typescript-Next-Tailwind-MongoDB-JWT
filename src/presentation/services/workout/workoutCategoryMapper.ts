@@ -1,0 +1,25 @@
+import { WorkoutCategoryEnum } from '@/domain/enums/';
+
+export const WorkoutCategoryLabelMap: Record<WorkoutCategoryEnum, string> = {
+  [WorkoutCategoryEnum.CHEST]: 'Pecho',
+  [WorkoutCategoryEnum.BACK]: 'Espalda',
+  [WorkoutCategoryEnum.SHOULDERS]: 'Hombros',
+  [WorkoutCategoryEnum.BICEPS]: 'Bíceps',
+  [WorkoutCategoryEnum.TRICEPS]: 'Tríceps',
+  [WorkoutCategoryEnum.FOREARMS]: 'Antebrazos',
+  [WorkoutCategoryEnum.CORE]: 'Core',
+  [WorkoutCategoryEnum.ABDOMINALS]: 'Abdominales',
+  [WorkoutCategoryEnum.GLUTES]: 'Glúteos',
+  [WorkoutCategoryEnum.QUADRICEPS]: 'Cuádriceps',
+  [WorkoutCategoryEnum.HAMSTRINGS]: 'Isquiotibiales',
+  [WorkoutCategoryEnum.CALVES]: 'Pantorrillas',
+  [WorkoutCategoryEnum.FULL_BODY]: 'Cuerpo Completo',
+  [WorkoutCategoryEnum.CARDIO]: 'Cardio',
+  [WorkoutCategoryEnum.HIIT]: 'HIIT',
+  [WorkoutCategoryEnum.MOBILITY]: 'Movilidad',
+  [WorkoutCategoryEnum.FLEXIBILITY]: 'Flexibilidad',
+  [WorkoutCategoryEnum.BALANCE]: 'Balance',
+  [WorkoutCategoryEnum.PLYOMETRICS]: 'Pliometría',
+  [WorkoutCategoryEnum.FUNCTIONAL]: 'Funcional',
+  [WorkoutCategoryEnum.ALL]: 'Todas',
+};

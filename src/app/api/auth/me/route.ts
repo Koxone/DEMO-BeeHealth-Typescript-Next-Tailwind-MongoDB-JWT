@@ -1,54 +1,58 @@
 import { NextResponse } from 'next/server';
-import { connectDB } from '@/lib/mongodb';
-import User from '@/models/User';
-import { getAuthUser } from '@/lib/auth/getAuthUser';
 
-// @route    GET /api/auth/me
-// @desc     Returns current authenticated user
-// @access   Private
-export async function GET(req) {
+// Service Imports
+import { AuthTokenExtractor } from '@/infrastructure/services/auth/AuthTokenExtractor';
+import { JwtTokenService } from '@/infrastructure/services/auth/JwtTokenService';
+import { MongooseUserRepository } from '@/infrastructure/repositories/user/MongooseUserRepository';
+
+// Use Case Imports
+import { GetAuthenticatedUser } from '@/application/use-cases/auth/GetAuthenticatedUser';
+
+// Error Imports
+import { AuthRequiredError } from '@/domain/errors/AuthRequiredError';
+import { UserNotFoundError } from '@/domain/errors/UserNotFoundError';
+
+export async function GET(req: Request) {
   try {
-    // Connect to MongoDB
-    await connectDB();
+    const extractor = new AuthTokenExtractor();
+    const tokenService = new JwtTokenService();
 
-    // Auth
-    const auth = await getAuthUser(req);
-    if (!auth.ok) {
-      return NextResponse.json({ ok: false, error: auth.error }, { status: auth.status });
+    const token = extractor.extract(req);
+    if (!token) {
+      throw new AuthRequiredError();
     }
 
-    const { userId } = auth;
+    const { id } = tokenService.verify(token);
 
-    // Fetch user data from DB
-    const user = await User.findById(userId).select('-password');
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    }
+    const useCase = new GetAuthenticatedUser(new MongooseUserRepository());
+    const user = await useCase.execute(id);
 
-    // Return safe user info
     return NextResponse.json(
       {
-        message: 'Authenticated user retrieved successfully',
         user: {
-          id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          role: user.role,
-          phone: user.phone,
-          avatar: user.avatar,
-          initialWeight: user.initialWeight,
-          initialSize: user.initialSize,
-          currentWeight: user.currentWeight,
-          currentSize: user.currentSize,
-          hasRecord: user.hasRecord,
-          specialty: user.specialty,
-          createdAt: user.createdAt,
+          id: user.getId(),
+          name: user.getName(),
+          lastName: user.getLastName(),
+          email: user.getEmail(),
+          phone: user.getPhone(),
+          avatar: user.getAvatar(),
+          role: user.getRole(),
+          specialty: user.getSpecialty(),
+          updatedAt: user.getUpdatedAt(),
         },
       },
       { status: 200 }
     );
-  } catch (e) {
-    console.error('Error fetching user:', e);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  } catch (error) {
+    if (error instanceof AuthRequiredError) {
+      return NextResponse.json({ error: 'AUTH_REQUIRED' }, { status: 401 });
+    }
+
+    if (error instanceof UserNotFoundError) {
+      return NextResponse.json({ error: 'USER_NOT_FOUND' }, { status: 404 });
+    }
+
+    // Fallback error
+    return NextResponse.json({ error: 'INTERNAL_ERROR' }, { status: 500 });
   }
 }

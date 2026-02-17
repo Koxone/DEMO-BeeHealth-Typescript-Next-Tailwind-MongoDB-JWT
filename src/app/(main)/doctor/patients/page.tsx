@@ -1,9 +1,5 @@
-import DoctorPatients from '@/components/sections/doctor/patients/DoctorPatients';
+import DoctorPatientsPage from '@/presentation/ui/pages/main/doctor/patients/DoctorPatientsPage';
 
-export default function DoctorPatientsPage() {
-  return (
-    <div>
-      <DoctorPatients />
-    </div>
-  );
+export default function PatientsListViewRoute() {
+  return <DoctorPatientsPage />;
 }

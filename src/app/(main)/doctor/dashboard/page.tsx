@@ -1,9 +1,5 @@
-import DoctorDashboard from '@/components/sections/doctor/dashboard/DoctorDashboard';
+import DoctorDashboardPage from '@/presentation/ui/pages/main/doctor/dashboard/DoctorDashboardPage';
 
-export default function DoctorDashboardPage() {
-  return (
-    <div>
-      <DoctorDashboard />
-    </div>
-  );
+export default function DashboardViewRoute() {
+  return <DoctorDashboardPage />;
 }

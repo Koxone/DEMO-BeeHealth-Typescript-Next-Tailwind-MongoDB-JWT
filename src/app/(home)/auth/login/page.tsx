@@ -1,18 +1,18 @@
 'use client';
 
-import LoginForm from '@/components/sections/auth/login/LoginForm';
-import HomeHeader from '@/components/sections/home/components/HomeHeader';
+import LoginPage from '@/presentation/ui/pages/home/auth/login/LoginPage';
+import HomeHeader from '@/presentation/ui/pages/home/shared/HomeHeader';
 import { useState } from 'react';
 
-function LoginPage() {
+export default function LoginViewRoute() {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="grid h-screen grid-rows-[auto_1fr] overflow-hidden">
+    <div className="flex w-full flex-1 flex-col">
       <HomeHeader setShowMenu={setShowMenu} showMenu={showMenu} />
 
-      <LoginForm />
+      <div className="flex w-full flex-1">
+        <LoginPage />
+      </div>
     </div>
   );
 }
-
-export default LoginPage;

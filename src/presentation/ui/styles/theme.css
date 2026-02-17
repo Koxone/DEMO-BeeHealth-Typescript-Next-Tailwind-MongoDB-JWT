@@ -1,0 +1,167 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Body Main Color */
+  --color-beehealth-body-main: #f8f3ed;
+
+  /* Logo Text */
+  --color-beehealth-logo-text: #726b61;
+
+  /* Green Primary */
+  --color-beehealth-green-primary-solid: #5f6b66;
+  --color-beehealth-green-primary-solid-hover: #4f5a55;
+  --color-beehealth-green-primary-light: #e7ecea;
+  --color-beehealth-green-primary-light-hover: #d4ddda;
+  --color-beehealth-green-primary-dark: #8b9c94;
+  --color-beehealth-green-primary-dark-hover: #7a8c83;
+
+  /* Green Secondary */
+  --color-beehealth-green-secondary-solid: #73c89f;
+  --color-beehealth-green-secondary-solid-hover: #66b592;
+  --color-beehealth-green-secondary-light: #c6e6d8;
+  --color-beehealth-green-secondary-light-hover: #b2dccb;
+  --color-beehealth-green-secondary-dark: #5da986;
+  --color-beehealth-green-secondary-dark-hover: #4e9172;
+
+  /* Green Tertiary */
+  --color-beehealth-green-tertiary-solid: #dcfce7;
+  --color-beehealth-green-tertiary-solid-hover: #bbf7d0;
+  --color-beehealth-green-tertiary-light: #f0fdf4;
+  --color-beehealth-green-tertiary-light-hover: #e8faed;
+  --color-beehealth-green-tertiary-dark: #a7f3c9;
+  --color-beehealth-green-tertiary-dark-hover: #86efac;
+
+  /* Blue Primary */
+  --color-beehealth-blue-primary-solid: #678bda;
+  --color-beehealth-blue-primary-solid-hover: #5176cc;
+  --color-beehealth-blue-primary-light: #eff6ff;
+  --color-beehealth-blue-primary-light-hover: #dbeafe;
+  --color-beehealth-blue-primary-dark: #4a6db6;
+  --color-beehealth-blue-primary-dark-hover: #3f5fa3;
+
+  /* Blue Secondary */
+  --color-beehealth-blue-secondary-solid: #5475b8;
+  --color-beehealth-blue-secondary-solid-hover: #4967a5;
+  --color-beehealth-blue-secondary-light: #3f5a92;
+  --color-beehealth-blue-secondary-light-hover: #354e80;
+  --color-beehealth-blue-secondary-dark: #2c3f6e;
+  --color-beehealth-blue-secondary-dark-hover: #24365e;
+
+  /* Blue Tertiary */
+  --color-beehealth-blue-tertiary-solid: #9fb3d9;
+  --color-beehealth-blue-tertiary-solid-hover: #8ca3cf;
+  --color-beehealth-blue-tertiary-light: #f5f8fc;
+  --color-beehealth-blue-tertiary-light-hover: #e8eff8;
+  --color-beehealth-blue-tertiary-dark: #7a94c4;
+  --color-beehealth-blue-tertiary-dark-hover: #6a86b8;
+
+  /* Red Primary */
+  --color-beehealth-red-primary-solid: #da6767;
+  --color-beehealth-red-primary-solid-hover: #cc5151;
+  --color-beehealth-red-primary-light: #fabbba;
+  --color-beehealth-red-primary-light-hover: #f5a3a3;
+  --color-beehealth-red-primary-dark: #b84f4f;
+  --color-beehealth-red-primary-dark-hover: #a64646;
+
+  /* Red Secondary */
+  --color-beehealth-red-secondary-solid: #c45454;
+  --color-beehealth-red-secondary-solid-hover: #b34848;
+  --color-beehealth-red-secondary-light: #f5d0d0;
+  --color-beehealth-red-secondary-light-hover: #f0bfbf;
+  --color-beehealth-red-secondary-dark: #a33f3f;
+  --color-beehealth-red-secondary-dark-hover: #8f3636;
+
+  /* Red Tertiary */
+  --color-beehealth-red-tertiary-solid: #e09a9a;
+  --color-beehealth-red-tertiary-solid-hover: #d68888;
+  --color-beehealth-red-tertiary-light: #fdf2f2;
+  --color-beehealth-red-tertiary-light-hover: #fae5e5;
+  --color-beehealth-red-tertiary-dark: #c97d7d;
+  --color-beehealth-red-tertiary-dark-hover: #ba6e6e;
+
+  /* Yellow Primary */
+  --color-beehealth-yellow-primary-solid: #e6c15b;
+  --color-beehealth-yellow-primary-solid-hover: #d4ae4e;
+  --color-beehealth-yellow-primary-light: #f9edc7;
+  --color-beehealth-yellow-primary-light-hover: #f6e4b0;
+  --color-beehealth-yellow-primary-dark: #c9a043;
+  --color-beehealth-yellow-primary-dark-hover: #b8903c;
+
+  /* Yellow Secondary */
+  --color-beehealth-yellow-secondary-solid: #b88f2d;
+  --color-beehealth-yellow-secondary-solid-hover: #a88028;
+  --color-beehealth-yellow-secondary-light: #e8d49f;
+  --color-beehealth-yellow-secondary-light-hover: #dfc988;
+  --color-beehealth-yellow-secondary-dark: #8f6d21;
+  --color-beehealth-yellow-secondary-dark-hover: #7e601d;
+
+  /* Yellow Tertiary */
+  --color-beehealth-yellow-tertiary-solid: #d4c78a;
+  --color-beehealth-yellow-tertiary-solid-hover: #c8ba78;
+  --color-beehealth-yellow-tertiary-light: #fdf9ee;
+  --color-beehealth-yellow-tertiary-light-hover: #faf4e0;
+  --color-beehealth-yellow-tertiary-dark: #b5a86d;
+  --color-beehealth-yellow-tertiary-dark-hover: #a59a60;
+
+  /* Orange Primary */
+  --color-beehealth-orange-primary-solid: #e08a4a;
+  --color-beehealth-orange-primary-solid-hover: #cc7a41;
+  --color-beehealth-orange-primary-light: #f6d3b8;
+  --color-beehealth-orange-primary-light-hover: #f2c5a2;
+  --color-beehealth-orange-primary-dark: #c4743b;
+  --color-beehealth-orange-primary-dark-hover: #b16636;
+
+  /* Orange Secondary */
+  --color-beehealth-orange-secondary-solid: #b4632d;
+  --color-beehealth-orange-secondary-solid-hover: #a45827;
+  --color-beehealth-orange-secondary-light: #e1b694;
+  --color-beehealth-orange-secondary-light-hover: #d8a880;
+  --color-beehealth-orange-secondary-dark: #8c4c22;
+  --color-beehealth-orange-secondary-dark-hover: #7b421e;
+
+  /* Orange Tertiary */
+  --color-beehealth-orange-tertiary-solid: #d9a882;
+  --color-beehealth-orange-tertiary-solid-hover: #cf9a70;
+  --color-beehealth-orange-tertiary-light: #fdf6f0;
+  --color-beehealth-orange-tertiary-light-hover: #faede2;
+  --color-beehealth-orange-tertiary-dark: #c4956a;
+  --color-beehealth-orange-tertiary-dark-hover: #b5875c;
+
+  /* Purple Primary */
+  --color-beehealth-purple-primary-solid: #7a6fa6;
+  --color-beehealth-purple-primary-solid-hover: #6c6294;
+  --color-beehealth-purple-primary-light: #ece9f4;
+  --color-beehealth-purple-primary-light-hover: #e0dbed;
+  --color-beehealth-purple-primary-dark: #5f5686;
+  --color-beehealth-purple-primary-dark-hover: #524b76;
+
+  /* Purple Secondary */
+  --color-beehealth-purple-secondary-solid: #9a8fc4;
+  --color-beehealth-purple-secondary-solid-hover: #8b80b5;
+  --color-beehealth-purple-secondary-light: #dcd7ee;
+  --color-beehealth-purple-secondary-light-hover: #cfc8e6;
+  --color-beehealth-purple-secondary-dark: #7d73a8;
+  --color-beehealth-purple-secondary-dark-hover: #6e6596;
+
+  /* Purple Tertiary */
+  --color-beehealth-purple-tertiary-solid: #c7c1e1;
+  --color-beehealth-purple-tertiary-solid-hover: #b9b2d8;
+  --color-beehealth-purple-tertiary-light: #f4f2fa;
+  --color-beehealth-purple-tertiary-light-hover: #ece9f6;
+  --color-beehealth-purple-tertiary-dark: #a9a1cc;
+  --color-beehealth-purple-tertiary-dark-hover: #9a92c1;
+
+  --color-asana-beige: #efe1d5;
+  --color-asana-blue: #2563eb;
+
+  --med-blue: #2563eb;
+  --med-blue-light: #e0ebff;
+  --med-gray: #f8fafc;
+  --med-gray-border: #e2e8f0;
+  --med-text-dark: #1e293b;
+  --med-text-muted: #64748b;
+  --med-green: #16a34a;
+  --med-red: #dc2626;
+  --med-purple: #6d28d9;
+  --med-cyan: #0891b2;
+}

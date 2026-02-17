@@ -1,9 +1,5 @@
-import DoctorDiets from '@/components/sections/doctor/diets/DoctorDiets';
+import DoctorDietsPage from '@/presentation/ui/pages/main/doctor/diets/DoctorDietsPage';
 
-export default async function DoctorDietsPage() {
-  return (
-    <div>
-      <DoctorDiets />
-    </div>
-  );
+export default function DoctorDietsViewRoute() {
+  return <DoctorDietsPage />;
 }

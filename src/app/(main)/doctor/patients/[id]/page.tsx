@@ -1,11 +1,5 @@
-'use client';
+import DoctorPatientDetailPage from '@/presentation/ui/pages/main/doctor/patients/[id]/DoctorPatientDetail';
 
-import DoctorPatientDetail from '@/components/sections/doctor/patients/[id]/DoctorPatientDetail';
-
-export default function DoctorPatientDetailPage() {
-  return (
-    <div>
-      <DoctorPatientDetail />
-    </div>
-  );
+export default function PatientDetailViewRoute() {
+  return <DoctorPatientDetailPage />;
 }

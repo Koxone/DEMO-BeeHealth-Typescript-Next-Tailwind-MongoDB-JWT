@@ -1,11 +1,9 @@
-import Home from '@/components/sections/home/Home';
+import HomePage from "@/presentation/ui/pages/home/home-page/HomePage";
 
-function HomePage() {
+export default function HomeView() {
   return (
     <div>
-      <Home />
+      <HomePage />
     </div>
   );
 }
-
-export default HomePage;

@@ -1,9 +1,5 @@
-import DoctorWorkouts from '@/components/sections/doctor/workouts/DoctorWorkouts';
+import DoctorWorkoutsPage from '@/presentation/ui/pages/main/doctor/workouts/DoctorWorkoutsPage';
 
-export default function DoctorWorkoutsPage() {
-  return (
-    <div>
-      <DoctorWorkouts />
-    </div>
-  );
+export default function DoctorWorkoutsViewRoute() {
+  return <DoctorWorkoutsPage />;
 }
